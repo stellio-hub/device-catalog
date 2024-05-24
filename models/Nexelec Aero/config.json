@@ -1,5 +1,5 @@
 {
-    "documentation": "https://support.nexelec.fr/fr/support/solutions/articles/80001089292-guide-technique-carbon-lorawan",
+    "documentation": "https://support.nexelec.fr/fr/support/solutions/articles/80001089291-guide-technique-aero-lorawan",
     "uplinkDecoder": "uplink_decoder.js",
     "ngsildContext": "https://easy-global-market.github.io/ngsild-api-data-models/airQuality/jsonld-contexts/airQuality-compound.jsonld",
     "chirpstack": {
@@ -8,7 +8,7 @@
         "regParamsRevision": "A",
         "adrAlgorithmId": "default",
         "flushQueueOnActivate": true,
-        "uplinkInterval": 86400,
+        "uplinkInterval": 900,
         "supportsOTAA": true,
         "supportsClassB": false,
         "supportsClassC": false
