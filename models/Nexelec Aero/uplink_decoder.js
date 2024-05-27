@@ -817,12 +817,9 @@ function ngsildInstance(value, time, unit, dataset_suffix) {
 }
 
 function ngsildWrapper(input, time) {
-    var payload = {}
-    for (let i = 0; i < input.payload.length; i++) {
-        Object.assign(payload, input.payload[i])
-    }
+    var payload = input.data
     if (payload.Type_of_message === 'Real_Time') {
-        var ngsild_payload = {
+        var ngsild_payload = { 
             pm1: ngsildInstance(payload['Concentration_PM_1'], time, 'GQ', 'Raw'),
             pm2_5: ngsildInstance(payload['Concentration_PM_2.5'], time, 'GQ', 'Raw'),
             pm10: ngsildInstance(payload['Concentration_PM_10'], time, 'GQ', 'Raw'),
@@ -833,7 +830,7 @@ function ngsildWrapper(input, time) {
             formaldehydes: ngsildInstance(payload['Formaldehydes(ppb)'], time, '61', 'Raw'),
             luminosity: ngsildInstance(payload['Luminosity(lux)'], time, 'LUX', 'Raw'),
             noise: ngsildInstance(payload['Average_Noise(dB)'], time, '2N', 'Raw'),
-            peakNoise: ngsildInstance(payload['Peak_Noise(dB)'], time, '2N', 'Raw'),
+            peak_noise: ngsildInstance(payload['Peak_Noise(dB)'], time, '2N', 'Raw'),
             presence: ngsildInstance(payload['Presence_counter'], time, 'P1', 'Raw'),
             pressure: ngsildInstance(payload['Pressure'], time, 'A97', 'Raw'),
             indoorAirQuality: [
@@ -843,7 +840,7 @@ function ngsildWrapper(input, time) {
                 ngsildInstance(payload['IAQ_PM1.0'], time, null, 'PM1.0'),
                 ngsildInstance(payload['IAQ_PM2.5'], time, null, 'PM2.5'),
                 ngsildInstance(payload['IAQ_PM10'], time, null, 'PM10'),
-                ngsildInstance(payload['IAQ_TH'], time, null, 'TH')
+                ngsildInstance(payload['IAQ_TH'], time, null, 'TH'),
             ]
         };
     }
@@ -907,14 +904,13 @@ function ngsildWrapper(input, time) {
 }
 
 function main() {
-        var fport = process.argv[2];
-        var bytes = Uint8Array.from(Buffer.from(process.argv[3], 'hex'));
-        var time = process.argv[4];
-        var decoded = Decode(fport, bytes);
-        var ngsild_payload = ngsildWrapper(decoded, time);
-        process.stdout.write(JSON.stringify(ngsild_payload));
+    var payload = process.argv[3];
+    var time = process.argv[4];
+    var decoded = Decode(payload);
+    var ngsild_payload = ngsildWrapper(decoded, time);
+    process.stdout.write(JSON.stringify(ngsild_payload));
 }
 
 if (require.main === module) {
-        main();
+    main();
 }
