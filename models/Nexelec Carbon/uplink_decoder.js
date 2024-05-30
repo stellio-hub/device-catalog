@@ -564,7 +564,7 @@ function ngsildWrapper(input, time) {
             co2: ngsildInstance(payload.CO2_concentration, time, '59', 'Raw'),
             temperature: ngsildInstance(payload.Temperature, time, 'CEL', 'Raw'),
             humidity: ngsildInstance(payload.Relative_Humidity, time, 'P1', 'Raw'),
-            indorAirQuality: [
+            indoorAirQuality: [
                 ngsildInstance(payload['IAQ_GLOBAL'], time, null, 'Global'),
                 ngsildInstance(payload['IAQ_CO2'], time, null, 'co2'),
                 ngsildInstance(payload['IAQ_DRY'], time, null, 'Drought_index'),

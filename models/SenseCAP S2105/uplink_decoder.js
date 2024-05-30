@@ -290,30 +290,44 @@ function toBinary(arr) {
     return binaryData.toString().replace(/,/g, '');
 }
 
-function ngsildInstance(value, time, unit) {
+function ngsildInstance(value, time, unit, dataset_suffix) {
     var ngsild_instance = {
         type: 'Property',
         value: value,
-        observedAt: time,
-        unitCode: unit,
-        datasetId: 'urn:ngsi-ld:Dataset:Raw'
-    };
-    return ngsild_instance;
+        observedAt: time
+    }
+    if (unit !== null) {
+        ngsild_instance.unitCode = unit
+    }
+    if (dataset_suffix !== null) {
+        ngsild_instance.datasetId = 'urn:ngsi-ld:Dataset:' + dataset_suffix
+    }
+    return ngsild_instance
 }
 
 function ngsildWrapper(input, time) {
     var ngsild_payload = {};
     var messages = input.data.messages;
+    var error = true
     for (let i = 0; i < messages.length; i++) {
-        if (messages[i].type === 'report_telemetry') {
-            if (messages[i].measurementId === 4102) {
-                ngsild_payload.soilTemperature = ngsildInstance(messages[i].measurementValue, time, 'CEL');
-            }
-            else if (messages[i].measurementId === 4103) {
-                ngsild_payload.volumetricMoisture = ngsildInstance(messages[i].measurementValue, time, 'P1');
-            }
-            else if (messages[i].measurementId === 4108) {
-                ngsild_payload.soilElectricalConductivity = ngsildInstance(messages[i].measurementValue, time, 'H61');
+        if (messages[i].measurementValue !== 0 && messages[i].measurementValue !== 2000001) {
+            error = false
+        }
+    }
+    if (error){
+        ngsild_payload.error = ngsildInstance(1, time, null, null)
+    } else {
+        for (let i = 0; i < messages.length; i++) {
+            if (messages[i].type === 'report_telemetry') {
+                if (messages[i].measurementId === 4102) {
+                    ngsild_payload.soilTemperature = ngsildInstance(messages[i].measurementValue, time, 'CEL', 'Raw');
+                }
+                else if (messages[i].measurementId === 4103) {
+                    ngsild_payload.volumetricMoisture = ngsildInstance(messages[i].measurementValue, time, 'P1', 'Raw');
+                }
+                else if (messages[i].measurementId === 4108) {
+                    ngsild_payload.soilElectricalConductivity = ngsildInstance(messages[i].measurementValue, time, 'H61', 'Raw');
+                }
             }
         }
     }
