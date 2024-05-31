@@ -40,7 +40,7 @@ def read_charger_status(charger_byte):
     elif charger_byte == 0x01:
         return "Normal charging"
     elif charger_byte == 0x10:
-        return "Bad battery fault"
+        return "Charged or Bad battery fault"
     return ""
 
 def insert_data(string, string_key, string_data):
