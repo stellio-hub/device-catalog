@@ -355,15 +355,21 @@ function ngsildWrapper(input, time) {
     if(temperature_data.length != 0)
     {
         ngsild_payload.temperature = temperature_data;
+    }
+    if(humidity_data.length != 0)
+    {
         ngsild_payload.humidity = humidity_data;
+    }
+    if(pressure_data.length != 0)
+    {
         ngsild_payload.pressure = pressure_data;
     }
     return ngsild_payload;
 }
 
 function main() {
-    var payload = process.argv[2];
-    var time = process.argv[3];
+    var payload = process.argv[3];
+    var time = process.argv[4];
     var decoded = decode(payload);
     var ngsild_payload = ngsildWrapper(decoded, time);
     process.stdout.write(JSON.stringify(ngsild_payload));
