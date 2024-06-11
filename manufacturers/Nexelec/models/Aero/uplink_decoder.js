@@ -880,6 +880,13 @@ function ngsildWrapper(input, time) {
             co2Config: ngsildInstance(payload, time, null, null)
         };
     }
+    else if (payload.Type_of_message === 'Product_Status') {
+        delete payload.Type_of_Product;
+        delete payload.Type_of_message;
+        var ngsild_payload = {
+            productStatus: ngsildInstance(payload, time, null, null)
+        };
+    }
     else if (payload.Type_of_message === 'Product_Status_Message') {
         delete payload.Type_of_Product;
         delete payload.Type_of_message;
@@ -898,7 +905,7 @@ function ngsildWrapper(input, time) {
         var ngsild_payload = {};
     }
     else {
-        throw new Error('Unsupported Type_of_message');
+        throw new Error('Unsupported Type_of_message:');
     }
     return ngsild_payload;
 }
