@@ -434,7 +434,8 @@ function adaptToExpectedFormat(out, argList, batchAbsoluteTimestamp) {
                             value: argList[i1].divide
                                 ? item.data.value / argList[i1].divide
                                 : item.data.value,
-                            label: argList[i1].taglbl
+                            label: argList[i1].taglbl,
+                            unitCode: argList[i1].unit
                         }
                     }
                     if (argList[i1].lblname) returned.data.label_name = argList[i1].lblname
@@ -464,7 +465,8 @@ function normalisation_batch(input){
         let dataObject = {
             "variable": data.data.label_name,
             "value": data.data.value,
-            "date": data.data_absolute_timestamp
+            "date": data.data_absolute_timestamp,
+            "unitCode":data.data.unitCode
         }
         dataListe.push(dataObject)
     }

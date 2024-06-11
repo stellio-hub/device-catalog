@@ -1,5 +1,6 @@
 const standard = require("./standard.js");
 const batch = require("./batch.js");
+
 function watteco_decodeUplink(input, batch_parameters, endpoint_parameters) {
     let bytes = input.bytes;
     let port = input.fPort;
@@ -41,7 +42,47 @@ function watteco_decodeUplink(input, batch_parameters, endpoint_parameters) {
         };
     }
 }
+
+function decodeUplink(input,batch_param,endpointCorresponder) {
+    return watteco_decodeUplink(input,batch_param,endpointCorresponder);
+}
+
+//required to change input payload into an array of bytes. More elegant solutions likely exist to make it
+function Decode(msg,date,batch_param,endpointCorresponder){
+if (msg && typeof msg === 'string') {
+
+//    const buffer = Buffer.from(msg, 'base64'); // The frame arrives in base64 in msg.payload.data
+    a = msg;
+    b = a.match(/.{2}/g);
+    L=a.length
+
+    // Create byte array 
+    let buffer = new ArrayBuffer(L/2)
+    let bytes = new Uint8Array(buffer)
+
+    // Populate array 
+    for(let i = 0; i < L/2; ++i) {
+        bytes[i] = parseInt(b[i], 16);
+    }
+
+    // Convert and print 
+    let view = new DataView(buffer)
+    
+    var inputObject = {
+        "bytes": bytes, // The frame in a bytes list
+        "fPort": 125,    // The port (Watteco always use 125)
+        "recvTime": date // The date in ISO 8601 format
+    }
+
+} else {
+    throw new Error("The message doesn't carry a Base64 frame");
+}
+out = decodeUplink(inputObject,batch_param,endpointCorresponder); // The frame is decoded
+return out;
+}
+
 module.exports = {
     watteco_decodeUplink: watteco_decodeUplink,
+    Decode: Decode,
 }
 
