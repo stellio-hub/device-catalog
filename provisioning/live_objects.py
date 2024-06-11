@@ -124,7 +124,7 @@ def main():
                 if r.status_code != 201:
                     raise Exception(f'error {r.status_code} - issue when trying to create model group')
 
-        r = requests.get(f'https://raw.githubusercontent.com/stellio-hub/device-catalog/feat/group-by-manfucaturers/manufacturers/{manufacturer}/models/{model}/config.json')
+        r = requests.get(f'https://raw.githubusercontent.com/stellio-hub/device-catalog/main/manufacturers/{manufacturer}/models/{model}/config.json')
         if r.status_code not in [200, 201, 204]:
             raise Exception('Issue when calling device-catalog GitHub')
         else:

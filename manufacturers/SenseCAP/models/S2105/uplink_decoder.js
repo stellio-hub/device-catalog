@@ -310,7 +310,7 @@ function ngsildWrapper(input, time) {
     var messages = input.data.messages;
     var error = true
     for (let i = 0; i < messages.length; i++) {
-        if (messages[i].measurementValue !== 0 && messages[i].measurementValue !== 2000001) {
+        if (messages[i].type === 'report_telemetry' && messages[i].measurementValue !== 0 && messages[i].measurementValue !== 2000001) {
             error = false
         }
     }
