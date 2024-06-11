@@ -176,7 +176,6 @@ function parseTERMeasurement(payload) {
  * date     -> date decoded from payload
  */
 function parseDate(payload) {
-    var date = new Date();
 
     var binary = Number(parseInt(reverseBytes(payload), 16)).toString(2).padStart(32, '0');
     var year = parseInt(binary.substring(0, 7), 2) + 2000;
@@ -185,9 +184,10 @@ function parseDate(payload) {
     var hour = parseInt(binary.substring(16, 21), 2);
     var minute = parseInt(binary.substring(21, 27), 2);
     var second = parseInt(binary.substring(27, 32), 2) * 2;
-
-    date = new Date(year, month - 1, day, hour, minute, second, 0).toLocaleString();
-    return date;
+    const date = new Date(year, month - 1, day, hour, minute, second);
+    const utcDate = new Date(date.getTime() - date.getTimezoneOffset()*60000);
+    const isoString = utcDate.toISOString();
+    return isoString;
 }
 
 /*
@@ -306,7 +306,7 @@ function ngsildWrapper(input, time) {
     input.forEach(item => {
         if(item.variable == 'date')
         {
-            time = new Date(item.value);
+            time = item.value;
         }
         if(item.variable == 'syncID')
         {
