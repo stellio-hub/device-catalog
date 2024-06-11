@@ -306,7 +306,7 @@ function ngsildWrapper(input, time) {
     input.forEach(item => {
         if(item.variable == 'date')
         {
-            time = item.value;
+            time = new Date(item.value);
         }
         if(item.variable == 'syncID')
         {
@@ -331,21 +331,21 @@ function ngsildWrapper(input, time) {
         }
         if(item.variable == 'temperature')
         {
-            temperature_data.push(ngsildInstance(item.value, 
+            temperature_data.push(ngsildInstance(parseFloat(item.value), 
                                                  time, 
                                                  'CEL', 
                                                  'Raw'));
         }
         if(item.variable == 'humidity')
         {
-            humidity_data.push(ngsildInstance(item.value, 
+            humidity_data.push(ngsildInstance(parseFloat(item.value), 
                                               time, 
                                               'P1', 
                                               'Raw'));
         }
         if(item.variable == 'pressure')
         {
-            pressure_data.push(ngsildInstance(item.value, 
+            pressure_data.push(ngsildInstance(parseFloat(item.value), 
                                               time, 
                                               'A97', 
                                               'Raw'));
