@@ -56,6 +56,8 @@ def insert_data(string, string_key, string_data):
 
 def decode_eds_config(payload_bytes):
     timestamp_sec = read_timestamp(payload_bytes[:4])
+    if (timestamp_sec == 0xFFFFFFFF):
+        return '{}'
     soft_version = read_version(payload_bytes[4])
     appli_id = payload_bytes[5]
     eds_id = (payload_bytes[6] << 8) | payload_bytes[7]
@@ -75,6 +77,8 @@ def decode_eds_config(payload_bytes):
 
 def decode_eds_internal_data(payload_bytes):
     timestamp_sec = read_timestamp(payload_bytes[:4])
+    if (timestamp_sec == 0xFFFFFFFF):
+        return '{}'
     temp_C = round(read_temp_hum(payload_bytes[4:6]) - 40,1)
     hum_perc = round(read_temp_hum(payload_bytes[6:8]),1)
     voltage_V = round(read_battery(payload_bytes[8]),1)
