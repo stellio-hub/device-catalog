@@ -2116,13 +2116,13 @@ function Decoder(bytes, port) {
                 }
 
                 if ((clustID === 0x0000 ) && (attID === 0x0002)){
-                    decoded.data.firmware=""
+                    decoded.data.firmwareVersion=""
                     for (let i = 0; i < 3; i++) {
-                        decoded.data.firmware += String(bytes[i1 + i]);
-                        if (i < 2) decoded.data.firmware += "."
+                        decoded.data.firmwareVersion += String(bytes[i1 + i]);
+                        if (i < 2) decoded.data.firmwareVersion += "."
                     }
                     let rcbuild = bytes[i1+3]*256*256+bytes[i1+4]*256+bytes[i1+5]
-                    decoded.data.firmware += "."+rcbuild.toString()
+                    decoded.data.firmwareVersion += "."+rcbuild.toString()
                 }
                 if ((clustID === 0x0000 ) && (attID === 0x0003)){
                     let length = bytes[i1];

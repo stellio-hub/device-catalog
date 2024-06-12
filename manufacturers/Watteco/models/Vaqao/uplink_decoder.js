@@ -5,9 +5,7 @@ let batch_param = [3, [{taglbl: 0,resol: 1, sampletype: 4,lblname: "occupancy", 
     { taglbl: 1, resol: 10, sampletype: 7,lblname: "temperature_1", divide: 100, unit: "CEL"},
     { taglbl: 2, resol: 100, sampletype: 6,lblname: "humidity_1", divide: 100, unit: "P1"},
     { taglbl: 3, resol: 10, sampletype: 6,lblname: "CO2", divide: 1, unit: "52"},
-    { taglbl: 4, resol: 10, sampletype: 6,lblname: "TVOC", divide: 1, unit: ""},
-    { taglbl: 5, resol: 10, sampletype: 6,lblname: "illuminance", divide: 1, unit: "LUX"},
-    { taglbl: 6, resol: 10, sampletype: 6,lblname: "pressure", divide: 10, unit: "A97"}]];
+    { taglbl: 4, resol: 10, sampletype: 6,lblname: "TVOC", divide: 1, unit: ""}]];
 
 let endpointCorresponder = {
     concentration: ["TVOC", "CO2"],
@@ -21,15 +19,21 @@ function main() {
     var time = process.argv[4];
     // ********* Test pattern (uncomment to test behaviour) ********************
         // Pattern batch
-        // payload = "7013007455ba047bd96e3d0294a8ff044960278300c137008f746765000a6272136a4940bb6d6904ed96a576128bbb65c16e59a480764d9800c080762f54010ce002";
-        // Pattern non batch
-        // payload = "110a040600001801"
-        // time=Date.now();
+        // payload = "424500000111008FC85EC128B4872088AD060442001E3322118A98782B";
+        // Pattern "uplink standard report containing firmware version"
+        // payload = "110100000002000D0305020015E2"
+        // Pattern "uplink standard report containing humidity value"
+        // payload = "110A04050000210E89"
+        // Pattern "uplink standard report containing dataup info" (IGNORED) 
+        payload = "110180040000000800"
+         time=Date.now();
     // ********* End test pattern ***********************
 
     var decoded = watteco.Decode(payload,time,batch_param,endpointCorresponder);
     var ngsild_payload = ngsild.ngsildWrapper(decoded, time);
-    process.stdout.write(JSON.stringify(ngsild_payload));
+    if (Object.keys(ngsild_payload)[0] !== 'message_type'){
+        process.stdout.write(JSON.stringify(ngsild_payload));
+    }
 }
 
 if (require.main === module) {
