@@ -466,8 +466,8 @@ function normalisation_batch(input){
             "variable": data.data.label_name,
             "value": data.data.value,
             "date": data.data_absolute_timestamp,
-            "unitCode":data.data.unitCode
         }
+        if (data.data.unitCode !== '') {dataObject.unitCode = data.data.unitCode}
         dataListe.push(dataObject)
     }
     return dataListe

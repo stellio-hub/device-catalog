@@ -29,6 +29,10 @@ function watteco_decodeUplink(input, batch_parameters, endpoint_parameters) {
                 }
             }
         } else {
+            console.log("data")
+            console.log(decoded.data[0].date)
+            decoded.data[0].date = new Date(decoded.data[0].date).toISOString();
+            console.log(decoded.data[0].date)
             return {
                 data: decoded.data,
                 warnings: decoded.warning,

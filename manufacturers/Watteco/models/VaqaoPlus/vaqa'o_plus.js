@@ -16,19 +16,20 @@ let endpointCorresponder = {
     pin_state:["violation_detection"]
 }
 
-
 function main() {
     var payload = process.argv[3];
     var time = process.argv[4];
-    // Test pattern (uncomment to test behaviour)
-    payload = "621380f2b11c05b7d0de02557615e0006e390064520c0028f06e14268e10d1febae56068b849812878dd0205bc6e82fa5db71c96048fc7e54041531430019a697c486800a5084b0e5bb44100a01f";
-    time=Date.now();
-    // Fin test pattern
+    // ********* Test pattern (uncomment to test behaviour) ********************
+        // Pattern batch
+        // payload = "7013007455ba047bd96e3d0294a8ff044960278300c137008f746765000a6272136a4940bb6d6904ed96a576128bbb65c16e59a480764d9800c080762f54010ce002";
+        // Pattern non batch
+        // payload = "110a040600001801"
+        // time=Date.now();
+    // ********* End test pattern ***********************
 
     var decoded = watteco.Decode(payload,time,batch_param,endpointCorresponder);
-    console.log(decoded);
-   // var ngsild_payload = ngsild.ngsildWrapper(decoded, time);
-    //process.stdout.write(JSON.stringify(ngsild_payload));
+    var ngsild_payload = ngsild.ngsildWrapper(decoded, time);
+    process.stdout.write(JSON.stringify(ngsild_payload));
 }
 
 if (require.main === module) {
