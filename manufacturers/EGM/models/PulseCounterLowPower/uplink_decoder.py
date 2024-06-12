@@ -42,12 +42,12 @@ def decode_PC_config(payload_bytes):
     timestamp_sec = read_timestamp(payload_bytes[:4])
     soft_version = read_version(payload_bytes[4])
     appli_id = payload_bytes[5]
-    eds_id = (payload_bytes[6] << 8) | payload_bytes[7]
+    pc_id = (payload_bytes[6] << 8) | payload_bytes[7]
     voltage_V = round(read_battery(payload_bytes[8]),1)
     return json.dumps({'timestamp':to_date(timestamp_sec),
                        'soft_version':soft_version,
                        'appli_id':appli_id,
-                       'eds_id':eds_id,
+                       'pc_id':pc_id,
                        'voltage':voltage_V},
                        separators=(',', ':')) 
 
@@ -107,8 +107,8 @@ def ngsild_wrapper(input, time):
         ngsild_payload['softwareVersion'] = ngsild_instance(input['soft_version'], input['timestamp'], None, None)
     if 'appli_id' in input:
         ngsild_payload['applicationId'] = ngsild_instance(input['appli_id'], input['timestamp'], None, None)
-    if 'eds_id' in input:
-        ngsild_payload['edgespotId'] = ngsild_instance(input['eds_id'], input['timestamp'], None, None)
+    if 'pc_id' in input:
+        ngsild_payload['pcId'] = ngsild_instance(input['pc_id'], input['timestamp'], None, None)
     if 'voltage' in input:
         ngsild_payload['batteryVoltage'] = ngsild_instance(input['voltage'], input['timestamp'], 'VLT', None)
     
