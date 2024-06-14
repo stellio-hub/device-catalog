@@ -904,6 +904,9 @@ function ngsildWrapper(input, time) {
     else if (payload.Type_of_message === 'Keep_Alive') {
         var ngsild_payload = {};
     }
+    else if (payload.Type_of_message === 'Keepalive_Message') {
+        var ngsild_payload = {};
+    }
     else {
         throw new Error('Unsupported Type_of_message:');
     }
