@@ -20,13 +20,13 @@ function ngsildInstance(value, time, unit, dataset_suffix) {
 function ngsildWrapper(input, time) {
     var ngsild_payload = {}
     for (let i = 0; i < input.data.length; i++) {
-        let result=[]
+        let result = []
         let data = input.data[i]
-        instance = ngsildInstance(data.value,data.date,data.unitCode, 'Raw')
+        instance = ngsildInstance(data.value, data.date, data.unitCode, 'Raw')
         if (ngsild_payload[data.variable] === undefined){
             result.push(instance)
-            ngsild_payload[data.variable]=result
-        } else  ngsild_payload[data.variable][ngsild_payload[data.variable].length] = instance
+            ngsild_payload[data.variable] = result
+        } else ngsild_payload[data.variable][ngsild_payload[data.variable].length] = instance
     }
     return ngsild_payload
 
