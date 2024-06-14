@@ -330,7 +330,7 @@ def ngsild_wrapper(input, time):
         if 'duration' in input['relay']:
             ngsild_payload['relayClosingDuration'] = []
             for item in input['relay']['duration']:
-                ngsild_payload['relayClosingDuration'].append(ngsild_instance(item['opening_time'], item['timestamp'], 'MIN', 'Raw'))
+                ngsild_payload['relayClosingDuration'].append(ngsild_instance(item['closing_time'], item['timestamp'], 'MIN', 'Raw'))
         if 'status' in input['relay']:
             ngsild_payload['relayStatus'] = []
             for item in input['relay']['status']:
