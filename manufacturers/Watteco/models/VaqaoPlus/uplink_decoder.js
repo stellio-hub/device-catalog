@@ -9,10 +9,11 @@ let batch_param = [3, [{taglbl: 0, resol: 1, sampletype: 4, lblname: "occupancy"
     {taglbl: 5, resol: 10, sampletype: 6, lblname: "illuminance", divide: 1, unit: "LUX"},
     {taglbl: 6, resol: 10, sampletype: 6, lblname: "pressure", divide: 10, unit: "A97"}]];
 
+// Merged temperature_1 and temperature_2 under the same temperature property as it seems to only be a variation  of accuracy depending on the temperature range 
 let endpointCorresponder = {
     concentration: ["tvoc", "co2"],
-    temperature: ["temperature","temperature_2"],
-    humidity: ["humidity","humidity_2"],
+    temperature: ["temperature","temperature"],
+    humidity: ["humidity","humidity"],
     pin_state:["violation_detection"]
 }
 
