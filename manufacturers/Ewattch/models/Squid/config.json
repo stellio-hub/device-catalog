@@ -1,0 +1,21 @@
+{
+    "documentation": "https://ewattch-documentation.com/?page_id=613",
+    "uplinkDecoder": "uplink_decoder.js",
+    "ngsildContext": "https://easy-global-market.github.io/ngsild-api-data-models/airQuality/jsonld-contexts/airQuality-compound.jsonld",
+    "chirpstack": {
+        "region": "EU868",
+        "macVersion": 1,
+        "regParamsRevision": "A",
+        "adrAlgorithmId": "default",
+        "flushQueueOnActivate": true,
+        "uplinkInterval": 3600,
+        "supportsOTAA": true,
+        "supportsClassB": false,
+        "supportsClassC": false
+    },
+    "liveObjects": {
+        "profile": "Generic_classA_RX2SF12",
+        "activationType": "OTAA",
+        "connectivityPlan": "orange-cs/CP_Basic"
+    }
+}
