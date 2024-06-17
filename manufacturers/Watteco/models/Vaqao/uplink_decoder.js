@@ -4,7 +4,7 @@ let ngsild = require("../../ngsi-ld.js")
 let batch_param = [3, [{taglbl: 0, resol: 1, sampletype: 4, lblname: "occupancy", divide: 1, unit: ""},
     {taglbl: 1, resol: 10, sampletype: 7, lblname: "temperature", divide: 100, unit: "CEL"},
     {taglbl: 2, resol: 100, sampletype: 6, lblname: "humidity", divide: 100, unit: "P1"},
-    {taglbl: 3, resol: 10, sampletype: 6, lblname: "co2", divide: 1, unit: "52"},
+    {taglbl: 3, resol: 10, sampletype: 6, lblname: "co2", divide: 1, unit: "59"},
     {taglbl: 4, resol: 10, sampletype: 6, lblname: "tvoc", divide: 1, unit: ""}]];
 
 // Merged temperature_1 and temperature_2 under the same temperature property as it seems to only be a variation  of accuracy depending on the temperature range 
