@@ -47,10 +47,10 @@ function ngsildWrapper(input, time) {
     var ngsild_payload = {}
     for (let i = 0; i < input.data.length; i++) {
         let result = []
-        let dataSetID = ""
+        let dataSetID = 'Raw'
         let data = input.data[i]
-        // adatpt datasetID in case several mesurment of same type are present
-        if (typeof data.uuid !== 'undefined') {dataSetID=data.uuid.slice(-5).concat(':Raw')} else dataSetID = 'Raw'
+        // adapt datasetID in case several measurement of same type are present form different sensors (e.g. current clamps)
+        if (typeof data.uuid !== 'undefined') {dataSetID=data.uuid.concat(":Raw")}
         // Verify that mesured property is one to be reported
         if (data.type in AttributeCorresponder){
             instance = ngsildInstance(data.value, time, UnitCorresponder[data.unit], dataSetID)
