@@ -65,15 +65,25 @@ def decode_eds_config(payload_bytes):
     hum_perc = round(read_temp_hum(payload_bytes[10:12]),1)
     voltage_V = round(read_battery(payload_bytes[12]),1)
     charger_status = read_charger_status(payload_bytes[13])
+    if(temp_C > 125):
+        return json.dumps({'timestamp':to_date(timestamp_sec),
+                        'soft_version':soft_version,
+                        'appli_id':appli_id,
+                        'eds_id':eds_id,
+                        'voltage':voltage_V,
+                        'charger_status':charger_status},
+                        separators=(',', ':'))
     return json.dumps({'timestamp':to_date(timestamp_sec),
-                       'soft_version':soft_version,
-                       'appli_id':appli_id,
-                       'eds_id':eds_id,
-                       'temperature':temp_C,
-                       'humiditiy':hum_perc,
-                       'voltage':voltage_V,
-                       'charger_status':charger_status},
-                       separators=(',', ':'))
+                'soft_version':soft_version,
+                'appli_id':appli_id,
+                'eds_id':eds_id,
+                'temperature':temp_C,
+                'humiditiy':hum_perc,
+                'voltage':voltage_V,
+                'charger_status':charger_status},
+                separators=(',', ':'))
+        
+
 
 def decode_eds_internal_data(payload_bytes):
     timestamp_sec = read_timestamp(payload_bytes[:4])
@@ -83,6 +93,11 @@ def decode_eds_internal_data(payload_bytes):
     hum_perc = round(read_temp_hum(payload_bytes[6:8]),1)
     voltage_V = round(read_battery(payload_bytes[8]),1)
     charger_status = read_charger_status(payload_bytes[9])
+    if(temp_C > 125):
+        return json.dumps({'timestamp':to_date(timestamp_sec),
+                       'voltage':voltage_V,
+                       'charger_status':charger_status},
+                       separators=(',', ':'))
     return json.dumps({'timestamp':to_date(timestamp_sec),
                        'temperature':temp_C,
                        'humiditiy':hum_perc,
