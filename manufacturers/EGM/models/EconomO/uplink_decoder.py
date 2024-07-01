@@ -335,9 +335,9 @@ def ngsild_wrapper(input, time):
                 ngsild_payload.setdefault(f"statusValve{item['valve_index']}", []).append(ngsild_instance(item['state'], item['timestamp'], None, 'Raw'))
 
     # Watering program
-    if 'watering_porgram' in input:
-        prog_timestamp = input['watering_porgram']['timestamp']
-        for item in input['watering_porgram']['prog']:
+    if 'watering_prog' in input:
+        prog_timestamp = input['watering_prog']['timestamp']
+        for item in input['watering_prog']['prog']:
             ngsild_payload.setdefault(f"programmedOpeningDurationValve{item['valve_index']}", []).append(ngsild_instance(item['opening_time'], prog_timestamp, 'MIN', 'Raw'))
 
     # Relay closing
