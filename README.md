@@ -1,6 +1,6 @@
 # device-catalog
-This repository contains lora configuration information and uplink decoders to decoce the LoRaWAN frame to NGSI-LD payloads so the LoRaWAN uplinks/downlinks can be pushed/pulled from/to a NGSI-LD broket such as Stellio.
-Its content is fetched by the Twin·Picks application so any device declared here can be provisionned in few clicks in the Twin·Picks.
+This repository contains lora configuration information and uplink decoders to decode the LoRaWAN frame to NGSI-LD payloads so the LoRaWAN uplinks/downlinks can be pushed/pulled from/to a NGSI-LD broker such as Stellio.
+Its content is fetched by the Twin·Picks application so any device declared here can be provisionned in few clicks in Twin·Picks.
 To add a new device (e.g. adding *Econom'O* device from *EGM*), you need to:
 1. Create the folders (e.g. *manufacturers\EGM\models\EconomO*)
 2. Add the configuration and decoding files
