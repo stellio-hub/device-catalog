@@ -118,7 +118,7 @@ def ngsild_wrapper(input, time):
     if 'pulse_counter' in input:
         ngsild_payload['pulses'] = []
         for item in input['pulse_counter']['data']:
-            ngsild_payload.setdefault(f"pulsesReceived{item['pulse_counter_number']}", []).append(ngsild_instance(item['pulses'], item['timestamp'], None, 'Raw'))
+            ngsild_payload['pulses'].append(ngsild_instance(item['pulses'], item['timestamp'], None, f'Counter_{pulse_counter_number}:Raw'))
     
     return ngsild_payload
 
