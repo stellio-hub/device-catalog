@@ -1,7 +1,7 @@
 import json
 import sys
 import datetime
-           
+
 def read_timestamp(time_bytes):
     time_size = 4
     time = 0
@@ -113,13 +113,12 @@ def ngsild_wrapper(input, time):
         ngsild_payload['pulseCounterId'] = ngsild_instance(input['pulseCounter_id'], input['timestamp'], None, None)
     if 'voltage' in input:
         ngsild_payload['batteryVoltage'] = ngsild_instance(input['voltage'], input['timestamp'], 'VLT', None)
-    
+
     # Pulse counter
     if 'pulse_counter' in input:
         ngsild_payload['pulses'] = []
         for item in input['pulse_counter']['data']:
-            ngsild_payload['pulses'].append(ngsild_instance(item['pulses'], item['timestamp'], None, f'Counter_{pulse_counter_number}:Raw'))
-    
+            ngsild_payload['pulses'].append(ngsild_instance(item['pulses'], item['timestamp'], None, f'Counter_{input["pulse_counter"]["pulse_counter_number"]}:Raw'))
     return ngsild_payload
 
 def main():
