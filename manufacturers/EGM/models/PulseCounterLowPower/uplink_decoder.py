@@ -57,7 +57,7 @@ def decode_pulse_counter(payload_bytes):
     pulse_counter_number = payload_bytes[2]
     current_timestamp_sec = read_timestamp(payload_bytes[3:7])
     pulse_counter_json = json.dumps({'pulse_counter':{'r':redundancy,
-                                                      'n':pulse_counter_number,
+                                                      'pulse_counter_number':pulse_counter_number,
                                                       'data':[]}}, 
                                                       separators=(',', ':'))
     i = 7
@@ -118,7 +118,7 @@ def ngsild_wrapper(input, time):
     if 'pulse_counter' in input:
         ngsild_payload['pulses'] = []
         for item in input['pulse_counter']['data']:
-            ngsild_payload['pulses'].append(ngsild_instance(item['pulses'], item['timestamp'], None, 'Raw'))
+            ngsild_payload.setdefault(f"pulsesReceived{item['pulse_counter_number']}", []).append(ngsild_instance(item['pulses'], item['timestamp'], None, 'Raw'))
     
     return ngsild_payload
 
