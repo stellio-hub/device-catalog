@@ -54,11 +54,13 @@ def decode_PC_config(payload_bytes):
 def decode_pulse_counter(payload_bytes):
     redundancy = payload_bytes[0]
     measure_duration_sec = payload_bytes[1]*60
-    current_timestamp_sec = read_timestamp(payload_bytes[2:6])
+    pulse_counter_number = payload_bytes[2]
+    current_timestamp_sec = read_timestamp(payload_bytes[3:7])
     pulse_counter_json = json.dumps({'pulse_counter':{'r':redundancy,
+                                                      'pulse_counter_number':pulse_counter_number,
                                                       'data':[]}}, 
                                                       separators=(',', ':'))
-    i = 6
+    i = 7
     j = 0
     data = ''
     while i<len(payload_bytes):
@@ -116,7 +118,7 @@ def ngsild_wrapper(input, time):
     if 'pulse_counter' in input:
         ngsild_payload['pulses'] = []
         for item in input['pulse_counter']['data']:
-            ngsild_payload['pulses'].append(ngsild_instance(item['pulses'], item['timestamp'], None, 'Raw'))
+            ngsild_payload['pulses'].append(ngsild_instance(item['pulses'], item['timestamp'], None, f'Counter_{pulse_counter_number}:Raw'))
     
     return ngsild_payload
 
