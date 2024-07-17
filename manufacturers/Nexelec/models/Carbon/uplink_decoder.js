@@ -553,14 +553,16 @@ function ngsildInstance(value, time, unit, dataset_suffix) {
     }
     return ngsild_instance
 }
-
-function ngsildWrapper(input, time) {
+ 
+function ngsildWrapper(input, time, entity_id) {
     var payload = {}
     for (let i = 0; i < input.payload.length; i++) {
         Object.assign(payload, input.payload[i])
     }
     if (payload.Type_of_message === 'Real_Time') {
-        var ngsild_payload = {
+        var ngsild_payload = [{
+            id: entity_id,
+            type: "Device",
             co2: ngsildInstance(payload.CO2_concentration, time, '59', 'Raw'),
             temperature: ngsildInstance(payload.Temperature, time, 'CEL', 'Raw'),
             humidity: ngsildInstance(payload.Relative_Humidity, time, 'P1', 'Raw'),
@@ -572,60 +574,77 @@ function ngsildWrapper(input, time) {
                 ngsildInstance(payload['IAQ_DM'], time, null, 'Mite_index'),
                 ngsildInstance(payload['IAQ_HCI'], time, null, 'Hygrothermal_comfort')
             ]
-        };
+        }];
     }
     else if (payload.Type_of_message === 'Datalog') {
         var date = new Date(time);
         var time_n1 = new Date(date.setDate(date.getDate() - 1)).toISOString();
         var time_n2 = new Date(date.setDate(date.getDate() - 1)).toISOString();
-        var ngsild_payload = {
-            co2: [
-                ngsildInstance(payload['CO2_concentration_n'], time, '59', 'Raw'),
-                ngsildInstance(payload['CO2_concentration_n-1'], time_n1, '59', 'Raw'),
-                ngsildInstance(payload['CO2_concentration_n-2'], time_n2, '59', 'Raw')
-            ],
-            temperature: [
-                ngsildInstance(payload['Temperature_n'], time, 'CEL', 'Raw'),
-                ngsildInstance(payload['Temperature_n-1'], time_n1, 'CEL', 'Raw'),
-                ngsildInstance(payload['Temperature_n-2'], time_n2, 'CEL', 'Raw')
-            ],
-            humidity: [
-                ngsildInstance(payload['Relative_Humidity_n'], time, 'P1', 'Raw'),
-                ngsildInstance(payload['Relative_Humidity_n-1'], time_n1, 'P1', 'Raw'),
-                ngsildInstance(payload['Relative_Humidity_n-2'], time_n2, 'P1', 'Raw')
-            ]
-        };
+        var ngsild_payload = [
+                {
+                    id: entity_id,
+                    type: "Device",
+                    co2: ngsildInstance(payload['CO2_concentration_n'], time, '59', 'Raw'),
+                    temperature: ngsildInstance(payload['Temperature_n'], time, 'CEL', 'Raw'),
+                    humidity: ngsildInstance(payload['Relative_Humidity_n'], time, 'P1', 'Raw')
+                },
+                {
+                    id: entity_id,
+                    type: "Device",
+                    co2: ngsildInstance(payload['CO2_concentration_n-1'], time_n1, '59', 'Raw'),
+                    temperature: ngsildInstance(payload['Temperature_n-1'], time_n1, 'CEL', 'Raw'),
+                    humidity: ngsildInstance(payload['Relative_Humidity_n-1'], time_n1, 'P1', 'Raw'),
+                },
+                {
+                    id: entity_id,
+                    type: "Device",
+                    co2: ngsildInstance(payload['CO2_concentration_n-2'], time_n2, '59', 'Raw'),
+                    temperature: ngsildInstance(payload['Temperature_n-2'], time_n2, 'CEL', 'Raw'),
+                    humidity: ngsildInstance(payload['Relative_Humidity_n-2'], time_n2, 'P1', 'Raw')
+                }
+            ];
     }
     else if (payload.Type_of_message === 'Config_General') {
         delete payload.Type_of_Product;
         delete payload.Type_of_message;
-        var ngsild_payload = {
+        var ngsild_payload = [{
+            id: entity_id,
+            type: "Device",
             configGeneral: ngsildInstance(payload, time, null, null)
-        };
+        }];
     }
     else if (payload.Type_of_message === 'Config_CO2') {
         delete payload.Type_of_Product;
         delete payload.Type_of_message;
-        var ngsild_payload = {
+        var ngsild_payload = [{
+            id: entity_id,
+            type: "Device",
             co2Config: ngsildInstance(payload, time, null, null)
-        };
+        }];
     }
     else if (payload.Type_of_message === 'Product_Status_Message') {
         delete payload.Type_of_Product;
         delete payload.Type_of_message;
-        var ngsild_payload = {
+        var ngsild_payload = [{
+            id: entity_id,
+            type: "Device",
             productStatusMessage: ngsildInstance(payload, time, null, null)
-        };
+        }];
     }
     else if (payload.Type_of_message === 'Push') {
         delete payload.Type_of_Product;
         delete payload.Type_of_message;
-        var ngsild_payload = {
+        var ngsild_payload = [{
+            id: entity_id,
+            type: "Device",
             buttonActivation: ngsildInstance(1, time, null, null)
-        };
+        }];
     }
     else if (payload.Type_of_message === 'Keep_Alive') {
-        var ngsild_payload = {};
+        var ngsild_payload = [{
+            id: entity_id,
+            type: "Device",
+        }];
     }
     else {
         throw new Error('Unsupported Type_of_message');
@@ -637,8 +656,9 @@ function main() {
         var fport = process.argv[2];
         var bytes = Uint8Array.from(Buffer.from(process.argv[3], 'hex'));
         var time = process.argv[4];
+        var entity_id = "urn:ngsi-ld:Device:" + process.argv[5];
         var decoded = Decode(fport, bytes);
-        var ngsild_payload = ngsildWrapper(decoded, time);
+        var ngsild_payload = ngsildWrapper(decoded, time, entity_id);
         process.stdout.write(JSON.stringify(ngsild_payload));
 }
 
