@@ -295,73 +295,78 @@ def ngsild_instance(value, time, unitCode, dataset_suffix):
         ngsild_instance['datasetId'] = f"urn:ngsi-ld:Dataset:{dataset_suffix}"
     return ngsild_instance 
 
-def ngsild_wrapper(input, time):
-    ngsild_payload = {}
+def ngsild_wrapper(input, time, entity_id):
+    ngsild_payload = [{
+        "id": entity_id,
+        "type": "Device"
+    }]
+
+    def add_to_payload(key, value):
+        if all(key in d for d in ngsild_payload):
+            ngsild_payload.append({"id": entity_id, "type": "Device", key: value})
+        else:
+            for d in ngsild_payload:
+                d[key] = value
+                break
 
     # Device infos and internal measurements
     if 'soft_version' in input:
-        ngsild_payload['softwareVersion'] = ngsild_instance(input['soft_version'], input['timestamp'], None, None)
+        add_to_payload('softwareVersion', ngsild_instance(input['soft_version'], input['timestamp'], None, None))
     if 'appli_id' in input:
-        ngsild_payload['applicationId'] = ngsild_instance(input['appli_id'], input['timestamp'], None, None)
+        add_to_payload('applicationId', ngsild_instance(input['appli_id'], input['timestamp'], None, None))
     if 'eds_id' in input:
-        ngsild_payload['edgespotId'] = ngsild_instance(input['eds_id'], input['timestamp'], None, None)
+        add_to_payload('edgespotId', ngsild_instance(input['eds_id'], input['timestamp'], None, None))
     if 'temperature' in input:
-        ngsild_payload['internalTemperature'] = ngsild_instance(input['temperature'], input['timestamp'], 'CEL', None)
+        add_to_payload('internalTemperature', ngsild_instance(input['temperature'], input['timestamp'], 'CEL', None))
     if 'humiditiy' in input:
-        ngsild_payload['internalHumidity'] = ngsild_instance(input['humiditiy'], input['timestamp'], 'P1', None)
+        add_to_payload('internalHumidity', ngsild_instance(input['humiditiy'], input['timestamp'], 'P1', None))
     if 'voltage' in input:
-        ngsild_payload['batteryVoltage'] = ngsild_instance(input['voltage'], input['timestamp'], 'VLT', None)
+        add_to_payload('batteryVoltage', ngsild_instance(input['voltage'], input['timestamp'], 'VLT', None))
     if 'charger_status' in input:
-        ngsild_payload['chargerStatus'] = ngsild_instance(input['charger_status'], input['timestamp'], 'VLT', None)
+        add_to_payload('chargerStatus', ngsild_instance(input['charger_status'], input['timestamp'], 'VLT', None))
 
-    # Main valve status and duration
+    # Main valve status and opening duration
     if 'main_valve' in input:
         if 'duration' in input['main_valve']:
-            ngsild_payload['actualOpeningDurationMainValve'] = []
             for item in input['main_valve']['duration']:
-                ngsild_payload['actualOpeningDurationMainValve'].append(ngsild_instance(item['opening_time'], item['timestamp'], 'MIN', 'Raw'))
+                add_to_payload('actualOpeningDurationMainValve', ngsild_instance(item['opening_time'], item['timestamp'], 'MIN', 'Raw'))
         if 'status' in input['main_valve']:
-            ngsild_payload['statusMainValve'] = []
             for item in input['main_valve']['status']:
-                ngsild_payload['statusMainValve'].append(ngsild_instance(item['state'], item['timestamp'], None, 'Raw'))
+                add_to_payload('statusMainValve', ngsild_instance(item['state'], item['timestamp'], None, 'Raw'))
 
-    # Secondary valves status and duration
+    # Secondary valves status and opening duration
     if 'valves' in input:
         if 'duration' in input['valves']:
             for item in input['valves']['duration']:
-                ngsild_payload.setdefault(f"actualOpeningDurationValve{item['valve_index']}", []).append(ngsild_instance(item['opening_time'], item['timestamp'], 'MIN', 'Raw'))
+                add_to_payload(f"actualOpeningDurationValve{item['valve_index']}", ngsild_instance(item['opening_time'], item['timestamp'], 'MIN', 'Raw'))
         if 'status' in input['valves']:
             for item in input['valves']['status']:
-                ngsild_payload.setdefault(f"statusValve{item['valve_index']}", []).append(ngsild_instance(item['state'], item['timestamp'], None, 'Raw'))
+                add_to_payload(f"statusValve{item['valve_index']}", ngsild_instance(item['state'], item['timestamp'], None, 'Raw'))
+
+    # Relay status and closing duration
+    if 'relay' in input:
+        if 'duration' in input['relay']:
+            for item in input['relay']['duration']:
+                add_to_payload('relayClosingDuration', ngsild_instance(item['closing_time'], item['timestamp'], 'MIN', 'Raw'))
+        if 'status' in input['relay']:
+            for item in input['relay']['status']:
+                add_to_payload('relayStatus', ngsild_instance(item['state'], item['timestamp'], None, 'Raw') )
 
     # Watering program
     if 'watering_prog' in input:
         prog_timestamp = input['watering_prog']['timestamp']
         for item in input['watering_prog']['prog']:
-            ngsild_payload.setdefault(f"programmedOpeningDurationValve{item['valve_index']}", []).append(ngsild_instance(item['opening_time'], prog_timestamp, 'MIN', 'Raw'))
-
-    # Relay closing
-    if 'relay' in input:
-        if 'duration' in input['relay']:
-            ngsild_payload['relayClosingDuration'] = []
-            for item in input['relay']['duration']:
-                ngsild_payload['relayClosingDuration'].append(ngsild_instance(item['closing_time'], item['timestamp'], 'MIN', 'Raw'))
-        if 'status' in input['relay']:
-            ngsild_payload['relayStatus'] = []
-            for item in input['relay']['status']:
-                ngsild_payload['relayStatus'].append(ngsild_instance(item['state'], item['timestamp'], None, 'Raw'))
+            add_to_payload(f"programmedOpeningDurationValve{item['valve_index']}", ngsild_instance(item['opening_time'], prog_timestamp, 'MIN', 'Raw'))
 
     # Button push
     if 'button' in input:
-        ngsild_payload['buttonActivation'] = []
         for item in input['button']['data']:
-            ngsild_payload['buttonActivation'].append(ngsild_instance(1, item['timestamp'], None, 'Raw'))
+            add_to_payload('buttonActivation', ngsild_instance(1, item['timestamp'], None, 'Raw'))
     
     # Pulse counter
     if 'pulse_counter' in input:
-        ngsild_payload['pulses'] = []
         for item in input['pulse_counter']['data']:
-            ngsild_payload['pulses'].append(ngsild_instance(item['pulses'], item['timestamp'], None, 'Raw'))
+            add_to_payload('pulses', ngsild_instance(item['pulses'], item['timestamp'], None, 'Raw'))
     
     return ngsild_payload
 
@@ -369,8 +374,9 @@ def main():
     fport = sys.argv[1]
     payload = sys.argv[2]
     time = sys.argv[3]
+    entity_id = f"urn:ngsi-ld:Device:{sys.argv[4]}"
     decoded = json.loads(decode_payload(payload, fport))
-    ngsild_payload = ngsild_wrapper(decoded, time)
+    ngsild_payload = ngsild_wrapper(decoded, time, entity_id)
     json.dump(ngsild_payload, sys.stdout, indent=4)
 
 if __name__ == "__main__":
