@@ -305,8 +305,11 @@ function ngsildInstance(value, time, unit, dataset_suffix) {
     return ngsild_instance
 }
 
-function ngsildWrapper(input, time) {
-    var ngsild_payload = {};
+function ngsildWrapper(input, time, entity_id) {
+    var ngsild_payload = [{
+        id: entity_id,
+        type: "Device"
+    }];
     var messages = input.data.messages;
     var error = true
     for (let i = 0; i < messages.length; i++) {
@@ -315,18 +318,18 @@ function ngsildWrapper(input, time) {
         }
     }
     if (error){
-        ngsild_payload.error = ngsildInstance(1, time, null, null)
+        ngsild_payload[0].error = ngsildInstance(1, time, null, null)
     } else {
         for (let i = 0; i < messages.length; i++) {
             if (messages[i].type === 'report_telemetry') {
                 if (messages[i].measurementId === 4102) {
-                    ngsild_payload.soilTemperature = ngsildInstance(messages[i].measurementValue, time, 'CEL', 'Raw');
+                    ngsild_payload[0].soilTemperature = ngsildInstance(messages[i].measurementValue, time, 'CEL', 'Raw');
                 }
                 else if (messages[i].measurementId === 4103) {
-                    ngsild_payload.volumetricMoisture = ngsildInstance(messages[i].measurementValue, time, 'P1', 'Raw');
+                    ngsild_payload[0].volumetricMoisture = ngsildInstance(messages[i].measurementValue, time, 'P1', 'Raw');
                 }
                 else if (messages[i].measurementId === 4108) {
-                    ngsild_payload.soilElectricalConductivity = ngsildInstance(messages[i].measurementValue, time, 'H61', 'Raw');
+                    ngsild_payload[0].soilElectricalConductivity = ngsildInstance(messages[i].measurementValue, time, 'H61', 'Raw');
                 }
             }
         }
@@ -338,8 +341,9 @@ function main() {
     var fport = process.argv[2];
     var bytes = Uint8Array.from(Buffer.from(process.argv[3], 'hex'));
     var time = process.argv[4];
+    var entity_id = "urn:ngsi-ld:Device:" + process.argv[5];
     var decoded = Decode(fport, bytes);
-    var ngsild_payload = ngsildWrapper(decoded, time);
+    var ngsild_payload = ngsildWrapper(decoded, time, entity_id);
     process.stdout.write(JSON.stringify(ngsild_payload));
 }
 

@@ -1201,25 +1201,28 @@ function ngsildInstance(value, time, unit, dataset_suffix) {
     return ngsild_instance;
 }
 
-function ngsildWrapper(input, time) {
-    var ngsild_payload = {};
-    ngsild_payload.soilTemperature = [
+function ngsildWrapper(input, time, entity_id) {
+    var ngsild_payload = [{
+        id: entity_id,
+        type: "Device"
+    }];
+    ngsild_payload[0].soilTemperature = [
         ngsildInstance(parseFloat(input.data.Input3_voltage_to_temp), time, 'CEL', 'Watermark_1:Raw'),
         ngsildInstance(parseFloat(input.data.Input4_voltage_to_temp), time, 'CEL', 'Watermark_2:Raw')
     ];
-    ngsild_payload.waterTension = [
+    ngsild_payload[0].waterTension = [
         ngsildInstance(parseFloat(input.data.watermark1_tension), time, 'KPA', 'Watermark_1:Raw'),
         ngsildInstance(parseFloat(input.data.watermark2_tension), time, 'KPA', 'Watermark_2:Raw')
     ];
-    ngsild_payload.frequency = [
+    ngsild_payload[0].frequency = [
         ngsildInstance(parseFloat(input.data.watermark1_frequency), time, 'KHZ', 'Watermark_1:Raw'),
         ngsildInstance(parseFloat(input.data.watermark2_frequency), time, 'KHZ', 'Watermark_2:Raw')
     ];
-    ngsild_payload.lightIntensity = ngsildInstance(input.data.light_intensity, time, 'LUX', 'Raw');
-    ngsild_payload.temperature = ngsildInstance(input.data.ambient_temperature, time, 'CEL', 'Raw');
-    ngsild_payload.relativeHumidity = ngsildInstance(input.data.relative_humidity, time, 'P1', 'Raw');
+    ngsild_payload[0].lightIntensity = ngsildInstance(input.data.light_intensity, time, 'LUX', 'Raw');
+    ngsild_payload[0].temperature = ngsildInstance(input.data.ambient_temperature, time, 'CEL', 'Raw');
+    ngsild_payload[0].relativeHumidity = ngsildInstance(input.data.relative_humidity, time, 'P1', 'Raw');
     if ('battery_voltage' in input.data) {
-        ngsild_payload.batteryVoltage = ngsildInstance(input.data.battery_voltage, time, 'VLT', 'Raw');
+        ngsild_payload[0].batteryVoltage = ngsildInstance(input.data.battery_voltage, time, 'VLT', 'Raw');
     }
     return ngsild_payload;
 }
@@ -1229,8 +1232,9 @@ function main() {
     input['fPort'] = parseInt(process.argv[2]);
     input['bytes'] = Buffer.from(process.argv[3], 'hex');
     var time = process.argv[4];
+    var entity_id = "urn:ngsi-ld:Device:" + process.argv[5];
     var decoded = decodeUplink(input);
-    var ngsild_payload = ngsildWrapper(decoded, time);
+    var ngsild_payload = ngsildWrapper(decoded, time, entity_id);
     process.stdout.write(JSON.stringify(ngsild_payload));
 }
 
