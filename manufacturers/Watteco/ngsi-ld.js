@@ -17,19 +17,31 @@ function ngsildInstance(value, time, unit, dataset_suffix) {
     return ngsild_instance
 }
 
-function ngsildWrapper(input, time) {
-    var ngsild_payload = {}
-    for (let i = 0; i < input.data.length; i++) {
-        let result = []
-        let data = input.data[i]
-        instance = ngsildInstance(data.value, data.date, data.unitCode, 'Raw')
-        if (ngsild_payload[data.variable] === undefined){
-            result.push(instance)
-            ngsild_payload[data.variable] = result
-        } else ngsild_payload[data.variable][ngsild_payload[data.variable].length] = instance
-    }
-    return ngsild_payload
+function ngsildWrapper(input, time, entity_id) {
+    var ngsild_payload = [{
+        id: entity_id,
+        type: "Device"
+    }];
 
+    function addToPayload(key, value) {
+        if (ngsild_payload.every(d => d.hasOwnProperty(key))) {
+            ngsild_payload.push({id: entity_id, type: "Device", ...{[key]: value}});
+        } else {
+            for (let d of ngsild_payload) {
+                if (!d.hasOwnProperty(key)) {
+                    d[key] = value;
+                    break;
+                }
+            }
+        }
+    }
+
+    for (let i = 0; i < input.data.length; i++) {
+        let data = input.data[i];
+        addToPayload(data.variable, ngsildInstance(data.value, data.date, data.unitCode, 'Raw'))
+    }
+
+    return ngsild_payload
 }
 
 module.exports = {
