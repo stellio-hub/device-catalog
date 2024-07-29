@@ -1,12 +1,130 @@
 // Decoders and NGSI-LD wrappers to be inserted
+function decodeUplink(fport,time,input) {
+        var data = {};
+        let value = '';
+        let debugCodes = [];
+        let dataset_suffix = 'raw'
+        switch (fport) {
+          case 1: // Parking status
+                value = (input[0] & 0x1) === 0x1;
+                data.occupied = ngsildInstanceTemporal(value, time,undefined,dataset_suffix)
+                return data
+            break;
+      
+          case 2: // Heartbeat
+                value = (input[0] & 0x1) === 0x1;
+                data.occupied = ngsildInstanceTemporal(value, time,undefined,dataset_suffix)
 
-function main() {
-        var fport = process.argv[2];
-        var bytes = Uint8Array.from(Buffer.from(process.argv[3], 'hex'));
-        var time = process.argv[4];
-        var decoded = Decode(fport, bytes);
-        var ngsild_payload = ngsildWrapper(decoded, time);
-        process.stdout.write(JSON.stringify(ngsild_payload));
+                if (input.length >= 2) {
+                        value = input[1] & 0x80 ? input[1] - 0x100 : input[1];
+                }
+                data.temperature = ngsildInstanceTemporal(value, time,"CEL",dataset_suffix)
+                return data
+            break;
+      
+          case 3: // Start-up   
+            debugCodes = [];
+            for (var i = 0; i <= 8; i += 4) {
+              var debugCode = ((input[i + 1] & 0xf) << 8) | input[i];
+              if (debugCode) {
+                debugCodes.push(debugCode);
+              }
+            }
+
+            data.debugCodes = ngsildInstance(debugCodes, undefined,dataset_suffix)
+
+            data.firmwareVersion = ngsildInstance(input[12] + '.' + input[13] + '.' + input[14],undefined,dataset_suffix);
+
+            resetCause = [
+              undefined,
+              'watchdog',
+              'power on',
+              'system request',
+              'other',
+            ][input[15]];
+            data.resetCause = ngsildInstance(resetCause, undefined,dataset_suffix)
+            data.occupied = ngsildInstanceTemporal((input[16] & 0x1) == 0x1, time,undefined,dataset_suffix);
+            return data;
+            break;
+      
+          case 4: // Device information
+//            data.type = 'device information';
+//            data.bytes = input;
+            break;
+      
+          case 5: // Device usage
+//            data.type = 'device usage';
+//            data.bytes = input;
+            break;
+      
+          case 6: // Debug
+//            data.type = 'debug';
+//            data.timestamp =
+//              (input[3] << 24) |
+//              (input[2] << 16) |
+//              (input[1] << 8) |
+//              input[0];
+//            data.debugCode = ((input[5] & 0xf) << 8) | input[4];
+//            data.sequenceNumber = (input[9] << 8) | input[8];
+            break;
+        }
+
+      }
+
+function ngsildInstanceTemporal(value, time, unit, dataset_suffix) {
+
+    var ngsild_instance = {
+        type: 'Property',
+        value: value,
+        observedAt: time
+    }
+    if (unit !== undefined) {
+        ngsild_instance.unitCode = unit
+    }
+    if (dataset_suffix !== null) {
+        ngsild_instance.datasetId = 'urn:ngsi-ld:Dataset:' + dataset_suffix
+    }
+  
+    return ngsild_instance
+}
+
+function ngsildInstance(value, unit, dataset_suffix) {
+
+        var ngsild_instance = {
+            type: 'Property',
+            value: value,
+        }
+        if (unit !== undefined) {
+            ngsild_instance.unitCode = unit
+        }
+        if (dataset_suffix !== null) {
+            ngsild_instance.datasetId = 'urn:ngsi-ld:Dataset:' + dataset_suffix
+        }
+      
+        return ngsild_instance
+    }
+
+function main() { 
+// Use testMode = 1 to testwith sample payloads. Use testMode = 0 in operation.
+        let testMode = 1;
+        if (testMode == 1){
+                var time='2019-09-07T15:50+00Z '
+                console.log("Parking status test pattern: ")
+                console.log(decodeUplink(1,time,[1])); // Parking status
+                console.log("Heartbeat test pattern: ")
+                console.log(decodeUplink(2,time,[0,255])); // Heartbeat
+                console.log("Startup test pattern with debug codes 804 and 885: ")                
+                console.log(decodeUplink(3,time,[0x24, 3, 0, 0, 0x75, 3, 0, 0, 0, 0, 0, 0, 0, 29, 2, 3, 1])); // Startup
+                console.log("en version stringify")
+                process.stdout.write(JSON.stringify(decodeUplink(3,time,[0x24, 3, 0, 0, 0x75, 3, 0, 0, 0, 0, 0, 0, 0, 29, 2, 3, 1])));
+
+        } else {
+                var fport = process.argv[2];
+                var bytes = Uint8Array.from(Buffer.from(process.argv[3], 'hex'));
+                var time = process.argv[4];     
+                var ngsild_payload = decodeUplink(fport,time,bytes);
+                process.stdout.write(JSON.stringify(ngsild_payload));  
+        }
 }
 
 if (require.main === module) {
