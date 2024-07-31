@@ -338,7 +338,7 @@ def ngsild_wrapper(input, time):
     if 'watering_prog' in input:
         prog_timestamp = input['watering_prog']['timestamp']
         for item in input['watering_prog']['prog']:
-            ngsild_payload.setdefault(f"programmedOpeningDurationValve{item['valve_index']}", []).append(ngsild_instance(item['opening_time'], prog_timestamp, 'MIN', 'Raw'))
+            ngsild_payload.setdefault(f"programmedOpeningDurationValve{item['valve_index']}", []).append(ngsild_instance(item['opening_time'], time, 'MIN', 'Raw'))
 
     # Relay closing
     if 'relay' in input:
