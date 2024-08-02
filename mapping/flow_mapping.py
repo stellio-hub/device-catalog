@@ -14,7 +14,7 @@ def ngsild_instance(value, time=None, unit_code=None, dataset_id=None):
 def add_to_payload(payload, key, value, entity_id, entity_type):
         only_this_id = [d for d in payload if d['id'] == entity_id]
         if all(key in d for d in only_this_id):
-            payload.append({"id": entity_id, "type": "Device", key: value})
+            payload.append({"id": entity_id, "type": entity_type, key: value})
         else:
             for d in payload:
                 if d['id'] == entity_id and key not in d:
