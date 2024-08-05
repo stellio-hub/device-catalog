@@ -112,8 +112,9 @@ def ngsild_wrapper(input, time, entity_id):
             ngsild_payload.append({"id": entity_id, "type": "Device", key: value})
         else:
             for d in ngsild_payload:
-                d[key] = value
-                break
+                if key not in d:
+                    d[key] = value
+                    break
 
     # Device infos
     if 'soft_version' in input:
