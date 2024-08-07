@@ -105,8 +105,8 @@ def ngsild_wrapper(input, entity_id):
 
 def main():
     fport = sys.argv[1]
-    payload = sys.argv[2]*
-	entity_id = f"urn:ngsi-ld:Device:{sys.argv[4]}"
+    payload = sys.argv[2]
+    entity_id = f"urn:ngsi-ld:Device:{sys.argv[4]}"
     decoded = json.loads(decode_payload(payload, fport))
     if 'timestamp' not in decoded:
         if len(payload) >= 8:  # 8 hex characters is 4 bytes
