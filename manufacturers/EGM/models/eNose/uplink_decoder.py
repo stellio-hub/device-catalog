@@ -83,29 +83,30 @@ def ngsild_instance(value, time, unitCode, dataset_suffix):
         ngsild_instance['datasetId'] = f"urn:ngsi-ld:Dataset:{dataset_suffix}"
     return ngsild_instance 
 
-def ngsild_wrapper(input):
-    ngsild_payload = {
-
-    # Device infos
-    'ammonia':ngsild_instance(input['Ammonia'], input['timestamp'], 'A99', 'Raw'),
-    'airComponents':ngsild_instance(input['Air_components'], input['timestamp'], 'A99', 'Raw'),
-    'methane':ngsild_instance(input['Methane'], input['timestamp'], 'A99', 'Raw'),    
-    'airContaminants': ngsild_instance(input['Air_contaminants'], input['timestamp'], 'A99', 'Raw'),
-    'butanePropane': ngsild_instance(input['Butane_Propane'], input['timestamp'], 'A99', 'Raw'),
-    'vocIsobutane': ngsild_instance(input['VOC_isobutane'], input['timestamp'], 'A99', 'Raw'),
-    'hydrogen': ngsild_instance(input['Hydrogen'], input['timestamp'], 'A99', 'Raw'),
-    'no2': ngsild_instance(input['NO2'], input['timestamp'], 'A99', 'Raw'),
-    'co2': ngsild_instance(input['CO2'], input['timestamp'], 'A99', 'Raw'),
-    'temperature': ngsild_instance(input['Temperature'], input['timestamp'], 'CEL', 'Raw'),
-    'pressure': ngsild_instance(input['Pressure'], input['timestamp'], 'BAR', 'Raw'),
-    'humidity': ngsild_instance(input['Humidity'], input['timestamp'], 'P1', 'Raw'),
-    'batteryVoltage': ngsild_instance(input['voltage'], input['timestamp'], 'VLT', 'Raw')
-    }
+def ngsild_wrapper(input, entity_id):
+    ngsild_payload = [{
+		'id': entity_id,
+		'type': 'Device',
+	    'ammonia':ngsild_instance(input['Ammonia'], input['timestamp'], 'A99', 'Raw'),
+	    'airComponents':ngsild_instance(input['Air_components'], input['timestamp'], 'A99', 'Raw'),
+	    'methane':ngsild_instance(input['Methane'], input['timestamp'], 'A99', 'Raw'),    
+	    'airContaminants': ngsild_instance(input['Air_contaminants'], input['timestamp'], 'A99', 'Raw'),
+	    'butanePropane': ngsild_instance(input['Butane_Propane'], input['timestamp'], 'A99', 'Raw'),
+	    'vocIsobutane': ngsild_instance(input['VOC_isobutane'], input['timestamp'], 'A99', 'Raw'),
+	    'hydrogen': ngsild_instance(input['Hydrogen'], input['timestamp'], 'A99', 'Raw'),
+	    'no2': ngsild_instance(input['NO2'], input['timestamp'], 'A99', 'Raw'),
+	    'co2': ngsild_instance(input['CO2'], input['timestamp'], 'A99', 'Raw'),
+	    'temperature': ngsild_instance(input['Temperature'], input['timestamp'], 'CEL', 'Raw'),
+	    'pressure': ngsild_instance(input['Pressure'], input['timestamp'], 'BAR', 'Raw'),
+	    'humidity': ngsild_instance(input['Humidity'], input['timestamp'], 'P1', 'Raw'),
+	    'batteryVoltage': ngsild_instance(input['voltage'], input['timestamp'], 'VLT', 'Raw')
+    }]
     return ngsild_payload
 
 def main():
     fport = sys.argv[1]
     payload = sys.argv[2]
+	entity_id = f"urn:ngsi-ld:Device:{sys.argv[4]}"
     decoded = json.loads(decode_payload(payload, fport))
     if 'timestamp' not in decoded:
         if len(payload) >= 8:  # 8 hex characters is 4 bytes
@@ -115,7 +116,7 @@ def main():
             print("Error: Payload too short to extract the timestamp.")
             return
 
-    ngsild_payload = ngsild_wrapper(decoded)
+    ngsild_payload = ngsild_wrapper(decoded, entity_id)
     json.dump(ngsild_payload, sys.stdout, indent=4)
 
 if __name__ == "__main__":
