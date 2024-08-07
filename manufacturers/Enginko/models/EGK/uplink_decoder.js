@@ -297,81 +297,58 @@ function ngsildInstance(value, time, unit, dataset_suffix) {
     return ngsild_instance
 }
 
-function ngsildWrapper(input, time) {
+function ngsildWrapper(input, time, entity_id) {
+    var ngsild_payload = [{
+        id: entity_id,
+        type: "Device"
+    }];
 
-    let ngsild_payload = {};
-    let temperature_data = [];
-    let humidity_data = [];
-    let pressure_data = [];
+    function addToPayload(key, value) {
+        if (ngsild_payload.every(d => d.hasOwnProperty(key))) {
+            ngsild_payload.push({id: entity_id, type: "Device", ...{[key]: value}});
+        } else {
+            for (let d of ngsild_payload) {
+                if (!d.hasOwnProperty(key)) {
+                    d[key] = value;
+                    break;
+                }
+            }
+        }
+    }
+
     input.forEach(item => {
-        if(item.variable == 'date')
-        {
+        if(item.variable == 'date'){
             time = item.value;
         }
-        if(item.variable == 'syncID')
-        {
-            ngsild_payload.syncID = ngsildInstance(item.value, 
-                                                   time, 
-                                                   null, 
-                                                   null);
+        if(item.variable == 'syncID') {
+            addToPayload('syncID', ngsildInstance(item.value, time, null, null));
         }
-        if(item.variable == 'syncVersion')
-        {
-            ngsild_payload.syncVersion = ngsildInstance(item.value, 
-                                                        time, 
-                                                        null, 
-                                                        null);
+        if(item.variable == 'syncVersion') {
+            addToPayload('syncVersion', ngsildInstance(item.value, time, null, null));
         }
-        if(item.variable == 'applicationType')
-        {
-            ngsild_payload.applicationType = ngsildInstance(item.value, 
-                                                            time, 
-                                                            null, 
-                                                            null);
+        if(item.variable == 'applicationType') {
+            addToPayload('applicationType', ngsildInstance(item.value, time, null, null));
         }
-        if(item.variable == 'temperature')
-        {
-            temperature_data.push(ngsildInstance(parseFloat(item.value), 
-                                                 time, 
-                                                 'CEL', 
-                                                 'Raw'));
+        if(item.variable == 'temperature') {
+            addToPayload('temperature', ngsildInstance(parseFloat(item.value), time, 'CEL', 'Raw'));
         }
-        if(item.variable == 'humidity')
-        {
-            humidity_data.push(ngsildInstance(parseFloat(item.value), 
-                                              time, 
-                                              'P1', 
-                                              'Raw'));
+        if(item.variable == 'humidity') {
+            addToPayload('humidity', ngsildInstance(parseFloat(item.value), time, 'P1', 'Raw'));
         }
-        if(item.variable == 'pressure')
-        {
-            pressure_data.push(ngsildInstance(parseFloat(item.value), 
-                                              time, 
-                                              'A97', 
-                                              'Raw'));
+        if(item.variable == 'pressure') {
+            addToPayload('pressure', ngsildInstance(parseFloat(item.value), time, 'A97', 'Raw'));
         }
     });
 
-    if(temperature_data.length != 0)
-    {
-        ngsild_payload.temperature = temperature_data;
-    }
-    if(humidity_data.length != 0)
-    {
-        ngsild_payload.humidity = humidity_data;
-    }
-    if(pressure_data.length != 0)
-    {
-        ngsild_payload.pressure = pressure_data;
-    }
     return ngsild_payload;
 }
 
 function main() {
     var payload = process.argv[3];
     var time = process.argv[4];
+    var entity_id = "urn:ngsi-ld:Device:" + process.argv[5];
     var decoded = decode(payload);
-    var ngsild_payload = ngsildWrapper(decoded, time);
+    var ngsild_payload = ngsildWrapper(decoded, time, entity_id);
     process.stdout.write(JSON.stringify(ngsild_payload));
 }
 

@@ -43,23 +43,38 @@ let AttributeCorresponder = {
     return ngsild_instance
 }
 
-function ngsildWrapper(input, time) {
-    var ngsild_payload = {}
-    for (let i = 0; i < input.data.length; i++) {
-        let result = []
-        let dataSetID = 'Raw'
-        let data = input.data[i]
-        // adapt datasetID in case several measurement of same type are present form different sensors (e.g. current clamps)
-        if (typeof data.uuid !== 'undefined') {dataSetID=data.uuid.concat(":Raw")}
-        // Verify that mesured property is one to be reported
-        if (data.type in AttributeCorresponder){
-            instance = ngsildInstance(data.value, time, UnitCorresponder[data.unit], dataSetID)
-            if (ngsild_payload[AttributeCorresponder[data.type]] === undefined){
-                result.push(instance)
-                ngsild_payload[AttributeCorresponder[data.type]] = result
-            } else ngsild_payload[AttributeCorresponder[data.type]][ngsild_payload[AttributeCorresponder[data.type]].length] = instance
+function ngsildWrapper(input, time, entity_id) {
+    var ngsild_payload = [{
+        id: entity_id,
+        type: "Device"
+    }];
+
+    function addToPayload(key, value) {
+        if (ngsild_payload.every(d => d.hasOwnProperty(key))) {
+            ngsild_payload.push({id: entity_id, type: "Device", ...{[key]: value}});
+        } else {
+            for (let d of ngsild_payload) {
+                if (!d.hasOwnProperty(key)) {
+                    d[key] = value;
+                    break;
+                }
+            }
         }
     }
+
+    for (let i = 0; i < input.data.length; i++) {
+        let dataSetId = 'Raw'
+        let data = input.data[i]
+        // Adapt datasetId in case several measurement of same type are present form different sensors (e.g. current clamps)
+        if (typeof data.uuid !== 'undefined') {
+            dataSetId=data.uuid.concat(":Raw")
+        }
+        // Verify that mesured property is one to be reported
+        if (data.type in AttributeCorresponder) {
+            addToPayload(AttributeCorresponder[data.type], ngsildInstance(data.value, time, UnitCorresponder[data.unit], dataSetId))
+        }
+    }
+
     return ngsild_payload
 }
 

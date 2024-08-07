@@ -18,6 +18,7 @@ let endpointCorresponder = {
 function main() {
     var payload = process.argv[3];
     var time = process.argv[4];
+    var entity_id = "urn:ngsi-ld:Device:" + process.argv[5];
     // ********* Test pattern (uncomment to test behaviour) ********************
         // Pattern batch
         // payload = "424500000111008FC85EC128B4872088AD060442001E3322118A98782B";
@@ -31,7 +32,7 @@ function main() {
     // ********* End test pattern ***********************
 
     var decoded = watteco.Decode(payload,time,batch_param,endpointCorresponder);
-    var ngsild_payload = ngsild.ngsildWrapper(decoded, time);
+    var ngsild_payload = ngsild.ngsildWrapper(decoded, time, entity_id);
     if (Object.keys(ngsild_payload)[0] !== 'message_type'){
         process.stdout.write(JSON.stringify(ngsild_payload));
     }

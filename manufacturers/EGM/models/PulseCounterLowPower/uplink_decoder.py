@@ -101,32 +101,45 @@ def ngsild_instance(value, time, unitCode, dataset_suffix):
         ngsild_instance['datasetId'] = f"urn:ngsi-ld:Dataset:{dataset_suffix}"
     return ngsild_instance 
 
-def ngsild_wrapper(input, time):
-    ngsild_payload = {}
+def ngsild_wrapper(input, time, entity_id):
+    ngsild_payload = [{
+        "id": entity_id,
+        "type": "Device"
+    }]
+
+    def add_to_payload(key, value):
+        if all(key in d for d in ngsild_payload):
+            ngsild_payload.append({"id": entity_id, "type": "Device", key: value})
+        else:
+            for d in ngsild_payload:
+                if key not in d:
+                    d[key] = value
+                    break
 
     # Device infos
     if 'soft_version' in input:
-        ngsild_payload['softwareVersion'] = ngsild_instance(input['soft_version'], input['timestamp'], None, None)
+        add_to_payload('softwareVersion', ngsild_instance(input['soft_version'], input['timestamp'], None, None))
     if 'appli_id' in input:
-        ngsild_payload['applicationId'] = ngsild_instance(input['appli_id'], input['timestamp'], None, None)
+        add_to_payload('applicationId', ngsild_instance(input['appli_id'], input['timestamp'], None, None))
     if 'pulseCounter_id' in input:
-        ngsild_payload['pulseCounterId'] = ngsild_instance(input['pulseCounter_id'], input['timestamp'], None, None)
+        add_to_payload('pulseCounterId', ngsild_instance(input['pulseCounter_id'], input['timestamp'], None, None))
     if 'voltage' in input:
-        ngsild_payload['batteryVoltage'] = ngsild_instance(input['voltage'], input['timestamp'], 'VLT', None)
+        add_to_payload('batteryVoltage', ngsild_instance(input['voltage'], input['timestamp'], 'VLT', None))
 
     # Pulse counter
     if 'pulse_counter' in input:
-        ngsild_payload['pulses'] = []
         for item in input['pulse_counter']['data']:
-            ngsild_payload['pulses'].append(ngsild_instance(item['pulses'], item['timestamp'], None, f'Counter_{input["pulse_counter"]["pulse_counter_number"]}:Raw'))
+            add_to_payload('pulses', ngsild_instance(item['pulses'], item['timestamp'], None, 'Raw'))
+
     return ngsild_payload
 
 def main():
     fport = sys.argv[1]
     payload = sys.argv[2]
     time = sys.argv[3]
+    entity_id = f"urn:ngsi-ld:Device:{sys.argv[4]}"
     decoded = json.loads(decode_payload(payload, fport))
-    ngsild_payload = ngsild_wrapper(decoded, time)
+    ngsild_payload = ngsild_wrapper(decoded, time, entity_id)
     json.dump(ngsild_payload, sys.stdout, indent=4)
 
 if __name__ == "__main__":

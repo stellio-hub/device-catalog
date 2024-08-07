@@ -4,7 +4,7 @@ let ngsild = require("../../ngsi-ld.js")
 function main() {
     var payload = process.argv[3];
     var time = process.argv[4];
-
+    var entity_id = "urn:ngsi-ld:Device:" + process.argv[5];
     // ********* Test pattern (uncomment to test behaviour) ********************
     // console.log("data payload from an ambiance")
     // payload=([0x00, 0x06, 0x80, 0x00, 0x01, 0x01, 0x56, 0x52]);
@@ -40,7 +40,7 @@ function main() {
     // ********* End test pattern ***********************
 
     var decoded = ewattch.LoraWANEwattchDecoder(payload);
-    var ngsild_payload = ngsild.ngsildWrapper(decoded, time);
+    var ngsild_payload = ngsild.ngsildWrapper(decoded, time, entity_id);
 
     // To get a more readable view of the NGSI-LD payload
     // console.log(ngsild_payload)
