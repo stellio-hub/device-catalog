@@ -84,35 +84,23 @@ def ngsild_instance(value, time, unitCode, dataset_suffix):
     return ngsild_instance 
 
 def ngsild_wrapper(input):
-    ngsild_payload = {}
+    ngsild_payload = {
 
     # Device infos
-    if 'Ammonia' in input:
-        ngsild_payload['Ammonia'] = ngsild_instance(input['Ammonia'], input['timestamp'], 'raw', None)
-    if 'Air_components' in input:
-        ngsild_payload['Air_components'] = ngsild_instance(input['Air_components'], input['timestamp'], 'raw', None)
-    if 'Methane' in input:
-        ngsild_payload['Methane'] = ngsild_instance(input['Methane'], input['timestamp'], 'raw', None)    
-    if 'Air_contaminants' in input:
-        ngsild_payload['Air_contaminants'] = ngsild_instance(input['Air_contaminants'], input['timestamp'], 'raw', None)
-    if 'Butane_Propane' in input:
-        ngsild_payload['Butane_Propane'] = ngsild_instance(input['Butane_Propane'], input['timestamp'], 'raw', None)
-    if 'VOC_isobutane' in input:
-        ngsild_payload['VOC_isobutane'] = ngsild_instance(input['VOC_isobutane'], input['timestamp'], 'raw', None)
-    if 'Hydrogen' in input:
-        ngsild_payload['Hydrogen'] = ngsild_instance(input['Hydrogen'], input['timestamp'], 'raw', None)
-    if 'NO2' in input:
-        ngsild_payload['NO2'] = ngsild_instance(input['NO2'], input['timestamp'], 'raw', None)
-    if 'CO2' in input:
-        ngsild_payload['CO2'] = ngsild_instance(input['CO2'], input['timestamp'], 'raw', None)
-    if 'Temperature' in input:
-        ngsild_payload['Temperature'] = ngsild_instance(input['Temperature'], input['timestamp'], 'raw', None)
-    if 'Pressure' in input:
-        ngsild_payload['Pressure'] = ngsild_instance(input['Pressure'], input['timestamp'], 'raw', None)
-    if 'Humidity' in input:
-        ngsild_payload['Humidity'] = ngsild_instance(input['Humidity'], input['timestamp'], 'raw', None)
-    if 'voltage' in input:
-        ngsild_payload['batteryVoltage'] = ngsild_instance(input['voltage'], input['timestamp'], 'raw', None)
+    'ammonia':ngsild_instance(input['Ammonia'], input['timestamp'], 'A99', 'Raw'),
+    'airComponents':ngsild_instance(input['Air_components'], input['timestamp'], 'A99', 'Raw'),
+    'methane':ngsild_instance(input['Methane'], input['timestamp'], 'A99', 'Raw'),    
+    'airContaminants': ngsild_instance(input['Air_contaminants'], input['timestamp'], 'A99', 'Raw'),
+    'butanePropane': ngsild_instance(input['Butane_Propane'], input['timestamp'], 'A99', 'Raw'),
+    'vocIsobutane': ngsild_instance(input['VOC_isobutane'], input['timestamp'], 'A99', 'Raw'),
+    'hydrogen': ngsild_instance(input['Hydrogen'], input['timestamp'], 'A99', 'Raw'),
+    'no2': ngsild_instance(input['NO2'], input['timestamp'], 'A99', 'Raw'),
+    'co2': ngsild_instance(input['CO2'], input['timestamp'], 'A99', 'Raw'),
+    'temperature': ngsild_instance(input['Temperature'], input['timestamp'], 'CEL', 'Raw'),
+    'pressure': ngsild_instance(input['Pressure'], input['timestamp'], 'BAR', 'Raw'),
+    'humidity': ngsild_instance(input['Humidity'], input['timestamp'], 'P1', 'Raw'),
+    'batteryVoltage': ngsild_instance(input['voltage'], input['timestamp'], 'VLT', 'Raw')
+    }
     return ngsild_payload
 
 def main():
