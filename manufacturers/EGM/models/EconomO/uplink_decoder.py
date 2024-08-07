@@ -213,15 +213,13 @@ def decode_button(payload_bytes):
     return button_json
 
 def decode_watering_program(payload_bytes):
-        timestamp_sec = read_timestamp(payload_bytes[0:4])
-        extension_numb = payload_bytes[4]
+        extension_numb = payload_bytes[0]
         valve_num = 0
         if extension_numb > 1:
             valve_num = 16
-        program_json = json.dumps({'watering_prog':{'timestamp':to_date(timestamp_sec),
-                                                    'prog':[]}}, 
+        program_json = json.dumps({'watering_prog':{'prog':[]}}, 
                                                     separators=(',', ':'))
-        i = 5
+        i = 1
         while i<len(payload_bytes):
             valve_index = valve_num + 1
             opening_time_min = payload_bytes[i]
@@ -342,8 +340,9 @@ def ngsild_wrapper(input, time, entity_id):
                 add_to_payload(f"actualOpeningDurationValve{item['valve_index']}", ngsild_instance(item['opening_time'], item['timestamp'], 'MIN', 'Raw'))
         if 'status' in input['valves']:
             for item in input['valves']['status']:
-                add_to_payload(f"statusValve{item['valve_index']}", ngsild_instance(item['state'], item['timestamp'], None, 'Raw'))
 
+                add_to_payload(f"statusValve{item['valve_index']}", ngsild_instance(item['state'], item['timestamp'], None, 'Raw'))
+  
     # Relay status and closing duration
     if 'relay' in input:
         if 'duration' in input['relay']:
@@ -357,7 +356,7 @@ def ngsild_wrapper(input, time, entity_id):
     if 'watering_prog' in input:
         prog_timestamp = input['watering_prog']['timestamp']
         for item in input['watering_prog']['prog']:
-            add_to_payload(f"programmedOpeningDurationValve{item['valve_index']}", ngsild_instance(item['opening_time'], prog_timestamp, 'MIN', 'Raw'))
+            add_to_payload(f"programmedOpeningDurationValve{item['valve_index']}", ngsild_instance(time, prog_timestamp, 'MIN', 'Raw'))
 
     # Button push
     if 'button' in input:
