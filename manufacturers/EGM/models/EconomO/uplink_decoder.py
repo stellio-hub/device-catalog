@@ -356,7 +356,7 @@ def ngsild_wrapper(input, time, entity_id):
     if 'watering_prog' in input:
         prog_timestamp = input['watering_prog']['timestamp']
         for item in input['watering_prog']['prog']:
-            add_to_payload(f"programmedOpeningDurationValve{item['valve_index']}", ngsild_instance(time, prog_timestamp, 'MIN', 'Raw'))
+            add_to_payload(f"programmedOpeningDurationValve{item['valve_index']}", ngsild_instance(item['opening_time'], time, 'MIN', 'Raw'))
 
     # Button push
     if 'button' in input:
