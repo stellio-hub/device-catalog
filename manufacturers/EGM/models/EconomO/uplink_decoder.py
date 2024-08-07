@@ -213,15 +213,13 @@ def decode_button(payload_bytes):
     return button_json
 
 def decode_watering_program(payload_bytes):
-        timestamp_sec = read_timestamp(payload_bytes[0:4])
-        extension_numb = payload_bytes[4]
+        extension_numb = payload_bytes[0]
         valve_num = 0
         if extension_numb > 1:
             valve_num = 16
-        program_json = json.dumps({'watering_prog':{'timestamp':to_date(timestamp_sec),
-                                                    'prog':[]}}, 
+        program_json = json.dumps({'watering_prog':{'prog':[]}}, 
                                                     separators=(',', ':'))
-        i = 5
+        i = 1
         while i<len(payload_bytes):
             valve_index = valve_num + 1
             opening_time_min = payload_bytes[i]
@@ -336,7 +334,6 @@ def ngsild_wrapper(input, time):
 
     # Watering program
     if 'watering_prog' in input:
-        prog_timestamp = input['watering_prog']['timestamp']
         for item in input['watering_prog']['prog']:
             ngsild_payload.setdefault(f"programmedOpeningDurationValve{item['valve_index']}", []).append(ngsild_instance(item['opening_time'], time, 'MIN', 'Raw'))
 
