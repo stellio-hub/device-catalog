@@ -354,7 +354,6 @@ def ngsild_wrapper(input, time, entity_id):
 
     # Watering program
     if 'watering_prog' in input:
-        prog_timestamp = input['watering_prog']['timestamp']
         for item in input['watering_prog']['prog']:
             add_to_payload(f"programmedOpeningDurationValve{item['valve_index']}", ngsild_instance(item['opening_time'], time, 'MIN', 'Raw'))
 
