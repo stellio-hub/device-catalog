@@ -2,6 +2,7 @@
     "documentation": "https://ewattch-documentation.com/?page_id=613",
     "uplinkDecoder": "uplink_decoder.js",
     "ngsildContext": "https://easy-global-market.github.io/ngsild-api-data-models/airQuality/jsonld-contexts/airQuality-compound.jsonld",
+    "requiredFields" :["DevEUI","AppEUI","AppKey"],
     "chirpstack": {
         "region": "EU868",
         "macVersion": 1,
