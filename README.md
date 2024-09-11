@@ -91,4 +91,6 @@ if (require.main === module) {
 ```
 
 ## Contribute
-This catalog aims at being a collaborative work ou can ask to be added as contributors to create a branch and add new models to the catalog.
+This catalog aims at being a collaborative space in which contributions from the community of users are welcomed. 
+Contribution are expected to be done using Git as a versioning tool. To support quality of the code base, no direct commit to the repository is possible. These should be done using [“Pull-Request”](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests). You can ask for authoriztion to pullè-requets n the repository by writting an e.mail at contact@stellio.io.
+
