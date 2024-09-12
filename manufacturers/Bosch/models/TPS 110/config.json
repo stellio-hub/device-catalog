@@ -3,7 +3,10 @@
     "uplinkDecoder": "uplink_decoder.js",
     "ngsildContext": "https://easy-global-market.github.io/ngsild-api-data-models/smartParking/jsonld-contexts/smartParking-compound.jsonld",
     "devicePicture": "TPS110.png",
-    "requiredFields" :["DevEUI","AppEUI","AppKey","NewKeyA","NewKeyB"],
+    "additionalFields": [
+        {"label":"NewKeyA", "isRequired": true},
+        {"label":"NewKeyB", "isRequired": true}
+    ],
     "chirpstack": {
         "region": "EU868",
         "macVersion": 3,
