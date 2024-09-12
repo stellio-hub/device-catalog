@@ -4,9 +4,9 @@
     "ngsildContext": "https://easy-global-market.github.io/ngsild-api-data-models/smartParking/jsonld-contexts/smartParking-compound.jsonld",
     "devicePicture": "TPS110.png",
     "fields": [
-        {"label":"DevEUI", "isRequired": true, "length": 16, "regexPattern": "/^[a-zA-Z0-9]*$/"},
-        {"label":"AppEUI", "isRequired": true, "length": 16, "regexPattern": "/^[a-zA-Z0-9]*$/"},
-        {"label":"AppKey", "isRequired": true, "length": 32, "regexPattern": "/^[a-zA-Z0-9]*$/"},
+        {"label":"DevEUI", "isRequired": true},
+        {"label":"AppEUI", "isRequired": true},
+        {"label":"AppKey", "isRequired": true},
         {"label":"NewKeyA", "isRequired": true},
         {"label":"NewKeyB", "isRequired": true}
     ],
