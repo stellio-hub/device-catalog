@@ -41,9 +41,49 @@ The configutation is a json file that must contain the following keys/values:
 ```
 
 ## Decoder file syntax
-The decoder is a python or javascript file, the starting point is usually the classic decoder given by the manufacturer, to which we add a NGSI-LD wrapper, to make the output NGSI-LD compliant and ready to be sent to the broker.
-A typical example of decoder:
+The decoder is a python or javascript file, the starting point is usually the classic decoder given by the manufacturer, to which we add a NGSI-LD wrapper, to make the output NGSI-LD compliant and ready to be sent to the broker (details on the output format are given in the next part).
 
+### Example of a python decoder
+```
+def Decode(fPort, bytes):
+    *decoding function provided by the manufacturer*
+
+def ngsild_instance(value, time, unitCode, dataset_suffix):
+    ngsild_instance = {
+        "type": "Property",
+        "value": value,
+        "observedAt": time
+    }
+    if unitCode is not None:
+        ngsild_instance['unitCode'] = unitCode
+    if dataset_suffix is not None:
+        ngsild_instance['datasetId'] = f"urn:ngsi-ld:Dataset:{dataset_suffix}"
+    return ngsild_instance 
+
+def ngsild_wrapper(input, time, entity_id):
+    ngsild_payload = [{
+        "id": entity_id,
+        "type": "Device"
+        "temperature": ngsild_instance(input[0], time, "CEL", "Raw")
+        "humidity": ngsild_instance(input[1], time, "P1", "Raw")
+        "co2": ngsild_instance(input[2], time, "59", "Raw")
+    }]
+
+def main():
+    fport = sys.argv[1]
+    payload = sys.argv[2]
+    time = sys.argv[3]
+    entity_id = f"urn:ngsi-ld:Device:{sys.argv[4]}"
+    decoded = json.loads(decode_payload(payload, fport))
+    ngsild_payload = ngsild_wrapper(decoded, time, entity_id)
+    json.dump(ngsild_payload, sys.stdout, indent=4)
+
+if __name__ == "__main__":
+    main()
+
+```
+
+### Example of a js decoder
 ```
 function Decode(fPort, bytes){
     *decoding function provided by the manufacturer*
@@ -68,11 +108,11 @@ function ngsildWrapper(input, time, entity_id) {
     var ngsild_payload = [{
         id: entity_id,
         type: "Device"
-        temperature: ngsildInstance(input[0], time, "CEL")
-        humidity: ngsildInstance(input[0], time, "P1")
-        co2: ngsildInstance(input[2], time, "59")
+        temperature: ngsildInstance(input[0], time, "CEL", "Raw")
+        humidity: ngsildInstance(input[1], time, "P1", "Raw")
+        co2: ngsildInstance(input[2], time, "59", "Raw")
     }];
-    return ngsild_payload;                                                                                                                                                                                                                                                                                                                                          
+    return ngsild_payload;                                                                                                                                                                                                                                                                                                
 }
 
 function main() {
@@ -90,7 +130,168 @@ if (require.main === module) {
 }
 ```
 
+### Decoder execution
+The decoder are written to be exectuted this way:
+* python3 uplink_decoder.py *fPort* *payload* *time* *devEui*
+* node uplink_decoder.js *fPort* *payload* *time* *devEui*
+
+Important note: in python, fPort will be sys.argv[1] while in js fPort will be process.argv[2].
+
+## Expected ouptut of the decoder
+The expected output of the decoder of the json payload ready to be sent to the */entityOperations/merge* endpoint of the [“NGSI-LD API“](https://www.etsi.org/deliver/etsi_gs/CIM/001_099/009/01.08.01_60/gs_CIM009v010801p.pdf) (Batch entity merge).
+
+### Basic payload
+In a basic case, where the device simply sends one instance of multiple attribute, the payload should look like this:
+```
+[ {
+  "id" : "urn:ngsi-ld:Device:*devEui*",
+  "type" : "Device",
+  "temperature" : {
+    "type" : "Property",
+    "value" : 1684,
+    "observedAt" : "2024-09-17T08:19:37Z",
+    "datasetId" : "urn:ngsi-ld:Dataset:Raw"
+  },
+  "humidity" : {
+    "type" : "Property",
+    "observedAt" : "2024-09-17T08:19:37Z",
+    "value" : 5.0,
+    "datasetId" : "urn:ngsi-ld:Dataset:Raw"
+  },
+  "co2" : {
+    "value" : -101,
+    "datasetId" : "urn:ngsi-ld:Dataset:Raw",
+    "type" : "Property",
+    "observedAt" : "2024-09-17T08:19:37Z"
+  }
+} ]
+```
+
+### Multiple temporal instances
+In the case where the device sends multiple instances of a same attribute (i.e. multiple measurements of the same thing at different times) in a single message, multiple entities should be sent, the payload should look like this:
+```
+[ {
+  "id" : "urn:ngsi-ld:Device:*devEui*",
+  "type" : "Device",
+  "temperature" : {
+    "type" : "Property",
+    "value" : 1684,
+    "observedAt" : "2024-09-17T08:19:37Z",
+    "datasetId" : "urn:ngsi-ld:Dataset:Raw"
+  },
+  "humidity" : {
+    "type" : "Property",
+    "observedAt" : "2024-09-17T08:19:37Z",
+    "value" : 5.0,
+    "datasetId" : "urn:ngsi-ld:Dataset:Raw"
+  },
+},
+{
+  "id" : "urn:ngsi-ld:Device:*devEui*",
+  "type" : "Device",
+  "temperature" : {
+    "type" : "Property",
+    "value" : 1752,
+    "observedAt" : "2024-09-17T09:39:37Z",
+    "datasetId" : "urn:ngsi-ld:Dataset:Raw"
+  },
+  "humidity" : {
+    "type" : "Property",
+    "observedAt" : "2024-09-17T09:39:37Z",
+    "value" : 6.0,
+    "datasetId" : "urn:ngsi-ld:Dataset:Raw"
+  },
+},
+... ]
+```
+
+### Multiple datasets
+If the device sends multiples "versions" of the same attribute (i.e. a device measures the same thing with 2 different probes), multiple datasetId should be used, the payload should look like this:
+```
+[ {
+  "id" : "urn:ngsi-ld:Device:*devEui*",
+  "type" : "Device",
+  "temperature" : [
+    {
+    "type" : "Property",
+    "value" : 1684,
+    "observedAt" : "2024-09-17T08:19:37Z",
+    "datasetId" : "urn:ngsi-ld:Dataset:Probe_1:Raw"
+    },
+    {
+    "type" : "Property",
+    "observedAt" : "2024-09-17T08:19:37Z",
+    "value" :  1667,
+    "datasetId" : "urn:ngsi-ld:Dataset:Probe_2:Raw"
+    }
+  ],
+  "humidity" : {
+    "type" : "Property",
+    "observedAt" : "2024-09-17T08:19:37Z",
+    "value" : 5.0,
+    "datasetId" : "urn:ngsi-ld:Dataset:Raw"
+  }
+} ]
+```
+### Using add_to_payload function
+The easiest way to make sure that the generated output is correct to use the add_to_payload function, which will handle the verification of whether or not an attribute is already present in the entity and will add a new one to the list if needed. Here is a exemple of basic wrappers that use this function (the for loop at the end is given as a basic example that does not care about unitCode, renaming attributes, ... and is usually more complex): 
+#### python
+```
+def ngsild_wrapper(input, time, entity_id):
+    ngsild_payload = [{
+        "id": entity_id,
+        "type": "Device"
+    }]
+
+    def add_to_payload(key, value):
+        if all(key in d for d in ngsild_payload):
+            ngsild_payload.append({"id": entity_id, "type": "Device", key: value})
+        else:
+            for d in ngsild_payload:
+                if key not in d:
+                    d[key] = value
+                    break
+    
+    for item in input:
+        add_to_payload(item, ngsild_instance(input[item]['value'], input[item]['timestamp'], None, "Raw"))
+    
+    return ngsild_payload
+```
+#### js
+```
+function ngsildWrapper(input, time, entity_id) {
+    var ngsild_payload = [{
+        id: entity_id,
+        type: "Device"
+    }];
+
+    function addToPayload(key, value) {
+        if (ngsild_payload.every(d => d.hasOwnProperty(key))) {
+            ngsild_payload.push({id: entity_id, type: "Device", ...{[key]: value}});
+        } else {
+            for (let d of ngsild_payload) {
+                if (!d.hasOwnProperty(key)) {
+                    d[key] = value;
+                    break;
+                }
+            }
+        }
+    }
+
+    input.forEach(item => {
+        addToPayload(item, ngsildInstance(item.value, item.timestamp, null, "Raw"));
+    })
+
+    return ngsild_payload
+}
+```
+
+### Important notes
+* The convention for NGSI-LD is that attribute name needs to be in camelCase, which is usually not what the decoder give as output so the name needs to be changed.
+* Adding unitCode is a good practice and is something that should be done when possible. The code to be added is the UN CEFACT Code corresponding to the unit of measurement of the attribute. 
+* The parameter *time* that is passed as argulment of the decoder is the time provided by the Lora server and should be used when the device does not send any timestamp in its payload.
+
 ## Contribute
 This catalog aims at being a collaborative space in which contributions from the community of users are welcomed. 
-Contributions are expected to be done using Git as a versioning tool. To support quality of the code base, no direct commit to the repository is possible. These should be done using [“Pull-Request”](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests). You can ask for authoriztion to do some pull-requests in the repository by writting an e.mail at contact@stellio.io.
+Contributions are expected to be done using Git as a versioning tool. To support quality of the code base, no direct commit to the repository is possible. These should be done using [“Pull-Request”](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests). You can create a [“Fork“](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo) of this repository, create a branch in your fork, in which you will do your contribution and then do a pull-request targeting this repository.
 
