@@ -234,7 +234,7 @@ If the device sends multiples "versions" of the same attribute (i.e. a device me
 } ]
 ```
 ### Using add_to_payload function
-The easiest way to make sure that the generated output is correct to use the add_to_payload function, which will handle the verification of whether or not an attribute is already present in the entity and will add a new one to the list if needed. Here is a exemple of basic wrappers that use this function (the for loop at the end is given as a basic example that does not care about unitCode, renaming attributes, ... and is usually more complex): 
+The easiest way to make sure that the generated output is correct to use the add_to_payload function, which will handle the verification of whether or not an attribute is already present in the entity and will add a new one to the list if needed. Here is a exemple of basic wrappers that use this function (the for loop at the end is given as a basic example that does not care about unitCodes, renaming attributes, ... and is usually more complex): 
 #### python
 ```
 def ngsild_wrapper(input, time, entity_id):
@@ -287,11 +287,17 @@ function ngsildWrapper(input, time, entity_id) {
 ```
 
 ### Important notes
-* The convention for NGSI-LD is that attribute name needs to be in camelCase, which is usually not what the decoder give as output so the name needs to be changed.
+* The convention for NGSI-LD is that attribute names need to be in camelCase, which is usually not what the decoder gives as output so the name needs to be changed.
 * Adding unitCode is a good practice and is something that should be done when possible. The code to be added is the UN CEFACT Code corresponding to the unit of measurement of the attribute. 
-* The parameter *time* that is passed as argulment of the decoder is the time provided by the Lora server and should be used when the device does not send any timestamp in its payload.
+* The parameter *time* that is passed as argument of the decoder is the time provided by the Lora server and should be used when the device does not send any timestamp in its payload.
 
 ## Contribute
 This catalog aims at being a collaborative space in which contributions from the community of users are welcomed. 
-Contributions are expected to be done using Git as a versioning tool. To support quality of the code base, no direct commit to the repository is possible. These should be done using [“Pull-Request”](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests). You can create a [“Fork“](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo) of this repository, create a branch in your fork, in which you will do your contribution and then do a pull-request targeting this repository.
+Contributions are expected to be done using Git as a versioning tool. To support quality of the code base, no direct commit to the repository is possible, contribtion should be done using [Pull-Request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests). 
+
+The procedure to contribute is the following
+1. Create a [Fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo) of this repository.
+2. Create a branch in your fork.
+3. Do your contribution/fix in this branch.
+4. Submit a pull request to merge your branch with the upstream reposutory (this one).
 
