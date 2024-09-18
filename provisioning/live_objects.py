@@ -95,7 +95,7 @@ def delete_device(host, headers, dev_eui):
         return r.status_code
 
 def main():
-    input = json.load(sys.stdin)
+    payload = json.load(sys.stdin)
     mode = sys.argv[1]
 
     host = 'https://liveobjects.orange-business.com'
@@ -107,8 +107,8 @@ def main():
 
     if mode == 'create' or mode == 'update':
         # Manufacturer and model
-        manufacturer = input['manufacturer']
-        model = input['model']
+        manufacturer = payload['manufacturer']
+        model = payload['model']
 
         # Group
         r = requests.get(f'{host}/api/v1/deviceMgt/groups?groupPath=/{manufacturer}/{model}', headers=headers)
@@ -142,8 +142,8 @@ def main():
         properties = [{item: payload[item]} for item in payload.keys() if item not in ["devEUI", "appEUI", "applicationKey", "name", "description", "network", "manufacturer", "model", "isEnabled"]]
         
         # Device
-        device = Device(input['devEUI'], input['name'], input['description'], f"/{manufacturer}/{model}", properties)
-        device_interface = DeviceInterface(input['devEUI'], config['profile'], config['activationType'], input['appEUI'], input['applicationKey'], config['connectivityPlan'], input['isEnabled'])
+        device = Device(payload['devEUI'], payload['name'], payload['description'], f"/{manufacturer}/{model}", properties)
+        device_interface = DeviceInterface(payload['devEUI'], config['profile'], config['activationType'], payload['appEUI'], payload['applicationKey'], config['connectivityPlan'], payload['isEnabled'])
 
         if mode == 'create':
             resp = create_device(host, headers, device, device_interface)
@@ -154,7 +154,7 @@ def main():
             print(resp)
 
     elif mode == 'delete':
-        resp = delete_device(host, headers, input['devEUI'])
+        resp = delete_device(host, headers, payload['devEUI'])
         print(resp)
 
     else:
