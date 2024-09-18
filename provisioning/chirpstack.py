@@ -6,13 +6,16 @@ import sys
 from chirpstack_api import api
 
 class Device:
-    def __init__(self, dev_eui, name, description, application_id, device_profile_id, is_disabled):
+    def __init__(self, dev_eui, name, description, application_id, device_profile_id, is_disabled, tags):
         self.dev_eui            = dev_eui
         self.name               = name
         self.description        = description
         self.application_id     = application_id
         self.device_profile_id  = device_profile_id
         self.is_disabled        = is_disabled
+        self.tags               = {}
+        for tag in tags:
+            self.tags.update(tag)
 
 class DeviceKeys:
     def __init__(self, dev_eui, network_key, application_key):
@@ -87,6 +90,7 @@ def create_device(channel, auth_token, device):
     req.device.application_id       = str(device.application_id)
     req.device.device_profile_id    = str(device.device_profile_id)
     req.device.is_disabled          = device.is_disabled
+    req.device.tags.update(device.tags)
     resp = client.Create(req, metadata=auth_token)
     return resp
 
@@ -108,6 +112,7 @@ def update_device(channel, auth_token, device):
     req.device.application_id       = str(device.application_id)
     req.device.device_profile_id    = str(device.device_profile_id)
     req.device.is_disabled          = device.is_disabled
+    req.device.tags.update(device.tags)
     resp = client.Update(req, metadata=auth_token)
     return resp
 
@@ -128,7 +133,7 @@ def delete_device(channel, auth_token, dev_eui):
     return resp
 
 def main():
-    input = json.load(sys.stdin)
+    payload = json.load(sys.stdin)
     mode = sys.argv[1]
 
     server = secret.chirpstack_server
@@ -139,9 +144,12 @@ def main():
     auth_token = [("authorization", "Bearer %s" % api_token)]
 
     if mode == 'create' or mode == 'update':
-        manufacturer = input['manufacturer']
-        model = input['model']
+        # Manufacturer and model
+        manufacturer = payload['manufacturer']
+        model = payload['model']
         device_type = f"{manufacturer} / {model}"
+
+        # Application
         resp = get_application(channel, auth_token, tenant_id, device_type)
         application_exists = False
         if hasattr(resp, 'result'):
@@ -153,6 +161,7 @@ def main():
             resp = create_application(channel, auth_token, tenant_id, device_type)
             application_id = resp.id
 
+        # Device profile
         resp = get_device_profile(channel, auth_token, tenant_id, device_type)
         device_profile_exists = False
         if hasattr(resp, 'result'):
@@ -169,25 +178,28 @@ def main():
                 device_profile = DeviceProfile(device_type, config['region'], config['macVersion'], config['regParamsRevision'], config['adrAlgorithmId'], config['flushQueueOnActivate'], config['uplinkInterval'], config['supportsOTAA'], config['supportsClassB'], config['supportsClassC'])
                 resp = create_device_profile(channel, auth_token, tenant_id, device_profile)
                 device_profile_id = resp.id
+        
+        # Tags
+        tags = [{item: payload[item]} for item in payload.keys() if item not in ["devEUI", "appEUI", "applicationKey", "name", "description", "network", "manufacturer", "model", "isEnabled"]]
 
-    if mode == 'create':
-        device = Device(input['devEUI'], input['name'], input['description'], application_id, device_profile_id, (not input['isEnabled']))
-        device_keys = DeviceKeys(input['devEUI'], input['applicationKey'], input['applicationKey'])
-        resp = create_device(channel, auth_token, device), create_device_keys(channel, auth_token, device_keys)
-        print(resp)
+        # Device
+        device = Device(payload['devEUI'], payload['name'], payload['description'], application_id, device_profile_id, (not payload['isEnabled']), tags)
+        device_keys = DeviceKeys(payload['devEUI'], payload['applicationKey'], payload['applicationKey'])
 
-    elif mode == 'update':
-        device = Device(input['devEUI'], input['name'], input['description'], application_id, device_profile_id, (not input['isEnabled']))
-        device_keys = DeviceKeys(input['devEUI'], input['applicationKey'], input['applicationKey'])
-        resp = update_device(channel, auth_token, device), update_device_keys(channel, auth_token, device_keys)
-        print(resp)
+        if mode == 'create':
+            resp = create_device(channel, auth_token, device), create_device_keys(channel, auth_token, device_keys)
+            print(resp)
+
+        elif mode == 'update':
+            resp = update_device(channel, auth_token, device), update_device_keys(channel, auth_token, device_keys)
+            print(resp)
 
     elif mode == 'delete':
-        resp = delete_device(channel, auth_token, input['devEUI'])
+        resp = delete_device(channel, auth_token, payload['devEUI'])
         print(resp)
 
     else:
-        raise Exception('Unkonwn mode')
+        raise Exception('Incorrect mode')
 
 if __name__ == "__main__":
     main()
