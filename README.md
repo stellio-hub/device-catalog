@@ -55,7 +55,7 @@ The decoder is a Python or Javascript file. The starting point is usually the cl
 
 ```python
 def Decode(fPort, bytes):
-    *decoding function provided by the manufacturer*
+    """ decoding function provided by the manufacturer """
 
 def ngsild_instance(value, time, unitCode, dataset_suffix):
     ngsild_instance = {
@@ -95,7 +95,7 @@ if __name__ == "__main__":
 
 ```js
 function Decode(fPort, bytes){
-    *decoding function provided by the manufacturer*
+    /* decoding function provided by the manufacturer */
 }
 
 function ngsildInstance(value, time, unit, dataset_suffix) {
@@ -141,7 +141,7 @@ if (require.main === module) {
 
 ## Decoder execution
 
-The decoders can then be called with the following arguments:
+The decoders can be called with the following arguments:
 * `python3 uplink_decoder.py *fPort* *payload* *time* *devEui*`
 * `node uplink_decoder.js *fPort* *payload* *time* *devEui*`
 
@@ -216,8 +216,7 @@ If the device sends multiple instances of a given attribute (i.e. multiple measu
     "value" : 6.0,
     "datasetId" : "urn:ngsi-ld:Dataset:Raw"
   },
-},
-... ]
+} ]
 ```
 
 ### Multiple datasets
@@ -324,4 +323,4 @@ The procedure to contribute is the following
 1. Create a [fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo) of this repository.
 2. Create a branch in your fork.
 3. Do your contribution/fix in this branch.
-4. Submit a pull request to merge your branch with the upstream reposutory (this one).
+4. Submit a pull request to merge your branch with the upstream repository (this one).
