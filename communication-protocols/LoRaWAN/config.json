@@ -1,6 +1,5 @@
 {
     "fields": [
-        {"label":"Networks", "isRequired": true},
         {"label":"DevEUI", "isRequired": true},
         {"label":"AppEUI", "isRequired": true},
         {"label":"AppKey", "isRequired": true}
