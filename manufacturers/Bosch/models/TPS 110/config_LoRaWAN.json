@@ -5,8 +5,8 @@
     "ngsildContext": "https://easy-global-market.github.io/ngsild-api-data-models/smartParking/jsonld-contexts/smartParking-compound.jsonld",
     "devicePicture": "TPS110.png",
     "fields": [
-        {"label":"NewKeyA", "isRequired": true},
-        {"label":"NewKeyB", "isRequired": true}
+        {"label":"New Key A", "value":"newKeyA", "isRequired": true},
+        {"label":"New Key B", "value":"newKeyB", "isRequired": true}
     ],
     "chirpstack": {
         "region": "EU868",
