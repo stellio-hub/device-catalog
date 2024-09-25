@@ -4,5 +4,5 @@
         {"label":"App EUI", "value":"appEui", "isRequired": true},
         {"label":"App Key", "value":"appKey", "isRequired": true}
     ],
-    "identifier": "DevEUI"
+    "identifier": "devEui"
 }
