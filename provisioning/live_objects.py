@@ -139,11 +139,11 @@ def main():
             config = r.json()['liveObjects']
 
         # Properties
-        properties = [{item: payload[item]} for item in payload.keys() if item not in ["devEUI", "appEUI", "applicationKey", "name", "description", "network", "manufacturer", "model", "isEnabled"]]
+        properties = [{item: payload[item]} for item in payload.keys() if item not in ["devEUI", "appEUI", "appKey", "name", "description", "network", "manufacturer", "model", "isEnabled"]]
 
         # Device
         device = Device(payload['devEUI'], payload['name'], payload['description'], f"/{manufacturer}/{model}", properties)
-        device_interface = DeviceInterface(payload['devEUI'], config['profile'], config['activationType'], payload['appEUI'], payload['applicationKey'], config['connectivityPlan'], payload['isEnabled'])
+        device_interface = DeviceInterface(payload['devEUI'], config['profile'], config['activationType'], payload['appEUI'], payload['appKey'], config['connectivityPlan'], payload['isEnabled'])
 
         if mode == 'create':
             resp = create_device(host, headers, device, device_interface)
