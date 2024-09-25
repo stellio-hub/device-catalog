@@ -34,37 +34,6 @@ function Decode(fPort, bytes) {
     var sensorEuiLowBytes;
     var sensorEuiHighBytes;
 	var frameID = bytes[0]
-	/*
-	if(frameID===1)
-	{
-		temperature = ((bytes[1] << 8) + bytes[2])/10;
-        humidity = bytes[3];
-        light_intensity = (bytes[4] << 24) + (bytes[5] << 16) + (bytes[6] << 8) + bytes[7];
-        uv = bytes[8]/10;
-        wind_speed = ((bytes[9]<<8) + bytes[10])/10;
-        wind_direction = (bytes[12]<<8) + bytes[13]
-        rainfall = ((bytes[14] << 24) + (bytes[15] << 16) + (bytes[16] << 8) + bytes[17])/1000;
-        pressure = ((bytes[18]<<8) + bytes[19])*10;
-		decoded.messages.push({
-                type: 'report_telemetry',
-                measurementId: dataID,
-                measurementValue: realDataValue
-        });
-	}
-	else if(frameID===4)
-	{
-		battery = bytes[1];
-		interval = (bytes[6]<<8) + bytes[7];
-		temperature = ((bytes[11] << 8) + bytes[12])/10;
-        humidity = bytes[13];
-        light_intensity = (bytes[14] << 24) + (bytes[15] << 16) + (bytes[16] << 8) + bytes[17];
-        uv = bytes[18]/10;
-        wind_speed = ((bytes[19]<<8) + bytes[20])/10;
-        wind_direction = (bytes[22]<<8) + bytes[23]
-        rainfall = ((bytes[24] << 24) + (bytes[25] << 16) + (bytes[26] << 8) + bytes[27])/1000;
-        pressure = ((bytes[28]<<8) + bytes[29])*10;
-	}*/
-	
 	
     // Handle each frame
     var frameArray = divideBy7Bytes(bytesString);
