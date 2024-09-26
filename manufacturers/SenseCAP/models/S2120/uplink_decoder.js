@@ -144,7 +144,7 @@ function ngsildWrapper(input, time, entity_id) {
 					ngsild_payload[0].lightIntensity = ngsildInstance(messages[i].measurementValue, time, 'LUX', 'Raw');
                 }
 				else if (messages[i].measurementId === 3) {
-					ngsild_payload[0].uvIndex = ngsildInstance(messages[i].measurementValue, time, '', 'Raw');
+					ngsild_payload[0].uvIndex = ngsildInstance(messages[i].measurementValue, time, null, 'Raw');
                 }
 				else if (messages[i].measurementId === 4) {
 					ngsild_payload[0].windSpeed = ngsildInstance(messages[i].measurementValue, time, 'MTS', 'Raw');

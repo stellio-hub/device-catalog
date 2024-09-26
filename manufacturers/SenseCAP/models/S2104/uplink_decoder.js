@@ -342,7 +342,6 @@ function main() {
 	var entity_id = "urn:ngsi-ld:Device:" + process.argv[5];
     var decoded = Decode(fport, bytes);
 	var ngsild_payload = ngsildWrapper(decoded, time, entity_id);
-	console.log(decoded["data"]);
     process.stdout.write(JSON.stringify(ngsild_payload));
 }
 
