@@ -1,8 +1,8 @@
 {
     "fields": [
-        {"label":"DevEUI", "isRequired": true},
-        {"label":"AppEUI", "isRequired": true},
-        {"label":"AppKey", "isRequired": true}
+        {"label":"Dev EUI", "value":"devEUI", "isRequired": true},
+        {"label":"App EUI", "value":"appEUI", "isRequired": true},
+        {"label":"App Key", "value":"appKey", "isRequired": true}
     ],
-    "identifier": "DevEUI"
+    "identifier": "devEUI"
 }

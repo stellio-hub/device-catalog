@@ -180,11 +180,11 @@ def main():
                 device_profile_id = resp.id
         
         # Tags
-        tags = [{item: payload[item]} for item in payload.keys() if item not in ["devEUI", "appEUI", "applicationKey", "name", "description", "network", "manufacturer", "model", "isEnabled"]]
+        tags = [{item: payload[item]} for item in payload.keys() if item not in ["devEUI", "appEUI", "appKey", "name", "description", "network", "manufacturer", "model", "isEnabled"]]
 
         # Device
         device = Device(payload['devEUI'], payload['name'], payload['description'], application_id, device_profile_id, (not payload['isEnabled']), tags)
-        device_keys = DeviceKeys(payload['devEUI'], payload['applicationKey'], payload['applicationKey'])
+        device_keys = DeviceKeys(payload['devEUI'], payload['appKey'], payload['appKey'])
 
         if mode == 'create':
             resp = create_device(channel, auth_token, device), create_device_keys(channel, auth_token, device_keys)
