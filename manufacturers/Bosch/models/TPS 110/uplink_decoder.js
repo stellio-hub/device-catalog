@@ -106,7 +106,7 @@ function ngsildInstance(value, unit, dataset_suffix) {
 
 function main() { 
 // Use testMode = 1 to testwith sample payloads. Use testMode = 0 in operation.
-        let testMode = 1;
+        let testMode = 0;
         if (testMode == 1){
                 var time='2019-09-07T15:50+00Z '
                 console.log("Parking status test pattern: ")
