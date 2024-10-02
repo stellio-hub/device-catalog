@@ -11,7 +11,7 @@ function decodeUplink(fport, time, input, entity_id) {
 		case 1: // Parking status
 			value = (input[0] & 0x1) === 0x1;
 			data.occupied = ngsildInstance(value, time, null, dataset_suffix)
-			return data
+			return [data]
 			break;
 
 		case 2: // Heartbeat
@@ -22,7 +22,7 @@ function decodeUplink(fport, time, input, entity_id) {
 				value = input[1] & 0x80 ? input[1] - 0x100 : input[1];
 			}
 			data.temperature = ngsildInstance(value, time, "CEL", dataset_suffix)
-			return data
+			return [data]
 			break;
 
 		case 3: // Start-up   
@@ -47,7 +47,7 @@ function decodeUplink(fport, time, input, entity_id) {
 			][input[15]];
 			data.resetCause = ngsildInstance(resetCause, null, null, dataset_suffix)
 			data.occupied = ngsildInstance((input[16] & 0x1) == 0x1, time, null, dataset_suffix);
-			return data;
+			return [data];
 			break;
 
 		case 4: // Device information
