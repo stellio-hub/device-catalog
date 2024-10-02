@@ -20,17 +20,15 @@ function Decode(fPort, bytes) {
             data: decoded
         };
     }
-
-    // Length Check
-    if ((bytesString.length / 2 - 2) % 7 !== 0) {
+	
+	// Length Check
+    if (bytesString.length !== 40 && bytesString.length !== 44 && bytesString.length !== 60) {
         decoded['valid'] = false;
         decoded['err'] = -2; // "length check fail."
         return {
             data: decoded
         };
     }
-	//var meas_list01 = ["temperature", "humidity", "light_intesity", "uv", "wind_speed","wind_direction","rainfall","pressure"]
-	//var meas_list04 = ["battery","interval","temperature", "humidity", "light_intesity", "uv", "wind_speed","wind_direction","rainfall","pressure"]
 	var frameID = bytes[0]
 	if(frameID===1)
 	{
@@ -43,6 +41,10 @@ function Decode(fPort, bytes) {
 		meas_list01.push((bytes[12]<<8) + bytes[13]);
 		meas_list01.push(((bytes[14] << 24) + (bytes[15] << 16) + (bytes[16] << 8) + bytes[17])/1000);
 		meas_list01.push(((bytes[18]<<8) + bytes[19])*10);
+		if(bytes.length===22)
+		{
+			meas_list01.push(bytes[21]);
+		}
 		for(var i = 0; i<meas_list01.length; i++)
 		{
 			decoded.messages.push({
@@ -79,6 +81,7 @@ function Decode(fPort, bytes) {
         data: decoded
     };
 }
+
 function crc16Check(data) {
     return true;
 }
