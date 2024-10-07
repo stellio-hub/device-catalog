@@ -1,13 +1,8 @@
 {
-    "communicationProtocol": "LoRaWAN",
     "documentation": "https://www.dataprint.fr/support/bosch/Bosch-capteur-parking-TPS-110-EU-datasheet.pdf",
     "uplinkDecoder": "uplink_decoder.js",
     "ngsildContext": "https://easy-global-market.github.io/ngsild-api-data-models/smartParking/jsonld-contexts/smartParking-compound.jsonld",
     "devicePicture": "TPS110.png",
-    "fields": [
-        {"label":"New Key A", "value":"newKeyA", "isRequired": true},
-        {"label":"New Key B", "value":"newKeyB", "isRequired": true}
-    ],
     "chirpstack": {
         "region": "EU868",
         "macVersion": 3,
