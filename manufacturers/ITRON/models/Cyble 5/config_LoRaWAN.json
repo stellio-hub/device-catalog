@@ -1,8 +1,8 @@
 {
     "ngsildContext": "https://easy-global-market.github.io/ngsild-api-data-models/irrigation/jsonld-contexts/irrigation-compound.jsonld",
     "fields": [
-        {"label":"New Key A", "value":"newKeyA", "isRequired": true},
-        {"label":"New Key B", "value":"newKeyB", "isRequired": true}
+        {"label":"Encryption Key", "value":"encryptionKey", "isRequired": true},
+        {"label":"Authentication Key", "value":"authenticationKey", "isRequired": true}
     ],
     "chirpstack": {
         "region": "EU868",
