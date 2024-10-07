@@ -1,0 +1,23 @@
+{
+    "ngsildContext": "https://easy-global-market.github.io/ngsild-api-data-models/irrigation/jsonld-contexts/irrigation-compound.jsonld",
+    "fields": [
+        {"label":"New Key A", "value":"newKeyA", "isRequired": true},
+        {"label":"New Key B", "value":"newKeyB", "isRequired": true}
+    ],
+    "chirpstack": {
+        "region": "EU868",
+        "macVersion": 3,
+        "regParamsRevision": "A",
+        "adrAlgorithmId": "default",
+        "flushQueueOnActivate": true,
+        "uplinkInterval": 3600,
+        "supportsOTAA": true,
+        "supportsClassB": false,
+        "supportsClassC": false
+    },
+    "liveObjects": {
+        "profile": "Generic_classA_RX2SF12",
+        "activationType": "OTAA",
+        "connectivityPlan": "orange-cs/CP_Basic"
+    }
+} 
