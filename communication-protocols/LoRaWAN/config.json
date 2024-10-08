@@ -1,8 +1,92 @@
 {
+    "identifier": "devEUI",
     "fields": [
-        {"label":"Dev EUI", "value":"devEUI", "isRequired": true},
-        {"label":"App EUI", "value":"appEUI", "isRequired": true},
-        {"label":"App Key", "value":"appKey", "isRequired": true}
-    ],
-    "identifier": "devEUI"
+        {
+            "label": "Dev EUI",
+            "value": "devEUI",
+            "isRequired": true,
+            "canBeEdited": false,
+            "validationRules": [
+                {
+                    "can": true,
+                    "message": {
+                        "en": "A Dev EUI is required",
+                        "fr": ""
+                    }
+                },
+                {
+                    "len": 16,
+                    "message": {
+                        "en": "Must have 16 chars",
+                        "fr": ""
+                    }
+                },
+                {
+                    "pattern": "/^[a-zA-Z0-9]*$/",
+                    "message": {
+                        "en": "Only letters and numbers allowed",
+                        "fr": ""
+                    }
+                }
+            ]
+        },
+        {
+            "label": "App EUI",
+            "value": "appEUI",
+            "isRequired": true,
+            "canBeEdited": false,
+            "validationRules": [
+                {
+                    "can": true,
+                    "message": {
+                        "en": "A Dev EUI is required",
+                        "fr": ""
+                    }
+                },
+                {
+                    "len": 16,
+                    "message": {
+                        "en": "Must have 16 chars",
+                        "fr": ""
+                    }
+                },
+                {
+                    "pattern": "/^[a-zA-Z0-9]*$/",
+                    "message": {
+                        "en": "Only letters and numbers allowed",
+                        "fr": ""
+                    }
+                }
+            ]
+        },
+        {
+            "label": "App Key",
+            "value": "appKey",
+            "isRequired": true,
+            "canBeEdited": false,
+            "validationRules": [
+                {
+                    "can": true,
+                    "message": {
+                        "en": "A Dev EUI is required",
+                        "fr": ""
+                    }
+                },
+                {
+                    "len": 16,
+                    "message": {
+                        "en": "Must have 16 chars",
+                        "fr": ""
+                    }
+                },
+                {
+                    "pattern": "/^[a-zA-Z0-9]*$/",
+                    "message": {
+                        "en": "Only letters and numbers allowed",
+                        "fr": ""
+                    }
+                }
+            ]
+        }
+    ]
 }
