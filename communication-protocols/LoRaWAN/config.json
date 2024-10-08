@@ -22,7 +22,7 @@
                     }
                 },
                 {
-                    "pattern": "/^[A-Z0-9]+$/",
+                    "pattern": "^[A-Z0-9]+$",
                     "message": {
                         "en": "Only uppercase letters and numbers allowed",
                         "fr": "Seules les lettres majuscules et les chiffres sont autorisés"
@@ -51,7 +51,7 @@
                     }
                 },
                 {
-                    "pattern": "/^[A-Z0-9]+$/",
+                    "pattern": "^[A-Z0-9]+$",
                     "message": {
                         "en": "Only uppercase letters and numbers allowed",
                         "fr": "Seules les lettres majuscules et les chiffres sont autorisés"
@@ -80,7 +80,7 @@
                     }
                 },
                 {
-                    "pattern": "/^[A-Z0-9]+$/",
+                    "pattern": "^[A-Z0-9]+$",
                     "message": {
                         "en": "Only uppercase letters and numbers allowed",
                         "fr": "Seules les lettres majuscules et les chiffres sont autorisés"
