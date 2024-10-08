@@ -313,6 +313,38 @@ function ngsildWrapper(input, time, entity_id) {
 * Adding a unit code is a recommended practice and should be done when possible. The code to be added is the UN CEFACT Code corresponding to the unit of measurement of the attribute. 
 * The `time` parameter that is passed as argument to the decoder is the time provided by the Lora server and should be used when the device does not send any timestamp in its payload.
 
+## Dynamic Fields
+
+### Definition
+
+There are specific fields for each communication protocol. 
+
+* They are defined in the config file located here: `/communication-protocols/[PROTOCOL_NAME]/config.json` 
+* When creating a device with LoRaWAN, these fields will always be included in the form
+
+There can also be specific fields for each device model defined in their own config file under the `fields` key
+
+### Validation rules for each field
+
+| Key             | Description                                            | Type    |
+| ---             | ---                                                    | ---     |
+| label           | Displayed to the user                                  | string  |
+| value           | Used to create the property name (should be camelCase) | string  |
+| canBeEdited     | If the field can be changed after creation             | boolean |
+| validationRules | An array of rules to be followed by a Form             | Rule[]  |
+
+### Antd Rules
+
+Rules type definition can be found here: https://ant.design/components/form#rule but with 2 exceptions:
+
+* `message` must be an object containing different locals
+    
+    ```json
+    { "en": "My error message" }
+     ```
+
+* `pattern` must be a string (i.e. this is wrong: `/^[a-zA-Z0-9]*$/`; this is good: `"^[a-zA-Z0-9]*$"`)
+
 ## Contribute
 
 This catalog aims at being a collaborative space in which contributions from the community of users are very welcomed. 
