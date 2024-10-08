@@ -1,8 +1,92 @@
 {
+    "identifier": "devEUI",
     "fields": [
-        {"label":"Dev EUI", "value":"devEUI", "isRequired": true},
-        {"label":"App EUI", "value":"appEUI", "isRequired": true},
-        {"label":"App Key", "value":"appKey", "isRequired": true}
-    ],
-    "identifier": "devEUI"
+        {
+            "label": "Dev EUI",
+            "value": "devEUI",
+            "isRequired": true,
+            "canBeEdited": false,
+            "validationRules": [
+                {
+                    "required": true,
+                    "message": {
+                        "en": "A Dev EUI is required",
+                        "fr": "Un Dev EUI est requis"
+                    }
+                },
+                {
+                    "len": 16,
+                    "message": {
+                        "en": "Must have 16 chars",
+                        "fr": "Doit contenir 16 caractères"
+                    }
+                },
+                {
+                    "pattern": "/^[A-Z0-9]+$/",
+                    "message": {
+                        "en": "Only uppercase letters and numbers allowed",
+                        "fr": "Seules les lettres majuscules et les chiffres sont autorisés"
+                    }
+                }
+            ]
+        },
+        {
+            "label": "App EUI",
+            "value": "appEUI",
+            "isRequired": true,
+            "canBeEdited": false,
+            "validationRules": [
+                {
+                    "required": true,
+                    "message": {
+                        "en": "An App EUI is required",
+                        "fr": "Un App EUI est requis"
+                    }
+                },
+                {
+                    "len": 16,
+                    "message": {
+                        "en": "Must have 16 chars",
+                        "fr": "Doit contenir 16 caractères"
+                    }
+                },
+                {
+                    "pattern": "/^[A-Z0-9]+$/",
+                    "message": {
+                        "en": "Only uppercase letters and numbers allowed",
+                        "fr": "Seules les lettres majuscules et les chiffres sont autorisés"
+                    }
+                }
+            ]
+        },
+        {
+            "label": "App Key",
+            "value": "appKey",
+            "isRequired": true,
+            "canBeEdited": false,
+            "validationRules": [
+                {
+                    "required": true,
+                    "message": {
+                        "en": "An App Key is required",
+                        "fr": "Une App Key est requise"
+                    }
+                },
+                {
+                    "len": 32,
+                    "message": {
+                        "en": "Must have 32 chars",
+                        "fr": "Doit contenir 32 caractères"
+                    }
+                },
+                {
+                    "pattern": "/^[A-Z0-9]+$/",
+                    "message": {
+                        "en": "Only uppercase letters and numbers allowed",
+                        "fr": "Seules les lettres majuscules et les chiffres sont autorisés"
+                    }
+                }
+            ]
+        }
+    ]
 }

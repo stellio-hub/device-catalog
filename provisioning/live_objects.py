@@ -132,7 +132,7 @@ def main():
                     raise Exception(f'error {r.status_code}  when trying to create model group:\n{r.text}')
 
         # Config
-        r = requests.get(f'https://raw.githubusercontent.com/stellio-hub/device-catalog/main/manufacturers/{manufacturer}/models/{model}/config.json')
+        r = requests.get(f'https://raw.githubusercontent.com/stellio-hub/device-catalog/main/manufacturers/{manufacturer}/models/{model}/config_LoRaWAN.json')
         if r.status_code not in [200, 201, 204]:
             raise Exception(f'error {r.status_code} when calling device-catalog GitHub:\n{r.text}')
         else:

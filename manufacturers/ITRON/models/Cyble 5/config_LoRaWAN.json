@@ -1,13 +1,16 @@
 {
-    "uplinkDecoder": "uplink_decoder.py",
     "ngsildContext": "https://easy-global-market.github.io/ngsild-api-data-models/irrigation/jsonld-contexts/irrigation-compound.jsonld",
+    "fields": [
+        {"label":"Encryption Key", "value":"encryptionKey", "isRequired": true},
+        {"label":"Authentication Key", "value":"authenticationKey", "isRequired": true}
+    ],
     "chirpstack": {
         "region": "EU868",
-        "macVersion": 0,
+        "macVersion": 3,
         "regParamsRevision": "A",
         "adrAlgorithmId": "default",
         "flushQueueOnActivate": true,
-        "uplinkInterval": 86400,
+        "uplinkInterval": 3600,
         "supportsOTAA": true,
         "supportsClassB": false,
         "supportsClassC": false
@@ -17,4 +20,4 @@
         "activationType": "OTAA",
         "connectivityPlan": "orange-cs/CP_Basic"
     }
-}
+} 

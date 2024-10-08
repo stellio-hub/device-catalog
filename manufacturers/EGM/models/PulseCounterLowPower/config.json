@@ -1,7 +1,6 @@
 {
     "uplinkDecoder": "uplink_decoder.py",
     "ngsildContext": "https://easy-global-market.github.io/ngsild-api-data-models/irrigation/jsonld-contexts/irrigation-compound.jsonld",
-    "requiredFields" :["DevEUI","AppEUI","AppKey"],
     "chirpstack": {
         "region": "EU868",
         "macVersion": 0,
