@@ -39,7 +39,7 @@
                 {
                     "can": true,
                     "message": {
-                        "en": "A Dev EUI is required",
+                        "en": "An App EUI is required",
                         "fr": ""
                     }
                 },
@@ -68,7 +68,7 @@
                 {
                     "can": true,
                     "message": {
-                        "en": "A Dev EUI is required",
+                        "en": "An App Key is required",
                         "fr": ""
                     }
                 },
