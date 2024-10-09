@@ -22,66 +22,89 @@ function Decode(fPort, bytes) {
     }
 	
 	// Length Check
-    if (bytesString.length !== 40 && bytesString.length !== 44 && bytesString.length !== 60) {
+    if (bytes.length!==11 && bytes.length!==15 && bytes.length!==22 && bytes.length!==32 && bytes.length!==33) {
         decoded['valid'] = false;
         decoded['err'] = -2; // "length check fail."
         return {
             data: decoded
         };
     }
-	var frameID = bytes[0]
-	if(frameID===1)
+	
+	var measNum = bytes[1]
+	var meas_list = [];
+	if(bytes.length===11)
 	{
-		var meas_list01=[];
-		meas_list01.push(((bytes[1] << 8) + bytes[2])/10);
-		meas_list01.push(bytes[3]);
-		meas_list01.push((bytes[4] << 24) + (bytes[5] << 16) + (bytes[6] << 8) + bytes[7]);
-		meas_list01.push(bytes[8]/10);
-		meas_list01.push(((bytes[9]<<8) + bytes[10])/10);
-		meas_list01.push((bytes[12]<<8) + bytes[13]);
-		meas_list01.push(((bytes[14] << 24) + (bytes[15] << 16) + (bytes[16] << 8) + bytes[17])/1000);
-		meas_list01.push(((bytes[18]<<8) + bytes[19])*10);
-		if(bytes.length===22)
+		meas_list.push(((bytes[3] << 24) + (bytes[4] << 16) + (bytes[5] << 8) + bytes[6])/1000);
+		if(measNum===18)
 		{
-			meas_list01.push(bytes[21]);
+			meas_list.push(((bytes[7] << 24) + (bytes[8] << 16) + (bytes[9] << 8) + bytes[10])/1000);
 		}
-		for(var i = 0; i<meas_list01.length; i++)
+	}
+	else if(bytes.length===22)
+	{
+		meas_list.push(((bytes[3] << 24) + (bytes[4] << 16) + (bytes[5] << 8) + bytes[6])/1000);
+		meas_list.push(((bytes[7] << 24) + (bytes[8] << 16) + (bytes[9] << 8) + bytes[10])/1000);
+		meas_list.push(((bytes[14] << 24) + (bytes[15] << 16) + (bytes[16] << 8) + bytes[17])/1000);
+		var measNum4 = bytes[12]
+		if(measNum4===52)
 		{
+			meas_list.push(((bytes[18] << 24) + (bytes[19] << 16) + (bytes[20] << 8) + bytes[21])/1000);
+		}
+	}
+	else if(bytes.length===32)
+	{
+		meas_list.push(((bytes[3] << 24) + (bytes[4] << 16) + (bytes[5] << 8) + bytes[6])/1000);
+		meas_list.push(((bytes[7] << 24) + (bytes[8] << 16) + (bytes[9] << 8) + bytes[10])/1000);
+		meas_list.push(((bytes[13] << 24) + (bytes[14] << 16) + (bytes[15] << 8) + bytes[16])/1000);
+		meas_list.push(((bytes[17] << 24) + (bytes[18] << 16) + (bytes[19] << 8) + bytes[20])/1000);
+		meas_list.push(((bytes[24] << 24) + (bytes[25] << 16) + (bytes[26] << 8) + bytes[27])/1000);
+		var measNum6 = bytes[22]
+		if(measNum6===86)
+		{
+			meas_list.push(((bytes[28] << 24) + (bytes[29] << 16) + (bytes[30] << 8) + bytes[31])/1000);
+		}
+	}
+	else if(bytes.length===33)
+	{
+		meas_list.push(((bytes[3] << 24) + (bytes[4] << 16) + (bytes[5] << 8) + bytes[6])/1000);
+		meas_list.push(((bytes[7] << 24) + (bytes[8] << 16) + (bytes[9] << 8) + bytes[10])/1000);
+		meas_list.push(((bytes[14] << 24) + (bytes[15] << 16) + (bytes[16] << 8) + bytes[17])/1000);
+		meas_list.push(((bytes[18] << 24) + (bytes[19] << 16) + (bytes[20] << 8) + bytes[21])/1000);
+		meas_list.push(((bytes[25] << 24) + (bytes[26] << 16) + (bytes[27] << 8) + bytes[28])/1000);
+		var measNum6 = bytes[23]
+		if(measNum===86)
+		{
+			meas_list.push(((bytes[29] << 24) + (bytes[30] << 16) + (bytes[31] << 8) + bytes[32])/1000);
+		}
+	}
+	else if(bytes.length===15)
+	{
+		meas_list.push(bytes[1]);
+	}
+	
+	for(var i = 0; i<meas_list.length; i++)
+	{
+		if(bytes.length===15){
 			decoded.messages.push({
-                type: 'report_telemetry',
+				type: 'report_telemetry',
+				measurementId: 6,
+				measurementValue: meas_list[i]
+			});
+		}
+		else{
+			decoded.messages.push({
+				type: 'report_telemetry',
 				measurementId: i,
-                measurementValue: meas_list01[i]
+				measurementValue: meas_list[i]
 			});
 		}
 	}
-	else if(frameID===4)
-	{
-		var meas_list04=[];
-		meas_list04.push(((bytes[11] << 8) + bytes[12])/10);
-		meas_list04.push(bytes[13]);
-		meas_list04.push((bytes[14] << 24) + (bytes[15] << 16) + (bytes[16] << 8) + bytes[17]);
-		meas_list04.push(bytes[18]/10);
-		meas_list04.push(((bytes[19]<<8) + bytes[20])/10);
-		meas_list04.push((bytes[22]<<8) + bytes[23]);
-		meas_list04.push(((bytes[24] << 24) + (bytes[25] << 16) + (bytes[26] << 8) + bytes[27])/1000);
-		meas_list04.push(((bytes[28]<<8) + bytes[29])*10);
-		meas_list04.push(bytes[1]);
-		meas_list04.push((bytes[6]<<8) + bytes[7]);
-		for(var i = 0; i<meas_list04.length; i++)
-		{
-			decoded.messages.push({
-                type: 'report_telemetry',
-				measurementId: i,
-                measurementValue: meas_list04[i]
-			});
-		}
-	}
+
     // return
     return {
         data: decoded
     };
 }
-
 function crc16Check(data) {
     return true;
 }
@@ -138,34 +161,25 @@ function ngsildWrapper(input, time, entity_id) {
         for (let i = 0; i < messages.length; i++) {
             if (messages[i].type === 'report_telemetry') {
 				if(messages[i].measurementId === 0) {
-					ngsild_payload[0].airTemperature = ngsildInstance(messages[i].measurementValue, time, 'CEL', 'Raw');
+					ngsild_payload[0].value1 = ngsildInstance(messages[i].measurementValue, time, null, 'Raw');
 				}
                 else if (messages[i].measurementId === 1) {
-					ngsild_payload[0].airHumidity = ngsildInstance(messages[i].measurementValue, time, 'P1', 'Raw');
+					ngsild_payload[0].value2 = ngsildInstance(messages[i].measurementValue, time, null, 'Raw');
                 }
 				else if (messages[i].measurementId === 2) {
-					ngsild_payload[0].lightIntensity = ngsildInstance(messages[i].measurementValue, time, 'LUX', 'Raw');
+					ngsild_payload[0].value3 = ngsildInstance(messages[i].measurementValue, time, null, 'Raw');
                 }
 				else if (messages[i].measurementId === 3) {
-					ngsild_payload[0].uvIndex = ngsildInstance(messages[i].measurementValue, time, null, 'Raw');
+					ngsild_payload[0].value4 = ngsildInstance(messages[i].measurementValue, time, null, 'Raw');
                 }
 				else if (messages[i].measurementId === 4) {
-					ngsild_payload[0].windSpeed = ngsildInstance(messages[i].measurementValue, time, 'MTS', 'Raw');
+					ngsild_payload[0].value5 = ngsildInstance(messages[i].measurementValue, time, null, 'Raw');
                 }
 				else if (messages[i].measurementId === 5) {
-					ngsild_payload[0].windDirection = ngsildInstance(messages[i].measurementValue, time, 'DD', 'Raw');
+					ngsild_payload[0].value6 = ngsildInstance(messages[i].measurementValue, time, null, 'Raw');
                 }
 				else if (messages[i].measurementId === 6) {
-					ngsild_payload[0].rainfallIntensity = ngsildInstance(messages[i].measurementValue, time, 'H67', 'Raw');
-                }
-				else if (messages[i].measurementId === 7) {
-					ngsild_payload[0].barometricPressure = ngsildInstance(messages[i].measurementValue, time, 'PAL', 'Raw');
-                }
-				else if (messages[i].measurementId === 8) {
 					ngsild_payload[0].battery = ngsildInstance(messages[i].measurementValue, time, 'P1', 'Raw');
-                }
-				else if (messages[i].measurementId === 9) {
-					ngsild_payload[0].interval = ngsildInstance(messages[i].measurementValue, time, 'MIN', 'Raw');
                 }
             }
         }
