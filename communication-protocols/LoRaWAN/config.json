@@ -80,10 +80,10 @@
                     }
                 },
                 {
-                    "pattern": "^[A-Z0-9]+$",
+                    "pattern": "^[a-zA-Z0-9]+$",
                     "message": {
-                        "en": "Only uppercase letters and numbers allowed",
-                        "fr": "Seules les lettres majuscules et les chiffres sont autorisés"
+                        "en": "Only letters and numbers allowed",
+                        "fr": "Seules les lettres et les chiffres sont autorisés"
                     }
                 }
             ]
