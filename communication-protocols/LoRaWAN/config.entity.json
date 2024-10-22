@@ -3,7 +3,7 @@
     "type": "Template",
     "appEUI": {
         "type": "Property",
-        "value": "Placeholder",
+        "value": "App EUI",
         "pattern": {
             "type": "LanguageProperty",
             "languageMap": {
@@ -39,7 +39,7 @@
     },
     "devEUI": {
         "type": "Property",
-        "value": "Placeholder",
+        "value": "Dev EUI",
         "pattern": {
             "type": "LanguageProperty",
             "languageMap": {
@@ -75,7 +75,7 @@
     },
     "appKey": {
         "type": "Property",
-        "value": "Placeholder",
+        "value": "App Key",
         "pattern": {
             "type": "LanguageProperty",
             "languageMap": {
@@ -112,8 +112,8 @@
     "jsonSchema": {
         "type": "Property",
         "value": {
-            "title": "LoRaWAN Config",
-            "description": "The definition of LoRaWAN device's properties",
+            "title": "LoRaWAN",
+            "description": "The LoRaWAN config entity for definition of LoRaWAN device's properties",
             "required": [
                 "devEUI",
                 "appEUI",
