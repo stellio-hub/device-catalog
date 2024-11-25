@@ -1,0 +1,126 @@
+{
+    "id": "urn:ngsi-ld:LorawanConfig:Template",
+    "type": "Template",
+    "appEUI": {
+        "type": "Property",
+        "value": "App EUI",
+        "pattern": {
+            "type": "LanguageProperty",
+            "languageMap": {
+                "en": "Only uppercase letters and numbers allowed",
+                "fr": "Seules les lettres majuscules et les chiffres sont autorisés"
+            }
+        },
+        "maxLength": {
+            "type": "LanguageProperty",
+            "languageMap": {
+                "en": "Must have 16 chars",
+                "fr": "Doit contenir 16 caractères"
+            }
+        },
+        "minLength": {
+            "type": "LanguageProperty",
+            "languageMap": {
+                "en": "Must have 16 chars",
+                "fr": "Doit contenir 16 caractères"
+            }
+        },
+        "jsonSchema": {
+            "type": "Property",
+            "value": {
+                "title": "App EUI",
+                "pattern": "^[A-Z0-9]+$",
+                "maxLength": 16,
+                "minLength": 16,
+                "schemaType": "string",
+                "canBeEdited": false
+            }
+        }
+    },
+    "devEUI": {
+        "type": "Property",
+        "value": "Dev EUI",
+        "pattern": {
+            "type": "LanguageProperty",
+            "languageMap": {
+                "en": "Only uppercase letters and numbers allowed",
+                "fr": "Seules les lettres majuscules et les chiffres sont autorisés"
+            }
+        },
+        "maxLength": {
+            "type": "LanguageProperty",
+            "languageMap": {
+                "en": "Must have 16 chars",
+                "fr": "Doit contenir 16 caractères"
+            }
+        },
+        "minLength": {
+            "type": "LanguageProperty",
+            "languageMap": {
+                "en": "Must have 16 chars",
+                "fr": "Doit contenir 16 caractères"
+            }
+        },
+        "jsonSchema": {
+            "type": "Property",
+            "value": {
+                "title": "Dev EUI",
+                "pattern": "^[A-Z0-9]+$",
+                "maxLength": 16,
+                "minLength": 16,
+                "schemaType": "string",
+                "canBeEdited": false
+            }
+        }
+    },
+    "appKey": {
+        "type": "Property",
+        "value": "App Key",
+        "pattern": {
+            "type": "LanguageProperty",
+            "languageMap": {
+                "en": "Only letters and numbers allowed",
+                "fr": "Seules les lettres et les chiffres sont autorisés"
+            }
+        },
+        "maxLength": {
+            "type": "LanguageProperty",
+            "languageMap": {
+                "en": "Must have 32 chars",
+                "fr": "Doit contenir 32 caractères"
+            }
+        },
+        "minLength": {
+            "type": "LanguageProperty",
+            "languageMap": {
+                "en": "Must have 32 chars",
+                "fr": "Doit contenir 32 caractères"
+            }
+        },
+        "jsonSchema": {
+            "type": "Property",
+            "value": {
+                "title": "App Key",
+                "pattern": "^[a-zA-Z0-9]+$",
+                "maxLength": 32,
+                "minLength": 32,
+                "schemaType": "string",
+                "canBeEdited": false
+            }
+        }
+    },
+    "jsonSchema": {
+        "type": "Property",
+        "value": {
+            "title": "LoRaWAN",
+            "description": "The LoRaWAN config entity for definition of LoRaWAN device's properties",
+            "required": [
+                "devEUI",
+                "appEUI",
+                "appKey"
+            ],
+            "identifier": "devEUI",
+            "schemaType": "LorawanConfig"
+        }
+    }
+}

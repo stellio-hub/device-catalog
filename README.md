@@ -319,31 +319,10 @@ function ngsildWrapper(input, time, entity_id) {
 
 There are specific fields for each communication protocol. 
 
-* They are defined in the config file located here: `/communication-protocols/[PROTOCOL_NAME]/config.json` 
-* When creating a device with LoRaWAN, these fields will always be included in the form
+* They are defined in the config entity file located here: `/communication-protocols/[PROTOCOL_NAME]/config.entity.json` 
+* When creating a device with LoRaWAN, fields defined there will always be included in the form
 
-There can also be specific fields for each device model defined in their own config file under the `fields` key
-
-### Validation rules for each field
-
-| Key             | Description                                            | Type    |
-| ---             | ---                                                    | ---     |
-| label           | Displayed to the user                                  | string  |
-| value           | Used to create the property name (should be camelCase) | string  |
-| canBeEdited     | If the field can be changed after creation             | boolean |
-| validationRules | An array of rules to be followed by a Form             | Rule[]  |
-
-### Antd Rules
-
-Rules type definition can be found here: https://ant.design/components/form#rule but with 2 exceptions:
-
-* `message` must be an object containing different locals
-    
-    ```json
-    { "en": "My error message" }
-     ```
-
-* `pattern` must be a string (i.e. this is wrong: `/^[a-zA-Z0-9]*$/`; this is good: `"^[a-zA-Z0-9]*$"`)
+There can also be specific fields for each device model defined in their own config file.
 
 ## Contribute
 
