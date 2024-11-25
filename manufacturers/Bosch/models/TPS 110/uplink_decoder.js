@@ -70,6 +70,8 @@ function decodeUplink(fport, time, input, entity_id) {
 			//            data.debugCode = ((input[5] & 0xf) << 8) | input[4];
 			//            data.sequenceNumber = (input[9] << 8) | input[8];
 			break;
+		default:
+			throw new Error(`Invalid port: "${fport}" does not match any case.`);
 	}
 
 }
@@ -100,8 +102,8 @@ function main() {
 		process.stdout.write(JSON.stringify(decodeUplink(3, time, [0x24, 3, 0, 0, 0x75, 3, 0, 0, 0, 0, 0, 0, 0, 29, 2, 3, 1], entity_id)));
 
 	} else {
-		var fport = process.argv[2];
-		var bytes = Uint8Array.from(Buffer.from(process.argv[3], 'hex'));
+		var fport = parseInt(process.argv[2]);
+		var bytes = Array.from(Buffer.from(process.argv[3], 'hex'));
 		var time = process.argv[4];
 		var entity_id = "urn:ngsi-ld:Device:" + process.argv[5];
 		var ngsild_payload = decodeUplink(fport, time, bytes, entity_id);
