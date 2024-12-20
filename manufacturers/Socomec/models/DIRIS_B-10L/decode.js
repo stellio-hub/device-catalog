@@ -22,14 +22,16 @@
  *
  * You could also set the three following lines commented to implement you own Decoder(...) function calls...
  *
- */
+
  
+
 var argv= process.argv.slice(2);
 obj = Decoder(Buffer.from(argv[0],'hex'));
 //console.dir(obj,{depth:null});
 console.log(
 	JSON.stringify(obj, null, 2)
 );
+ */
 
 // ----------------------------------------------------------------
 // ----------------------- FUNCTIONS PART (Deprecated) ------------
@@ -725,8 +727,8 @@ function Decoder(bytes) {
   return decoded;
 }
 
-function decodeUplink(input){
-    var bytes = input.bytes;
+function decodeUplink(bytes){
+//    var bytes = input.bytes;
 
     var result = Decoder(bytes);
 
