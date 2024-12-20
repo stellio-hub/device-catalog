@@ -1,0 +1,22 @@
+{
+    "uplinkDecoder": "uplink_decoder.js",
+    "ngsildContext": "https://easy-global-market.github.io/ngsild-api-data-models/irrigation/jsonld-contexts/irrigation-compound.jsonld",
+    "documentation": "https://www.dataprint.fr/support/socomec/Socomec-DIRIS-B-10L-datasheet.pdf",
+    "devicePicture": "B10L.webp",
+    "chirpstack": {
+        "region": "EU868",
+        "macVersion": 0,
+        "regParamsRevision": "A",
+        "adrAlgorithmId": "default",
+        "flushQueueOnActivate": true,
+        "uplinkInterval": 86400,
+        "supportsOTAA": true,
+        "supportsClassB": false,
+        "supportsClassC": true
+    },
+    "liveObjects": {
+        "profile": "CUSTOM/SOCOMEC DIRIS B-10L class C",
+        "activationType": "OTAA",
+        "connectivityPlan": "orange-cs/CP_Basic"
+    }
+}
