@@ -3208,12 +3208,17 @@ function Decoder(bytes, port) {
     }
     return decoded;
 }
-function normalisation_standard(input, endpoint_parameters){
+function normalisation_standard(input, endpoint_parameters,batch_parameters){
     let warning = [];
     let bytes = input.bytes;
     let flagstandard = true;
     let indent = 0;
     let decoded = Decoder(bytes, input.fPort);
+    const mapping = batch_parameters.reduce((acc, item) => {
+        acc[item.lblname] = item; 
+        return acc;
+    }, {});
+
     if (decoded.zclheader !== undefined){
         if (decoded.zclheader.alarmmsg !== undefined){
             warning = decoded.zclheader.alarmmsg
@@ -3223,12 +3228,14 @@ function normalisation_standard(input, endpoint_parameters){
             return{
                 data: decoded.zclheader,
                 warning: warning
+
             }
         }
         else if (bytes[1] === 0x09){
             return{
                 data: decoded.zclheader,
                 warning: warning
+
             }
         }
         else if (bytes[1] === 0x01) {
@@ -3240,10 +3247,12 @@ function normalisation_standard(input, endpoint_parameters){
                         flagstandard = false;
                         break;
                     } else {
+                        const unitCode = mapping[firstKey]?.unit || ''; 
                         data.push({
                             variable: firstKey,
                             value: decoded.data[firstKey],
-                            date: input.recvTime
+                            date: input.recvTime,
+                            unitCode: unitCode !== '' ? unitCode : undefined                                                         
                         })
                         indent++;
                     }
@@ -3278,10 +3287,12 @@ function normalisation_standard(input, endpoint_parameters){
                     flagstandard = false;
                     break;
                 } else {
+                    const unitCode = mapping[firstKey]?.unit || ''; 
                     if (endpoint_parameters[firstKey] === undefined) {
                         data.push({variable: firstKey,
                             value: decoded.data[firstKey],
-                            date: input.recvTime
+                            date: input.recvTime,
+                            unitCode: unitCode !== '' ? unitCode : undefined 
                         })
                     }else{
                         type = endpoint_parameters[firstKey][access];
@@ -3289,13 +3300,15 @@ function normalisation_standard(input, endpoint_parameters){
                             data.push({
                                 variable: type,
                                 value: "NA",
-                                date: input.recvTime
+                                date: input.recvTime,
+                                unitCode: unitCode !== '' ? unitCode : undefined 
                             })
                         } else{
                             data.push({
                                 variable: type,
                                 value: decoded.data[firstKey],
-                                date: input.recvTime
+                                date: input.recvTime,
+                                unitCode: unitCode !== '' ? unitCode : undefined 
                             })
                         }
                     }

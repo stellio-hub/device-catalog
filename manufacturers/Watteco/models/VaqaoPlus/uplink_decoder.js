@@ -25,8 +25,15 @@ function main() {
         // Pattern batch
         // payload = "7013007455ba047bd96e3d0294a8ff044960278300c137008f746765000a6272136a4940bb6d6904ed96a576128bbb65c16e59a480764d9800c080762f54010ce002";
         // Pattern non batch
-        // payload = "110a040600001801"
+        // payload = "110a040600001801"// uplink standard report containing occupancy value 
+        // payload = "110A04020000290B89" // uplink standard report containing temperature value
+        // payload = "110A04050000210E89" // uplink standard report containing humidity value 
+        // payload = "110A800C0000210019" // uplink standard report containing TVOC value
+        // payload = "110A000F00551001" // uplink standard report containing state of the case
+        // payload = "110100000002000D0305020015E2" //uplink standard report containing firmware version 
+        // payload = "110A00500006410503040E6804" //uplink standard report  containing battery charge
         // time=Date.now();
+        // entity_id="entityID"
     // ********* End test pattern ***********************
 
     var decoded = watteco.Decode(payload,time,batch_param,endpointCorresponder);
@@ -34,6 +41,7 @@ function main() {
     if (Object.keys(ngsild_payload)[0] !== 'message_type'){
         process.stdout.write(JSON.stringify(ngsild_payload));
     }
+   // console.log(ngsild_payload)
 }
 
 if (require.main === module) {
