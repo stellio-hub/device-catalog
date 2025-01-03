@@ -659,7 +659,9 @@ function Decoder(bytes) {
 				// Date
 				if ((Profile !== 0) && (Profile !== 6) && (Profile !== 7)) 
 				{
-					decoded.socomec.timestamp = (NbSecond === 0 ) ? "null" : new Date( (NbSecond*1000) + Date.UTC(2000,0,1,0,0,0) );
+					decoded.socomec.timestamp = (NbSecond === 0 ) ? null : new Date( (NbSecond*1000) + Date.UTC(2000,0,1,0,0,0) );
+					// In case the B10L has no time configured. 
+					if (decoded.socomec.timestamp == null){decoded.socomec.timestamp = decoded.lora.date}
 				}
 				// Profil
 				
