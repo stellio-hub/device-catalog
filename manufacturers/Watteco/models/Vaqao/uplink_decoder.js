@@ -28,6 +28,7 @@ function main() {
         // payload = "110A04050000210E89"
         // Pattern "uplink standard report containing dataup info" (IGNORED) 
         // payload = "110180040000000800"
+        // entity_id = "entityID"
         // time=Date.now();
     // ********* End test pattern ***********************
 
@@ -36,6 +37,7 @@ function main() {
     if (Object.keys(ngsild_payload)[0] !== 'message_type'){
         process.stdout.write(JSON.stringify(ngsild_payload));
     }
+    // console.log(ngsild_payload)
 }
 
 if (require.main === module) {
