@@ -7,7 +7,7 @@ function ngsildInstance(value, time, unit, dataset_suffix) {
         value: value,
         observedAt: time
     }
-    if (unit !== undefined) {
+    if (unit !== "") {
         ngsild_instance.unitCode = unit
     }
     if (dataset_suffix !== null) {
@@ -17,7 +17,7 @@ function ngsildInstance(value, time, unit, dataset_suffix) {
     return ngsild_instance
 }
 
-function ngsildWrapper(input, time, entity_id) {
+function ngsildWrapper(input, time, entity_id,parametersMapping) {
     var ngsild_payload = [{
         id: entity_id,
         type: "Device"
@@ -35,10 +35,14 @@ function ngsildWrapper(input, time, entity_id) {
             }
         }
     }
-
-    for (let i = 0; i < input.data.length; i++) {
-        let data = input.data[i];
-        addToPayload(data.variable, ngsildInstance(data.value, data.date, data.unitCode, 'Raw'))
+    let timestamp = input.timestamp
+    for (const [key, value] of Object.entries(input.data)) {
+        if (parametersMapping[key]) {
+            if (key == "timestamp_t0"){timestamp = value}
+            if (key == "timestamp_t1"){timestamp = value}
+            addToPayload(parametersMapping[key].label, ngsildInstance(value, timestamp, parametersMapping[key].unitCode, parametersMapping[key].datasetId))
+        }
+        
     }
 
     return ngsild_payload

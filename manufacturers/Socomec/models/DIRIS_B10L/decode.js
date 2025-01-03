@@ -333,15 +333,15 @@ function Decoder(bytes) {
 
 				decoded.socomec.data = {
 					...decoded.socomec.data,
-					
+
 					IEaPInst: Ea_plus/10000,
 					IEaPInst_Unit: "kWh",
 					IEaNInst: Ea_moins/10000,
 					IEaNInst_Unit: "kWh",
 					IErPInst: Er_plus/10000,
-					IErPInst_Unit: "kVar",
+					IErPInst_Unit: "kVarh", //in kVarh
 					IErNInst: Er_moins/10000,
-					IErNInst_Unit: "kVar",
+					IErNInst_Unit: "kVarh",
 					ITotalMeter: PulseMeter/10000,
 					ITotalMeter_Unit: "pulse"
 					
@@ -623,8 +623,9 @@ function Decoder(bytes) {
 
 				decoded.socomec.data = {
 					...decoded.socomec.data,
-					
+
 					timestamp_t0: (Date_t0 === 0 ) ? "null" : new Date( (Date_t0*1000) + Date.UTC(2000,0,1,0,0,0) ),
+
 					ILastP10ActivePower_Load1: P_Plus_t0_load1,
 					ILastP10ActivePower_Load1_Unit: "kW",
 					ILastP10ActivePower_Load2: P_Plus_t0_load2,
@@ -644,8 +645,6 @@ function Decoder(bytes) {
 					ILastP11ActivePower_Load4: P_Plus_t1_load4,
 					ILastP11ActivePower_Load4_Unit: "kW",
 					
-
-
 				};
 				
 			}
