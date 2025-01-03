@@ -718,6 +718,12 @@ function Decoder(bytes) {
 				if (bytes[1] === 1)
 				{
 					decoded.Config_settings_content = "B10L ask the date & hour"
+					// Added to receive the Date-Time request as an alarm
+					decoded.socomec.data = {
+						...decoded.socomec.data,
+
+						TimeRequest: 1
+						};
 				}
 
 			} else decoded.error = "error, payload lenght must be 2 bytes";
