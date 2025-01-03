@@ -97,7 +97,9 @@ let parametersMapping =  {
     IProtectionAlarmValue3: {label:"alarm", unitCode: "", datasetId: 'Protection3:Raw'},
     IProtectionAlarmValue4: {label:"alarm", unitCode: "", datasetId: 'Protection4:Raw'},
     IProtectionAlarmValue5: {label:"alarm", unitCode: "", datasetId: 'Protection5:Raw'},
-    IProtectionAlarmValue6: {label:"alarm", unitCode: "", datasetId: 'Protection6:Raw'}
+    IProtectionAlarmValue6: {label:"alarm", unitCode: "", datasetId: 'Protection6:Raw'},
+    TimeRequest: {label:"alarm", unitCode: "", datasetId: 'TimeRequest:Raw'}
+
 }
 
 
