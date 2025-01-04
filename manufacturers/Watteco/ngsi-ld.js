@@ -38,7 +38,7 @@ function ngsildWrapper(input, time, entity_id) {
 
     for (let i = 0; i < input.data.length; i++) {
         let data = input.data[i];
-        addToPayload(data.variable, ngsildInstance(data.value, data.date, data.unitCode, 'Raw'))
+        addToPayload(data.variable, ngsildInstance(data.value, data.date, data.unitCode, data.datasetId || "Raw"))
     }
 
     return ngsild_payload

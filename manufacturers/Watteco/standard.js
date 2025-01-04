@@ -3210,14 +3210,17 @@ function Decoder(bytes, port) {
 }
 function normalisation_standard(input, endpoint_parameters,batch_parameters){
     let warning = [];
+    let mapping ={};
     let bytes = input.bytes;
     let flagstandard = true;
     let indent = 0;
     let decoded = Decoder(bytes, input.fPort);
-    const mapping = batch_parameters.reduce((acc, item) => {
-        acc[item.lblname] = item; 
-        return acc;
-    }, {});
+    if (batch_parameters !== undefined) {
+        mapping = batch_parameters.reduce((acc, item) => {
+            acc[item.lblname] = item; 
+            return acc;
+        }, {});
+    }
 
     if (decoded.zclheader !== undefined){
         if (decoded.zclheader.alarmmsg !== undefined){
@@ -3247,7 +3250,7 @@ function normalisation_standard(input, endpoint_parameters,batch_parameters){
                         flagstandard = false;
                         break;
                     } else {
-                        const unitCode = mapping[firstKey]?.unit || ''; 
+                        let unitCode = mapping ? (mapping[firstKey]?.unit || '') : '';
                         data.push({
                             variable: firstKey,
                             value: decoded.data[firstKey],
@@ -3287,7 +3290,7 @@ function normalisation_standard(input, endpoint_parameters,batch_parameters){
                     flagstandard = false;
                     break;
                 } else {
-                    const unitCode = mapping[firstKey]?.unit || ''; 
+                    let unitCode = mapping ? (mapping[firstKey]?.unit || '') : '';
                     if (endpoint_parameters[firstKey] === undefined) {
                         data.push({variable: firstKey,
                             value: decoded.data[firstKey],
@@ -3296,19 +3299,22 @@ function normalisation_standard(input, endpoint_parameters,batch_parameters){
                         })
                     }else{
                         type = endpoint_parameters[firstKey][access];
+                        datasetId = endpoint_parameters[firstKey][access+endpoint_parameters[firstKey].length/2];
                         if (type === "NA"){
                             data.push({
                                 variable: type,
                                 value: "NA",
                                 date: input.recvTime,
-                                unitCode: unitCode !== '' ? unitCode : undefined 
+                                unitCode: unitCode !== '' ? unitCode : undefined,
+                                datasetId: datasetId !== '' ? datasetId : undefined 
                             })
                         } else{
                             data.push({
                                 variable: type,
                                 value: decoded.data[firstKey],
                                 date: input.recvTime,
-                                unitCode: unitCode !== '' ? unitCode : undefined 
+                                unitCode: unitCode !== '' ? unitCode : undefined,
+                                datasetId: datasetId !== '' ? datasetId : undefined 
                             })
                         }
                     }

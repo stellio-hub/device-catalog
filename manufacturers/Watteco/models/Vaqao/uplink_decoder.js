@@ -1,18 +1,19 @@
 let watteco = require("../../decode.js")
 let ngsild = require("../../ngsi-ld.js")
 
-let batch_param = [3, [{taglbl: 0, resol: 1, sampletype: 4, lblname: "occupancy", divide: 1, unit: ""},
-    {taglbl: 1, resol: 10, sampletype: 7, lblname: "temperature", divide: 100, unit: "CEL"},
-    {taglbl: 2, resol: 100, sampletype: 6, lblname: "humidity", divide: 100, unit: "P1"},
-    {taglbl: 3, resol: 10, sampletype: 6, lblname: "co2", divide: 1, unit: "59"},
-    {taglbl: 4, resol: 10, sampletype: 6, lblname: "tvoc", divide: 1, unit: ""}]];
+let batch_param = [3, [{taglbl: 0, resol: 1, sampletype: 4, lblname: "occupancy", divide: 1, unit: "", datasetId: "Raw"},
+    {taglbl: 1, resol: 10, sampletype: 7, lblname: "temperature", divide: 100, unit: "CEL", datasetId: "Raw"},
+    {taglbl: 2, resol: 100, sampletype: 6, lblname: "humidity", divide: 100, unit: "P1", datasetId: "Raw"},
+    {taglbl: 3, resol: 10, sampletype: 6, lblname: "co2", divide: 1, unit: "59", datasetId: "Raw"},
+    {taglbl: 4, resol: 10, sampletype: 6, lblname: "tvoc", divide: 1, unit: "", datasetId: "Raw"}]];
 
-// Merged temperature_1 and temperature_2 under the same temperature property as it seems to only be a variation  of accuracy depending on the temperature range 
+// Identical Physical quantities are grouped under the same property name (e.g. "temperature") and differentiated at datasetId level (2nd parts of the row. e.g. "Temperature1:Raw","Temperature2:Raw")
+// Similar approach is done to group alarms under the same property 
 let endpointCorresponder = {
-    concentration: ["tvoc", "co2"],
-    temperature: ["temperature", "temperature"],
-    humidity: ["humidity", "humidity"],
-    pin_state:["violation_detection"]
+    concentration: ["tvoc", "co2","Raw","Raw"],
+    temperature: ["temperature", "temperature","Temperature1:Raw","Temperature2:Raw"],
+    humidity: ["humidity", "humidity","Humidity1:Raw","Humidity2:Raw"],
+    pin_state:["alarm","Violation:Raw"]
 }
 
 function main() {

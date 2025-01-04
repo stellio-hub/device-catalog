@@ -1,10 +1,10 @@
 {
-    "documentation": "https://www.watteco.fr/produit/capteur-vaqao-lorawan/",
+    "documentation": "https://www.watteco.fr/produit/capteur-pulse-senso-lorawan/",
     "uplinkDecoder": "uplink_decoder.js",
-    "ngsildContext": "https://easy-global-market.github.io/ngsild-api-data-models/airQuality/jsonld-contexts/airQuality-compound.jsonld",
+    "ngsildContext": "https://easy-global-market.github.io/ngsild-api-data-models/energy/jsonld-contexts/energy-compound.jsonld",
     "chirpstack": {
         "region": "EU868",
-        "macVersion": 0,
+        "macVersion": 2,
         "regParamsRevision": "A",
         "adrAlgorithmId": "default",
         "flushQueueOnActivate": true,
