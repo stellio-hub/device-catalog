@@ -712,7 +712,8 @@ function Decoder(bytes) {
 		{
 			decoded.frame_type = 1;
 			decoded.frame_type_label = "Configuration settings"
-
+			decoded.socomec = {}; 
+			decoded.socomec.data = {};
 			if (bytes.length == 2)
 			{
 				if (bytes[1] === 1)
