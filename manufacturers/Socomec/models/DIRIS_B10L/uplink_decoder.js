@@ -118,6 +118,7 @@ function main() {
         // payload = "02712750264400000fb6fffffd9200000fe603dc0001000006770000120c000032980000c3511C007fff7fff04331234A15F" // profileLabel: '7- Multi-load - Load curves'
         // payload = "02912750264400000fb6fffffd9200000fe603dc0001000006770000120c000032980000c3511C007fff7fff04331234A15F" // error: 'error, Profile type not managed'
         // payload = "112854A28101000800"
+        // payload = "0101" //Date-Time update request
         // time=Date.now();
         // entity_id = "entity_id" 
     // ********* End test pattern ***********************
@@ -125,6 +126,7 @@ function main() {
 
 
     var decoded = codec.decodeUplink(Buffer.from(payload,'hex'));
+    // console.log(decoded)
     var ngsild_payload = ngsild.ngsildWrapper(decoded.data.socomec, time, entity_id,parametersMapping);
     if (Object.keys(ngsild_payload)[0] !== 'message_type'){
         process.stdout.write(JSON.stringify(ngsild_payload));

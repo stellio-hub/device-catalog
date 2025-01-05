@@ -1,6 +1,6 @@
 {
     "uplinkDecoder": "uplink_decoder.js",
-    "ngsildContext": "https://easy-global-market.github.io/ngsild-api-data-models/irrigation/jsonld-contexts/irrigation-compound.jsonld",
+    "ngsildContext": "https://easy-global-market.github.io/ngsild-api-data-models/energy/jsonld-contexts/energy-compound.jsonld",
     "documentation": "https://www.socomec.fr/sites/default/files/2023-10/DIRIS-B-10L_INSTALLATION-AND-OPERATING-MANUAL_2023-02_551174_FR.pdf",
     "devicePicture": "B10L.webp",
     "chirpstack": {
