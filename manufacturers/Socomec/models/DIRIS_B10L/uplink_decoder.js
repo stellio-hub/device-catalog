@@ -7,7 +7,7 @@ let parametersMapping =  {
     IEaNInst: {label:"activeEnergy", unitCode: "KWH", datasetId: 'Neg:Raw'},
     IErPInst: {label:"reactiveEnergy", unitCode: "K3", datasetId: 'Pos:Raw'},
     IErNInst: {label:"reactiveEnergy", unitCode: "K3", datasetId: 'Neg:Raw'},
-    ITotalMeter: {label:"pulse", unitCode: "", datasetId: 'Raw'},
+    ITotalMeter: {label:"pulses", unitCode: "", datasetId: 'Raw'},
     // Profile === 2
     IEaPInst1: {label:"activeEnergy", unitCode: "KWH", datasetId: 'L1:Pos:Raw'},
     IErPInst1: {label:"reactiveEnergy", unitCode: "K3", datasetId: 'L1:Pos:Raw'},
