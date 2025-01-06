@@ -164,10 +164,10 @@ let parametersMapping =  {
   Work_mode: {label:"workMode", unitCode: null, datasetId: null},
   AVI1_V: {label:"voltage", unitCode: "VLT", datasetId: 'AVI1_V:Raw'},
   AVI2_V: {label:"voltage", unitCode: "VLT", datasetId: 'AVI2_V:Raw'},
-  ACI1_mA: {label:"current", unitCode: "4K", datasetId: 'ACI1_mA:Raw'},
-  ACI2_mA: {label:"current", unitCode: "4K", datasetId: 'ACI2_mA:Raw'},
-  Count1_times: {label:"current", unitCode: null, datasetId: 'Count1_times:Raw'},
-  Count2_times: {label:"current", unitCode: null, datasetId: 'Count2_times:Raw'}
+  ACI1_mA: {label:"electricCurrent", unitCode: "4K", datasetId: 'ACI1_mA:Raw'},
+  ACI2_mA: {label:"electricCurrent", unitCode: "4K", datasetId: 'ACI2_mA:Raw'},
+  Count1_times: {label:"count", unitCode: null, datasetId: 'Count1_times:Raw'},
+  Count2_times: {label:"count", unitCode: null, datasetId: 'Count2_times:Raw'}
 };
 
 function ngsildInstance(value, time = null, unitCode = null, datasetSuffix = null) {
