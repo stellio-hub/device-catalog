@@ -435,7 +435,8 @@ function adaptToExpectedFormat(out, argList, batchAbsoluteTimestamp) {
                                 ? item.data.value / argList[i1].divide
                                 : item.data.value,
                             label: argList[i1].taglbl,
-                            unitCode: argList[i1].unit
+                            unitCode: argList[i1].unit,
+                            datasetId: argList[i1].datasetId
                         }
                     }
                     if (argList[i1].lblname) returned.data.label_name = argList[i1].lblname
@@ -468,6 +469,7 @@ function normalisation_batch(input){
             "date": data.data_absolute_timestamp,
         }
         if (data.data.unitCode !== '') {dataObject.unitCode = data.data.unitCode}
+        if (data.data.datasetId !== '') {dataObject.datasetId = data.data.datasetId}
         dataListe.push(dataObject)
     }
     return dataListe

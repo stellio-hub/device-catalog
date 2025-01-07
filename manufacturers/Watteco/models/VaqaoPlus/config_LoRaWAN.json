@@ -2,6 +2,7 @@
     "documentation": "https://www.watteco.fr/produit/capteur-vaqao-lorawan/",
     "uplinkDecoder": "uplink_decoder.js",
     "ngsildContext": "https://easy-global-market.github.io/ngsild-api-data-models/airQuality/jsonld-contexts/airQuality-compound.jsonld",
+    "devicePicture": "vaqaoPlus.png",
     "chirpstack": {
         "region": "EU868",
         "macVersion": 0,

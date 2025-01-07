@@ -1,7 +1,8 @@
 {
-    "documentation": "https://www.watteco.fr/produit/capteur-temperature-deportee-1-sonde-lorawan/",
+    "documentation": "https://www.watteco.fr/produit/capteur-temperature-deportee-2-sondes-lorawan/",
     "uplinkDecoder": "uplink_decoder.js",
     "ngsildContext": "https://easy-global-market.github.io/ngsild-api-data-models/airQuality/jsonld-contexts/airQuality-compound.jsonld",
+    "devicePicture": "Capteur_temp_2-sondes.jpg",
     "chirpstack": {
         "region": "EU868",
         "macVersion": 2,
