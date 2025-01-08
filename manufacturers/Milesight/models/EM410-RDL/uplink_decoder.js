@@ -603,7 +603,7 @@ function ngsildWrapper(input, time, entity_id) {
             item.value.forEach(sub_item => {
                 if (sub_item.timestamp) {
                     const date = new Date(sub_item.timestamp*1000);
-                    time = date.toISOString();
+                    time = date.toISOString().split('.')[0] + 'Z';
                 }
                 if (sub_item.distance) {
                     addToPayload('distance', ngsildInstance(parseFloat((sub_item.distance * 0.001).toFixed(3)),
