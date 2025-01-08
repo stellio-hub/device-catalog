@@ -29,7 +29,7 @@ function watteco_decodeUplink(input, batch_parameters, endpoint_parameters) {
                 }
             }
         } else {
-            decoded.data[0].date = new Date(decoded.data[0].date).toISOString();
+           decoded.data[0].date = new Date(decoded.data[0].date).toISOString();
             return {
                 data: decoded.data,
                 warnings: decoded.warning,

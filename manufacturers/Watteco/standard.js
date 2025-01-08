@@ -499,6 +499,80 @@ let field={
     }
 }
 
+// To convert non conventional DD/MM/YY HH:mm:ss representation used in TIC decoding part (Linky)
+// See https://www.enedis.fr/media/2035/download
+// !! This works in France Metropole !! To consider rather the time when payload is received ?
+function convertLinkyObjectToISO(linkyObject) {
+    if (
+      typeof linkyObject !== 'object' ||
+      !linkyObject.S ||
+      !linkyObject.Date
+    ) {
+      throw new Error("Invalid input. Expected an object with 'S' and 'Date' properties.");
+    }
+  
+    const season = linkyObject.S; // 'E' or 'H'
+    const dateString = linkyObject.Date; // '20/10/24 05:37:25'
+  
+    // Extract date and time components
+    const [year, month, day] = dateString.split(' ')[0].split('/');
+    const [hour, minute, second] = dateString.split(' ')[1].split(':');
+  
+    // Reconstruct date in ISO format (without timezone adjustments yet)
+    const isoDate = `20${year}-${month}-${day}T${hour}:${minute}:${second}`;
+  
+    // Adjust timezone based on the season
+    let offset = 0; // Default: no offset
+    if (season === 'H') {
+      offset = 1; // Winter time (UTC+1)
+    } else if (season === 'E') {
+      offset = 2; // Summer time (UTC+2)
+    } else if (season === season.toLowerCase()) {
+      console.warn("Mode dégradé : la saison n'est pas fiable.");
+      offset = 0; // Degraded mode: no offset applied
+    } else {
+      throw new Error("Invalid season code.");
+    }
+  
+    // Create a Date object in UTC and apply the offset
+    const date = new Date(isoDate + 'Z'); // Date in UTC
+    date.setHours(date.getHours() - offset); // Adjust for timezone
+  
+    // Return the date in ISO format
+    return date.toISOString();
+  }
+
+// To convert date-time as provided by PMEPMI counters; knowing that it is provided with local time and needs to be converted to UTC time
+function isSummerTime(date) {
+    // Extract the year
+    const year = date.getFullYear();
+    // Compute the start and end of summer time
+    const summerStart = new Date(Date.UTC(year, 2, 31)); // Last day of March
+    summerStart.setUTCDate(summerStart.getUTCDate() - summerStart.getUTCDay()); // Last Sunday of March
+    summerStart.setUTCHours(2, 0, 0, 0); // 2:00 AM UTC
+    const summerEnd = new Date(Date.UTC(year, 9, 31)); // Last day of October
+    summerEnd.setUTCDate(summerEnd.getUTCDate() - summerEnd.getUTCDay()); // Last Sunday of October
+    summerEnd.setUTCHours(2, 0, 0, 0); // 2:00 AM UTC
+      // Check if the given date falls in the summer time range
+    return date >= summerStart && date < summerEnd;
+  }
+  
+function toISOFormat(dateString) {
+    // Parse the date string in DD/MM/YY HH:mm:ss format
+    const [day, month, year, hours, minutes, seconds] = dateString.split(/[/\s:]+/);
+    // Reconstruct the full year
+    const fullYear = year.length === 2 ? `20${year}` : year; // Handle 2-digit year
+    // Create a Date object in UTC
+    const utcDate = new Date(Date.UTC(fullYear, month - 1, day, hours, minutes, seconds));
+    // Determine if it's summer or winter time
+    const isSummer = isSummerTime(utcDate);
+    // Adjust for time zone
+    const offsetHours = isSummer ? 2 : 1; // CEST (UTC+2) or CET (UTC+1)
+    utcDate.setHours(utcDate.getHours() + offsetHours);
+    // Return the adjusted date as an ISO string
+    return utcDate.toISOString();
+}
+
 function UintToInt(Uint, Size) {
     if ((Size === 2) && ((Uint & 0x8000) > 0)) Uint -= 0x10000;
     if ((Size === 3) && ((Uint & 0x800000) > 0)) Uint -= 0x1000000;
@@ -1396,7 +1470,6 @@ function TIC_Decode(clustID,AttributeID,BytesAfterSize)
         return data;
         data["_TICFrameType"]="Unexpected";
     }
-
 
     // Start Decoding descriptor
     let {DescSize, Indexes} = TICParseDescToIndexes(BytesAfterSize);
@@ -3210,14 +3283,17 @@ function Decoder(bytes, port) {
 }
 function normalisation_standard(input, endpoint_parameters,batch_parameters){
     let warning = [];
+    let mapping ={};
     let bytes = input.bytes;
     let flagstandard = true;
     let indent = 0;
     let decoded = Decoder(bytes, input.fPort);
-    const mapping = batch_parameters.reduce((acc, item) => {
-        acc[item.lblname] = item; 
-        return acc;
-    }, {});
+    if (batch_parameters !== undefined) {
+        mapping = batch_parameters.reduce((acc, item) => {
+            acc[item.lblname] = item; 
+            return acc;
+        }, {});
+    }
 
     if (decoded.zclheader !== undefined){
         if (decoded.zclheader.alarmmsg !== undefined){
@@ -3228,7 +3304,6 @@ function normalisation_standard(input, endpoint_parameters,batch_parameters){
             return{
                 data: decoded.zclheader,
                 warning: warning
-
             }
         }
         else if (bytes[1] === 0x09){
@@ -3247,12 +3322,14 @@ function normalisation_standard(input, endpoint_parameters,batch_parameters){
                         flagstandard = false;
                         break;
                     } else {
-                        const unitCode = mapping[firstKey]?.unit || ''; 
+                        let unitCode = mapping ? (mapping[firstKey]?.unit || '') : '';
+                        let datasetId = mapping ? (mapping[firstKey]?.unit || '') : '';
                         data.push({
                             variable: firstKey,
                             value: decoded.data[firstKey],
                             date: input.recvTime,
-                            unitCode: unitCode !== '' ? unitCode : undefined                                                         
+                            unitCode: unitCode !== '' ? unitCode : undefined,
+                            datasetId: datasetId !== '' ? datasetId : undefined                                                          
                         })
                         indent++;
                     }
@@ -3281,38 +3358,56 @@ function normalisation_standard(input, endpoint_parameters,batch_parameters){
             let indent = 0;
             let data = []
             let type = ""
+            // Added that section to handle TIC encoded frame and related dates
+            if (Object.keys(decoded.data)[0] === "_TICFrameType") {
+                if (decoded.data.DATE !== undefined) {
+                    if (decoded.data._TICFrameType === "standard") {
+                    input.recvTime = convertLinkyObjectToISO(decoded.data.DATE);
+                  } 
+                  if (decoded.data._TICFrameType === "PMEPMI") {
+                    input.recvTime = toISOFormat(decoded.data.DATE);
+                  }
+                }
+            }
             while (flagstandard) {
                 let firstKey = Object.keys(decoded.data)[indent];
                 if (firstKey === undefined) {
                     flagstandard = false;
                     break;
                 } else {
-                    const unitCode = mapping[firstKey]?.unit || ''; 
-                    if (endpoint_parameters[firstKey] === undefined) {
-                        data.push({variable: firstKey,
-                            value: decoded.data[firstKey],
-                            date: input.recvTime,
-                            unitCode: unitCode !== '' ? unitCode : undefined 
-                        })
-                    }else{
-                        type = endpoint_parameters[firstKey][access];
-                        if (type === "NA"){
-                            data.push({
-                                variable: type,
-                                value: "NA",
-                                date: input.recvTime,
-                                unitCode: unitCode !== '' ? unitCode : undefined 
-                            })
-                        } else{
-                            data.push({
-                                variable: type,
-                                value: decoded.data[firstKey],
-                                date: input.recvTime,
-                                unitCode: unitCode !== '' ? unitCode : undefined 
-                            })
+                    if (endpoint_parameters[firstKey]?.includes("Ignore")) {
+                    } else {
+                        let unitCode = mapping ? (mapping[firstKey]?.unit || '') : '';
+                        let datasetId = mapping ? (mapping[firstKey]?.unit || '') : '';
+                        if (endpoint_parameters[firstKey] === undefined) {             // Should not happen or would lead to poor NGSI-LD conversion           
+                        //    data.push({variable: firstKey,
+                        //        value: decoded.data[firstKey],
+                        //        date: input.recvTime,
+                        //    })
+                        }else{
+                            type = endpoint_parameters[firstKey][access];
+                            datasetId = endpoint_parameters[firstKey][access+endpoint_parameters[firstKey].length/3];
+                            unitCode = endpoint_parameters[firstKey][access+2*endpoint_parameters[firstKey].length/3];
+                            if (type === "NA"){ //Nothing to report
+                                data.push({
+                                    variable: type,
+                                    value: "NA",
+                                    date: input.recvTime,
+                                    unitCode: unitCode !== '' ? unitCode : undefined,
+                                    datasetId: datasetId !== '' ? datasetId : undefined 
+                                })
+                            } else{
+                                data.push({
+                                    variable: type,
+                                    value: decoded.data[firstKey],
+                                    date: input.recvTime,
+                                    unitCode: unitCode !== '' ? unitCode : undefined,
+                                    datasetId: datasetId !== '' ? datasetId : undefined 
+                                })
+                            }
                         }
                     }
-                    indent++;
+                    indent++;                 
                 }
             }
             return {
