@@ -193,17 +193,19 @@ function ngsildInstance(value, time, unit, dataset_suffix) {
 function ngsildWrapper(input, time, entity_id) {
     var ngsild_payload = [{
         id: entity_id,
-        type: "Device"
+        type: "Device",
     }];
 
-    function addToPayload(key, value) {
-        if (ngsild_payload.every(d => d.hasOwnProperty(key))) {
-            ngsild_payload.push({id: entity_id, type: "Device", ...{[key]: value}});
-        } else {
-            for (let d of ngsild_payload) {
+    function addToPayload(key, value, isArray = false) {
+        for (let d of ngsild_payload) {
+            if (isArray) {
+                if (!d.hasOwnProperty(key)) {
+                    d[key] = [];
+                }
+                d[key].push(value);
+            } else {
                 if (!d.hasOwnProperty(key)) {
                     d[key] = value;
-                    break;
                 }
             }
         }
@@ -241,7 +243,7 @@ function ngsildWrapper(input, time, entity_id) {
             addToPayload('radarSignalRssi', ngsildInstance(item.value, time, null, null));
         }
         if (item.variable === 'distance') {
-            addToPayload('distance', ngsildInstance(parseFloat((item.value*0.001).toFixed(3)),
+            addToPayload('distance', ngsildInstance(parseFloat((item.value * 0.001).toFixed(3)),
                                                     time,
                                                     'MTR',
                                                     'Raw'));
@@ -253,10 +255,18 @@ function ngsildWrapper(input, time, entity_id) {
             addToPayload('temperature', ngsildInstance(item.value, time, 'CEL', 'Raw'));
         }
         if (item.variable === 'distance_threshold') {
-            addToPayload('alarm', ngsildInstance("Threshold Alarm", time, null, null));
+            addToPayload('alarm', ngsildInstance(1, time, null, 'Threshold:Raw'), true);
         }
         if (item.variable === 'distance_blind') {
-            addToPayload('alarm', ngsildInstance("Blind zone alarm", time, null, null));
+            addToPayload('alarm', ngsildInstance(1, time, null, 'Blind:Raw'), true);
+        }
+        if (item.variable === 'temperature_abnormal') {
+            addToPayload('alarm', ngsildInstance(1, time, null, 'Temperature:Raw'), true);
+        }
+    });
+    ngsild_payload.forEach(d => {
+        if (Array.isArray(d.alarm) && d.alarm.length === 1) {
+            d.alarm = d.alarm[0];
         }
     });
     return ngsild_payload;
