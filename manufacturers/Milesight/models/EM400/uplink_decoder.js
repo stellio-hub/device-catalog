@@ -153,19 +153,19 @@ function decode(bytes) {
         // TEMPERATURE WITH ABNORMAL
         else if (channel_id === 0x83 && channel_type === 0x67) {
             decoded.temperature = readInt16LE(bytes.slice(i, i + 2)) / 10;
-            decoded.temperature_abnormal = bytes[i + 2] == 0 ? false : true;
+            decoded.temperature_abnormal = bytes[i + 2];
             i += 3;
         }
         // DISTANCE WITH ALARMING
         else if (channel_id === 0x84 && channel_type === 0x82) {
             decoded.distance = readUInt16LE(bytes.slice(i, i + 2));
-            decoded.distance_threshold = bytes[i + 2] == 0 ? false : true;
+            decoded.distance_threshold = bytes[i + 2];
             i += 3;
         }
         // BLIND ZONE
         else if (channel_id === 0xb4 && channel_type === 0x82) {
             decoded.distance = readUInt16LE(bytes.slice(i, i + 2));
-            decoded.distance_blind = bytes[i + 2] == 0 ? false : true;
+            decoded.distance_blind = bytes[i + 2];
             i += 3;
         }
         else {
@@ -255,13 +255,13 @@ function ngsildWrapper(input, time, entity_id) {
             addToPayload('temperature', ngsildInstance(item.value, time, 'CEL', 'Raw'));
         }
         if (item.variable === 'distance_threshold') {
-            addToPayload('alarm', ngsildInstance(1, time, null, 'Threshold:Raw'), true);
+            addToPayload('alarm', ngsildInstance(item.value, time, null, 'Threshold:Raw'), true);
         }
         if (item.variable === 'distance_blind') {
-            addToPayload('alarm', ngsildInstance(1, time, null, 'Blind:Raw'), true);
+            addToPayload('alarm', ngsildInstance(item.value, time, null, 'Blind:Raw'), true);
         }
         if (item.variable === 'temperature_abnormal') {
-            addToPayload('alarm', ngsildInstance(1, time, null, 'Temperature:Raw'), true);
+            addToPayload('alarm', ngsildInstance(item.value, time, null, 'Temperature:Raw'), true);
         }
     });
     ngsild_payload.forEach(d => {
