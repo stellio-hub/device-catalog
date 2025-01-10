@@ -97,7 +97,7 @@ function readDistanceAlarm(status) {
         case 1:
             return 1; // Threshold Alarm
         case 2:
-            return 1; // Mutation Alarm
+            return 2; // Mutation Alarm
         default:
             return 0;
     }
@@ -110,9 +110,9 @@ function readDistanceException(status) {
         case 1:
             return 1; // Blind Spot Alarm
         case 2:
-            return 1; // No Target
+            return 2; // No Target
         case 3:
-            return 1; // Sensor Exception
+            return 3; // Sensor Exception
         default:
             return 0;
     }
@@ -385,15 +385,33 @@ function decode(bytes) {
         }
         // DISTANCE ALARM
         else if (channel_id === 0x84 && channel_type === 0x82) {
-            var data = {};
-            decoded.distance_alarm = readDistanceAlarm(bytes[i + 2]);
+            decoded.distance = readInt16LE(bytes.slice(i, i + 2));
+            var data = readDistanceAlarm(bytes[i + 2]);
+            if(data == 0) {
+                decoded.threshold_alarm = 0;
+            }
+            else if(data == 1) {
+                decoded.threshold_alarm = 1;
+            }
+            else if(data == 2) {
+                decoded.mutation_alarm = 1;
+            }
             i += 3;
         }
         // DISTANCE MUTATION ALARM
         else if (channel_id === 0x94 && channel_type === 0x82) {
-            var data = {};
-            decoded.distance = readInt16LE(bytes.slice(i + 2, i + 4));
-            decoded.distance_mutation = readDistanceAlarm(bytes[i + 4]);
+            decoded.distance = readInt16LE(bytes.slice(i, i + 2));
+            decoded.distance_mutation = readInt16LE(bytes.slice(i + 2, i + 4));
+            var data = readDistanceAlarm(bytes[i + 4]);
+            if(data == 0) {
+                decoded.threshold_alarm = 0;
+            }
+            else if(data == 1) {
+                decoded.threshold_alarm = 1;
+            }
+            else if(data == 2) {
+                decoded.mutation_alarm = 1;
+            }
             i += 5;
         }
         // DISTANCE EXCEPTION ALARM
@@ -409,7 +427,18 @@ function decode(bytes) {
             } else {
                 decoded.distance = distance_value;
             }
-            decoded.distance_exception = distance_exception;
+            if(distance_exception == 0) {
+                decoded.blind_alarm = 0;
+            }
+            else if(distance_exception == 1) {
+                decoded.blind_alarm = 1;
+            }
+            else if(distance_exception == 2) {
+                decoded.target_alarm = 1;
+            }
+            else if(distance_exception == 3) {
+                decoded.sensor_alarm = 1;
+            }
         }
         // HISTORY
         else if (channel_id === 0x20 && channel_type === 0xce) {
