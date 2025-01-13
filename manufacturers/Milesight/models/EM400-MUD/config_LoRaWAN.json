@@ -1,8 +1,8 @@
 {
     "uplinkDecoder": "uplink_decoder.js",
-    "documentation": "https://resource.milesight.com/milesight/iot/document/em410-rdl-user-guide-en.pdf",
+    "documentation": "https://resource.milesight.com/milesight/iot/document/em400-mud-user-guide-en.pdf",
     "ngsildContext": "https://easy-global-market.github.io/ngsild-api-data-models/device/jsonld-contexts/device-compound.jsonld",
-    "devicePicture": "em410-rdl.png",
+    "devicePicture": "em400-mud.png",
     "chirpstack": {
         "region": "EU868",
         "macVersion": 0,
