@@ -37,7 +37,7 @@ function ngsildWrapper(input, time, entity_id,parametersMapping) {
     }
     let timestamp = input.timestamp
     for (const [key, value] of Object.entries(input.data)) {
-        if (parametersMapping[key]) {
+        if (parametersMapping[key] && value !== null) {
             if (key == "timestamp_t0"){timestamp = value}
             if (key == "timestamp_t1"){timestamp = value}
             addToPayload(parametersMapping[key].label, ngsildInstance(value, timestamp, parametersMapping[key].unitCode, parametersMapping[key].datasetId))
