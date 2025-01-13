@@ -1,20 +1,21 @@
 // Added by EGM for NGSI-LD conversion
 
 function ngsildInstance(value, time, unit, dataset_suffix) {
-
-    var ngsild_instance = {
-        type: 'Property',
-        value: value,
-        observedAt: time
-    }
-    if (unit !== "") {
-        ngsild_instance.unitCode = unit
-    }
-    if (dataset_suffix !== null) {
-        ngsild_instance.datasetId = 'urn:ngsi-ld:Dataset:' + dataset_suffix
-    }
-  
-    return ngsild_instance
+    if (typeof value === 'number' && !Number.isNaN(value)) {
+        var ngsild_instance = {
+            type: 'Property',
+            value: value,
+            observedAt: time
+        }
+        if (unit !== "") {
+            ngsild_instance.unitCode = unit
+        }
+        if (dataset_suffix !== null) {
+            ngsild_instance.datasetId = 'urn:ngsi-ld:Dataset:' + dataset_suffix
+        }
+        return ngsild_instance
+    } else {return  null;}
+    
 }
 
 function ngsildWrapper(input, time, entity_id,parametersMapping) {
@@ -35,12 +36,20 @@ function ngsildWrapper(input, time, entity_id,parametersMapping) {
             }
         }
     }
-    let timestamp = input.timestamp
+
+    let timestamp = input.timestamp || time;
+    let measureTime = timestamp
     for (const [key, value] of Object.entries(input.data)) {
+        if (key == "timestamp_t0" || key == "timestamp_t1") {
+            measureTime = value;
+        }
         if (parametersMapping[key]) {
-            if (key == "timestamp_t0"){timestamp = value}
-            if (key == "timestamp_t1"){timestamp = value}
-            addToPayload(parametersMapping[key].label, ngsildInstance(value, timestamp, parametersMapping[key].unitCode, parametersMapping[key].datasetId))
+            if (key.includes("ILast")) {
+                addToPayload(parametersMapping[key].label, ngsildInstance(value, measureTime, parametersMapping[key].unitCode, parametersMapping[key].datasetId));
+            } else {
+                addToPayload(parametersMapping[key].label, ngsildInstance(value, timestamp, parametersMapping[key].unitCode, parametersMapping[key].datasetId));
+            }
+            
         }
         
     }
