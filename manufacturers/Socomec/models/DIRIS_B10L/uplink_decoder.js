@@ -123,23 +123,22 @@ function main() {
         // payload = "023125E681DE030103111301131123012311330133114301431153015311630163117301731100000000075BCD153C01A15F" //  profileLabel: '3- Multi-load – Energies (consumption/production)'
         // payload = "02412750264400000fb6fffffd9200000fe603dc0001000006770000120c000032980000c3511C007fff7fff04331234A15F" // profileLabel: '4- Single-load – Monitoring',
         // payload = "025127502644101012341019123410201234102912341030123410391234104012341049123404331234A15F" // profileLabel: '5- Multi-load – Monitoring',
-         payload = "02612750264400000fb6fffffd9200000fe603dc0001000006770000120c000032980000c3511C007fff7fff04331234A15F" // profileLabel: '6- Single-load – Load curves'
+        //  payload = "02612750264400000fb6fffffd9200000fe603dc0001000006770000120c000032980000c3511C007fff7fff04331234A15F" // profileLabel: '6- Single-load – Load curves'
         // payload = "02712750264400000fb6fffffd9200000fe603dc0001000006770000120c000032980000c3511C007fff7fff04331234A15F" // profileLabel: '7- Multi-load - Load curves'
         // payload = "02912750264400000fb6fffffd9200000fe603dc0001000006770000120c000032980000c3511C007fff7fff04331234A15F" // error: 'error, Profile type not managed'
         // payload = "0101" //Date-Time update request
-        // payload ="02210000000000000000000000000000000000000000000000000000000000000000" // ??
-         time= new Date(Date.now()).toISOString();
+        // payload ="02210000000000000000000000000000000000000000000000000000000000000000" // Profile 2 poeriodic
+        // time= new Date(Date.now()).toISOString();
     // ********* End test pattern ***********************
 
 
 
     var decoded = codec.decodeUplink(Buffer.from(payload,'hex'));
-     console.log(decoded.data.socomec)
     var ngsild_payload = ngsild.ngsildWrapper(decoded.data.socomec, time, entity_id,parametersMapping);
-    if (Object.keys(ngsild_payload)[0] !== 'message_type'){
+    if (ngsild_payload && typeof ngsild_payload === 'object' && Object.keys(ngsild_payload)[0] !== 'message_type'){
         process.stdout.write(JSON.stringify(ngsild_payload));
     }
-     console.log(ngsild_payload)
+    // console.log(ngsild_payload)
 
 }
 
