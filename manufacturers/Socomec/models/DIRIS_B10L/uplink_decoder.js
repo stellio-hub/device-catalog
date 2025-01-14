@@ -45,6 +45,15 @@ let parametersMapping =  {
     IPSumAvgInst4: {label:"activePower", unitCode: "KWT", datasetId: 'L4:Avg:Raw'},
     IQSumAvgInst4: {label:"reactivePower", unitCode: "KVR", datasetId: 'L4:Avg:Raw'},
     // Profile === 6
+    ILastP10ActivePower: {label:"activePower", unitCode: "KWT", datasetId: 'ILastP10:Avg:Raw'},
+    ILastP10ReactivePower: {label:"reactivePower", unitCode: "KVR", datasetId: 'ILastP10:Avg:Raw'},
+    ILastP10ActivePowerNeg: {label:"activePower", unitCode: "KWT", datasetId: 'ILastP10Neg:Avg:Raw'},
+    ILastP10ReactivePowerNeg: {label:"reactivePower", unitCode: "KVR", datasetId: 'ILastP10Neg:Avg:Raw'},
+        // P10 and P11 arte same quantity at 2 different point in time. Thus stored under the same datasetId 
+    ILastP11ActivePower: {label:"activePower", unitCode: "KWT", datasetId: 'ILastP10:Avg:Raw'},
+    ILastP11ReactivePower: {label:"reactivePower", unitCode: "KVR", datasetId: 'ILastP10:Avg:Raw'},
+    ILastP11ActivePowerNeg: {label:"activePower", unitCode: "KWT", datasetId: 'ILastP10Neg:Avg:Raw'},
+    ILastP11ReactivePowerNeg: {label:"reactivePower", unitCode: "KVR", datasetId: 'ILastP10Neg:Avg:Raw'},
         // To be done. Unclear what is the load curve integrated over the uplink period but still express in W, Var rtather than Wh/Varh. Request for explanation sent to Socomec. 
     // Profile === 7
         // To be done. Unclear what is the load curve integrated over the uplink period but still express in W, Var rtather than Wh/Varh. Request for explanation sent to Socomec.
@@ -114,21 +123,19 @@ function main() {
         // payload = "023125E681DE030103111301131123012311330133114301431153015311630163117301731100000000075BCD153C01A15F" //  profileLabel: '3- Multi-load – Energies (consumption/production)'
         // payload = "02412750264400000fb6fffffd9200000fe603dc0001000006770000120c000032980000c3511C007fff7fff04331234A15F" // profileLabel: '4- Single-load – Monitoring',
         // payload = "025127502644101012341019123410201234102912341030123410391234104012341049123404331234A15F" // profileLabel: '5- Multi-load – Monitoring',
-        // payload = "02612750264400000fb6fffffd9200000fe603dc0001000006770000120c000032980000c3511C007fff7fff04331234A15F" // profileLabel: '6- Single-load – Load curves'
+        //  payload = "02612750264400000fb6fffffd9200000fe603dc0001000006770000120c000032980000c3511C007fff7fff04331234A15F" // profileLabel: '6- Single-load – Load curves'
         // payload = "02712750264400000fb6fffffd9200000fe603dc0001000006770000120c000032980000c3511C007fff7fff04331234A15F" // profileLabel: '7- Multi-load - Load curves'
         // payload = "02912750264400000fb6fffffd9200000fe603dc0001000006770000120c000032980000c3511C007fff7fff04331234A15F" // error: 'error, Profile type not managed'
-        // payload = "112854A28101000800"
         // payload = "0101" //Date-Time update request
-        // time=Date.now();
-        // entity_id = "entity_id" 
+        // payload ="02210000000000000000000000000000000000000000000000000000000000000000" // Profile 2 poeriodic
+        // time= new Date(Date.now()).toISOString();
     // ********* End test pattern ***********************
 
 
 
     var decoded = codec.decodeUplink(Buffer.from(payload,'hex'));
-    // console.log(decoded)
     var ngsild_payload = ngsild.ngsildWrapper(decoded.data.socomec, time, entity_id,parametersMapping);
-    if (Object.keys(ngsild_payload)[0] !== 'message_type'){
+    if (ngsild_payload && typeof ngsild_payload === 'object' && Object.keys(ngsild_payload)[0] !== 'message_type'){
         process.stdout.write(JSON.stringify(ngsild_payload));
     }
     // console.log(ngsild_payload)
