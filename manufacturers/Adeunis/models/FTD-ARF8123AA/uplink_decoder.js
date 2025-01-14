@@ -141,18 +141,18 @@ function Decode(fPort, bytes, variables) {
 }
 
 let parametersMapping =  {
-    temperature: {label:"temperature", unitCode: "CEL", datasetId: 'temperature:Raw'},
-    trigger: {label:"trigger", unitCode: null, datasetId: 'trigger:Raw'},
-    latitude: {label:"latitude", unitCode: "DEG", datasetId: 'latitude:Raw'},
-    longitude: {label:"longitude", unitCode: "DEG", datasetId: 'longitude:Raw'},
-    gps_quality: {label:"gpsQuality", unitCode: null, datasetId: 'gps_quality:Raw'},
-    hdop: {label:"hdop", unitCode: null, datasetId: 'hdop:Raw'},
-    sats: {label:"satellites", unitCode: null, datasetId: 'sats:Raw'},
-    ul_counter: {label:"uplinkCounter", unitCode: null, datasetId: 'ul_counter:Raw'},
-    dl_counter: {label:"downlinkCounter", unitCode: null, datasetId: 'dl_counter:Raw'},
-    battery_level: {label:"batteryLevel", unitCode: "VLT", datasetId: 'battery_level:Raw'},
-    rssi_dl: {label:"rssiDownlink", unitCode: "DBM", datasetId: 'rssi_dl:Raw'},
-    snr_dl: {label:"snrDownlink", unitCode: "DB", datasetId: 'snr_dl:Raw'}
+    temperature: {label:"temperature", unitCode: "CEL", datasetId: 'Raw'},
+    trigger: {label:"trigger", unitCode: null, datasetId: null},
+    latitude: {label:"latitude", unitCode: "DEG", datasetId: 'Raw'},
+    longitude: {label:"longitude", unitCode: "DEG", datasetId: 'Raw'},
+    gps_quality: {label:"gpsQuality", unitCode: null, datasetId: null},
+    hdop: {label:"hdop", unitCode: null, datasetId: 'Raw'},
+    sats: {label:"satellites", unitCode: null, datasetId: 'Raw'},
+    ul_counter: {label:"uplinkCounter", unitCode: null, datasetId: 'Raw'},
+    dl_counter: {label:"downlinkCounter", unitCode: null, datasetId: 'Raw'},
+    battery_level: {label:"batteryLevel", unitCode: "VLT", datasetId: 'Raw'},
+    rssi_dl: {label:"rssiDownlink", unitCode: "DBM", datasetId: 'Raw'},
+    snr_dl: {label:"snrDownlink", unitCode: "2N", datasetId: 'Raw'}
   };
 
   function ngsildInstance(value, time = null, unitCode = null, datasetSuffix = null) {
@@ -204,9 +204,16 @@ let parametersMapping =  {
     var payload = Buffer.from(process.argv[3], 'hex');
     var time = process.argv[4];
     var entity_id = "urn:ngsi-ld:Device:" + process.argv[5];
+    //payload = "9f1543376630007031101537300feb2b07" // complete message
+    //payload = "9e15433766300070311025332c0fed" // message without RSSI and SNR
+    //payload = "8f1606060f6f2807" // message without GPS position
+    //payload = "df164337653000703130343d350f703f07" // message with accelerometer trigger (shake the device)
+    //payload = "bf164337667000703130343f370f613808" // message with pushbutton trigger (press button)
+    //payload = "cf1605050f7e3107" // message with accelerometer trigger (shake the device) without GPS position
+    //payload = "af1608080f6e3107" // message with pushbutton trigger (press button) without GPS position
     var decoded = Decode(fPort, payload);
     var ngsild_payload = ngsildWrapper(decoded, time, entity_id);
-    process.stdout.write(JSON.stringify(ngsild_payload));
+    process.stdout.write(JSON.stringify(ngsild_payload, null, 2));
 }
 
 if (require.main === module) {
