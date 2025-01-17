@@ -142,17 +142,18 @@ function Decode(fPort, bytes, variables) {
 
 let parametersMapping =  {
     temperature: {label:"temperature", unitCode: "CEL", datasetId: 'Raw'},
-    trigger: {label:"trigger", unitCode: null, datasetId: null},
+    //trigger: {label:"trigger", unitCode: null, datasetId: null},
     latitude: {label:"latitude", unitCode: "DEG", datasetId: 'Raw'},
     longitude: {label:"longitude", unitCode: "DEG", datasetId: 'Raw'},
-    gps_quality: {label:"gpsQuality", unitCode: null, datasetId: null},
-    hdop: {label:"hdop", unitCode: null, datasetId: 'Raw'},
-    sats: {label:"satellites", unitCode: null, datasetId: 'Raw'},
+    location: {label:"location", unitCode: null, datasetId: null},
+    //gps_quality: {label:"gpsQuality", unitCode: null, datasetId: null},
+    //hdop: {label:"hdop", unitCode: null, datasetId: 'Raw'},
+    //sats: {label:"satellites", unitCode: null, datasetId: 'Raw'},
     ul_counter: {label:"uplinkCounter", unitCode: null, datasetId: 'Raw'},
     dl_counter: {label:"downlinkCounter", unitCode: null, datasetId: 'Raw'},
     battery_level: {label:"batteryLevel", unitCode: "VLT", datasetId: 'Raw'},
-    rssi_dl: {label:"rssiDownlink", unitCode: "DBM", datasetId: 'Raw'},
-    snr_dl: {label:"snrDownlink", unitCode: "2N", datasetId: 'Raw'}
+    rssi_dl: {label:"rssi", unitCode: "DBM", datasetId: 'Downlink:Raw'},
+    snr_dl: {label:"snr", unitCode: "2N", datasetId: 'Downlink:Raw'}
   };
 
   function ngsildInstance(value, time = null, unitCode = null, datasetSuffix = null) {
@@ -191,11 +192,34 @@ let parametersMapping =  {
         }
     }
   
+    let latitude = null;
+    let longitude = null;
+
     for (var key in decoded) {
-      if (parametersMapping[key]) {
-        addToPayload(parametersMapping[key].label, ngsildInstance(decoded[key], time, parametersMapping[key].unitCode, parametersMapping[key].datasetId));
-      }
+        if (parametersMapping[key]) {
+            if (key === "latitude") {
+                latitude = decoded[key];
+            } else if (key === "longitude") {
+                longitude = decoded[key];
+            } else {
+                addToPayload(parametersMapping[key].label, ngsildInstance(decoded[key], time, parametersMapping[key].unitCode, parametersMapping[key].datasetId));
+            }
+        }
     }
+
+    if (latitude !== null && longitude !== null) {
+        var location = {
+            type: "GeoProperty",
+            value: {
+                type: "Point",
+                coordinates: [longitude, latitude]
+            },
+            observedAt: time
+        };
+        addToPayload("location", location);
+    }
+
+
     return ngsild_payload;
   }  
 
