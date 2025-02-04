@@ -104,9 +104,9 @@ let parametersMapping =  {
 
 
 function main() {
-    var payload = process.argv[3];
-    var time = process.argv[4];
-    var entity_id = "urn:ngsi-ld:Device:" + process.argv[5];
+    var payload = process.argv[2];
+    var time = process.argv[3];
+    var entity_id = "urn:ngsi-ld:Device:" + process.argv[4];
     // ********* Test pattern (uncomment to test behaviour) ********************
         // payload = "112854A28101000800" //frame_type_label: 'Alarm',
         // payload = "021125E681DE0000000000ba035d0000000000000cae0000000000b8aaec0000000000000f21000000000000000000030011" // profileLabel: '1- Single Load Energies (consumption/production)'
