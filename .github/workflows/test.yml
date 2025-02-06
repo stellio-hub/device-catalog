@@ -27,9 +27,11 @@ jobs:
           if [ ! -s "$file" ]; then
             continue # Skip empty files
           fi
-          if jq 'paths | select(.[-1] == "only")' "$file" > /dev/null; then
+          if grep -Pzo '(?s)(?<!\w)"only"\s*:' "$file"; then
             echo "❌ Error: Found 'only' key in $file"
             exit 1
+          else
+            echo "✅ No 'only' keys found in $file"
           fi
         done
       shell: bash
