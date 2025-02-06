@@ -44,7 +44,7 @@ function getConfigTests(manufacturer, model, canShowLogs = true) {
   } catch (error) {
     if (canShowLogs) {
       process.stdout.write(
-        `\nCould not find tests.json for ${manufacturer} ${model}\n\n`
+        `\nCould not find tests.json for ${manufacturer} ${model}`
       );
     }
     return;
@@ -91,7 +91,9 @@ function executeOneTest({ test, manufacturer, model }) {
     throw new Error(`Invalid test for ${manufacturer} ${model}`);
   }
 
-  process.stdout.write(`\n\n🧪 Testing... ${test.name}`);
+  process.stdout.write(
+    `\n\n🧪 Testing | ${manufacturer} ${model} - ${test.name}`
+  );
 
   const uplinkDecoderPath = path.resolve(
     __dirname,
