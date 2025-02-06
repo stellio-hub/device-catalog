@@ -13,6 +13,12 @@ function loadManufacturers(targetManufacturer) {
       targetManufacturer ? manufacturer === targetManufacturer : true
     );
 
+    if (manufacturers.length === 0) {
+      throw new Error(
+        `No manufacturers found for "${targetManufacturer}". Check the spelling and try again.`
+      );
+    }
+
   const manufacturersWithModels = manufacturers.map((manufacturer) => {
     const modelsDir = path.join(manufacturersDir, manufacturer, "models");
 
