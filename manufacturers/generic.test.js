@@ -13,11 +13,11 @@ function loadManufacturers(targetManufacturer) {
       targetManufacturer ? manufacturer === targetManufacturer : true
     );
 
-    if (manufacturers.length === 0) {
-      throw new Error(
-        `No manufacturers found for "${targetManufacturer}". Check the spelling and try again.`
-      );
-    }
+  if (manufacturers.length === 0) {
+    throw new Error(
+      `No manufacturers found for "${targetManufacturer}". Check the spelling and try again.`
+    );
+  }
 
   const manufacturersWithModels = manufacturers.map((manufacturer) => {
     const modelsDir = path.join(manufacturersDir, manufacturer, "models");
@@ -42,13 +42,20 @@ function getConfigTests(manufacturer, model, canShowLogs = true) {
   try {
     tests = require(testsPath);
   } catch (error) {
-    if (canShowLogs)
-      console.log(`Could not find tests.json for ${manufacturer} ${model}`);
+    if (canShowLogs) {
+      process.stdout.write(
+        `\nCould not find tests.json for ${manufacturer} ${model}\n\n`
+      );
+    }
     return;
   }
 
   if (!tests) {
-    if (canShowLogs) console.log("No 'tests' provided");
+    if (canShowLogs) {
+      process.stdout.write(
+        `\nNo 'tests' provided for ${manufacturer} ${model}`
+      );
+    }
     return;
   }
 
@@ -81,11 +88,10 @@ function getOnlyTest(manufacturers) {
 
 function executeOneTest({ test, manufacturer, model }) {
   if (!test || !test.inputArguments || !test.expectedOutput) {
-    console.error(`Missing test`);
-    return;
+    throw new Error(`Invalid test for ${manufacturer} ${model}`);
   }
 
-  process.stdout.write(`\nTesting... ${test.name}`);
+  process.stdout.write(`\n\n🧪 Testing... ${test.name}`);
 
   const uplinkDecoderPath = path.resolve(
     __dirname,
