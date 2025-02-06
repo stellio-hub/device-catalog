@@ -23,8 +23,7 @@ jobs:
 
     - name: Check for 'only' in tests.json files
       run: |
-        files=$(find manufacturers -name 'tests.json')
-        for file in $files; do
+        find manufacturers -name 'tests.json' | while IFS= read -r file; do
           if jq 'map(has("only")) | any' "$file"; then
             echo "❌ Error: Found 'only' key in $file"
             exit 1
