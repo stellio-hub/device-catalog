@@ -2,13 +2,17 @@ const fs = require("fs");
 const path = require("path");
 const { execSync } = require("child_process");
 
-function loadManufacturers() {
+function loadManufacturers(targetManufacturer) {
   const manufacturersDir = path.resolve(__dirname);
   const manufacturers = fs
     .readdirSync(manufacturersDir)
     .filter((file) =>
       fs.statSync(path.join(manufacturersDir, file)).isDirectory()
+    )
+    .filter((manufacturer) =>
+      targetManufacturer ? manufacturer === targetManufacturer : true
     );
+
   const manufacturersWithModels = manufacturers.map((manufacturer) => {
     const modelsDir = path.join(manufacturersDir, manufacturer, "models");
 
@@ -61,6 +65,7 @@ function getOnlyTest(manufacturers) {
       const foundOnlyTest = configTests.find((test) => test.only);
       if (foundOnlyTest) {
         onlyTest = { test: foundOnlyTest, manufacturer, model };
+        process.stdout.write("\nTesting only one ⚡");
       }
     }
   });
@@ -74,7 +79,7 @@ function executeOneTest({ test, manufacturer, model }) {
     return;
   }
 
-  console.log(`Testing... ${test.name}`);
+  process.stdout.write(`\nTesting... ${test.name}`);
 
   const uplinkDecoderPath = path.resolve(
     __dirname,
@@ -85,11 +90,11 @@ function executeOneTest({ test, manufacturer, model }) {
     .map((arg) => (Array.isArray(arg) ? JSON.stringify(arg) : arg))
     .join(" ")}`;
 
-  console.log(`\n command ⬇️ \n\n ${command}`);
+  process.stdout.write(`\n\ncommand ⬇️ \n\n ${command}`);
 
   const result = execSync(command).toString().trim();
 
-  console.log(`\n results ⬇️ \n\n ${result}`);
+  process.stdout.write(`\n\nresults ⬇️ \n\n ${result}\n\n`);
 
   it(`Should pass ${test.name}`, () => {
     expect(result).toEqual(test.expectedOutput);
@@ -99,7 +104,7 @@ function executeOneTest({ test, manufacturer, model }) {
 }
 
 function testAll(manufacturers) {
-  console.log("Testing all 🚀");
+  process.stdout.write("\nTesting all 🚀");
 
   manufacturers.forEach(({ manufacturer, models }) => {
     for (const model of models) {
@@ -125,7 +130,10 @@ function testAll(manufacturers) {
 }
 
 function main() {
-  const manufacturers = loadManufacturers();
+  const targetManufacturer =
+    process.argv[2] && process.argv[2].split("=")[1].trim();
+
+  const manufacturers = loadManufacturers(targetManufacturer);
 
   const onlyTest = getOnlyTest(manufacturers);
 
