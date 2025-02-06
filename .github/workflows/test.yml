@@ -21,7 +21,7 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    - name: Verify test JSON files
+    - name: Check for 'only' in tests.json files
       run: |
         files=$(find manufacturers -name 'tests.json')
         for file in $files; do
