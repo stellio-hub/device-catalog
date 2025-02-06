@@ -23,8 +23,12 @@ jobs:
 
     - name: Check for 'only' in tests.json files
       run: |
+        set -o pipefail
         find manufacturers -name 'tests.json' | while IFS= read -r file; do
-          if jq 'map(has("only")) | any' "$file"; then
+          if [ ! -s "$file" ]; then
+            continue # Skip empty files
+          fi
+          if jq 'if type == "array" then map(has("only")) | any else false end' "$file"; then
             echo "❌ Error: Found 'only' key in $file"
             exit 1
           fi
