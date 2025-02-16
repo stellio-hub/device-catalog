@@ -182,7 +182,7 @@ In a basic case, where the device sends one instance of multiple attributes, the
 
 ### Multiple temporal instances
 
-If the device sends multiple instances of a given attribute (i.e. multiple measurements of the same thing at different times) in a single message, the payload should look like this:
+If the device sends multiple instances of a given attribute (i.e. multiple measurements of the same probe at different times) in a single message, the payload should look like this:
 
 ```json
 [ {
@@ -317,14 +317,25 @@ function ngsildWrapper(input, time, entity_id) {
 
 ### Adding Unit Tests for a New Device Model
 
-To ensure the correctness of your decoder, it is important to add unit tests. Follow these steps to add unit tests for a new device model:
+To ensure the correctness of your decoder, it is important to add unit tests. 
+We use [jest](https://jestjs.io/docs/getting-started) as a test environment. If you don't have it installed, execute from your shell window to installed:
+
+```sh
+npm install --save-dev jest
+```
+
+Then, follow these steps to add unit tests for a new device model:
 
 1. **Create a `tests.json` file**:
     - In the directory of your new device model (e.g., `manufacturers/EGM/models/EconomO`), create a file named `tests.json`.
     - This file should contain an array of test cases. Each test case should include:
       - `name`: A descriptive name for the test.
-      - `inputArguments`: An array of arguments to pass to the decoder.
-      - `expectedOutput`: The expected JSON output from the decoder.
+      - `inputArguments`: An array of arguments to pass to the decoder. For a LoRaWAN decoder, it would be the following arguments:
+          - The LoRaWAN *fPort*
+          - The LoRaWAN *payload*
+          - The reception *time* in ISO format
+          - The device *devEui*` identifier
+      - `expectedOutput`: The expected JSON output from the decoder (note: do not forget escaping the quotes with a backslash *\"* )
 
     Example:
     ```json
@@ -368,7 +379,7 @@ Don't forget to remove the flag before submitting your changes.
 To run tests for a specific manufacturer, use the following command:
 
 ```sh
-npm run test -- --manufacturer=Socomec
+npm test -- --manufacturer=Socomec
 ```
 
 
