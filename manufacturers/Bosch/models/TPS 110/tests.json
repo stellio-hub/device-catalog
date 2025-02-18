@@ -7,7 +7,18 @@
       "2019-09-07T15:50:00Z",
       "urn:ngsi-ld:Device:TEST"
     ],
-    "expectedOutput": "[{\"id\":\"urn:ngsi-ld:Device:urn:ngsi-ld:Device:TEST\",\"type\":\"Device\",\"occupied\":{\"type\":\"Property\",\"value\":false,\"observedAt\":\"2019-09-07T15:50:00Z\",\"datasetId\":\"urn:ngsi-ld:Dataset:Raw\"}}]"
+    "expectedOutput": [
+      {
+        "id": "urn:ngsi-ld:Device:urn:ngsi-ld:Device:TEST",
+        "type": "Device",
+        "occupied": {
+          "type": "Property",
+          "value": false,
+          "observedAt": "2019-09-07T15:50:00Z",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        }
+      }
+    ]
   },
   {
     "name": "Heartbeat test",
@@ -17,7 +28,25 @@
       "2019-09-07T15:50:00Z",
       "urn:ngsi-ld:Device:TEST"
     ],
-    "expectedOutput": "[{\"id\":\"urn:ngsi-ld:Device:urn:ngsi-ld:Device:TEST\",\"type\":\"Device\",\"occupied\":{\"type\":\"Property\",\"value\":false,\"observedAt\":\"2019-09-07T15:50:00Z\",\"datasetId\":\"urn:ngsi-ld:Dataset:Raw\"},\"temperature\":{\"type\":\"Property\",\"value\":false,\"observedAt\":\"2019-09-07T15:50:00Z\",\"unitCode\":\"CEL\",\"datasetId\":\"urn:ngsi-ld:Dataset:Raw\"}}]"
+    "expectedOutput": [
+      {
+        "id": "urn:ngsi-ld:Device:urn:ngsi-ld:Device:TEST",
+        "type": "Device",
+        "occupied": {
+          "type": "Property",
+          "value": false,
+          "observedAt": "2019-09-07T15:50:00Z",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "temperature": {
+          "type": "Property",
+          "value": false,
+          "observedAt": "2019-09-07T15:50:00Z",
+          "unitCode": "CEL",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        }
+      }
+    ]
   },
   {
     "name": "Startup test pattern with debug codes 804 and 885",
@@ -27,6 +56,31 @@
       "2019-09-07T15:50:00Z",
       "urn:ngsi-ld:Device:TEST"
     ],
-    "expectedOutput": "[{\"id\":\"urn:ngsi-ld:Device:urn:ngsi-ld:Device:TEST\",\"type\":\"Device\",\"debugCodes\":{\"type\":\"Property\",\"value\":[],\"datasetId\":\"urn:ngsi-ld:Dataset:Raw\"},\"firmwareVersion\":{\"type\":\"Property\",\"value\":\"undefined.undefined.undefined\",\"datasetId\":\"urn:ngsi-ld:Dataset:Raw\"},\"resetCause\":{\"type\":\"Property\",\"datasetId\":\"urn:ngsi-ld:Dataset:Raw\"},\"occupied\":{\"type\":\"Property\",\"value\":false,\"observedAt\":\"2019-09-07T15:50:00Z\",\"datasetId\":\"urn:ngsi-ld:Dataset:Raw\"}}]"
+    "expectedOutput": [
+      {
+        "id": "urn:ngsi-ld:Device:urn:ngsi-ld:Device:TEST",
+        "type": "Device",
+        "debugCodes": {
+          "type": "Property",
+          "value": [],
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "firmwareVersion": {
+          "type": "Property",
+          "value": "undefined.undefined.undefined",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "resetCause": {
+          "type": "Property",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "occupied": {
+          "type": "Property",
+          "value": false,
+          "observedAt": "2019-09-07T15:50:00Z",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        }
+      }
+    ]
   }
 ]

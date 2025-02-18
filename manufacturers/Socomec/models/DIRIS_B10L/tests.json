@@ -2,6 +2,18 @@
   {
     "name": "Date-Time update request test",
     "inputArguments": [1, "0101", 1738600156060, "MyTestDevice"],
-    "expectedOutput": "[{\"id\":\"urn:ngsi-ld:Device:MyTestDevice\",\"type\":\"Device\",\"alarm\":{\"type\":\"Property\",\"value\":1,\"observedAt\":\"1738600156060\",\"datasetId\":\"urn:ngsi-ld:Dataset:TimeRequest:Raw\"}}]"
+    "expectedOutput": [
+      {
+        "id": "urn:ngsi-ld:Device:MyTestDevice",
+        "type": "Device",
+        "alarm": {
+          "type": "Property",
+          "value": 1,
+          "observedAt": "1738600156060",
+          "datasetId": "urn:ngsi-ld:Dataset:TimeRequest:Raw"
+        }
+      }
+    ]
   }
 ]
+  

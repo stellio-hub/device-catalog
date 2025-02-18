@@ -111,7 +111,7 @@ function executeOneTest({ test, manufacturer, model }) {
   process.stdout.write(`\n\nresults ⬇️ \n\n ${result}\n\n`);
 
   it(`Should pass ${test.name}`, () => {
-    expect(result).toEqual(test.expectedOutput);
+    expect(JSON.parse(result)).toEqual(test.expectedOutput);
   });
 
   return;
