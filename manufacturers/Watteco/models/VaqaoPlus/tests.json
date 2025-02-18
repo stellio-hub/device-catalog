@@ -1,0 +1,48 @@
+[
+    {
+      "name": "uplink standard report containing occupancy value",
+      "inputArguments": [125, "110a040600001801", "2025-01-07T14:55:20Z", "MyTestVaqao+"],
+      "expectedOutput": "[{\"id\":\"urn:ngsi-ld:Device:MyTestVaqao+\",\"type\":\"Device\",\"occupancy\":{\"type\":\"Property\",\"value\":true,\"datasetId\":\"urn:ngsi-ld:Dataset:Raw\",\"observedAt\":\"2025-01-07T14:55:20.000Z\"}}]"
+    },
+    {
+        "name": "uplink standard report containing temperature value",
+        "inputArguments": [125, "110A04020000290B89", "2025-01-07T14:55:20Z", "MyTestVaqao+"],
+        "expectedOutput": "[{\"id\":\"urn:ngsi-ld:Device:MyTestVaqao+\",\"type\":\"Device\",\"temperature\":{\"type\":\"Property\",\"value\":29.53,\"unitCode\":\"CEL\",\"datasetId\":\"urn:ngsi-ld:Dataset:Temperature1:Raw\",\"observedAt\":\"2025-01-07T14:55:20.000Z\"}}]"
+    },
+    {
+        "name": "uplink standard report containing humidity value",
+        "inputArguments": [125, "110A04050000210E89", "2025-01-07T14:55:20Z", "MyTestVaqao+"],
+        "expectedOutput": "[{\"id\":\"urn:ngsi-ld:Device:MyTestVaqao+\",\"type\":\"Device\",\"humidity\":{\"type\":\"Property\",\"value\":37.21,\"unitCode\":\"P1\",\"datasetId\":\"urn:ngsi-ld:Dataset:Humidity1:Raw\",\"observedAt\":\"2025-01-07T14:55:20.000Z\"}}]"
+    },
+    {
+        "name": "uplink standard report containing TVOC value",
+        "inputArguments": [125, "110A800C0000210019", "2025-01-07T14:55:20Z", "MyTestVaqao+"],
+        "expectedOutput": "[{\"id\":\"urn:ngsi-ld:Device:MyTestVaqao+\",\"type\":\"Device\",\"tvoc\":{\"type\":\"Property\",\"value\":25,\"datasetId\":\"urn:ngsi-ld:Dataset:Raw\",\"observedAt\":\"2025-01-07T14:55:20.000Z\"}}]"
+    },
+    {
+        "name": "uplink standard report containing state of the case",
+        "inputArguments": [125, "110A000F00551001", "2025-01-07T14:55:20Z", "MyTestVaqao+"],
+        "expectedOutput": "[{\"id\":\"urn:ngsi-ld:Device:MyTestVaqao+\",\"type\":\"Device\",\"alarm\":{\"type\":\"Property\",\"value\":true,\"datasetId\":\"urn:ngsi-ld:Dataset:CaseViolation:Raw\",\"observedAt\":\"2025-01-07T14:55:20.000Z\"}}]"
+    },
+    {
+        "name": "uplink standard report containing firmware version",
+        "inputArguments": [125, "110100000002000D0305020015E2", "2025-01-07T14:55:20Z", "MyTestVaqao+"],
+        "expectedOutput": "[{\"id\":\"urn:ngsi-ld:Device:MyTestVaqao+\",\"type\":\"Device\",\"firmwareVersion\":{\"type\":\"Property\",\"value\":\"3.5.2.5602\"}}]"
+    },
+    {
+        "name": "uplink standard report  containing battery charge",
+        "inputArguments": [125, "110A00500006410503040E6804", "2025-01-07T14:55:20Z", "MyTestVaqao+"],
+        "expectedOutput": "[{\"id\":\"urn:ngsi-ld:Device:MyTestVaqao+\",\"type\":\"Device\",\"batteryLevel\":{\"type\":\"Property\",\"value\":3.688,\"unitCode\":\"VLT\",\"datasetId\":\"urn:ngsi-ld:Dataset:Disposable_battery_voltage:Raw\",\"observedAt\":\"2025-01-07T14:55:20.000Z\"}}]"
+    },
+    {
+        "name": "uplink standard report  containing casing angle",
+        "inputArguments": [125, "110A000C0055394036666698", "2025-01-07T14:55:20Z", "MyTestVaqao+"],
+        "expectedOutput": "[{\"id\":\"urn:ngsi-ld:Device:MyTestVaqao+\",\"type\":\"Device\",\"angle\":{\"type\":\"Property\",\"value\":2.8499999046325684,\"unitCode\":\"DD\",\"datasetId\":\"urn:ngsi-ld:Dataset:Raw\",\"observedAt\":\"2025-01-07T14:55:20.000Z\"}}]"
+    },
+    {
+        "name": "uplink pattern batch",
+        "inputArguments": [125, "7013007455ba047bd96e3d0294a8ff044960278300c137008f746765000a6272136a4940bb6d6904ed96a576128bbb65c16e59a480764d9800c080762f54010ce002", "2025-01-07T14:55:20Z", "MyTestVaqao+"],
+        "expectedOutput": "[{\"id\":\"urn:ngsi-ld:Device:MyTestVaqao+\",\"type\":\"Device\",\"occupancy\":{\"type\":\"Property\",\"value\":0,\"datasetId\":\"urn:ngsi-ld:Dataset:Raw\",\"observedAt\":\"2025-01-07T14:24:52.000Z\"},\"temperature\":{\"type\":\"Property\",\"value\":25.5,\"unitCode\":\"CEL\",\"datasetId\":\"urn:ngsi-ld:Dataset:Raw\",\"observedAt\":\"2025-01-07T13:55:36.000Z\"},\"humidity\":{\"type\":\"Property\",\"value\":49,\"unitCode\":\"P1\",\"datasetId\":\"urn:ngsi-ld:Dataset:Raw\",\"observedAt\":\"2025-01-07T14:05:38.000Z\"},\"co2\":{\"type\":\"Property\",\"value\":660,\"unitCode\":\"52\",\"datasetId\":\"urn:ngsi-ld:Dataset:Raw\",\"observedAt\":\"2025-01-07T14:05:08.000Z\"},\"tvoc\":{\"type\":\"Property\",\"value\":60,\"datasetId\":\"urn:ngsi-ld:Dataset:Raw\",\"observedAt\":\"2025-01-07T14:25:20.000Z\"},\"illuminance\":{\"type\":\"Property\",\"value\":10,\"unitCode\":\"LUX\",\"datasetId\":\"urn:ngsi-ld:Dataset:Raw\",\"observedAt\":\"2025-01-07T14:48:20.000Z\"},\"pressure\":{\"type\":\"Property\",\"value\":994,\"unitCode\":\"A97\",\"datasetId\":\"urn:ngsi-ld:Dataset:Raw\",\"observedAt\":\"2025-01-07T14:50:20.000Z\"}},{\"id\":\"urn:ngsi-ld:Device:MyTestVaqao+\",\"type\":\"Device\",\"temperature\":{\"type\":\"Property\",\"value\":25.4,\"unitCode\":\"CEL\",\"datasetId\":\"urn:ngsi-ld:Dataset:Raw\",\"observedAt\":\"2025-01-07T14:05:38.000Z\"},\"humidity\":{\"type\":\"Property\",\"value\":50,\"unitCode\":\"P1\",\"datasetId\":\"urn:ngsi-ld:Dataset:Raw\",\"observedAt\":\"2025-01-07T14:45:38.000Z\"},\"co2\":{\"type\":\"Property\",\"value\":610,\"unitCode\":\"52\",\"datasetId\":\"urn:ngsi-ld:Dataset:Raw\",\"observedAt\":\"2025-01-07T14:15:08.000Z\"},\"tvoc\":{\"type\":\"Property\",\"value\":50,\"datasetId\":\"urn:ngsi-ld:Dataset:Raw\",\"observedAt\":\"2025-01-07T14:40:20.000Z\"}},{\"id\":\"urn:ngsi-ld:Device:MyTestVaqao+\",\"type\":\"Device\",\"co2\":{\"type\":\"Property\",\"value\":630,\"unitCode\":\"52\",\"datasetId\":\"urn:ngsi-ld:Dataset:Raw\",\"observedAt\":\"2025-01-07T14:35:08.000Z\"}},{\"id\":\"urn:ngsi-ld:Device:MyTestVaqao+\",\"type\":\"Device\",\"co2\":{\"type\":\"Property\",\"value\":600,\"unitCode\":\"52\",\"datasetId\":\"urn:ngsi-ld:Dataset:Raw\",\"observedAt\":\"2025-01-07T14:45:08.000Z\"}},{\"id\":\"urn:ngsi-ld:Device:MyTestVaqao+\",\"type\":\"Device\",\"co2\":{\"type\":\"Property\",\"value\":580,\"unitCode\":\"52\",\"datasetId\":\"urn:ngsi-ld:Dataset:Raw\",\"observedAt\":\"2025-01-07T14:55:08.000Z\"}}]"
+    }
+]
+  
