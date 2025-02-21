@@ -1,164 +1,163 @@
 [
-    {
-      "name": "Basic information",
-      "inputArguments": [
+  {
+     "name":"Basic information",
+     "inputArguments":[
         80,
         "ff166710b32620711912ff090200ff0a0101ff0f02",
         "2025-01-07T14:45:08.000Z",
         "TEST"
-      ],
-      "expectedOutput": [
+     ],
+     "expectedOutput":[
         {
-          "id": "urn:ngsi-ld:Device:TEST",
-          "type": "Device",
-          "serialNumber": {
-            "type": "Property",
-            "value": "6710b32620711912",
-            "observedAt": "2025-01-07T14:45:08.000Z"
-          },
-          "hardwareVersion": {
-            "type": "Property",
-            "value": "2.0",
-            "observedAt": "2025-01-07T14:45:08.000Z"
-          },
-          "softwareVersion": {
-            "type": "Property",
-            "value": "1.1",
-            "observedAt": "2025-01-07T14:45:08.000Z"
-          }
+           "id":"urn:ngsi-ld:Device:TEST",
+           "type":"Device",
+           "serialNumber":{
+              "type":"Property",
+              "value":"6710b32620711912",
+              "observedAt":"2025-01-07T14:45:08.000Z"
+           },
+           "hardwareVersion":{
+              "type":"Property",
+              "value":"2.0",
+              "observedAt":"2025-01-07T14:45:08.000Z"
+           },
+           "softwareVersion":{
+              "type":"Property",
+              "value":"1.1",
+              "observedAt":"2025-01-07T14:45:08.000Z"
+           }
         }
-      ]
-    },
-    {
-      "name": "Sensor data",
-      "inputArguments": [
+     ]
+  },
+  {
+     "name":"Sensor data",
+     "inputArguments":[
         80,
         "0367ea0004688a05000106cb01077dcd04087d5e01097351270a7d07000b7d3b000c7d4300",
         "2025-01-07T14:45:08.000Z",
         "TEST"
-      ],
-      "expectedOutput": [
+     ],
+     "expectedOutput":[
         {
-          "id": "urn:ngsi-ld:Device:TEST",
-          "type": "Device",
-          "temperature": {
-            "type": "Property",
-            "value": 23.4,
-            "observedAt": "2025-01-07T14:45:08.000Z",
-            "unitCode": "CEL",
-            "datasetId": "urn:ngsi-ld:Dataset:Raw"
-          },
-          "humidity": {
-            "type": "Property",
-            "value": 69,
-            "observedAt": "2025-01-07T14:45:08.000Z",
-            "unitCode": "P1",
-            "datasetId": "urn:ngsi-ld:Dataset:Raw"
-          },
-          "lightLevel": {
-            "type": "Property",
-            "value": 1,
-            "observedAt": "2025-01-07T14:45:08.000Z",
-            "datasetId": "urn:ngsi-ld:Dataset:Raw"
-          },
-          "co2": {
-            "type": "Property",
-            "value": 1229,
-            "observedAt": "2025-01-07T14:45:08.000Z",
-            "unitCode": "59",
-            "datasetId": "urn:ngsi-ld:Dataset:Raw"
-          },
-          "tvoc": {
-            "type": "Property",
-            "value": 350,
-            "observedAt": "2025-01-07T14:45:08.000Z",
-            "datasetId": "urn:ngsi-ld:Dataset:Raw"
-          },
-          "pressure": {
-            "type": "Property",
-            "value": 1006.5,
-            "observedAt": "2025-01-07T14:45:08.000Z",
-            "unitCode": "P1",
-            "datasetId": "urn:ngsi-ld:Dataset:Raw"
-          },
-          "hcho": {
-            "type": "Property",
-            "value": 0.07,
-            "observedAt": "2025-01-07T14:45:08.000Z",
-            "unitCode": "GP",
-            "datasetId": "urn:ngsi-ld:Dataset:Raw"
-          },
-          "pm25": {
-            "type": "Property",
-            "value": 59,
-            "observedAt": "2025-01-07T14:45:08.000Z",
-            "unitCode": "GQ",
-            "datasetId": "urn:ngsi-ld:Dataset:Raw"
-          },
-          "pm10": {
-            "type": "Property",
-            "value": 67,
-            "observedAt": "2025-01-07T14:45:08.000Z",
-            "unitCode": "GQ",
-            "datasetId": "urn:ngsi-ld:Dataset:Raw"
-          }
+           "id":"urn:ngsi-ld:Device:TEST",
+           "type":"Device",
+           "temperature":{
+              "type":"Property",
+              "value":23.4,
+              "observedAt":"2025-01-07T14:45:08.000Z",
+              "unitCode":"CEL",
+              "datasetId":"urn:ngsi-ld:Dataset:Raw"
+           },
+           "humidity":{
+              "type":"Property",
+              "value":69,
+              "observedAt":"2025-01-07T14:45:08.000Z",
+              "unitCode":"P1",
+              "datasetId":"urn:ngsi-ld:Dataset:Raw"
+           },
+           "lightLevel":{
+              "type":"Property",
+              "value":1,
+              "observedAt":"2025-01-07T14:45:08.000Z",
+              "datasetId":"urn:ngsi-ld:Dataset:Raw"
+           },
+           "co2":{
+              "type":"Property",
+              "value":1229,
+              "observedAt":"2025-01-07T14:45:08.000Z",
+              "unitCode":"59",
+              "datasetId":"urn:ngsi-ld:Dataset:Raw"
+           },
+           "tvoc":{
+              "type":"Property",
+              "value":350,
+              "observedAt":"2025-01-07T14:45:08.000Z",
+              "datasetId":"urn:ngsi-ld:Dataset:Raw"
+           },
+           "pressure":{
+              "type":"Property",
+              "value":1006.5,
+              "observedAt":"2025-01-07T14:45:08.000Z",
+              "unitCode":"P1",
+              "datasetId":"urn:ngsi-ld:Dataset:Raw"
+           },
+           "hcho":{
+              "type":"Property",
+              "value":0.07,
+              "observedAt":"2025-01-07T14:45:08.000Z",
+              "unitCode":"GP",
+              "datasetId":"urn:ngsi-ld:Dataset:Raw"
+           },
+           "pm25":{
+              "type":"Property",
+              "value":59,
+              "observedAt":"2025-01-07T14:45:08.000Z",
+              "unitCode":"GQ",
+              "datasetId":"urn:ngsi-ld:Dataset:Raw"
+           },
+           "pm10":{
+              "type":"Property",
+              "value":67,
+              "observedAt":"2025-01-07T14:45:08.000Z",
+              "unitCode":"GQ",
+              "datasetId":"urn:ngsi-ld:Dataset:Raw"
+           }
         }
-      ]
-    },
-    {
-      "name": "Historical data enquiry",
-      "inputArguments": [
+     ]
+  },
+  {
+     "name":"Historical data enquiry",
+     "inputArguments":[
         80,
         "20ce56991a63ff0073000000f8026400912722002600",
         "2025-01-07T14:45:08.000Z",
         "TEST"
-      ],
-      "expectedOutput": [
+     ],
+     "expectedOutput":[
         {
-          "id": "urn:ngsi-ld:Device:TEST",
-          "type": "Device",
-          "temperature": {
-            "type": "Property",
-            "value": 25.5,
-            "observedAt": "2022-09-09T01:39:34Z",
-            "unitCode": "CEL",
-            "datasetId": "urn:ngsi-ld:Dataset:Raw"
-          },
-          "humidity": {
-            "type": "Property",
-            "value": 57.5,
-            "observedAt": "2022-09-09T01:39:34Z",
-            "unitCode": "P1",
-            "datasetId": "urn:ngsi-ld:Dataset:Raw"
-          },
-          "lightLevel": {
-            "type": "Property",
-            "value": 0,
-            "observedAt": "2022-09-09T01:39:34Z",
-            "datasetId": "urn:ngsi-ld:Dataset:Raw"
-          },
-          "co2": {
-            "type": "Property",
-            "value": 760,
-            "observedAt": "2022-09-09T01:39:34Z",
-            "unitCode": "59",
-            "datasetId": "urn:ngsi-ld:Dataset:Raw"
-          },
-          "tvoc": {
-            "type": "Property",
-            "value": 100,
-            "observedAt": "2022-09-09T01:39:34Z",
-            "datasetId": "urn:ngsi-ld:Dataset:Raw"
-          },
-          "pressure": {
-            "type": "Property",
-            "value": 1012.9,
-            "observedAt": "2022-09-09T01:39:34Z",
-            "unitCode": "P1",
-            "datasetId": "urn:ngsi-ld:Dataset:Raw"
-          }
+           "id":"urn:ngsi-ld:Device:TEST",
+           "type":"Device",
+           "temperature":{
+              "type":"Property",
+              "value":25.5,
+              "observedAt":"2022-09-09T01:39:34Z",
+              "unitCode":"CEL",
+              "datasetId":"urn:ngsi-ld:Dataset:Raw"
+           },
+           "humidity":{
+              "type":"Property",
+              "value":57.5,
+              "observedAt":"2022-09-09T01:39:34Z",
+              "unitCode":"P1",
+              "datasetId":"urn:ngsi-ld:Dataset:Raw"
+           },
+           "lightLevel":{
+              "type":"Property",
+              "value":0,
+              "observedAt":"2022-09-09T01:39:34Z",
+              "datasetId":"urn:ngsi-ld:Dataset:Raw"
+           },
+           "co2":{
+              "type":"Property",
+              "value":760,
+              "observedAt":"2022-09-09T01:39:34Z",
+              "unitCode":"59",
+              "datasetId":"urn:ngsi-ld:Dataset:Raw"
+           },
+           "tvoc":{
+              "type":"Property",
+              "value":100,
+              "observedAt":"2022-09-09T01:39:34Z",
+              "datasetId":"urn:ngsi-ld:Dataset:Raw"
+           },
+           "pressure":{
+              "type":"Property",
+              "value":1012.9,
+              "observedAt":"2022-09-09T01:39:34Z",
+              "unitCode":"P1",
+              "datasetId":"urn:ngsi-ld:Dataset:Raw"
+           }
         }
-      ]
-    }
-  ]
-  
+     ]
+  }
+]
