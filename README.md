@@ -324,6 +324,8 @@ We use [jest](https://jestjs.io/docs/getting-started) as a test environment. If 
 npm install --save-dev jest
 ```
 
+> **_IMPORTANT:_**   a node version > 20 is recommended to run tests smoothly
+
 Then, follow these steps to add unit tests for a new device model:
 
 1. **Create a `tests.json` file**:
@@ -335,7 +337,7 @@ Then, follow these steps to add unit tests for a new device model:
           - The LoRaWAN *payload*
           - The reception *time* in ISO format
           - The device *devEui*` identifier
-      - `expectedOutput`: The expected JSON output from the decoder (note: do not forget escaping the quotes with a backslash *\"* )
+      - `expectedOutput`: The expected JSON output from the decoder 
 
     Example:
     ```json
@@ -343,7 +345,18 @@ Then, follow these steps to add unit tests for a new device model:
       {
          "name": "Basic test",
          "inputArguments": [1, "01020304", "2024-09-17T08:19:37Z", "MyTestDevice"],
-         "expectedOutput": "[{\"id\":\"urn:ngsi-ld:Device:MyTestDevice\",\"type\":\"Device\",\"temperature\":{\"type\":\"Property\",\"value\":25,\"observedAt\":\"2024-09-17T08:19:37Z\",\"datasetId\":\"urn:ngsi-ld:Dataset:Raw\"}}]"
+         "expectedOutput": [
+            {
+                "id": "urn:ngsi-ld:Device:MyTestDevice",
+                "type": "Device",
+                "temperature": {
+                    "type": "Property",
+                    "value": 25,
+                    "observedAt": "2024-09-17T08:19:37Z",
+                    "datasetId": "urn:ngsi-ld:Dataset:Raw"
+                }
+            }
+        ]
       }
     ]
     ```
