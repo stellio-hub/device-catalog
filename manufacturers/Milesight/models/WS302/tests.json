@@ -1,0 +1,82 @@
+[
+    {
+      "name": "Basic information",
+      "inputArguments": [
+        80,
+        "ff0bffff0101ff166743c13353300001ff090100ff0a0102ff0f00",
+        "2025-01-07T14:45:08.000Z",
+        "TEST"
+      ],
+      "expectedOutput": [
+        {
+          "id": "urn:ngsi-ld:Device:TEST",
+          "type": "Device",
+          "serialNumber": {
+            "type": "Property",
+            "value": "6743c13353300001",
+            "observedAt": "2025-01-07T14:45:08.000Z"
+          },
+          "hardwareVersion": {
+            "type": "Property",
+            "value": "1.0",
+            "observedAt": "2025-01-07T14:45:08.000Z"
+          },
+          "softwareVersion": {
+            "type": "Property",
+            "value": "1.2",
+            "observedAt": "2025-01-07T14:45:08.000Z"
+          }
+        }
+      ]
+    },
+    {
+        "name": "Sensor data",
+        "inputArguments": [
+          80,
+          "017564055b053f02da016a02",
+          "2025-01-07T14:45:08.000Z",
+          "TEST"
+        ],
+        "expectedOutput": [
+            {
+              "id": "urn:ngsi-ld:Device:TEST",
+              "type": "Device",
+              "batteryLevel": {
+                "type": "Property",
+                "value": 100,
+                "observedAt": "2025-01-07T14:45:08.000Z",
+                "unitCode": "P1"
+              },
+              "freqWeight": {
+                "type": "Property",
+                "value": "A",
+                "observedAt": "2025-01-07T14:45:08.000Z"
+              },
+              "timeWeight": {
+                "type": "Property",
+                "value": "Impulse",
+                "observedAt": "2025-01-07T14:45:08.000Z"
+              },
+              "soundLevel": {
+                "type": "Property",
+                "value": 57.5,
+                "observedAt": "2025-01-07T14:45:08.000Z",
+                "unitCode": "2N"
+              },
+              "soundLevelEq": {
+                "type": "Property",
+                "value": 47.4,
+                "observedAt": "2025-01-07T14:45:08.000Z",
+                "unitCode": "2N"
+              },
+              "soundLevelMax": {
+                "type": "Property",
+                "value": 61.8,
+                "observedAt": "2025-01-07T14:45:08.000Z",
+                "unitCode": "2N"
+              }
+            }
+        ]
+    }
+]
+  
