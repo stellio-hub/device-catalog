@@ -5,11 +5,11 @@
           80,
           "ff0101ff166148b13783621055ff090100ff0a0103ff24010aff30010aff250080ff2601",
           "2025-01-07T14:45:08.000Z",
-          "TEST"
+          "3E084F17BD50BFFB"
        ],
        "expectedOutput":[
           {
-             "id":"urn:ngsi-ld:Device:TEST",
+             "id":"urn:ngsi-ld:Device:3E084F17BD50BFFB",
              "type":"Device",
              "serialNumber":{
                 "type":"Property",
@@ -56,11 +56,11 @@
           80,
           "08700105812907c912000374f508068305000000048001000000",
           "2025-01-07T14:45:08.000Z",
-          "TEST"
+          "3E084F17BD50BFFB"
        ],
        "expectedOutput":[
           {
-             "id":"urn:ngsi-ld:Device:TEST",
+             "id":"urn:ngsi-ld:Device:3E084F17BD50BFFB",
              "type":"Device",
              "socketStatus":{
                 "type":"Property",

@@ -5,11 +5,11 @@
           80,
           "ff0101ff086600b0940976ff090100ff1f1f07004b",
           "2025-01-07T14:45:08.000Z",
-          "TEST"
+          "3E084F17BD50BFFB"
        ],
        "expectedOutput":[
           {
-             "id":"urn:ngsi-ld:Device:TEST",
+             "id":"urn:ngsi-ld:Device:3E084F17BD50BFFB",
              "type":"Device",
              "serialNumber":{
                 "type":"Property",
@@ -35,11 +35,11 @@
           80,
           "04c9030800a106cd05",
           "2025-01-07T14:45:08.000Z",
-          "TEST"
+          "3E084F17BD50BFFB"
        ],
        "expectedOutput":[
           {
-             "id":"urn:ngsi-ld:Device:TEST",
+             "id":"urn:ngsi-ld:Device:3E084F17BD50BFFB",
              "type":"Device",
              "totalPeopleCount":{
                 "type":"Property",
@@ -115,11 +115,11 @@
           80,
           "07d5000100000000000306cd05",
           "2025-01-07T14:45:08.000Z",
-          "TEST"
+          "3E084F17BD50BFFB"
        ],
        "expectedOutput":[
           {
-             "id":"urn:ngsi-ld:Device:TEST",
+             "id":"urn:ngsi-ld:Device:3E084F17BD50BFFB",
              "type":"Device",
              "peopleCount":[
                 {
@@ -185,11 +185,11 @@
           80,
           "05cc02000100",
           "2025-01-07T14:45:08.000Z",
-          "TEST"
+          "3E084F17BD50BFFB"
        ],
        "expectedOutput":[
           {
-             "id":"urn:ngsi-ld:Device:TEST",
+             "id":"urn:ngsi-ld:Device:3E084F17BD50BFFB",
              "type":"Device",
              "peopleIn":{
                 "type":"Property",
