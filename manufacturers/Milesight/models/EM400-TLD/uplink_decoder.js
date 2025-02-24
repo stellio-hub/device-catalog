@@ -20,10 +20,6 @@ function main() {
     var payload = process.argv[3];
     var time = process.argv[4];
     var entity_id = "urn:ngsi-ld:Device:" + process.argv[5];
-    // payload = "ff0bffff0101ff166329c42503920003ff090100ff0a0101ff0f00" // Device information: report once whenever join the network
-    // payload = "0175640367f80004820101050000";  // Periodic uplink: report according to reporting interval
-    // payload = "84823307018367220101" // Distance Threshold: report when distance reaches the threshold or returns back to normal value
-                                        // + Temperature Threshold: report when the abrupt change of temperature is greater than 5°C
     var decoded = codec.decode(Buffer.from(payload, 'hex'));
     var ngsild_payload = ngsild.ngsildWrapper(decoded, time, entity_id, parametersMapping);
     process.stdout.write(JSON.stringify(ngsild_payload, null, 2));

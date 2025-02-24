@@ -35,17 +35,22 @@
                 "type":"Property",
                 "value":10,
                 "observedAt":"2025-01-07T14:45:08.000Z",
-                "unitCode":"AMP"
+                "unitCode":"AMP",
+                "datasetId":"urn:ngsi-ld:Dataset:Raw"
              },
              "overcurrentProtection":{
                 "type":"Property",
                 "value":1,
-                "observedAt":"2025-01-07T14:45:08.000Z"
+                "observedAt":"2025-01-07T14:45:08.000Z",
+                "unitCode": "AMP",
+                "datasetId":"urn:ngsi-ld:Dataset:Raw"
              },
              "overcurrentThreshold":{
                 "type":"Property",
                 "value":10,
-                "observedAt":"2025-01-07T14:45:08.000Z"
+                "observedAt":"2025-01-07T14:45:08.000Z",
+                "unitCode": "AMP",
+                "datasetId":"urn:ngsi-ld:Dataset:Raw"
              }
           }
        ]
@@ -71,31 +76,36 @@
                 "type":"Property",
                 "value":41,
                 "observedAt":"2025-01-07T14:45:08.000Z",
-                "unitCode":"P1"
+                "unitCode":"P1",
+                "datasetId":"urn:ngsi-ld:Dataset:Raw"
              },
              "current":{
                 "type":"Property",
                 "value":18,
                 "observedAt":"2025-01-07T14:45:08.000Z",
-                "unitCode":"AMP"
+                "unitCode":"4K",
+                "datasetId":"urn:ngsi-ld:Dataset:Raw"
              },
              "voltage":{
                 "type":"Property",
                 "value":229.3,
                 "observedAt":"2025-01-07T14:45:08.000Z",
-                "unitCode":"VLT"
+                "unitCode":"VLT",
+                "datasetId":"urn:ngsi-ld:Dataset:Raw"
              },
              "powerConsumption":{
                 "type":"Property",
                 "value":5,
                 "observedAt":"2025-01-07T14:45:08.000Z",
-                "unitCode":"WHR"
+                "unitCode":"WHR",
+                "datasetId":"urn:ngsi-ld:Dataset:Raw"
              },
              "activePower":{
                 "type":"Property",
                 "value":1,
                 "observedAt":"2025-01-07T14:45:08.000Z",
-                "unitCode":"WTT"
+                "unitCode":"WTT",
+                "datasetId":"urn:ngsi-ld:Dataset:Raw"
              }
           }
        ]

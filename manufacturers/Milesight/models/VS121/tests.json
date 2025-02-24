@@ -44,12 +44,14 @@
              "totalPeopleCount":{
                 "type":"Property",
                 "value":3,
-                "observedAt":"2025-01-07T14:45:08.000Z"
+                "observedAt":"2025-01-07T14:45:08.000Z",
+                "datasetId":"urn:ngsi-ld:Dataset:Raw"
              },
              "totalRegionCount":{
                 "type":"Property",
                 "value":8,
-                "observedAt":"2025-01-07T14:45:08.000Z"
+                "observedAt":"2025-01-07T14:45:08.000Z",
+                "datasetId":"urn:ngsi-ld:Dataset:Raw"
              },
              "regionOccupancy":[
                 {
@@ -104,7 +106,8 @@
              "maxPeopleCount":{
                 "type":"Property",
                 "value":5,
-                "observedAt":"2025-01-07T14:45:08.000Z"
+                "observedAt":"2025-01-07T14:45:08.000Z",
+                "datasetId":"urn:ngsi-ld:Dataset:Raw"
              }
           }
        ]
@@ -174,7 +177,8 @@
              "maxPeopleCount":{
                 "type":"Property",
                 "value":5,
-                "observedAt":"2025-01-07T14:45:08.000Z"
+                "observedAt":"2025-01-07T14:45:08.000Z",
+                "datasetId":"urn:ngsi-ld:Dataset:Raw"
              }
           }
        ]
@@ -194,12 +198,14 @@
              "peopleIn":{
                 "type":"Property",
                 "value":2,
-                "observedAt":"2025-01-07T14:45:08.000Z"
+                "observedAt":"2025-01-07T14:45:08.000Z",
+                "datasetId":"urn:ngsi-ld:Dataset:Raw"
              },
              "peopleOut":{
                 "type":"Property",
                 "value":1,
-                "observedAt":"2025-01-07T14:45:08.000Z"
+                "observedAt":"2025-01-07T14:45:08.000Z",
+                "datasetId":"urn:ngsi-ld:Dataset:Raw"
              }
           }
        ]

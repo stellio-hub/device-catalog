@@ -5,12 +5,12 @@ let parametersMapping =  {
     sn: {label:"serialNumber", unitCode: "", datasetId: null},
     hardware_version: {label:"hardwareVersion", unitCode: "", datasetId: null},
     software_version: {label:"softwareVersion", unitCode: "", datasetId: null},
-    battery: {label:"batteryLevel", unitCode: "P1", datasetId: null},
-    freq_weight: {label:"freqWeight", unitCode: "", datasetId: null},
-    time_weight: {label:"timeWeight", unitCode: "", datasetId: null},
-    sound_level: {label:"soundLevel", unitCode: "2N", datasetId: null},
-    sound_level_eq: {label:"soundLevelEq", unitCode: "2N", datasetId: null},
-    sound_level_max: {label:"soundLevelMax", unitCode: "2N", datasetId: null}
+    battery: {label:"batteryLevel", unitCode: "P1", datasetId: 'Raw'},
+    freq_weight: {label:"freqWeight", unitCode: "", datasetId: 'Raw'},
+    time_weight: {label:"timeWeight", unitCode: "", datasetId: 'Raw'},
+    sound_level: {label:"soundLevel", unitCode: "2N", datasetId: 'Raw'}, // "2N" is the unit code for dB
+    sound_level_eq: {label:"soundLevelEq", unitCode: "2N", datasetId: 'Raw'},
+    sound_level_max: {label:"soundLevelMax", unitCode: "2N", datasetId: 'Raw'}
 }
 
 function main() {

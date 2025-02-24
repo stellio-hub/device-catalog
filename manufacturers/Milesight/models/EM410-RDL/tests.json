@@ -1,0 +1,172 @@
+[
+    {
+      "name": "Basic information",
+      "inputArguments": [
+        80,
+        "ff0bffff0101fffeffff166862e21141780013ff090100ff0a0101ff0f00ffff0100",
+        "2025-01-07T14:45:08.000Z",
+        "3E084F17BD50BFFB"
+      ],
+      "expectedOutput": [
+        {
+          "id": "urn:ngsi-ld:Device:3E084F17BD50BFFB",
+          "type": "Device",
+          "alarm": {
+            "type": "Property",
+            "value": 1,
+            "observedAt": "2025-01-07T14:45:08.000Z",
+            "datasetId": "urn:ngsi-ld:Dataset:Reset:Raw"
+          },
+          "serialNumber": {
+            "type": "Property",
+            "value": "6862e21141780013",
+            "observedAt": "2025-01-07T14:45:08.000Z"
+          },
+          "hardwareVersion": {
+            "type": "Property",
+            "value": "v1.0",
+            "observedAt": "2025-01-07T14:45:08.000Z"
+          },
+          "firmwareVersion": {
+            "type": "Property",
+            "value": "v1.1",
+            "observedAt": "2025-01-07T14:45:08.000Z"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Sensor data",
+      "inputArguments": [
+        80,
+        "0175620482aa0c06c70303050000",
+        "2025-01-07T14:45:08.000Z",
+        "3E084F17BD50BFFB"
+      ],
+      "expectedOutput": [
+        {
+          "id": "urn:ngsi-ld:Device:3E084F17BD50BFFB",
+          "type": "Device",
+          "batteryLevel": {
+            "type": "Property",
+            "value": 98,
+            "observedAt": "2025-01-07T14:45:08.000Z",
+            "unitCode": "P1",
+            "datasetId": "urn:ngsi-ld:Dataset:Raw"
+          },
+          "distance": {
+            "type": "Property",
+            "value": 3242,
+            "observedAt": "2025-01-07T14:45:08.000Z",
+            "unitCode": "MMT",
+            "datasetId": "urn:ngsi-ld:Dataset:Raw"
+          },
+          "signalStrength": {
+            "type": "Property",
+            "value": 7.71,
+            "observedAt": "2025-01-07T14:45:08.000Z",
+            "unitCode": "DBM",
+            "datasetId": "urn:ngsi-ld:Dataset:Raw"
+          },
+          "position": {
+            "type": "Property",
+            "value": "Normal",
+            "observedAt": "2025-01-07T14:45:08.000Z"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Distance threshold",
+      "inputArguments": [
+        80,
+        "8482c827019482c827850c02",
+        "2025-01-07T14:45:08.000Z",
+        "3E084F17BD50BFFB"
+      ],
+      "expectedOutput": [
+        {
+          "id": "urn:ngsi-ld:Device:3E084F17BD50BFFB",
+          "type": "Device",
+          "distance": {
+            "type": "Property",
+            "value": 10184,
+            "observedAt": "2025-01-07T14:45:08.000Z",
+            "unitCode": "MMT",
+            "datasetId": "urn:ngsi-ld:Dataset:Raw"
+          },
+          "alarm": [
+            {
+              "type": "Property",
+              "value": 1,
+              "observedAt": "2025-01-07T14:45:08.000Z",
+              "datasetId": "urn:ngsi-ld:Dataset:Threshold:Raw"
+            },
+            {
+              "type": "Property",
+              "value": 1,
+              "observedAt": "2025-01-07T14:45:08.000Z",
+              "datasetId": "urn:ngsi-ld:Dataset:Mutation:Raw"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Blind zone",
+      "inputArguments": [
+        80,
+        "b482ac0001",
+        "2025-01-07T14:45:08.000Z",
+        "3E084F17BD50BFFB"
+      ],
+      "expectedOutput": [
+        {
+          "id": "urn:ngsi-ld:Device:3E084F17BD50BFFB",
+          "type": "Device",
+          "distance": {
+            "type": "Property",
+            "value": 172,
+            "observedAt": "2025-01-07T14:45:08.000Z",
+            "unitCode": "MMT",
+            "datasetId": "urn:ngsi-ld:Dataset:Raw"
+          },
+          "alarm": {
+            "type": "Property",
+            "value": 1,
+            "observedAt": "2025-01-07T14:45:08.000Z",
+            "datasetId": "urn:ngsi-ld:Dataset:Blind:Raw"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Historical data",
+      "inputArguments": [
+        80,
+        "20ceb443e166ac0cbe00000020",
+        "2025-01-07T14:45:08.000Z",
+        "3E084F17BD50BFFB"
+      ],
+      "expectedOutput": [
+        {
+          "id": "urn:ngsi-ld:Device:3E084F17BD50BFFB",
+          "type": "Device",
+          "distance": {
+            "type": "Property",
+            "value": 3244,
+            "observedAt": "2024-09-11T07:16:04Z",
+            "unitCode": "MMT",
+            "datasetId": "urn:ngsi-ld:Dataset:Raw"
+          },
+          "temperature": {
+            "type": "Property",
+            "value": 19,
+            "observedAt": "2024-09-11T07:16:04Z",
+            "unitCode": "CEL",
+            "datasetId": "urn:ngsi-ld:Dataset:Raw"
+          }
+        }
+      ]
+    }
+  ]

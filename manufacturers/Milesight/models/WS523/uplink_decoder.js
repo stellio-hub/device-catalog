@@ -6,15 +6,15 @@ let parametersMapping =  {
     hardware_version: {label:"hardwareVersion", unitCode: "", datasetId: null},
     software_version: {label:"softwareVersion", unitCode: "", datasetId: null},
     alarm: {label:"alarmStatus", unitCode: "", datasetId: null},
-    alarm_threshold: {label:"alarmThreshold", unitCode: "AMP", datasetId: null},
-    overcurrent_protection: {label:"overcurrentProtection", unitCode: "", datasetId: null},
-    current_threshold: {label:"overcurrentThreshold", unitCode: "", datasetId: null},
+    alarm_threshold: {label:"alarmThreshold", unitCode: "AMP", datasetId: 'Raw'},
+    overcurrent_protection: {label:"overcurrentProtection", unitCode: "AMP", datasetId: 'Raw'},
+    current_threshold: {label:"overcurrentThreshold", unitCode: "AMP", datasetId: 'Raw'},
     state: {label:"socketStatus", unitCode: "", datasetId: null},
-    factor: {label:"powerFactor", unitCode: "P1", datasetId: null},
-    current: {label:"current", unitCode: "AMP", datasetId: null},
-    voltage: {label:"voltage", unitCode: "VLT", datasetId: null},
-    power_sum: {label:"powerConsumption", unitCode: "WHR", datasetId: null},
-    power: {label:"activePower", unitCode: "WTT", datasetId: null}
+    factor: {label:"powerFactor", unitCode: "P1", datasetId: 'Raw'},
+    current: {label:"current", unitCode: "4K", datasetId: 'Raw'}, // "4K" is the unit code for mA
+    voltage: {label:"voltage", unitCode: "VLT", datasetId: 'Raw'},
+    power_sum: {label:"powerConsumption", unitCode: "WHR", datasetId: 'Raw'},
+    power: {label:"activePower", unitCode: "WTT", datasetId: 'Raw'}
 }
 
 function main() {

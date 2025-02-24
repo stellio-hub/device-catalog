@@ -45,35 +45,41 @@
               "type":"Property",
               "value":100,
               "observedAt":"2025-01-07T14:45:08.000Z",
-              "unitCode":"P1"
+              "unitCode":"P1",
+              "datasetId":"urn:ngsi-ld:Dataset:Raw"
            },
            "freqWeight":{
               "type":"Property",
               "value":"A",
-              "observedAt":"2025-01-07T14:45:08.000Z"
+              "observedAt":"2025-01-07T14:45:08.000Z",
+              "datasetId":"urn:ngsi-ld:Dataset:Raw"
            },
            "timeWeight":{
               "type":"Property",
               "value":"Impulse",
-              "observedAt":"2025-01-07T14:45:08.000Z"
+              "observedAt":"2025-01-07T14:45:08.000Z",
+              "datasetId":"urn:ngsi-ld:Dataset:Raw"
            },
            "soundLevel":{
               "type":"Property",
               "value":57.5,
               "observedAt":"2025-01-07T14:45:08.000Z",
-              "unitCode":"2N"
+              "unitCode":"2N",
+              "datasetId":"urn:ngsi-ld:Dataset:Raw"
            },
            "soundLevelEq":{
               "type":"Property",
               "value":47.4,
               "observedAt":"2025-01-07T14:45:08.000Z",
-              "unitCode":"2N"
+              "unitCode":"2N",
+              "datasetId":"urn:ngsi-ld:Dataset:Raw"
            },
            "soundLevelMax":{
               "type":"Property",
               "value":61.8,
               "observedAt":"2025-01-07T14:45:08.000Z",
-              "unitCode":"2N"
+              "unitCode":"2N",
+              "datasetId":"urn:ngsi-ld:Dataset:Raw"
            }
         }
      ]

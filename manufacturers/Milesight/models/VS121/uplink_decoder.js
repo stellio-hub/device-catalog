@@ -5,8 +5,8 @@ let parametersMapping =  {
     sn: {label:"serialNumber", unitCode: "", datasetId: null},
     hardware_version: {label:"hardwareVersion", unitCode: "", datasetId: null},
     software_version: {label:"softwareVersion", unitCode: "", datasetId: null},
-    people_count_all: {label:"totalPeopleCount", unitCode: "", datasetId: null},
-    region_count: {label:"totalRegionCount", unitCode: "", datasetId: null},
+    people_count_all: {label:"totalPeopleCount", unitCode: "", datasetId: 'Raw'},
+    region_count: {label:"totalRegionCount", unitCode: "", datasetId: 'Raw'},
     // 1 = region occupied, 0  = region vacant
     region_1: {label:"regionOccupancy", unitCode: "", datasetId: 'Region1:Raw'},
     region_2: {label:"regionOccupancy", unitCode: "", datasetId: 'Region2:Raw'},
@@ -24,7 +24,7 @@ let parametersMapping =  {
     region_14: {label:"regionOccupancy", unitCode: "", datasetId: 'Region14:Raw'},
     region_15: {label:"regionOccupancy", unitCode: "", datasetId: 'Region15:Raw'},
     region_16: {label:"regionOccupancy", unitCode: "", datasetId: 'Region16:Raw'},
-    people_count_max: {label:"maxPeopleCount", unitCode: "", datasetId: null},
+    people_count_max: {label:"maxPeopleCount", unitCode: "", datasetId: 'Raw'},
     region_1_count: {label:"peopleCount", unitCode: "", datasetId: 'Region1:Raw'},
     region_2_count: {label:"peopleCount", unitCode: "", datasetId: 'Region2:Raw'},
     region_3_count: {label:"peopleCount", unitCode: "", datasetId: 'Region3:Raw'},
@@ -41,8 +41,8 @@ let parametersMapping =  {
     region_14_count: {label:"peopleCount", unitCode: "", datasetId: 'Region14:Raw'},
     region_15_count: {label:"peopleCount", unitCode: "", datasetId: 'Region15:Raw'},
     region_16_count: {label:"peopleCount", unitCode: "", datasetId: 'Region16:Raw'},
-    people_in: {label:"peopleIn", unitCode: "", datasetId: null},
-    people_out: {label:"peopleOut", unitCode: "", datasetId: null},
+    people_in: {label:"peopleIn", unitCode: "", datasetId: 'Raw'},
+    people_out: {label:"peopleOut", unitCode: "", datasetId: 'Raw'},
 }
 
 function main() {
