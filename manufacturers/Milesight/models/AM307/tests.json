@@ -5,11 +5,11 @@
         80,
         "ff166710b32620711912ff090200ff0a0101ff0f02",
         "2025-01-07T14:45:08.000Z",
-        "TEST"
+        "3E084F17BD50BFFB"
      ],
      "expectedOutput":[
         {
-           "id":"urn:ngsi-ld:Device:TEST",
+           "id":"urn:ngsi-ld:Device:3E084F17BD50BFFB",
            "type":"Device",
            "serialNumber":{
               "type":"Property",
@@ -35,11 +35,11 @@
         80,
         "0367ea0004688a05000106cb01077dcd04087d5e01097351270a7d07000b7d3b000c7d4300",
         "2025-01-07T14:45:08.000Z",
-        "TEST"
+        "3E084F17BD50BFFB"
      ],
      "expectedOutput":[
         {
-           "id":"urn:ngsi-ld:Device:TEST",
+           "id":"urn:ngsi-ld:Device:3E084F17BD50BFFB",
            "type":"Device",
            "temperature":{
               "type":"Property",
@@ -111,11 +111,11 @@
         80,
         "20ce56991a63ff0073000000f8026400912722002600",
         "2025-01-07T14:45:08.000Z",
-        "TEST"
+        "3E084F17BD50BFFB"
      ],
      "expectedOutput":[
         {
-           "id":"urn:ngsi-ld:Device:TEST",
+           "id":"urn:ngsi-ld:Device:3E084F17BD50BFFB",
            "type":"Device",
            "temperature":{
               "type":"Property",
