@@ -1,0 +1,58 @@
+[
+    {
+        "name": "Standard measurements update test",
+        "inputArguments": [
+            5,
+            "0100e0023404012f05050602c9070e36",
+            "2025-02-24T10:04:29Z",
+            "0A1B2C3D4E5F6G7H"
+        ],
+        "expectedOutput": [
+            {
+                "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
+                "type": "Device",
+                "temperature": {
+                    "type": "Property",
+                    "value": 22.4,
+                    "observedAt": "2025-02-24T10:04:29Z",
+                    "unitCode": "CEL",
+                    "datasetId": "urn:ngsi-ld:Dataset:Raw"
+                },
+                "humidity": {
+                    "type": "Property",
+                    "value": 52,
+                    "observedAt": "2025-02-24T10:04:29Z",
+                    "unitCode": "P1",
+                    "datasetId": "urn:ngsi-ld:Dataset:Raw"
+                },
+                "illuminance": {
+                    "type": "Property",
+                    "value": 303,
+                    "observedAt": "2025-02-24T10:04:29Z",
+                    "unitCode": "LUX",
+                    "datasetId": "urn:ngsi-ld:Dataset:Raw"
+                },
+                "motion": {
+                    "type": "Property",
+                    "value": 5,
+                    "observedAt": "2025-02-24T10:04:29Z",
+                    "datasetId": "urn:ngsi-ld:Dataset:Raw"
+                },
+                "co2": {
+                    "type": "Property",
+                    "value": 713,
+                    "observedAt": "2025-02-24T10:04:29Z",
+                    "unitCode": "59",
+                    "datasetId": "urn:ngsi-ld:Dataset:Raw"
+                },
+                "batteryVoltage": {
+                    "type": "Property",
+                    "value": 3638,
+                    "observedAt": "2025-02-24T10:04:29Z",
+                    "unitCode": "VLT",
+                    "datasetId": "urn:ngsi-ld:Dataset:Raw"
+                }
+            }
+        ]
+    }
+]
