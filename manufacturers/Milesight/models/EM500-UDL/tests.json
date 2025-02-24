@@ -1,0 +1,31 @@
+[
+    {
+      "name": "Sensor data",
+      "inputArguments": [
+        80,
+        "01756403821E00",
+        "2025-01-07T14:45:08.000Z",
+        "3E084F17BD50BFFB"
+      ],
+      "expectedOutput": [
+        {
+          "id": "urn:ngsi-ld:Device:3E084F17BD50BFFB",
+          "type": "Device",
+          "batteryLevel": {
+            "type": "Property",
+            "value": 100,
+            "observedAt": "2025-01-07T14:45:08.000Z",
+            "unitCode": "P1",
+            "datasetId": "urn:ngsi-ld:Dataset:Raw"
+          },
+          "distance": {
+            "type": "Property",
+            "value": 30,
+            "observedAt": "2025-01-07T14:45:08.000Z",
+            "unitCode": "MMT",
+            "datasetId": "urn:ngsi-ld:Dataset:Raw"
+          }
+        }
+      ]
+    }
+  ]
