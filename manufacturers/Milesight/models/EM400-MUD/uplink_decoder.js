@@ -1,7 +1,7 @@
-let codec = require("../decode.js")
-let ngsild = require("../ngsi-ld.js")
+const codec = require("../decode.js")
+const ngsild = require("../ngsi-ld.js")
 
-let parametersMapping =  {
+const parametersMapping =  {
     sn: {label:"serialNumber", unitCode: "", datasetId: null},
     hardware_version: {label:"hardwareVersion", unitCode: "", datasetId: null},
     firmware_version: {label:"firmwareVersion", unitCode: "", datasetId: null},
@@ -17,11 +17,11 @@ let parametersMapping =  {
 }
 
 function main() {
-    var payload = process.argv[3];
-    var time = process.argv[4];
-    var entity_id = "urn:ngsi-ld:Device:" + process.argv[5];
-    var decoded = codec.decode(Buffer.from(payload, 'hex'));
-    var ngsild_payload = ngsild.ngsildWrapper(decoded, time, entity_id, parametersMapping);
+    const payload = process.argv[3];
+    const time = process.argv[4];
+    const entity_id = "urn:ngsi-ld:Device:" + process.argv[5];
+    const decoded = codec.decode(Buffer.from(payload, 'hex'));
+    const ngsild_payload = ngsild.ngsildWrapper(decoded, time, entity_id, parametersMapping);
     process.stdout.write(JSON.stringify(ngsild_payload, null, 2));
 }
 
