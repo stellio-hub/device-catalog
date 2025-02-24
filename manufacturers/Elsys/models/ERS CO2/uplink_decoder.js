@@ -1,14 +1,14 @@
-let generic = require("../../elsys_generic.js");
-let ngsild = require("../../ngsild_wrapper.js");
+const generic = require("../../elsys_generic.js");
+const ngsild = require("../../ngsild_wrapper.js");
 
 function main() {
-    let payload = process.argv[3];
-    let time = process.argv[4];
-    let entity_id = "urn:ngsi-ld:Device:" + process.argv[5];
+    const payload = process.argv[3];
+    const time = process.argv[4];
+    const entity_id = "urn:ngsi-ld:Device:" + process.argv[5];
 
-    let bytes = generic.hexToBytes(payload);
-    let decoded = generic.DecodeElsysPayload(bytes);
-    let ngsild_payload = ngsild.ngsildWrapper(decoded, time, entity_id);
+    const bytes = generic.hexToBytes(payload);
+    const decoded = generic.DecodeElsysPayload(bytes);
+    const ngsild_payload = ngsild.ngsildWrapper(decoded, time, entity_id);
 
     process.stdout.write(JSON.stringify(ngsild_payload, null, 4));
 }
