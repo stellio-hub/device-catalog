@@ -344,10 +344,10 @@ Then, follow these steps to add unit tests for a new device model:
     [
       {
          "name": "Basic test",
-         "inputArguments": [1, "01020304", "2024-09-17T08:19:37Z", "MyTestDevice"],
+         "inputArguments": [1, "01020304", "2024-09-17T08:19:37Z", "0A1B2C3D4E5F6G7H"],
          "expectedOutput": [
             {
-                "id": "urn:ngsi-ld:Device:MyTestDevice",
+                "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
                 "type": "Device",
                 "temperature": {
                     "type": "Property",
@@ -380,8 +380,19 @@ Example of a `tests.json` file with the "only" flag:
 [
     {
         "name": "Basic test",
-        "inputArguments": [1, "01020304", "2024-09-17T08:19:37Z", "MyTestDevice"],
-        "expectedOutput": "[{\"id\":\"urn:ngsi-ld:Device:MyTestDevice\",\"type\":\"Device\",\"temperature\":{\"type\":\"Property\",\"value\":25,\"observedAt\":\"2024-09-17T08:19:37Z\",\"datasetId\":\"urn:ngsi-ld:Dataset:Raw\"}}]",
+        "inputArguments": [1, "01020304", "2024-09-17T08:19:37Z", "0A1B2C3D4E5F6G7H"],
+        "expectedOutput":  [
+            {
+                "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
+                "type": "Device",
+                "temperature": {
+                    "type": "Property",
+                    "value": 25,
+                    "observedAt": "2024-09-17T08:19:37Z",
+                    "datasetId": "urn:ngsi-ld:Dataset:Raw"
+                }
+            }
+        ],
         "only": true
     }
 ]
