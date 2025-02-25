@@ -45,7 +45,7 @@ function ngsildWrapper(input, time, entity_id) {
     }
     for (const [key, value] of Object.entries(input)) {
         if (value != null) {
-            instance = ngsildInstance(value, time, PARAMETERS_MAPPING[key].unitCode, PARAMETERS_MAPPING[key].datasetId);
+            const instance = ngsildInstance(value, time, PARAMETERS_MAPPING[key].unitCode, PARAMETERS_MAPPING[key].datasetId);
             addToPayload(PARAMETERS_MAPPING[key].label, instance);
         }
     }
