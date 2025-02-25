@@ -1,5 +1,5 @@
 const codec = require("./decode.js")
-const ngsild = require("../ngsi-ld.js")
+const ngsild = require("../../ngsi-ld.js")
 
 const parametersMapping =  {
     sn: {label:"serialNumber", unitCode: "", datasetId: null},
