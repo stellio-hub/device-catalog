@@ -4,16 +4,13 @@ const ngsild = require("../../ngsi-ld.js")
 const parametersMapping =  {
     sn: {label:"serialNumber", unitCode: "", datasetId: null},
     hardware_version: {label:"hardwareVersion", unitCode: "", datasetId: null},
-    firmware_version: {label:"firmwareVersion", unitCode: "", datasetId: null},
+    software_version: {label:"softwareVersion", unitCode: "", datasetId: null},
     battery: {label:"batteryLevel", unitCode: "P1", datasetId: 'Raw'},
-    distance: {label:"distance", unitCode: "MMT", datasetId: 'Raw'},
-    radar_signal_strength: {label:"signalStrength", unitCode: "DBM", datasetId: 'Raw'},
-    // "Normal" (horizontal offset angle < 20°) / "Tilt" (horizontal offset angle ≥ 20°)
-    position: {label:"position", unitCode: "", datasetId: null},
-    distance_blind: {label:"alarm", unitCode: "", datasetId: 'Blind:Raw'},
-    distance_threshold: {label:"alarm", unitCode: "", datasetId: 'Threshold:Raw'},
-    temperature: {label:"temperature", unitCode: "CEL", datasetId: 'Raw'},
-    temperature_abnormal: {label:"alarm", unitCode: "", datasetId: 'Temperature:Raw'}
+    freq_weight: {label:"frequencyWeight", unitCode: "", datasetId: 'Raw'},
+    time_weight: {label:"timeWeight", unitCode: "", datasetId: 'Raw'},
+    sound_level: {label:"soundLevel", unitCode: "2N", datasetId: 'Raw'}, // "2N" is the unit code for dB
+    sound_level_eq: {label:"soundLevel", unitCode: "2N", datasetId: 'Eq:Raw'},
+    sound_level_max: {label:"soundLevel", unitCode: "2N", datasetId: 'Max:Raw'}
 }
 
 function main() {

@@ -1,0 +1,89 @@
+[
+   {
+     "name": "Basic information",
+     "inputArguments": [
+       80,
+       "ff0bffff0101ff166743c13353300001ff090100ff0a0102ff0f00",
+       "2025-01-07T14:45:08.000Z",
+       "3E084F17BD50BFFB"
+     ],
+     "expectedOutput": [
+       {
+         "id": "urn:ngsi-ld:Device:3E084F17BD50BFFB",
+         "type": "Device",
+         "serialNumber": {
+           "type": "Property",
+           "value": "6743c13353300001",
+           "observedAt": "2025-01-07T14:45:08.000Z"
+         },
+         "hardwareVersion": {
+           "type": "Property",
+           "value": "1.0",
+           "observedAt": "2025-01-07T14:45:08.000Z"
+         },
+         "softwareVersion": {
+           "type": "Property",
+           "value": "1.2",
+           "observedAt": "2025-01-07T14:45:08.000Z"
+         }
+       }
+     ]
+   },
+   {
+     "name": "Sensor data",
+     "inputArguments": [
+       80,
+       "017564055b053f02da016a02",
+       "2025-01-07T14:45:08.000Z",
+       "3E084F17BD50BFFB"
+     ],
+     "expectedOutput": [
+       {
+         "id": "urn:ngsi-ld:Device:3E084F17BD50BFFB",
+         "type": "Device",
+         "batteryLevel": {
+           "type": "Property",
+           "value": 100,
+           "observedAt": "2025-01-07T14:45:08.000Z",
+           "unitCode": "P1",
+           "datasetId": "urn:ngsi-ld:Dataset:Raw"
+         },
+         "frequencyWeight": {
+           "type": "Property",
+           "value": "A",
+           "observedAt": "2025-01-07T14:45:08.000Z",
+           "datasetId": "urn:ngsi-ld:Dataset:Raw"
+         },
+         "timeWeight": {
+           "type": "Property",
+           "value": "Impulse",
+           "observedAt": "2025-01-07T14:45:08.000Z",
+           "datasetId": "urn:ngsi-ld:Dataset:Raw"
+         },
+         "soundLevel": [
+           {
+             "type": "Property",
+             "value": 57.5,
+             "observedAt": "2025-01-07T14:45:08.000Z",
+             "unitCode": "2N",
+             "datasetId": "urn:ngsi-ld:Dataset:Raw"
+           },
+           {
+             "type": "Property",
+             "value": 47.4,
+             "observedAt": "2025-01-07T14:45:08.000Z",
+             "unitCode": "2N",
+             "datasetId": "urn:ngsi-ld:Dataset:Eq:Raw"
+           },
+           {
+             "type": "Property",
+             "value": 61.8,
+             "observedAt": "2025-01-07T14:45:08.000Z",
+             "unitCode": "2N",
+             "datasetId": "urn:ngsi-ld:Dataset:Max:Raw"
+           }
+         ]
+       }
+     ]
+   }
+ ]

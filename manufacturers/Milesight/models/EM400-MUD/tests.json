@@ -1,0 +1,116 @@
+[
+    {
+      "name": "Basic information",
+      "inputArguments": [
+        80,
+        "ff0bffff0101fffeffff166862e21141780013ff090100ff0a0101ff0f00ffff0100",
+        "2025-01-07T14:45:08.000Z",
+        "3E084F17BD50BFFB"
+      ],
+      "expectedOutput": [
+        {
+          "id": "urn:ngsi-ld:Device:3E084F17BD50BFFB",
+          "type": "Device",
+          "serialNumber": {
+            "type": "Property",
+            "value": "6862e21141780013",
+            "observedAt": "2025-01-07T14:45:08.000Z"
+          },
+          "hardwareVersion": {
+            "type": "Property",
+            "value": "v1.0",
+            "observedAt": "2025-01-07T14:45:08.000Z"
+          },
+          "firmwareVersion": {
+            "type": "Property",
+            "value": "v1.1",
+            "observedAt": "2025-01-07T14:45:08.000Z"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Sensor data",
+      "inputArguments": [
+        80,
+        "0175640367f80004820101050000",
+        "2025-01-07T14:45:08.000Z",
+        "3E084F17BD50BFFB"
+      ],
+      "expectedOutput": [
+        {
+          "id": "urn:ngsi-ld:Device:3E084F17BD50BFFB",
+          "type": "Device",
+          "batteryLevel": {
+            "type": "Property",
+            "value": 100,
+            "observedAt": "2025-01-07T14:45:08.000Z",
+            "unitCode": "P1",
+            "datasetId": "urn:ngsi-ld:Dataset:Raw"
+          },
+          "temperature": {
+            "type": "Property",
+            "value": 24.8,
+            "observedAt": "2025-01-07T14:45:08.000Z",
+            "unitCode": "CEL",
+            "datasetId": "urn:ngsi-ld:Dataset:Raw"
+          },
+          "distance": {
+            "type": "Property",
+            "value": 257,
+            "observedAt": "2025-01-07T14:45:08.000Z",
+            "unitCode": "MMT",
+            "datasetId": "urn:ngsi-ld:Dataset:Raw"
+          },
+          "position": {
+            "type": "Property",
+            "value": "Normal",
+            "observedAt": "2025-01-07T14:45:08.000Z"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Distance threshold",
+      "inputArguments": [
+        80,
+        "84823307018367220101",
+        "2025-01-07T14:45:08.000Z",
+        "3E084F17BD50BFFB"
+      ],
+      "expectedOutput": [
+        {
+          "id": "urn:ngsi-ld:Device:3E084F17BD50BFFB",
+          "type": "Device",
+          "distance": {
+            "type": "Property",
+            "value": 1843,
+            "observedAt": "2025-01-07T14:45:08.000Z",
+            "unitCode": "MMT",
+            "datasetId": "urn:ngsi-ld:Dataset:Raw"
+          },
+          "alarm": [
+            {
+              "type": "Property",
+              "value": 1,
+              "observedAt": "2025-01-07T14:45:08.000Z",
+              "datasetId": "urn:ngsi-ld:Dataset:Threshold:Raw"
+            },
+            {
+              "type": "Property",
+              "value": 1,
+              "observedAt": "2025-01-07T14:45:08.000Z",
+              "datasetId": "urn:ngsi-ld:Dataset:Temperature:Raw"
+            }
+          ],
+          "temperature": {
+            "type": "Property",
+            "value": 29,
+            "observedAt": "2025-01-07T14:45:08.000Z",
+            "unitCode": "CEL",
+            "datasetId": "urn:ngsi-ld:Dataset:Raw"
+          }
+        }
+      ]
+    }
+  ]

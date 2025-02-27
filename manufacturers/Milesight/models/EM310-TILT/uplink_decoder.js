@@ -4,16 +4,11 @@ const ngsild = require("../../ngsi-ld.js")
 const parametersMapping =  {
     sn: {label:"serialNumber", unitCode: "", datasetId: null},
     hardware_version: {label:"hardwareVersion", unitCode: "", datasetId: null},
-    firmware_version: {label:"firmwareVersion", unitCode: "", datasetId: null},
+    software_version: {label:"softwareVersion", unitCode: "", datasetId: null},
     battery: {label:"batteryLevel", unitCode: "P1", datasetId: 'Raw'},
-    distance: {label:"distance", unitCode: "MMT", datasetId: 'Raw'},
-    radar_signal_strength: {label:"signalStrength", unitCode: "DBM", datasetId: 'Raw'},
-    // "Normal" (horizontal offset angle < 20°) / "Tilt" (horizontal offset angle ≥ 20°)
-    position: {label:"position", unitCode: "", datasetId: null},
-    distance_blind: {label:"alarm", unitCode: "", datasetId: 'Blind:Raw'},
-    distance_threshold: {label:"alarm", unitCode: "", datasetId: 'Threshold:Raw'},
-    temperature: {label:"temperature", unitCode: "CEL", datasetId: 'Raw'},
-    temperature_abnormal: {label:"alarm", unitCode: "", datasetId: 'Temperature:Raw'}
+    angle_x: {label:"angleX", unitCode: "DD", datasetId: 'Raw'},
+    angle_y: {label:"angleY", unitCode: "DD", datasetId: 'Raw'},
+    angle_z: {label:"angleZ", unitCode: "DD", datasetId: 'Raw'}
 }
 
 function main() {
