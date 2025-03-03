@@ -9,9 +9,7 @@ class Device:
         self.name = name
         self.description = description
         self.group = group
-        self.properties = {}
-        for prop in properties:
-            self.properties.update(prop)
+        self.properties = properties
 
 
 class DeviceInterface:
@@ -182,7 +180,7 @@ def main():
 
         # Config
         with open(
-            f"../manufacturers/{manufacturer}/models/{model}/config_LoRaWAN.json",
+            f"../../manufacturers/{manufacturer}/models/{model}/config_LoRaWAN.json",
             "r",
         ) as file:
             config = json.load(file)["liveObjects"]

@@ -22,9 +22,7 @@ class Device:
         self.application_id = application_id
         self.device_profile_id = device_profile_id
         self.is_disabled = is_disabled
-        self.tags = {}
-        for tag in tags:
-            self.tags.update(tag)
+        self.tags = tags
 
 
 class DeviceKeys:
@@ -169,9 +167,10 @@ def main():
     payload = json.load(sys.stdin)
     mode = sys.argv[1]
 
-    server = payload["configuration"]["json"]["server"]
-    tenant_id = payload["configuration"]["json"]["tenantId"]
-    api_token = payload["configuration"]["json"]["apiToken"]
+    network_config = payload["network"]["configuration"]["json"]
+    server = network_config["server"]
+    tenant_id = network_config["tenantId"]
+    api_token = network_config["apiToken"]
 
     channel = grpc.insecure_channel(server)
     auth_token = [("authorization", "Bearer %s" % api_token)]
@@ -203,8 +202,9 @@ def main():
                     device_profile_exists = True
                     device_profile_id = item.id
         if not device_profile_exists:
+            print(os.getcwd())
             with open(
-                f"../manufacturers/{manufacturer}/models/{model}/config_LoRaWAN.json",
+                f"../../manufacturers/{manufacturer}/models/{model}/config_LoRaWAN.json",
                 "r",
             ) as file:
                 config = json.load(file)["chirpstack"]
