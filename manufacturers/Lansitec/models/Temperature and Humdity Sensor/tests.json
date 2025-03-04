@@ -1,0 +1,53 @@
+[
+    {
+        "name": "Periodical Temp & Hum test",
+        "inputArguments": [
+            8,
+            "21644b0352122e300323",
+            "2025-03-04T09:12:17Z",
+            "0A1B2C3D4E5F6G7H"
+        ],
+        "expectedOutput": [
+            {
+                "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
+                "type": "Device",
+                "batteryLevel": {
+                    "type": "Property",
+                    "value": 100,
+                    "observedAt": "2025-03-04T09:12:17Z",
+                    "unitCode": "P1",
+                    "datasetId": "urn:ngsi-ld:Dataset:Raw"
+                },
+                "temperature": {
+                    "type": "Property",
+                    "value": 18.46,
+                    "observedAt": "2025-03-04T09:12:17Z",
+                    "unitCode": "CEL",
+                    "datasetId": "urn:ngsi-ld:Dataset:Raw"
+                },
+                "humidity": {
+                    "type": "Property",
+                    "value": 48,
+                    "observedAt": "2025-03-04T09:12:17Z",
+                    "unitCode": "P1",
+                    "datasetId": "urn:ngsi-ld:Dataset:Raw"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Uplink Message test",
+        "inputArguments": [
+            8,
+            "1e20a020005a0323",
+            "2025-03-04T08:57:38Z",
+            "0A1B2C3D4E5F6G7H"
+        ],
+        "expectedOutput": [
+            {
+                "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
+                "type": "Device"
+            }
+        ]
+    }
+]

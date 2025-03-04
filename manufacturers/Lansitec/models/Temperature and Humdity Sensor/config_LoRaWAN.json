@@ -1,0 +1,22 @@
+{
+    "uplinkDecoder": "uplink_decoder.js",
+    "ngsildContext": "https://easy-global-market.github.io/ngsild-api-data-models/airQuality/jsonld-contexts/airQuality-compound.jsonld",
+    "documentation": "https://www.lansitec.com/products/lora-temperature-humidity-sensor/",
+    "devicePicture": "https://wwwlansiteccomd5ffe.zapwp.com/q:l/r:0/wp:1/w:1/u:https://www.lansitec.com/wp-content/uploads/2023/05/1.png",
+    "chirpstack": {
+        "region": "EU868",
+        "macVersion": 0,
+        "regParamsRevision": "A",
+        "adrAlgorithmId": "default",
+        "flushQueueOnActivate": true,
+        "uplinkInterval": 86400,
+        "supportsOTAA": true,
+        "supportsClassB": false,
+        "supportsClassC": false
+    },
+    "liveObjects": {
+        "profile": "Generic_classA_RX2SF12",
+        "activationType": "OTAA",
+        "connectivityPlan": "orange-cs/CP_Basic"
+    }
+}
