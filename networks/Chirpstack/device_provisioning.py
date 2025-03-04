@@ -1,5 +1,6 @@
 import json
 import grpc
+import os
 import requests
 import sys
 from chirpstack_api import api
@@ -202,7 +203,7 @@ def main():
                     device_profile_exists = True
                     device_profile_id = item.id
         if not device_profile_exists:
-            print(os.getcwd())
+            os.chdir(os.path.dirname(os.path.abspath(__file__)))
             with open(
                 f"../../manufacturers/{manufacturer}/models/{model}/config_LoRaWAN.json",
                 "r",

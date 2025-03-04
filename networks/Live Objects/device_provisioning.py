@@ -1,4 +1,5 @@
 import json
+import os
 import requests
 import sys
 
@@ -125,8 +126,9 @@ def main():
     payload = json.load(sys.stdin)
     mode = sys.argv[1]
 
-    host = payload["configuration"]["json"]["host"]
-    api_key = secret.live_objects_api_key
+    network_config = payload["network"]["configuration"]["json"]
+    host = network_config["server"]
+    api_key = network_config["apiKey"]
 
     headers = {"X-API-Key": api_key}
 
@@ -179,6 +181,7 @@ def main():
                     )
 
         # Config
+        os.chdir(os.path.dirname(os.path.abspath(__file__)))
         with open(
             f"../../manufacturers/{manufacturer}/models/{model}/config_LoRaWAN.json",
             "r",
