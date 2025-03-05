@@ -188,13 +188,19 @@ def main():
         ) as file:
             config = json.load(file)["liveObjects"]
 
+        # Properties
+        if "additionalFields" in payload:
+            properties = payload["additionalFields"]
+        else:
+            properties = {}
+
         # Device
         device = Device(
             payload["devEUI"],
             payload["name"],
             payload["description"],
             f"/{manufacturer}/{model}",
-            payload["additionalFields"],
+            properties,
         )
         device_interface = DeviceInterface(
             payload["devEUI"],

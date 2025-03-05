@@ -224,6 +224,12 @@ def main():
             resp = create_device_profile(channel, auth_token, tenant_id, device_profile)
             device_profile_id = resp.id
 
+        # Tags
+        if "additionalFields" in payload:
+            tags = payload["additionalFields"]
+        else:
+            tags = {}
+
         # Device
         device = Device(
             payload["devEUI"],
@@ -232,7 +238,7 @@ def main():
             application_id,
             device_profile_id,
             (not payload["isEnabled"]),
-            payload["additionalFields"],
+            tags,
         )
         device_keys = DeviceKeys(
             payload["devEUI"], payload["appKey"], payload["appKey"]
