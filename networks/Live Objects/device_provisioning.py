@@ -186,6 +186,10 @@ def main():
             f"../../manufacturers/{manufacturer}/models/{model}/config_LoRaWAN.json",
             "r",
         ) as file:
+            if "liveObjects" not in json.load(file):
+                raise Exception(
+                    f"Live Objects configuration for model {model} was not found in the device-catalog. Please update it or select another network server."
+                )
             config = json.load(file)["liveObjects"]
 
         # Properties

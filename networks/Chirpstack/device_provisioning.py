@@ -208,6 +208,10 @@ def main():
                 f"../../manufacturers/{manufacturer}/models/{model}/config_LoRaWAN.json",
                 "r",
             ) as file:
+                if "chirpstack" not in json.load(file):
+                    raise Exception(
+                        f"Chirpstack configuration for model {model} was not found in the device-catalog. Please update it or select another network server."
+                    )
                 config = json.load(file)["chirpstack"]
             device_profile = DeviceProfile(
                 device_type,
