@@ -5,11 +5,11 @@
           2,
           "0e46596c3268086cba7f01d600f9071027295b6c327d086cb27f01ea00d108102731",
           "2025-01-07T14:45:08.000Z",
-          "3E084F17BD50BFFB"
+          "0A1B2C3D4E5F6G7H"
        ],
        "expectedOutput":[
           {
-             "id":"urn:ngsi-ld:Device:3E084F17BD50BFFB",
+             "id":"urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
              "type":"Device",
              "temperature":{
                 "type":"Property",
@@ -32,7 +32,7 @@
                 "unitCode":"PAL",
                 "datasetId":"urn:ngsi-ld:Dataset:Raw"
              },
-             "illumination":{
+             "illuminance":{
                 "type":"Property",
                 "value":214,
                 "observedAt":"2025-03-12T11:10:06.000Z",
@@ -55,7 +55,7 @@
              }
           },
           {
-             "id":"urn:ngsi-ld:Device:3E084F17BD50BFFB",
+             "id":"urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
              "type":"Device",
              "temperature":{
                 "type":"Property",
@@ -78,7 +78,7 @@
                 "unitCode":"PAL",
                 "datasetId":"urn:ngsi-ld:Dataset:Raw"
              },
-             "illumination":{
+             "illuminance":{
                 "type":"Property",
                 "value":214,
                 "observedAt":"2025-03-12T11:25:09.000Z",

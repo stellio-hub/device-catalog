@@ -48,7 +48,7 @@ const parametersMapping1 =  {
     temperature_1: {label:"temperature", unitCode: "CEL", datasetId: 'Raw'},
     humidity_1: {label:"humidity", unitCode: "P1", datasetId: 'Raw'},
     pressure_1: {label:"pressure", unitCode: "PAL", datasetId: 'Raw'},
-    illumination_1: {label:"illumination", unitCode: "LUX", datasetId: 'Raw'},
+    illumination_1: {label:"illuminance", unitCode: "LUX", datasetId: 'Raw'},
     co2_1: {label:"co2", unitCode: "59", datasetId: 'Raw'}, // "59" is the unit code for ppm
     voc_1: {label:"voc", unitCode: "61", datasetId: 'Raw'}, // "61" is the unit code for ppb
 }
@@ -56,7 +56,7 @@ const parametersMapping2 =  {
     temperature_2: {label:"temperature", unitCode: "CEL", datasetId: 'Raw'},
     humidity_2: {label:"humidity", unitCode: "P1", datasetId: 'Raw'},
     pressure_2: {label:"pressure", unitCode: "PAL", datasetId: 'Raw'},
-    illumination_2: {label:"illumination", unitCode: "LUX", datasetId: 'Raw'},
+    illumination_2: {label:"illuminance", unitCode: "LUX", datasetId: 'Raw'},
     co2_2: {label:"co2", unitCode: "59", datasetId: 'Raw'},
     voc_2: {label:"voc", unitCode: "61", datasetId: 'Raw'},
     battery_percentage: {label:"batteryLevel", unitCode: "P1", datasetId: 'Raw'}
