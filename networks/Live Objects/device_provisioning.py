@@ -5,11 +5,12 @@ import sys
 
 
 class Device:
-    def __init__(self, dev_eui, name, description, group, properties):
+    def __init__(self, dev_eui, name, description, group, tags, properties):
         self.dev_eui = dev_eui
         self.name = name
         self.description = description
         self.group = group
+        self.tags = tags
         self.properties = properties
 
 
@@ -39,6 +40,7 @@ def create_device(host, headers, device, device_interface):
         "name": device.name,
         "description": device.description,
         "group": {"path": device.group},
+        "tags": device.tags,
         "properties": device.properties,
         "interfaces": [
             {
@@ -70,6 +72,7 @@ def update_device(host, headers, device):
         "name": device.name,
         "description": device.description,
         "group": {"path": device.group},
+        "tags": device.tags,
         "properties": device.properties,
     }
 
@@ -129,6 +132,7 @@ def main():
     network_config = payload["network"]["configuration"]["json"]
     host = network_config["server"]
     api_key = network_config["apiKey"]
+    realm = network_config["realm"]
 
     headers = {"X-API-Key": api_key}
 
@@ -186,10 +190,6 @@ def main():
             f"../../manufacturers/{manufacturer}/models/{model}/config_LoRaWAN.json",
             "r",
         ) as file:
-            if "liveObjects" not in json.load(file):
-                raise Exception(
-                    f"Live Objects configuration for model {model} was not found in the device-catalog. Please update it or select another network server."
-                )
             config = json.load(file)["liveObjects"]
 
         # Properties
@@ -204,6 +204,7 @@ def main():
             payload["name"],
             payload["description"],
             f"/{manufacturer}/{model}",
+            [realm],
             properties,
         )
         device_interface = DeviceInterface(
