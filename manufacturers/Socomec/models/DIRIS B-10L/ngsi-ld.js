@@ -1,7 +1,7 @@
 // Added by EGM for NGSI-LD conversion
 
 function ngsildInstance(value, time, unit, dataset_suffix) {
-    if (value !== null && value !== undefined && !Number.isNaN(value)) {
+    if (value !== null && value !== undefined && !Number.isNaN(value) && time !== "null") {
         var ngsild_instance = {
             type: 'Property',
             value: value,
@@ -51,7 +51,6 @@ function ngsildWrapper(input, time, entity_id,parametersMapping) {
                     instance = ngsildInstance(value, timestamp, parametersMapping[key].unitCode, parametersMapping[key].datasetId);
                 }
                 if (instance !==null) {addToPayload(parametersMapping[key].label, instance)};
-                
             }
             
         }

@@ -18,6 +18,7 @@
                 "languageMap": {
                     "en": "Must have 2 chars",
                     "fr": "Doit contenir 2 caractères"
+
                 }
             },
             "jsonSchema": {
@@ -26,19 +27,9 @@
                     "title": "Encryption Key",
                     "maxLength": 100,
                     "minLength": 2,
-                    "schemaType": "string",
-                    "canBeEdited": false
-                }
-            }
-        },
         "authenticationKey": {
             "type": "Property",
             "value": "Authentication Key",
-            "maxLength": {
-                "type": "LanguageProperty",
-                "languageMap": {
-                    "en": "Must have 100 chars",
-                    "fr": "Doit contenir 100 caractères"
                 }
             },
             "minLength": {
