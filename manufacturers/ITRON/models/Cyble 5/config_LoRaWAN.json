@@ -6,34 +6,26 @@
         "encryptionKey": {
             "type": "Property",
             "value": "Encryption Key",
-            "pattern": {
-                "type": "LanguageProperty",
-                "languageMap": {
-                    "en": "Only uppercase letters and numbers allowed",
-                    "fr": "Seules les lettres majuscules et les chiffres sont autorisés"
-                }
-            },
             "maxLength": {
                 "type": "LanguageProperty",
                 "languageMap": {
-                    "en": "Must have 16 chars",
-                    "fr": "Doit contenir 16 caractères"
+                    "en": "Must have 100 chars",
+                    "fr": "Doit contenir 100 caractères"
                 }
             },
             "minLength": {
                 "type": "LanguageProperty",
                 "languageMap": {
-                    "en": "Must have 16 chars",
-                    "fr": "Doit contenir 16 caractères"
+                    "en": "Must have 2 chars",
+                    "fr": "Doit contenir 2 caractères"
                 }
             },
             "jsonSchema": {
                 "type": "Property",
                 "value": {
                     "title": "Encryption Key",
-                    "pattern": "^[A-Z0-9]+$",
-                    "maxLength": 16,
-                    "minLength": 16,
+                    "maxLength": 100,
+                    "minLength": 2,
                     "schemaType": "string",
                     "canBeEdited": false
                 }
@@ -42,34 +34,26 @@
         "authenticationKey": {
             "type": "Property",
             "value": "Authentication Key",
-            "pattern": {
-                "type": "LanguageProperty",
-                "languageMap": {
-                    "en": "Only uppercase letters and numbers allowed",
-                    "fr": "Seules les lettres majuscules et les chiffres sont autorisés"
-                }
-            },
             "maxLength": {
                 "type": "LanguageProperty",
                 "languageMap": {
-                    "en": "Must have 16 chars",
-                    "fr": "Doit contenir 16 caractères"
+                    "en": "Must have 100 chars",
+                    "fr": "Doit contenir 100 caractères"
                 }
             },
             "minLength": {
                 "type": "LanguageProperty",
                 "languageMap": {
-                    "en": "Must have 16 chars",
-                    "fr": "Doit contenir 16 caractères"
+                    "en": "Must have 2 chars",
+                    "fr": "Doit contenir 2 caractères"
                 }
             },
             "jsonSchema": {
                 "type": "Property",
                 "value": {
                     "title": "Authentication Key",
-                    "pattern": "^[A-Z0-9]+$",
-                    "maxLength": 16,
-                    "minLength": 16,
+                    "maxLength": 100,
+                    "minLength": 2,
                     "schemaType": "string",
                     "canBeEdited": false
                 }
