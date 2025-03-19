@@ -9,15 +9,15 @@
             "maxLength": {
                 "type": "LanguageProperty",
                 "languageMap": {
-                    "en": "Must have 100 chars",
-                    "fr": "Doit contenir 100 caractères"
+                    "en": "Must have less than 100 chars",
+                    "fr": "Doit contenir moins de 100 caractères"
                 }
             },
             "minLength": {
                 "type": "LanguageProperty",
                 "languageMap": {
-                    "en": "Must have 2 chars",
-                    "fr": "Doit contenir 2 caractères"
+                    "en": "Must have at least 2 chars",
+                    "fr": "Doit contenir plus de 2 caractères"
                 }
             },
             "jsonSchema": {
@@ -37,15 +37,15 @@
             "maxLength": {
                 "type": "LanguageProperty",
                 "languageMap": {
-                    "en": "Must have 100 chars",
-                    "fr": "Doit contenir 100 caractères"
+                    "en": "Must have less than 100 chars",
+                    "fr": "Doit contenir moins de 100 caractères"
                 }
             },
             "minLength": {
                 "type": "LanguageProperty",
                 "languageMap": {
-                    "en": "Must have 2 chars",
-                    "fr": "Doit contenir 2 caractères"
+                    "en": "Must have at least 2 chars",
+                    "fr": "Doit contenir plus de 2 caractères"
                 }
             },
             "jsonSchema": {
