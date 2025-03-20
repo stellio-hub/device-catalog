@@ -1,0 +1,5 @@
+{
+    "ngsildContext": "https://easy-global-market.github.io/ngsild-api-data-models/airQuality/jsonld-contexts/airQuality-compound.jsonld",
+    "documentation": "https://documentation.meraki.com/MT/MT_Datasheets/MT11_Datasheet_-_Probe_Sensor",
+    "devicePicture": "MT11.png"
+}

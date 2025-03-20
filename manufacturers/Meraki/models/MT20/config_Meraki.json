@@ -1,0 +1,5 @@
+{
+    "ngsildContext": "https://easy-global-market.github.io/ngsild-api-data-models/airQuality/jsonld-contexts/airQuality-compound.jsonld",
+    "documentation": "https://documentation.meraki.com/MT/MT_Datasheets/MT20_Datasheet_-_Open%2F%2FClose_Detection",
+    "devicePicture": "MT20.png"
+}

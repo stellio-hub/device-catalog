@@ -1,0 +1,5 @@
+{
+    "ngsildContext": "https://easy-global-market.github.io/ngsild-api-data-models/airQuality/jsonld-contexts/airQuality-compound.jsonld",
+    "documentation": "https://documentation.meraki.com/MT/MT_Datasheets/MT12_Datasheet_-_Water_Detection",
+    "devicePicture": "MT12.png"
+}
