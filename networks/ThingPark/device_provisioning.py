@@ -1,6 +1,6 @@
 import json
+import os
 import requests
-import secret
 import sys
 import time
 
@@ -119,9 +119,9 @@ def update_device(host, session, device):
     return response
 
 
-def delete_device(host, session, device):
+def delete_device(host, session, dev_eui):
     response = session.delete(
-        f"{host}/thingpark/wireless/rest/subscriptions/mine/devices/e{device.dev_eui}",
+        f"{host}/thingpark/wireless/rest/subscriptions/mine/devices/e{dev_eui}",
         headers={"Accept": "application/json"},
     )
     response.raise_for_status()
@@ -134,11 +134,12 @@ def fetch_configuration(manufacturer: str, model: str):
         f"../../manufacturers/{manufacturer}/models/{model}/config_LoRaWAN.json",
         "r",
     ) as file:
-        config = json.load(file)["ThingPark"]
+        config = json.load(file)["thingPark"]
+        return config
 
 
 def main():
-    inc = json.load(sys.stdin)
+    payload = json.load(sys.stdin)
     mode = sys.argv[1]
 
     network_config = payload["network"]["configuration"]["json"]
@@ -153,32 +154,32 @@ def main():
         token_url=f"{host}/users-auth/protocol/openid-connect/token",
     )
 
-    manufacturer = inc["manufacturer"]
-    model = inc["model"]
+    manufacturer = payload["manufacturer"]
+    model = payload["model"]
 
     config = fetch_configuration(manufacturer, model)
 
-    device = Device(
-        inc["devEUI"],
-        inc["name"],
-        config["model"],
-        config["connectivity"],
-        config["activation"],
-        inc["appEUI"],
-        inc["appKey"],
-        inc["description"],
-        inc["isEnabled"],
-        [{"name": domain}],
-    )
-
-    if mode == "create":
-        response = create_device(host, session, device)
-    elif mode == "update":
-        response = update_device(host, session, device)
-    elif mode == "delete":
-        response = delete_device(host, session, device)
+    if mode == "delete":
+        response = delete_device(host, session, payload["devEUI"])
     else:
-        raise Exception(f"Unknown mode: {mode}")
+        device = Device(
+            payload["devEUI"],
+            payload["name"],
+            config["model"],
+            config["connectivity"],
+            config["activationType"],
+            payload["appEUI"],
+            payload["appKey"],
+            payload["description"],
+            payload["isEnabled"],
+            [{"name": domain, "group": {"name": domain}}],
+        )
+        if mode == "create":
+            response = create_device(host, session, device)
+        elif mode == "update":
+            response = update_device(host, session, device)
+        else:
+            raise Exception(f"Unknown mode: {mode}")
 
     print(response.text)
 
