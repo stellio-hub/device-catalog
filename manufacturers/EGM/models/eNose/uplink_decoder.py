@@ -114,7 +114,7 @@ def ENose_BME680_Res(payload_bytes):
     timestamp = to_date(timestamp_sec)
 
     i = 5
-    bme680Resistance = []
+    electricalResistance  = []
 
     for a in range(10): 
         raw_bytes = payload_bytes[i:i+4]
@@ -128,14 +128,14 @@ def ENose_BME680_Res(payload_bytes):
                 "observedAt": timestamp,
                 "datasetId": f"urn:ngsi-ld:Dataset:{BME680_Res_name}",
             }
-            bme680Resistance.append(BME680_Res_obj)
+            electricalResistance.append(BME680_Res_obj)
         else:
             print(f"Rés {chr(65+a)} ignorée")
         i += 4
 
 
-    if bme680Resistance:
-        ngsild_payload["bme680Resistance"] = bme680Resistance
+    if electricalResistance:
+        ngsild_payload["electricalResistance"] = electricalResistance 
     
     return ngsild_payload
 
@@ -148,14 +148,19 @@ def decode_payload(payload_string, port_string):
         if decoded_data_json is None:
             print(f"Warning: No valid data decoded for port 1. Payload: {payload_string}")
             return '{}'
-    elif port_string == '2':
-        decoded_data_json = json.dumps(ENose_BME680_Res(payload_bytes), separators=(',', ':'))
     
+    elif port_string == '2':
+        decoded = ENose_BME680_Res(payload_bytes)
+        
+        
+        decoded_data_json = json.dumps(decoded, separators=(',', ':'))
+
     if decoded_data_json == '{}' or decoded_data_json is None:
         print(f"Warning: Invalid or empty data for port {port_string}. Payload: {payload_string}")
         return '{}'
     
     return decoded_data_json
+
 
 def ngsild_wrapper(input, entity_id):
     ngsild_payload = [{
@@ -198,38 +203,33 @@ def main():
     decoded_json = decode_payload(payload, fport)
 
     if decoded_json == '{}':
-        print(f"Warning: Invalid or empty data for port {fport}. Payload: {payload}")
+        print(f"Warning: Invalid or empty data for port {fport}. Payload: {payload}", file=sys.stderr)
         # On renvoie un NGSI-LD vide 
         json.dump([{
             "id": entity_id,
             "type": "Device"
         }], sys.stdout, indent=4)
         return
+
     decoded = json.loads(decoded_json)
 
-    if 'timestamp' not in decoded:
-        if len(payload) >= 8:
-            decoded['timestamp'] = to_date(read_timestamp(bytes.fromhex(payload[2:10])))
-        else:
-            print("Error: Payload too short to extract the timestamp.")
-            return
-
-    if fport == '1': #exemple of payload 1267f8fe32d974394364af7866f66652950ea2dd02c1ae00
+    # NE PAS FAIRE DE print ici !!!
+    if fport == '1':
         ngsild_payload = ngsild_wrapper(decoded, entity_id)
-    elif fport == '2': #exemple of payload 1267ee6ef300004eb000004e51000095d60000808c0000d8550000d7350000c8b70000332500002f2d00002f2d
+    elif fport == '2':
         ngsild_payload = [{
             "id": entity_id,
             "type": "Device",
             **decoded
         }]
     else:
-        # Si le port n'est pas reconnu, on renvoie un NGSI-LD vide avec juste l'id et le type
         ngsild_payload = [{
             "id": entity_id,
             "type": "Device"
         }]
 
     json.dump(ngsild_payload, sys.stdout, indent=4)
+
 
 
 if __name__ == "__main__":
