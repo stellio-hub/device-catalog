@@ -35,7 +35,7 @@ def read_BME680_Res(BME680_Res_bytes):
         BME680_Res_bytes = BME680_Res_bytes[:4][::-1]
         BME680_Res_uint32 = struct.unpack('<I', bytes(BME680_Res_bytes))[0]  # <I pour uint32_t
     except Exception as e:
-        print(f"Erreur décodage uint32_t : {e}")
+        raise Exception(f"Erreur décodage uint32_t : {e}")
         return None
 
     if (BME680_Res_uint32 > 10000000 or BME680_Res_uint32<0) :  # Seuil à ajuster si nécessaire
@@ -49,7 +49,7 @@ def read_BME680_Res(BME680_Res_bytes):
 def ENose_Sensor(payload_bytes):
     expected_length = 24
     if len(payload_bytes) < expected_length:
-        raise ValueError(f"The payload has an unexpected length: {len(payload_bytes)}. expected: {expected_length}.")
+        raise Exception(f"The payload has an unexpected length: {len(payload_bytes)}. expected: {expected_length}.")
 
     redundancy = read_n_r(payload_bytes[0])
     timestamp_sec = read_timestamp(payload_bytes[1:5])
@@ -107,7 +107,7 @@ def ENose_BME680_Res(payload_bytes):
     ngsild_payload = {}
     expected_length = 45
     if len(payload_bytes) < expected_length:
-        raise ValueError(f"The payload has an unexpected length: {len(payload_bytes)}. expected: {expected_length}.")
+        raise Exception(f"The payload has an unexpected length: {len(payload_bytes)}. expected: {expected_length}.")
 
     redundancy = read_n_r(payload_bytes[0])
     timestamp_sec = read_timestamp(payload_bytes[1:5])
