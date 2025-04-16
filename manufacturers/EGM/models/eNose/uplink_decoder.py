@@ -182,14 +182,17 @@ def ngsild_wrapper(input, entity_id):
     }]
     return ngsild_payload
 
-def ngsild_instance(value, timestamp, unit_of_measurement, value_type):
-    return {
+def ngsild_instance(value, time, unitCode, dataset_suffix):
+    ngsild_instance = {
         "type": "Property",
         "value": value,
-        "unitCode": unit_of_measurement,
-        "observedAt": timestamp,
-        "valueType": value_type
+        "observedAt": time
     }
+    if unitCode is not None:
+        ngsild_instance['unitCode'] = unitCode
+    if dataset_suffix is not None:
+        ngsild_instance['datasetId'] = f"urn:ngsi-ld:Dataset:{dataset_suffix}"
+    return ngsild_instance 
 
 def main():
     fport = sys.argv[1]
@@ -213,7 +216,6 @@ def main():
 
     decoded = json.loads(decoded_json)
 
-    # NE PAS FAIRE DE print ici !!!
     if fport == '1':
         ngsild_payload = ngsild_wrapper(decoded, entity_id)
     elif fport == '2':
