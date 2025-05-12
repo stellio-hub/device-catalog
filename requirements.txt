@@ -1,0 +1,3 @@
+chirpstack-api
+grpcio
+requests
