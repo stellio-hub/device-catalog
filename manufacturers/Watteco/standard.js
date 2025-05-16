@@ -3322,8 +3322,8 @@ function normalisation_standard(input, endpoint_parameters,batch_parameters){
                         flagstandard = false;
                         break;
                     } else {
-                        let unitCode = mapping ? (mapping[firstKey]?.unit || '') : '';
-                        let datasetId = mapping ? (mapping[firstKey]?.unit || '') : '';
+                        let unitCode = mapping && mapping[firstKey] ? mapping[firstKey].unit || '' : '';
+                        let datasetId = mapping && mapping[firstKey] ? mapping[firstKey].unit || '' : '';
                         data.push({
                             variable: firstKey,
                             value: decoded.data[firstKey],
@@ -3377,8 +3377,8 @@ function normalisation_standard(input, endpoint_parameters,batch_parameters){
                 } else {
                     if (endpoint_parameters[firstKey]?.includes("Ignore")) {
                     } else {
-                        let unitCode = mapping ? (mapping[firstKey]?.unit || '') : '';
-                        let datasetId = mapping ? (mapping[firstKey]?.unit || '') : '';
+                        let unitCode = mapping && mapping[firstKey] ? mapping[firstKey].unit || '' : '';
+                        let datasetId = mapping && mapping[firstKey] ? mapping[firstKey].unit || '' : '';
                         if (endpoint_parameters[firstKey] === undefined) {             // Should not happen or would lead to poor NGSI-LD conversion           
                         //    data.push({variable: firstKey,
                         //        value: decoded.data[firstKey],
