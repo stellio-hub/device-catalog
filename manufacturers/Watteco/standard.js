@@ -3375,7 +3375,7 @@ function normalisation_standard(input, endpoint_parameters,batch_parameters){
                     flagstandard = false;
                     break;
                 } else {
-                    if (endpoint_parameters[firstKey]?.includes("Ignore")) {
+                    if (endpoint_parameters[firstKey] && endpoint_parameters[firstKey].includes("Ignore")) {
                     } else {
                         let unitCode = mapping && mapping[firstKey] ? mapping[firstKey].unit || '' : '';
                         let datasetId = mapping && mapping[firstKey] ? mapping[firstKey].unit || '' : '';
