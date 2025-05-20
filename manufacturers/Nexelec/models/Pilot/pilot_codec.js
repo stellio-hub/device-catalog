@@ -146,7 +146,7 @@ function Decode(fPort, input, variables) {
 			decode[7]={"Keep Alive": active(tab_bin[7])};    
 			decode[8]={"Not_used":""}; 
 			decode[9]={"Period between measurements (CO2,temperature, humidity) (minutes)": tab_bin[9]};  
-			decode[10]={" Datalog decimation factor(record only 1 on x samples)":tab_bin[10]};
+			decode[10]={"Datalog decimation factor(record only 1 on x samples)":tab_bin[10]};
 			decode[11]={"Temperature alert threshold 1 (°C)": 0.2*tab_bin[11]};
 			decode[12]={"Temperature alert threshold 2 (°C)": 0.2*tab_bin[12]}; 
 			decode[13]={"Temperature change leading to a real-time message transmission (°C)": 0.1*tab_bin[13]}; 
