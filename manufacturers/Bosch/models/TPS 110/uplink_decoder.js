@@ -6,24 +6,22 @@ function decodeUplink(fport, time, input, entity_id) {
 	};
 	let value = '';
 	let debugCodes = [];
-	let dataset_suffix = "Raw"
+	let dataset_suffix = "Raw";
 	switch (fport) {
 		case 1: // Parking status
 			value = (input[0] & 0x1) === 0x1;
-			data.occupied = ngsildInstance(value, time, null, dataset_suffix)
-			return [data]
-			break;
+			data.occupied = ngsildInstance(value, time, null, dataset_suffix);
+			return [data];
 
 		case 2: // Heartbeat
 			value = (input[0] & 0x1) === 0x1;
-			data.occupied = ngsildInstance(value, time, null, dataset_suffix)
+			data.occupied = ngsildInstance(value, time, null, dataset_suffix);
 
 			if (input.length >= 2) {
 				value = input[1] & 0x80 ? input[1] - 0x100 : input[1];
 			}
-			data.temperature = ngsildInstance(value, time, "CEL", dataset_suffix)
-			return [data]
-			break;
+			data.temperature = ngsildInstance(value, time, "CEL", dataset_suffix);
+			return [data];
 
 		case 3: // Start-up   
 			debugCodes = [];
@@ -34,7 +32,7 @@ function decodeUplink(fport, time, input, entity_id) {
 				}
 			}
 
-			data.debugCodes = ngsildInstance(debugCodes, null, null, dataset_suffix)
+			data.debugCodes = ngsildInstance(debugCodes, null, null, dataset_suffix);
 
 			data.firmwareVersion = ngsildInstance(input[12] + '.' + input[13] + '.' + input[14], null, null, dataset_suffix);
 
@@ -45,20 +43,19 @@ function decodeUplink(fport, time, input, entity_id) {
 				'system request',
 				'other',
 			][input[15]];
-			data.resetCause = ngsildInstance(resetCause, null, null, dataset_suffix)
+			data.resetCause = ngsildInstance(resetCause, null, null, dataset_suffix);
 			data.occupied = ngsildInstance((input[16] & 0x1) == 0x1, time, null, dataset_suffix);
 			return [data];
-			break;
 
 		case 4: // Device information
 			//            data.type = 'device information';
 			//            data.bytes = input;
-			break;
+			return [data];
 
 		case 5: // Device usage
 			//            data.type = 'device usage';
 			//            data.bytes = input;
-			break;
+			return [data];
 
 		case 6: // Debug
 			//            data.type = 'debug';
@@ -69,7 +66,7 @@ function decodeUplink(fport, time, input, entity_id) {
 			//              input[0];
 			//            data.debugCode = ((input[5] & 0xf) << 8) | input[4];
 			//            data.sequenceNumber = (input[9] << 8) | input[8];
-			break;
+			return [data];
 		default:
 			throw new Error(`Invalid port: "${fport}" does not match any case.`);
 	}
