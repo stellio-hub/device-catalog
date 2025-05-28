@@ -217,7 +217,7 @@
             "Keep Alive": "Active",
             "Not_used": "",
             "Period between measurements (CO2,temperature, humidity) (minutes)": 10,
-            " Datalog decimation factor(record only 1 on x samples)": 6,
+            "Datalog decimation factor(record only 1 on x samples)": 6,
             "Temperature alert threshold 1 (°C)": 18,
             "Temperature alert threshold 2 (°C)": 23,
             "Temperature change leading to a real-time message transmission (°C)": 0.5,
