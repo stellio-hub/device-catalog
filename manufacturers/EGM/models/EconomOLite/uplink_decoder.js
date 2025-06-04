@@ -47,9 +47,8 @@ function decode(port, encoded, time, entityId) {
             date = epoch.toISOString().split('.')[0] + 'Z';
             var pulse = parseInt(encoded.slice(14, 17), 16);
 
-            ngsildPayload[0].pulseCounterId = ngsildInstance(PULSE_COUNTER_ID, date, null, null);
-            ngsildPayload[0].redundancy = ngsildInstance(REDUNDANCY, date, null, null);
-            ngsildPayload[0].measureDuration = ngsildInstance(MEASURE_DURATION, date, "MIN", "Raw");
+            ngsildPayload[0].redundancy = ngsildInstance(REDUNDANCY, date, null, "PulseCounter" + PULSE_COUNTER_ID + ":Raw");
+            ngsildPayload[0].measureDuration = ngsildInstance(MEASURE_DURATION, date, "MIN", "PulseCounter" + PULSE_COUNTER_ID + ":Raw");
             ngsildPayload[0].pulse = ngsildInstance(pulse, date, null, "PulseCounter" + PULSE_COUNTER_ID + ":Raw");
 
             const PULSE_NUMBER = ((encoded.length - 14) / 3);

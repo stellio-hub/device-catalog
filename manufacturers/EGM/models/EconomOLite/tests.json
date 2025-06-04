@@ -48,22 +48,18 @@
          {
             "id":"urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
             "type":"Device",
-            "pulseCounterId":{
-               "type":"Property",
-               "value":1,
-               "observedAt":"2025-03-27T14:57:23Z"
-            },
             "redundancy":{
                "type":"Property",
                "value":2,
-               "observedAt":"2025-03-27T14:57:23Z"
+               "observedAt":"2025-03-27T14:57:23Z",
+               "datasetId": "urn:ngsi-ld:Dataset:PulseCounter1:Raw"
             },
             "measureDuration":{
                "type":"Property",
                "value":1,
                "observedAt":"2025-03-27T14:57:23Z",
                "unitCode":"MIN",
-               "datasetId":"urn:ngsi-ld:Dataset:Raw"
+               "datasetId": "urn:ngsi-ld:Dataset:PulseCounter1:Raw"
             },
             "pulse":{
                "type":"Property",
