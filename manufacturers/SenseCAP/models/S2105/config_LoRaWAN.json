@@ -16,5 +16,10 @@
         "profile": "Generic_classA_RX2SF12",
         "activationType": "OTAA",
         "connectivityPlan": "orange-cs/CP_Basic"
+    },
+    "thingPark": {
+        "connectivity": "LORAWAN",
+        "activationType": "OTAA",
+        "model": "LORA/GenericA.1.0.4a_ETSI"
     }
 }
