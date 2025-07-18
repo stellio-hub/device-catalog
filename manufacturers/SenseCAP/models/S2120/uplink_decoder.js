@@ -29,6 +29,7 @@ function Decode(fPort, bytes) {
             data: decoded
         };
     }
+	const ids = [ 4097, 4098, 4099, 4190, 4105, 4104, 4113, 4101, 4173, 4174]
 	var frameID = bytes[0]
 	if(frameID===1)
 	{
@@ -49,7 +50,7 @@ function Decode(fPort, bytes) {
 		{
 			decoded.messages.push({
                 type: 'report_telemetry',
-				measurementId: i,
+				measurementId: ids[i],
                 measurementValue: meas_list01[i]
 			});
 		}
@@ -137,34 +138,34 @@ function ngsildWrapper(input, time, entity_id) {
     } else {
         for (let i = 0; i < messages.length; i++) {
             if (messages[i].type === 'report_telemetry') {
-				if(messages[i].measurementId === 0) {
+				if(messages[i].measurementId === 4097) {
 					ngsild_payload[0].airTemperature = ngsildInstance(messages[i].measurementValue, time, 'CEL', 'Raw');
 				}
-                else if (messages[i].measurementId === 1) {
+                else if (messages[i].measurementId === 4098) {
 					ngsild_payload[0].airHumidity = ngsildInstance(messages[i].measurementValue, time, 'P1', 'Raw');
                 }
-				else if (messages[i].measurementId === 2) {
+				else if (messages[i].measurementId === 4099) {
 					ngsild_payload[0].lightIntensity = ngsildInstance(messages[i].measurementValue, time, 'LUX', 'Raw');
                 }
-				else if (messages[i].measurementId === 3) {
+				else if (messages[i].measurementId === 4190) {
 					ngsild_payload[0].uvIndex = ngsildInstance(messages[i].measurementValue, time, null, 'Raw');
                 }
-				else if (messages[i].measurementId === 4) {
+				else if (messages[i].measurementId === 4105) {
 					ngsild_payload[0].windSpeed = ngsildInstance(messages[i].measurementValue, time, 'MTS', 'Raw');
                 }
-				else if (messages[i].measurementId === 5) {
+				else if (messages[i].measurementId === 4104) {
 					ngsild_payload[0].windDirection = ngsildInstance(messages[i].measurementValue, time, 'DD', 'Raw');
                 }
-				else if (messages[i].measurementId === 6) {
+				else if (messages[i].measurementId === 4113) {
 					ngsild_payload[0].rainfallIntensity = ngsildInstance(messages[i].measurementValue, time, 'H67', 'Raw');
                 }
-				else if (messages[i].measurementId === 7) {
+				else if (messages[i].measurementId === 4101) {
 					ngsild_payload[0].barometricPressure = ngsildInstance(messages[i].measurementValue, time, 'PAL', 'Raw');
                 }
-				else if (messages[i].measurementId === 8) {
+				else if (messages[i].measurementId === 4173) {
 					ngsild_payload[0].battery = ngsildInstance(messages[i].measurementValue, time, 'P1', 'Raw');
                 }
-				else if (messages[i].measurementId === 9) {
+				else if (messages[i].measurementId === 4174) {
 					ngsild_payload[0].interval = ngsildInstance(messages[i].measurementValue, time, 'MIN', 'Raw');
                 }
             }
