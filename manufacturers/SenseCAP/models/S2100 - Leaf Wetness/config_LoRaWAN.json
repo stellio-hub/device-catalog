@@ -1,6 +1,7 @@
 {
     "uplinkDecoder": "uplink_decoder.js",
     "ngsildContext": "https://easy-global-market.github.io/ngsild-api-data-models/irrigation/jsonld-contexts/irrigation-compound.jsonld",
+    "requiredFields" :["DevEUI","AppEUI","AppKey"],
     "chirpstack": {
         "region": "EU868",
         "macVersion": 3,
@@ -16,5 +17,10 @@
         "profile": "Generic_classA_RX2SF12",
         "activationType": "OTAA",
         "connectivityPlan": "orange-cs/CP_Basic"
+    },
+    "thingPark": {
+        "connectivity": "LORAWAN",
+        "activationType": "OTAA",
+        "model": "sensecap_s2100_RFGroup1_1.0.3a_A"
     }
 }
