@@ -19,7 +19,7 @@ class Device:
         app_key,
         description,
         is_enabled,
-        domains,
+        domain,
         connection_id,
     ):
         self.dev_eui = dev_eui
@@ -33,7 +33,7 @@ class Device:
         self.app_key = app_key
         self.description = description
         self.is_enabled = is_enabled
-        self.domains = domains
+        self.domain = domain
         self.connection_id = connection_id
 
 
