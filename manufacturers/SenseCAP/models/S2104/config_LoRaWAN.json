@@ -20,6 +20,6 @@
     "thingPark": {
         "connectivity": "LORAWAN",
         "activationType": "OTAA",
-        "model": "LORA/GenericA.1.0.4a_ETSI"
+        "model": "sensecap_s2104_RFGroup1_1.0.3a_A"
     }
 }

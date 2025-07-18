@@ -10,7 +10,9 @@ class Device:
         self,
         dev_eui,
         name,
+        manufacturer,
         model,
+        actility_model_id,
         connectivity,
         activation,
         app_eui,
@@ -18,10 +20,13 @@ class Device:
         description,
         is_enabled,
         domains,
+        connection_id,
     ):
         self.dev_eui = dev_eui
         self.name = name
+        self.manufacturer = manufacturer
         self.model = model
+        self.actility_model_id = actility_model_id
         self.connectivity = connectivity
         self.activation = activation
         self.app_eui = app_eui
@@ -29,6 +34,7 @@ class Device:
         self.description = description
         self.is_enabled = is_enabled
         self.domains = domains
+        self.connection_id = connection_id
 
 
 class OauthSession(requests.Session):
@@ -75,13 +81,14 @@ def create_device(host, session, device):
     payload = {
         "EUI": device.dev_eui,
         "name": device.name,
-        "model": {"ID": device.model},
+        "model": {"ID": device.actility_model_id},
         "connectivity": device.connectivity,
         "activation": device.activation,
         "appEUI": device.app_eui,
         "appKey": device.app_key,
         "customerAdminData": device.description,
-        "domains": device.domains,
+        "domains": [{"name": device.domain, "group": {"name": device.domain}}],
+        "appServers": [{"ID": device.connection_id}],
     }
     response = session.post(
         f"{host}/thingpark/wireless/rest/subscriptions/mine/devices",
@@ -89,8 +96,23 @@ def create_device(host, session, device):
         headers={"Accept": "application/json"},
     )
     response.raise_for_status()
+
+    tags = {"name": f"model: {device.manufacturer} / {device.model}"}
+    add_tags_to_device(host, session, device, tags)
+
     if not device.is_enabled:
         suspend_device(host, session, device)
+
+    return response
+
+
+def add_tags_to_device(host, session, device, tags):
+    response = session.post(
+        f"{host}/thingpark/wireless/rest/subscriptions/mine/devices/e{device.dev_eui}/tags",
+        json=tags,
+        headers={"Accept": "application/json"},
+    )
+    response.raise_for_status()
     return response
 
 
@@ -144,20 +166,14 @@ def main():
 
     network_config = payload["network"]["configuration"]["json"]
     host = network_config["server"]
-    client_id = network_config["clientId"]
-    client_secret = network_config["clientSecret"]
-    domain = network_config["domain"]
+
+    catalog_config = fetch_configuration(payload["manufacturer"], payload["model"])
 
     session = OauthSession(
-        client_id=client_id,
-        client_secret=client_secret,
+        client_id=network_config["clientId"],
+        client_secret=network_config["clientSecret"],
         token_url=f"{host}/users-auth/protocol/openid-connect/token",
     )
-
-    manufacturer = payload["manufacturer"]
-    model = payload["model"]
-
-    config = fetch_configuration(manufacturer, model)
 
     if mode == "delete":
         response = delete_device(host, session, payload["devEUI"])
@@ -165,14 +181,17 @@ def main():
         device = Device(
             payload["devEUI"],
             payload["name"],
-            config["model"],
-            config["connectivity"],
-            config["activationType"],
+            payload["manufacturer"],
+            payload["model"],
+            catalog_config["model"],
+            catalog_config["connectivity"],
+            catalog_config["activationType"],
             payload["appEUI"],
             payload["appKey"],
-            payload["description"],
+            payload["description"].strip(),
             payload["isEnabled"],
-            [{"name": domain, "group": {"name": domain}}],
+            network_config["domain"],
+            network_config["connectionId"],
         )
         if mode == "create":
             response = create_device(host, session, device)
