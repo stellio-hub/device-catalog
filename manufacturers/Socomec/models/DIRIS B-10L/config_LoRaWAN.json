@@ -1,0 +1,22 @@
+{
+    "uplinkDecoder": "uplink_decoder.js",
+    "ngsildContext": "https://easy-global-market.github.io/ngsild-api-data-models/energy/jsonld-contexts/energy-compound.jsonld",
+    "documentation": "https://www.socomec.fr/sites/default/files/2023-10/DIRIS-B-10L_INSTALLATION-AND-OPERATING-MANUAL_2023-02_551174_FR.pdf",
+    "devicePicture": "B10L.webp",
+    "chirpstack": {
+        "region": "EU868",
+        "macVersion": 0,
+        "regParamsRevision": "A",
+        "adrAlgorithmId": "default",
+        "flushQueueOnActivate": true,
+        "uplinkInterval": 86400,
+        "supportsOTAA": true,
+        "supportsClassB": false,
+        "supportsClassC": true
+    },
+    "liveObjects": {
+        "profile": "CUSTOM/SOCOMEC DIRIS B-10L class C",
+        "activationType": "OTAA",
+        "connectivityPlan": "orange-cs/CP_Basic"
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "uplinkDecoder": "uplink_decoder.js",
+    "documentation": "https://www.uco.es/atdfiware/images/doc/comunica/lora/User_Guide_FTD_LoRaWAN_EU863-870_V123.pdf",
+    "ngsildContext": "https://easy-global-market.github.io/ngsild-api-data-models/device/jsonld-contexts/device-compound.jsonld",
+    "devicePicture": "ARF8123AA.png",
+    "chirpstack": {
+        "region": "EU868",
+        "macVersion": 0,
+        "regParamsRevision": "A",
+        "adrAlgorithmId": "default",
+        "flushQueueOnActivate": true,
+        "uplinkInterval": 86400,
+        "supportsOTAA": true,
+        "supportsClassB": false,
+        "supportsClassC": false
+    },
+    "liveObjects": {
+        "profile": "Generic_classA_RX2SF12",
+        "activationType": "OTAA",
+        "connectivityPlan": "orange-cs/CP_Basic"
+    }
+}

@@ -16,5 +16,10 @@
         "profile": "Generic_classA_RX2SF12",
         "activationType": "OTAA",
         "connectivityPlan": "orange-cs/CP_Basic"
+    },
+    "thingPark": {
+        "connectivity": "LORAWAN",
+        "activationType": "OTAA",
+        "model": "sensecap_s2104_RFGroup1_1.0.3a_A"
     }
 }

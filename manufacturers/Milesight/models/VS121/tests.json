@@ -1,0 +1,216 @@
+[
+   {
+     "name": "Basic information",
+     "inputArguments": [
+       80,
+       "ff0101ff086600b0940976ff090100ff1f1f07004b",
+       "2025-01-07T14:45:08.000Z",
+       "3E084F17BD50BFFB"
+     ],
+     "expectedOutput": [
+       {
+         "id": "urn:ngsi-ld:Device:3E084F17BD50BFFB",
+         "type": "Device",
+         "serialNumber": {
+           "type": "Property",
+           "value": "6600b0940976",
+           "observedAt": "2025-01-07T14:45:08.000Z"
+         },
+         "hardwareVersion": {
+           "type": "Property",
+           "value": "1.0",
+           "observedAt": "2025-01-07T14:45:08.000Z"
+         },
+         "softwareVersion": {
+           "type": "Property",
+           "value": "31.7.0.75",
+           "observedAt": "2025-01-07T14:45:08.000Z"
+         }
+       }
+     ]
+   },
+   {
+     "name": "People count and regions occupency",
+     "inputArguments": [
+       80,
+       "04c9030800a106cd05",
+       "2025-01-07T14:45:08.000Z",
+       "3E084F17BD50BFFB"
+     ],
+     "expectedOutput": [
+       {
+         "id": "urn:ngsi-ld:Device:3E084F17BD50BFFB",
+         "type": "Device",
+         "peopleCount": [
+           {
+             "type": "Property",
+             "value": 3,
+             "observedAt": "2025-01-07T14:45:08.000Z",
+             "datasetId": "urn:ngsi-ld:Dataset:All:Raw"
+           },
+           {
+             "type": "Property",
+             "value": 5,
+             "observedAt": "2025-01-07T14:45:08.000Z",
+             "datasetId": "urn:ngsi-ld:Dataset:Max:Raw"
+           }
+         ],
+         "numberOfRegion": {
+           "type": "Property",
+           "value": 8,
+           "observedAt": "2025-01-07T14:45:08.000Z"
+         },
+         "occupancy": [
+           {
+             "type": "Property",
+             "value": 1,
+             "observedAt": "2025-01-07T14:45:08.000Z",
+             "datasetId": "urn:ngsi-ld:Dataset:Region1:Raw"
+           },
+           {
+             "type": "Property",
+             "value": 0,
+             "observedAt": "2025-01-07T14:45:08.000Z",
+             "datasetId": "urn:ngsi-ld:Dataset:Region2:Raw"
+           },
+           {
+             "type": "Property",
+             "value": 0,
+             "observedAt": "2025-01-07T14:45:08.000Z",
+             "datasetId": "urn:ngsi-ld:Dataset:Region3:Raw"
+           },
+           {
+             "type": "Property",
+             "value": 0,
+             "observedAt": "2025-01-07T14:45:08.000Z",
+             "datasetId": "urn:ngsi-ld:Dataset:Region4:Raw"
+           },
+           {
+             "type": "Property",
+             "value": 0,
+             "observedAt": "2025-01-07T14:45:08.000Z",
+             "datasetId": "urn:ngsi-ld:Dataset:Region5:Raw"
+           },
+           {
+             "type": "Property",
+             "value": 1,
+             "observedAt": "2025-01-07T14:45:08.000Z",
+             "datasetId": "urn:ngsi-ld:Dataset:Region6:Raw"
+           },
+           {
+             "type": "Property",
+             "value": 0,
+             "observedAt": "2025-01-07T14:45:08.000Z",
+             "datasetId": "urn:ngsi-ld:Dataset:Region7:Raw"
+           },
+           {
+             "type": "Property",
+             "value": 1,
+             "observedAt": "2025-01-07T14:45:08.000Z",
+             "datasetId": "urn:ngsi-ld:Dataset:Region8:Raw"
+           }
+         ]
+       }
+     ]
+   },
+   {
+     "name": "People count for every region",
+     "inputArguments": [
+       80,
+       "07d5000100000000000306cd05",
+       "2025-01-07T14:45:08.000Z",
+       "3E084F17BD50BFFB"
+     ],
+     "expectedOutput": [
+       {
+         "id": "urn:ngsi-ld:Device:3E084F17BD50BFFB",
+         "type": "Device",
+         "peopleCount": [
+           {
+             "type": "Property",
+             "value": 0,
+             "observedAt": "2025-01-07T14:45:08.000Z",
+             "datasetId": "urn:ngsi-ld:Dataset:Region1:Raw"
+           },
+           {
+             "type": "Property",
+             "value": 1,
+             "observedAt": "2025-01-07T14:45:08.000Z",
+             "datasetId": "urn:ngsi-ld:Dataset:Region2:Raw"
+           },
+           {
+             "type": "Property",
+             "value": 0,
+             "observedAt": "2025-01-07T14:45:08.000Z",
+             "datasetId": "urn:ngsi-ld:Dataset:Region3:Raw"
+           },
+           {
+             "type": "Property",
+             "value": 0,
+             "observedAt": "2025-01-07T14:45:08.000Z",
+             "datasetId": "urn:ngsi-ld:Dataset:Region4:Raw"
+           },
+           {
+             "type": "Property",
+             "value": 0,
+             "observedAt": "2025-01-07T14:45:08.000Z",
+             "datasetId": "urn:ngsi-ld:Dataset:Region5:Raw"
+           },
+           {
+             "type": "Property",
+             "value": 0,
+             "observedAt": "2025-01-07T14:45:08.000Z",
+             "datasetId": "urn:ngsi-ld:Dataset:Region6:Raw"
+           },
+           {
+             "type": "Property",
+             "value": 0,
+             "observedAt": "2025-01-07T14:45:08.000Z",
+             "datasetId": "urn:ngsi-ld:Dataset:Region7:Raw"
+           },
+           {
+             "type": "Property",
+             "value": 3,
+             "observedAt": "2025-01-07T14:45:08.000Z",
+             "datasetId": "urn:ngsi-ld:Dataset:Region8:Raw"
+           },
+           {
+             "type": "Property",
+             "value": 5,
+             "observedAt": "2025-01-07T14:45:08.000Z",
+             "datasetId": "urn:ngsi-ld:Dataset:Max:Raw"
+           }
+         ]
+       }
+     ]
+   },
+   {
+     "name": "Line cross counter",
+     "inputArguments": [
+       80,
+       "05cc02000100",
+       "2025-01-07T14:45:08.000Z",
+       "3E084F17BD50BFFB"
+     ],
+     "expectedOutput": [
+       {
+         "id": "urn:ngsi-ld:Device:3E084F17BD50BFFB",
+         "type": "Device",
+         "peopleCount": [
+           {
+             "type": "Property",
+             "value": 2,
+             "observedAt": "2025-01-07T14:45:08.000Z",
+             "datasetId": "urn:ngsi-ld:Dataset:In:Raw"
+           },
+           {
+             "type": "Property",
+             "value": 1,
+             "observedAt": "2025-01-07T14:45:08.000Z",
+             "datasetId": "urn:ngsi-ld:Dataset:Out:Raw"
+           }
+         ]
+       }
+     ]
+   }
+ ]

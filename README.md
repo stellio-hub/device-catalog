@@ -9,7 +9,7 @@ Its content is fetched by the Twin·Picks application so any device declared her
 To add a device (e.g. adding *Econom'O* device from *EGM*), you need to:
 1. Create the folders (e.g. *manufacturers\EGM\models\EconomO*)
 2. Add the configuration and decoding files:
-  * Configuration file must be named *config.json* and contain information related to the LoRaWAN network servers it could be connected to
+  * Configuration file must be named *config_LoRaWAN.json* and contain information related to the LoRaWAN network servers it could be connected to
   * Decoder file needs to be a Javascript or Python file, its name is referred to in the *config.json* file.
 
 ## Configuration file description
@@ -182,7 +182,7 @@ In a basic case, where the device sends one instance of multiple attributes, the
 
 ### Multiple temporal instances
 
-If the device sends multiple instances of a given attribute (i.e. multiple measurements of the same thing at different times) in a single message, the payload should look like this:
+If the device sends multiple instances of a given attribute (i.e. multiple measurements of the same probe at different times) in a single message, the payload should look like this:
 
 ```json
 [ {
@@ -312,6 +312,101 @@ function ngsildWrapper(input, time, entity_id) {
 * The convention in NGSI-LD is that attribute names are in camelCase, which is usually not what the decoder provided by the manufacturer returns as output so the name needs to be changed.
 * Adding a unit code is a recommended practice and should be done when possible. The code to be added is the UN CEFACT Code corresponding to the unit of measurement of the attribute. 
 * The `time` parameter that is passed as argument to the decoder is the time provided by the Lora server and should be used when the device does not send any timestamp in its payload.
+
+## Unit test
+
+### Adding Unit Tests for a New Device Model
+
+To ensure the correctness of your decoder, it is important to add unit tests. 
+We use [jest](https://jestjs.io/docs/getting-started) as a test environment. If you don't have it installed, execute from your shell window to installed:
+
+```sh
+npm install --save-dev jest
+```
+
+> **_IMPORTANT:_**   a node version > 20 is recommended to run tests smoothly
+
+Then, follow these steps to add unit tests for a new device model:
+
+1. **Create a `tests.json` file**:
+    - In the directory of your new device model (e.g., `manufacturers/EGM/models/EconomO`), create a file named `tests.json`.
+    - This file should contain an array of test cases. Each test case should include:
+      - `name`: A descriptive name for the test.
+      - `inputArguments`: An array of arguments to pass to the decoder. For a LoRaWAN decoder, it would be the following arguments:
+          - The LoRaWAN *fPort*
+          - The LoRaWAN *payload*
+          - The reception *time* in ISO format
+          - The device *devEui*` identifier
+      - `expectedOutput`: The expected JSON output from the decoder 
+
+    Example:
+    ```json
+    [
+      {
+         "name": "Basic test",
+         "inputArguments": [1, "01020304", "2024-09-17T08:19:37Z", "0A1B2C3D4E5F6G7H"],
+         "expectedOutput": [
+            {
+                "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
+                "type": "Device",
+                "temperature": {
+                    "type": "Property",
+                    "value": 25,
+                    "observedAt": "2024-09-17T08:19:37Z",
+                    "datasetId": "urn:ngsi-ld:Dataset:Raw"
+                }
+            }
+        ]
+      }
+    ]
+    ```
+
+2. **Run the tests**:
+    - The script will automatically find and execute the tests defined in `tests.json`.
+    - To run the tests, execute the following command from the root directory of the repository:
+      ```sh
+      npm test
+      ```
+
+3. **Check the results**:
+    - The test script will output the results of each test case. Ensure that all tests pass before submitting your changes.
+
+### Scoping
+
+To run specific tests, you can use the "only" flag in your `tests.json` file. This allows you to focus on a particular test case.
+
+Example of a `tests.json` file with the "only" flag:
+```json
+[
+    {
+        "name": "Basic test",
+        "inputArguments": [1, "01020304", "2024-09-17T08:19:37Z", "0A1B2C3D4E5F6G7H"],
+        "expectedOutput":  [
+            {
+                "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
+                "type": "Device",
+                "temperature": {
+                    "type": "Property",
+                    "value": 25,
+                    "observedAt": "2024-09-17T08:19:37Z",
+                    "datasetId": "urn:ngsi-ld:Dataset:Raw"
+                }
+            }
+        ],
+        "only": true
+    }
+]
+```
+
+Don't forget to remove the flag before submitting your changes.
+
+To run tests for a specific manufacturer, use the following command:
+
+```sh
+npm test -- --manufacturer=Socomec
+```
+
+
 
 ## Dynamic Fields
 

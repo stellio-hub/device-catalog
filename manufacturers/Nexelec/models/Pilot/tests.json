@@ -1,0 +1,294 @@
+[
+  {
+    "name": "Product Status",
+    "inputArguments": [
+      56,
+      "6000",
+      "2000-01-01T00:00:00Z",
+      "0A1B2C3D4E5F6G7H"
+    ],
+    "expectedOutput": [
+      {
+        "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
+        "type": "Device",
+        "productStatusMessage": {
+          "type": "JsonProperty",
+          "json": {
+            "Type_of_Product": "Insafe_Pilot_LoRa",
+            "Type_of_message": "Product_Status_Message",
+            "Battery_level": "High",
+            "HW_Fault_mode": " non activated",
+            "Frame_Index": 0,
+            "Not_used": ""
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "Real Time Data",
+    "inputArguments": [
+      56,
+      "617259000008",
+      "2000-01-01T00:00:00Z",
+      "0A1B2C3D4E5F6G7H"
+    ],
+    "expectedOutput": [
+      {
+        "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
+        "type": "Device",
+        "temperature": {
+          "type": "Property",
+          "value": 22.8,
+          "observedAt": "2000-01-01T00:00:00Z",
+          "unitCode": "CEL",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "humidity": {
+          "type": "Property",
+          "value": 44.5,
+          "observedAt": "2000-01-01T00:00:00Z",
+          "unitCode": "P1",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "indoorAirQuality": [
+          {
+            "type": "Property",
+            "value": "Excellent",
+            "observedAt": "2000-01-01T00:00:00Z",
+            "datasetId": "urn:ngsi-ld:Dataset:Global"
+          },
+          {
+            "type": "Property",
+            "observedAt": "2000-01-01T00:00:00Z",
+            "datasetId": "urn:ngsi-ld:Dataset:co2"
+          },
+          {
+            "type": "Property",
+            "value": "Excellent",
+            "observedAt": "2000-01-01T00:00:00Z",
+            "datasetId": "urn:ngsi-ld:Dataset:Drought_index"
+          },
+          {
+            "type": "Property",
+            "value": "Excellent",
+            "observedAt": "2000-01-01T00:00:00Z",
+            "datasetId": "urn:ngsi-ld:Dataset:Mold_index"
+          },
+          {
+            "type": "Property",
+            "value": "Excellent",
+            "observedAt": "2000-01-01T00:00:00Z",
+            "datasetId": "urn:ngsi-ld:Dataset:Mite_index"
+          },
+          {
+            "type": "Property",
+            "value": "Good",
+            "observedAt": "2000-01-01T00:00:00Z",
+            "datasetId": "urn:ngsi-ld:Dataset:Hygrothermal_comfort"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Datalog Data",
+    "inputArguments": [
+      56,
+      "6263676266616760675f6768",
+      "2000-01-01T00:00:00Z",
+      "0A1B2C3D4E5F6G7H"
+    ],
+    "expectedOutput": [
+      {
+        "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
+        "type": "Device",
+        "temperature": {
+          "type": "Property",
+          "value": 19,
+          "observedAt": "2000-01-01T00:00:00Z",
+          "unitCode": "CEL",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "humidity": {
+          "type": "Property",
+          "value": 51.5,
+          "observedAt": "2000-01-01T00:00:00Z",
+          "unitCode": "P1",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        }
+      },
+      {
+        "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
+        "type": "Device",
+        "temperature": {
+          "type": "Property",
+          "value": 19.2,
+          "observedAt": "1999-12-31T23:00:00.000Z",
+          "unitCode": "CEL",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "humidity": {
+          "type": "Property",
+          "value": 51.5,
+          "observedAt": "1999-12-31T23:00:00.000Z",
+          "unitCode": "P1",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        }
+      },
+      {
+        "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
+        "type": "Device",
+        "temperature": {
+          "type": "Property",
+          "value": 19.4,
+          "observedAt": "1999-12-31T22:00:00.000Z",
+          "unitCode": "CEL",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "humidity": {
+          "type": "Property",
+          "value": 51.5,
+          "observedAt": "1999-12-31T22:00:00.000Z",
+          "unitCode": "P1",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        }
+      },
+      {
+        "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
+        "type": "Device",
+        "temperature": {
+          "type": "Property",
+          "value": 19.6,
+          "observedAt": "1999-12-31T21:00:00.000Z",
+          "unitCode": "CEL",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "humidity": {
+          "type": "Property",
+          "value": 51,
+          "observedAt": "1999-12-31T21:00:00.000Z",
+          "unitCode": "P1",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        }
+      },
+      {
+        "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
+        "type": "Device",
+        "temperature": {
+          "type": "Property",
+          "value": 19.8,
+          "observedAt": "1999-12-31T20:00:00.000Z",
+          "unitCode": "CEL",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "humidity": {
+          "type": "Property",
+          "value": 51.5,
+          "observedAt": "1999-12-31T20:00:00.000Z",
+          "unitCode": "P1",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Configuration of product functions",
+    "inputArguments": [
+      56,
+      "636c0a065a73050a181506",
+      "2000-01-01T00:00:00Z",
+      "0A1B2C3D4E5F6G7H"
+    ],
+    "expectedOutput": [
+      {
+        "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
+        "type": "Device",
+        "configGeneral": {
+          "type": "JsonProperty",
+          "json": {
+            "Type_of_Product": "Insafe_Pilot_LoRa",
+            "Type_of_message": "Config_General",
+            "LED blink": "Non-Active",
+            "Button Notification": "Active",
+            "Real-time data": "Active",
+            "Datalog function": "Non-Active",
+            "Temperature Alert": "Active",
+            "Keep Alive": "Active",
+            "Not_used": "",
+            "Period between measurements (CO2,temperature, humidity) (minutes)": 10,
+            "Datalog decimation factor(record only 1 on x samples)": 6,
+            "Temperature alert threshold 1 (°C)": 18,
+            "Temperature alert threshold 2 (°C)": 23,
+            "Temperature change leading to a real-time message transmission (°C)": 0.5,
+            "Relative humidity change leading to a real-time message transmission (%RH)": 5,
+            "Keepalive period (h)": 24,
+            "Software_version_of_the_product": 21
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "Push button message",
+    "inputArguments": [
+      56,
+      "6400",
+      "2000-01-01T00:00:00Z",
+      "0A1B2C3D4E5F6G7H"
+    ],
+    "expectedOutput": [
+      {
+        "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
+        "type": "Device",
+        "buttonActivation": {
+          "type": "Property",
+          "value": 1,
+          "observedAt": "2000-01-01T00:00:00Z"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Temperature alerts",
+    "inputArguments": [
+      56,
+      "6573c0",
+      "2000-01-01T00:00:00Z",
+      "0A1B2C3D4E5F6G7H"
+    ],
+    "expectedOutput": [
+      {
+        "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
+        "type": "Device",
+        "temperatureAlert": {
+          "type": "JsonProperty",
+          "json": {
+            "Type_of_Product": "Insafe_Pilot_LoRa",
+            "Type_of_message": "Temperature_Alert",
+            "Temperature(°C)": 23,
+            "Temperature threshold 1": "reached",
+            "Temperature threshold 2": "reached",
+            "Frame_Index": 0,
+            "Not_used": ""
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "Keepalive",
+    "inputArguments": [
+      56,
+      "66",
+      "2000-01-01T00:00:00Z",
+      "0A1B2C3D4E5F6G7H"
+    ],
+    "expectedOutput": [
+      {
+        "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
+        "type": "Device"
+      }
+    ]
+  }
+]

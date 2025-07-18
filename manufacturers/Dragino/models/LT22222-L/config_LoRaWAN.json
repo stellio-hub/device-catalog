@@ -1,0 +1,20 @@
+{
+    "uplinkDecoder": "uplink_decoder.js",
+    "ngsildContext": "https://easy-global-market.github.io/ngsild-api-data-models/energy/jsonld-contexts/energy-compound.jsonld",
+    "chirpstack": {
+        "region": "EU868",
+        "macVersion": 0,
+        "regParamsRevision": "A",
+        "adrAlgorithmId": "default",
+        "flushQueueOnActivate": true,
+        "uplinkInterval": 86400,
+        "supportsOTAA": true,
+        "supportsClassB": false,
+        "supportsClassC": false
+    },
+    "liveObjects": {
+        "profile": "Generic_classA_RX2SF12",
+        "activationType": "OTAA",
+        "connectivityPlan": "orange-cs/CP_Basic"
+    }
+}

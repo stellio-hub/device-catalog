@@ -1,0 +1,52 @@
+{
+    "id": "urn:ngsi-ld:MerakiConfig:Template",
+    "type": "Template",
+    "macAddress": {
+        "type": "Property",
+        "value": "MAC address",
+        "pattern": {
+            "type": "LanguageProperty",
+            "languageMap": {
+                "en": "Only uppercase letters and numbers allowed",
+                "fr": "Seules les lettres majuscules et les chiffres sont autorisés"
+            }
+        },
+        "maxLength": {
+            "type": "LanguageProperty",
+            "languageMap": {
+                "en": "Must have 12 chars",
+                "fr": "Doit contenir 12 caractères"
+            }
+        },
+        "minLength": {
+            "type": "LanguageProperty",
+            "languageMap": {
+                "en": "Must have 12 chars",
+                "fr": "Doit contenir 12 caractères"
+            }
+        },
+        "jsonSchema": {
+            "type": "Property",
+            "value": {
+                "title": "MAC address",
+                "pattern": "^[A-Z0-9]+$",
+                "maxLength": 12,
+                "minLength": 12,
+                "schemaType": "string",
+                "canBeEdited": false
+            }
+        }
+    },
+    "jsonSchema": {
+        "type": "Property",
+        "value": {
+            "title": "Meraki",
+            "description": "The Meraki config entity for definition of Meraki device's properties",
+            "required": [
+                "macAddress"
+            ],
+            "identifier": "macAddress",
+            "schemaType": "MerakiConfig"
+        }
+    }
+}

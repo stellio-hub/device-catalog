@@ -1,5 +1,5 @@
 {
-    "documentation": "https://support.nexelec.fr/fr/support/solutions/articles/80001089292-guide-technique-carbon-lorawan",
+    "documentation": "https://support.nexelec.fr/fr/support/solutions/articles/80001089286-guide-technique-pilot-lorawan",
     "uplinkDecoder": "uplink_decoder.js",
     "ngsildContext": "https://easy-global-market.github.io/ngsild-api-data-models/airQuality/jsonld-contexts/airQuality-compound.jsonld",
     "chirpstack": {

@@ -1,0 +1,45 @@
+[
+    {
+        "name": "Standard measurements update test",
+        "inputArguments": [
+            5,
+            "0100e20237060314070e3e",
+            "2025-02-24T10:11:06Z",
+            "0A1B2C3D4E5F6G7H"
+        ],
+        "expectedOutput": [
+            {
+                "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
+                "type": "Device",
+                "temperature": {
+                    "type": "Property",
+                    "value": 22.6,
+                    "observedAt": "2025-02-24T10:11:06Z",
+                    "unitCode": "CEL",
+                    "datasetId": "urn:ngsi-ld:Dataset:Raw"
+                },
+                "humidity": {
+                    "type": "Property",
+                    "value": 55,
+                    "observedAt": "2025-02-24T10:11:06Z",
+                    "unitCode": "P1",
+                    "datasetId": "urn:ngsi-ld:Dataset:Raw"
+                },
+                "co2": {
+                    "type": "Property",
+                    "value": 788,
+                    "observedAt": "2025-02-24T10:11:06Z",
+                    "unitCode": "59",
+                    "datasetId": "urn:ngsi-ld:Dataset:Raw"
+                },
+                "batteryVoltage": {
+                    "type": "Property",
+                    "value": 3646,
+                    "observedAt": "2025-02-24T10:11:06Z",
+                    "unitCode": "VLT",
+                    "datasetId": "urn:ngsi-ld:Dataset:Raw"
+                }
+            }
+        ]
+    }
+]

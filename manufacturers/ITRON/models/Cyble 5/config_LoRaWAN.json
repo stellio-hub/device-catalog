@@ -1,9 +1,77 @@
 {
     "ngsildContext": "https://easy-global-market.github.io/ngsild-api-data-models/irrigation/jsonld-contexts/irrigation-compound.jsonld",
-    "fields": [
-        {"label":"Encryption Key", "value":"encryptionKey", "isRequired": true},
-        {"label":"Authentication Key", "value":"authenticationKey", "isRequired": true}
-    ],
+    "configEntity": {
+        "id": "urn:ngsi-ld:LorawanModelConfig:Template",
+        "type": "Template",
+        "encryptionKey": {
+            "type": "Property",
+            "value": "Encryption Key",
+            "maxLength": {
+                "type": "LanguageProperty",
+                "languageMap": {
+                    "en": "Must have less than 100 chars",
+                    "fr": "Doit contenir moins de 100 caractères"
+                }
+            },
+            "minLength": {
+                "type": "LanguageProperty",
+                "languageMap": {
+                    "en": "Must have at least 2 chars",
+                    "fr": "Doit contenir plus de 2 caractères"
+                }
+            },
+            "jsonSchema": {
+                "type": "Property",
+                "value": {
+                    "title": "Encryption Key",
+                    "maxLength": 100,
+                    "minLength": 2,
+                    "schemaType": "string",
+                    "canBeEdited": false
+                }
+            }
+        },
+        "authenticationKey": {
+            "type": "Property",
+            "value": "Authentication Key",
+            "maxLength": {
+                "type": "LanguageProperty",
+                "languageMap": {
+                    "en": "Must have less than 100 chars",
+                    "fr": "Doit contenir moins de 100 caractères"
+                }
+            },
+            "minLength": {
+                "type": "LanguageProperty",
+                "languageMap": {
+                    "en": "Must have at least 2 chars",
+                    "fr": "Doit contenir plus de 2 caractères"
+                }
+            },
+            "jsonSchema": {
+                "type": "Property",
+                "value": {
+                    "title": "Authentication Key",
+                    "maxLength": 100,
+                    "minLength": 2,
+                    "schemaType": "string",
+                    "canBeEdited": false
+                }
+            }
+        },
+        "jsonSchema": {
+            "type": "Property",
+            "value": {
+                "title": "LoRaWAN Model Config",
+                "description": "The LoRaWAN Model config entity for definition of specific LoRaWAN device's properties",
+                "required": [
+                    "encryptionKey",
+                    "authenticationKey"
+                ],
+                "schemaType": "LorawanModelConfig"
+            }
+        }
+    },
     "chirpstack": {
         "region": "EU868",
         "macVersion": 3,
@@ -20,4 +88,4 @@
         "activationType": "OTAA",
         "connectivityPlan": "orange-cs/CP_Basic"
     }
-} 
+}

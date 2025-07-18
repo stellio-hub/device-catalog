@@ -1,0 +1,26 @@
+{
+    "uplinkDecoder": "uplink_decoder.js",
+    "ngsildContext": "https://easy-global-market.github.io/ngsild-api-data-models/irrigation/jsonld-contexts/irrigation-compound.jsonld",
+    "requiredFields" :["DevEUI","AppEUI","AppKey"],
+    "chirpstack": {
+        "region": "EU868",
+        "macVersion": 3,
+        "regParamsRevision": "A",
+        "adrAlgorithmId": "default",
+        "flushQueueOnActivate": true,
+        "uplinkInterval": 600,
+        "supportsOTAA": true,
+        "supportsClassB": false,
+        "supportsClassC": false
+    },
+    "liveObjects": {
+        "profile": "Generic_classA_RX2SF12",
+        "activationType": "OTAA",
+        "connectivityPlan": "orange-cs/CP_Basic"
+    },
+    "thingPark": {
+        "connectivity": "LORAWAN",
+        "activationType": "OTAA",
+        "model": "LORA/GenericA.1.0.4a_ETSI"
+    }
+}
