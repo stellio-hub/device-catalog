@@ -19,7 +19,8 @@ class Device:
         app_key,
         description,
         is_enabled,
-        domain,
+        domain_name,
+        domain_group,
         connection_id,
     ):
         self.dev_eui = dev_eui
@@ -33,7 +34,8 @@ class Device:
         self.app_key = app_key
         self.description = description
         self.is_enabled = is_enabled
-        self.domain = domain
+        self.domain_name = domain_name
+        self.domain_group = domain_group
         self.connection_id = connection_id
 
 
@@ -87,7 +89,9 @@ def create_device(host, session, device):
         "appEUI": device.app_eui,
         "appKey": device.app_key,
         "customerAdminData": device.description,
-        "domains": [{"name": device.domain, "group": {"name": device.domain}}],
+        "domains": [
+            {"name": device.domain_name, "group": {"name": device.domain_group}}
+        ],
         "appServers": [{"ID": device.connection_id}],
     }
     response = session.post(
@@ -190,7 +194,8 @@ def main():
             payload["appKey"],
             payload["description"].strip(),
             payload["isEnabled"],
-            network_config["domain"],
+            network_config["domain_name"],
+            network_config["domain_group"],
             network_config["connectionId"],
         )
         if mode == "create":
