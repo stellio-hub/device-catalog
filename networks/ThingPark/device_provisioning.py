@@ -21,7 +21,7 @@ class Device:
         is_enabled,
         domain_name,
         domain_group,
-        connection_id,
+        connections,
     ):
         self.dev_eui = dev_eui
         self.name = name
@@ -36,7 +36,7 @@ class Device:
         self.is_enabled = is_enabled
         self.domain_name = domain_name
         self.domain_group = domain_group
-        self.connection_id = connection_id
+        self.connections = connections
 
 
 class OauthSession(requests.Session):
@@ -92,7 +92,7 @@ def create_device(host, session, device):
         "domains": [
             {"name": device.domain_name, "group": {"name": device.domain_group}}
         ],
-        "appServers": [{"ID": device.connection_id}],
+        "appServers": [{"ID": connection_id} for connection_id in device.connections],
     }
     response = session.post(
         f"{host}/thingpark/wireless/rest/subscriptions/mine/devices",
@@ -170,6 +170,11 @@ def main():
 
     network_config = payload["network"]["configuration"]["json"]
     host = network_config["server"]
+    connections = (
+        network_config["connectionId"]
+        if isinstance(network_config["connectionId"], list)
+        else [network_config["connectionId"]]
+    )
 
     catalog_config = fetch_configuration(payload["manufacturer"], payload["model"])
 
@@ -196,7 +201,7 @@ def main():
             payload["isEnabled"],
             network_config["domain_name"],
             network_config["domain_group"],
-            network_config["connectionId"],
+            connections,
         )
         if mode == "create":
             response = create_device(host, session, device)
