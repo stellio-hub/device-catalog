@@ -172,7 +172,7 @@ def main():
     elif mode == "delete":
         response = delete_device(host, headers, payload["devEUI"])
     else:
-        raise Exception("Invalid mode: {mode}")
+        raise Exception(f"Invalid mode: {mode}")
 
     print(response.text)
 
