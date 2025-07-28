@@ -111,7 +111,7 @@ def update_device(host: str, headers: dict, device: Device):
         raise Exception(f"Unexpected response: {r.text}")
 
 
-def delete_device(host: str, headers: dict, dev_eui: Device):
+def delete_device(host: str, headers: dict, dev_eui: str):
     payload = {"devEui": dev_eui, "provisioned": False, "active": False}
 
     r = requests.put(f"{host}/net/sensors", json=payload, headers=headers)
