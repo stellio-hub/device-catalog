@@ -4,16 +4,6 @@ import requests
 import sys
 
 
-def create_headers(host: str, username: str, password: str):
-    r = requests.post(f"{host}/core/login/{username}", json={"password": password})
-    r.raise_for_status()
-    if not r.json()["success"]:
-        raise Exception("Authentication to Netmore API failed")
-    token = r.json()["token"]
-    headers = {"Accept": "application/json", "Authorization": f"Bearer {token}"}
-    return headers
-
-
 def handle_response(r: requests.models.Response):
     r.raise_for_status()
     if r.json()[0]["status"] != "OK":
@@ -54,52 +44,65 @@ def fetch_configuration(manufacturer: str, model: str):
         return config
 
 
+def generate_headers(host: str, username: str, password: str):
+    r = requests.post(f"{host}/core/login/{username}", json={"password": password})
+    r.raise_for_status()
+    if not r.json()["success"]:
+        raise Exception("Authentication to Netmore API failed")
+    token = r.json()["token"]
+    headers = {"Accept": "application/json", "Authorization": f"Bearer {token}"}
+    return headers
+
+
+def generate_device_body(payload: dict, catalog_config: dict, network_config: dict):
+    return {
+        "devEui": payload["devEUI"],
+        "alias": payload["name"],
+        "sensorTypeCompositeCode": catalog_config["sensorTypeCompositeCode"],
+        "sensorActivationMethodTypeCompositeCode": catalog_config[
+            "sensorActivationMethodTypeCompositeCode"
+        ],
+        "lorawanVersionTypeCompositeCode": catalog_config[
+            "lorawanVersionTypeCompositeCode"
+        ],
+        "sensorClassTypeCompositeCode": catalog_config["sensorClassTypeCompositeCode"],
+        "priceModelMessagesCountTypesCompositeCode": network_config[
+            "priceModelMessagesCountTypesCompositeCode"
+        ],
+        "serviceProviderCode": network_config["serviceProviderCode"],
+        "customerCode": network_config["customerCode"],
+        "exportConfigCode": network_config["exportConfigCode"],
+        "provisioned": payload["isEnabled"],
+        "appEui": payload["appEUI"],
+        "appKey": payload["appKey"],
+        "active": True,
+        "description": payload["description"],
+        "tags": [
+            {"key": "manufacturer", "values": [{"value": payload["manufacturer"]}]},
+            {"key": "model", "values": [{"value": payload["model"]}]},
+        ],
+    }
+
+
 def main():
     payload = json.load(sys.stdin)
     mode = sys.argv[1]
 
     network_config = payload["network"]["configuration"]["json"]
     host = network_config["server"]
-    headers = create_headers(
+    headers = generate_headers(
         host, network_config["username"], network_config["password"]
     )
 
     catalog_config = fetch_configuration(payload["manufacturer"], payload["model"])
 
-    if mode == "create" or mode == "update":
-        device_body = {
-            "devEui": payload["devEUI"],
-            "alias": payload["name"],
-            "sensorTypeCompositeCode": catalog_config["sensorTypeCompositeCode"],
-            "sensorActivationMethodTypeCompositeCode": catalog_config[
-                "sensorActivationMethodTypeCompositeCode"
-            ],
-            "lorawanVersionTypeCompositeCode": catalog_config[
-                "lorawanVersionTypeCompositeCode"
-            ],
-            "sensorClassTypeCompositeCode": catalog_config[
-                "sensorClassTypeCompositeCode"
-            ],
-            "priceModelMessagesCountTypesCompositeCode": network_config[
-                "priceModelMessagesCountTypesCompositeCode"
-            ],
-            "serviceProviderCode": network_config["serviceProviderCode"],
-            "customerCode": network_config["customerCode"],
-            "exportConfigCode": network_config["exportConfigCode"],
-            "provisioned": payload["isEnabled"],
-            "appEui": payload["appEUI"],
-            "appKey": payload["appKey"],
-            "active": True,
-            "description": payload["description"],
-            "tags": [
-                {"key": "manufacturer", "values": [{"value": payload["manufacturer"]}]},
-                {"key": "model", "values": [{"value": payload["model"]}]},
-            ],
-        }
-        if mode == "create":
-            response = create_device(host, headers, device_body)
-        if mode == "update":
-            response = update_device(host, headers, device_body)
+    if mode in ["create", "update"]:
+        device_body = generate_device_body(payload, catalog_config, network_config)
+        response = (
+            create_device(host, headers, device_body)
+            if mode == "create"
+            else update_device(host, headers, device_body)
+        )
     elif mode == "delete":
         response = delete_device(host, headers, payload["devEUI"])
     else:
