@@ -115,32 +115,26 @@
                "observedAt":"2025-07-28T06:54:45Z",
                "datasetId":"urn:ngsi-ld:Dataset:Probe1"
             },
-            "soilMoisture":{
-               "type":"Property",
-               "value":47.67391,
-               "unitCode":"P1",
-               "datasetId":"urn:ngsi-ld:Dataset:Probe1:Sensor0:Raw"
-            }
-         },
-         {
-            "id":"urn:ngsi-ld:Device:0BF6ACC38B04F88D",
-            "type":"Device",
-            "soilMoisture":{
-               "type":"Property",
-               "value":58.45825,
-               "unitCode":"P1",
-               "datasetId":"urn:ngsi-ld:Dataset:Probe1:Sensor1:Raw"
-            }
-         },
-         {
-            "id":"urn:ngsi-ld:Device:0BF6ACC38B04F88D",
-            "type":"Device",
-            "soilMoisture":{
-               "type":"Property",
-               "value":0.70529,
-               "unitCode":"P1",
-               "datasetId":"urn:ngsi-ld:Dataset:Probe1:Sensor2:Raw"
-            }
+            "soilMoisture":[
+               {
+                  "type":"Property",
+                  "value":47.67391,
+                  "unitCode":"P1",
+                  "datasetId":"urn:ngsi-ld:Dataset:Probe1:Sensor0:Raw"
+               },
+               {
+                  "type":"Property",
+                  "value":58.45825,
+                  "unitCode":"P1",
+                  "datasetId":"urn:ngsi-ld:Dataset:Probe1:Sensor1:Raw"
+               },
+               {
+                  "type":"Property",
+                  "value":0.70529,
+                  "unitCode":"P1",
+                  "datasetId":"urn:ngsi-ld:Dataset:Probe1:Sensor2:Raw"
+               }
+            ]
          }
       ]
    },
@@ -162,32 +156,26 @@
                "observedAt":"2025-07-28T07:55:45Z",
                "datasetId":"urn:ngsi-ld:Dataset:Probe1"
             },
-            "soilTemperature":{
-               "type":"Property",
-               "value":28.5625,
-               "unitCode":"CEL",
-               "datasetId":"urn:ngsi-ld:Dataset:Probe1:Sensor0:Raw"
-            }
-         },
-         {
-            "id":"urn:ngsi-ld:Device:0BF6ACC38B04F88D",
-            "type":"Device",
-            "soilTemperature":{
-               "type":"Property",
-               "value":27.75,
-               "unitCode":"CEL",
-               "datasetId":"urn:ngsi-ld:Dataset:Probe1:Sensor1:Raw"
-            }
-         },
-         {
-            "id":"urn:ngsi-ld:Device:0BF6ACC38B04F88D",
-            "type":"Device",
-            "soilTemperature":{
-               "type":"Property",
-               "value":28.1875,
-               "unitCode":"CEL",
-               "datasetId":"urn:ngsi-ld:Dataset:Probe1:Sensor2:Raw"
-            }
+            "soilTemperature":[
+               {
+                  "type":"Property",
+                  "value":28.5625,
+                  "unitCode":"CEL",
+                  "datasetId":"urn:ngsi-ld:Dataset:Probe1:Sensor0:Raw"
+               },
+               {
+                  "type":"Property",
+                  "value":27.75,
+                  "unitCode":"CEL",
+                  "datasetId":"urn:ngsi-ld:Dataset:Probe1:Sensor1:Raw"
+               },
+               {
+                  "type":"Property",
+                  "value":28.1875,
+                  "unitCode":"CEL",
+                  "datasetId":"urn:ngsi-ld:Dataset:Probe1:Sensor2:Raw"
+               }
+            ]
          }
       ]
    },
