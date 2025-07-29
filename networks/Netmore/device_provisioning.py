@@ -6,11 +6,19 @@ import sys
 
 def create_headers(host: str, username: str, password: str):
     r = requests.post(f"{host}/core/login/{username}", json={"password": password})
+    r.raise_for_status()
     if not r.json()["success"]:
         raise Exception("Authentication to Netmore API failed")
     token = r.json()["token"]
     headers = {"Accept": "application/json", "Authorization": f"Bearer {token}"}
     return headers
+
+
+def handle_response(r: requests.models.Response):
+    r.raise_for_status()
+    if r.json()[0]["status"] != "OK":
+        raise Exception(r.text)
+    return r
 
 
 def create_device(host: str, headers: dict, device_body: dict):
@@ -20,38 +28,20 @@ def create_device(host: str, headers: dict, device_body: dict):
         return r
     elif r.status_code == 404:
         r = requests.post(f"{host}/net/sensors", json=device_body, headers=headers)
-        r.raise_for_status()
-        if r.json()[0]["status"] == "OK":
-            return r
-        elif r.json()[0]["status"] == "ERROR":
-            raise Exception(r.text)
-        else:
-            raise Exception(f"Unexpected response: {r.text}")
+        return handle_response(r)
     else:
         raise Exception(f"Unexpected response: {r.text}")
 
 
 def update_device(host: str, headers: dict, device_body: dict):
     r = requests.put(f"{host}/net/sensors", json=device_body, headers=headers)
-    r.raise_for_status()
-    if r.json()[0]["status"] == "OK":
-        return r
-    elif r.json()[0]["status"] == "ERROR":
-        raise Exception(r.text)
-    else:
-        raise Exception(f"Unexpected response: {r.text}")
+    return handle_response(r)
 
 
 def delete_device(host: str, headers: dict, dev_eui: str):
     device_body = {"devEui": dev_eui, "provisioned": False, "active": False}
     r = requests.put(f"{host}/net/sensors", json=device_body, headers=headers)
-    r.raise_for_status()
-    if r.json()[0]["status"] == "OK":
-        return r
-    elif r.json()[0]["status"] == "ERROR":
-        raise Exception(r.text)
-    else:
-        raise Exception(f"Unexpected response: {r.text}")
+    return handle_response(r)
 
 
 def fetch_configuration(manufacturer: str, model: str):
