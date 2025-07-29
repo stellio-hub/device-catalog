@@ -111,7 +111,7 @@ def main():
         if mode == "update":
             response = update_device(host, headers, device_body)
     elif mode == "delete":
-        response = delete_device(host, headers, device_body["devEUI"])
+        response = delete_device(host, headers, payload["devEUI"])
     else:
         raise Exception(f"Invalid mode: {mode}")
 
