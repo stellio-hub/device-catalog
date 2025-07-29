@@ -18,5 +18,11 @@
         "profile": "CUSTOM/SOCOMEC DIRIS B-10L class C",
         "activationType": "OTAA",
         "connectivityPlan": "orange-cs/CP_Basic"
+    },
+    "netmore": {
+        "sensorActivationMethodTypeCompositeCode": "OTAA@SENSOR_COMMON",
+        "sensorClassTypeCompositeCode": "CLASS_A@SENSOR_COMMON",
+        "lorawanVersionTypeCompositeCode": "V104@SENSOR_COMMON",
+        "sensorTypeCompositeCode": "OTHER@SENSOR_COMMON"  
     }
 }
