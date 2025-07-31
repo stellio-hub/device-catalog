@@ -41,7 +41,7 @@ function decodeCommandType(commandType) {
     return "unknownCommandType"
 }
 
-function decodeData(ngsildPayload, sensorAddress, encoded, entityId) {
+function decodeData(ngsildPayload, sensorAddress, encoded, time) {
     const ADDITIONAL_CMD_NUMB = (parseInt(encoded.slice(0, 2), 16) & 0xf0) >> 4;
     const SEND_CMD_NUMB = parseInt(encoded.slice(0, 2), 16) & 0x0f;
     data = convertHexToChar(encoded.slice(2, encoded.length));
@@ -49,11 +49,11 @@ function decodeData(ngsildPayload, sensorAddress, encoded, entityId) {
     if(sensorAddress >= '0' && sensorAddress <= '5') {
         const SENSOR_ID = 3*SEND_CMD_NUMB; // 3 sensors measurement per command
         if(ADDITIONAL_CMD_NUMB == 0) {
-            // Soil moisture data
+            // Volumetric moisture data
             const MOISTURE_DATA_ARRAY = data.match(/[+-]?\d+(?:\.\d+)?/g).map(parseFloat);
-            ngsildPayload[0].soilMoisture = [];
+            ngsildPayload[0].volumetricMoisture = [];
             for(let i = 0; i < MOISTURE_DATA_ARRAY.length; i++) {
-                ngsildPayload[0].soilMoisture[i] = ngsildInstance(MOISTURE_DATA_ARRAY[i], null, "P1", "Probe"+sensorAddress+":"+"Sensor"+(SENSOR_ID+i)+":Raw");
+                ngsildPayload[0].volumetricMoisture[i] = ngsildInstance(MOISTURE_DATA_ARRAY[i], time, "P1", "Probe"+sensorAddress+":"+"Sensor"+(SENSOR_ID+i)+":Raw");
             }
         }
         if(ADDITIONAL_CMD_NUMB == 1) {
@@ -61,7 +61,7 @@ function decodeData(ngsildPayload, sensorAddress, encoded, entityId) {
             const TEMPERATURE_DATA_ARRAY = data.match(/[+-]?\d+(?:\.\d+)?/g).map(parseFloat);
             ngsildPayload[0].soilTemperature = [];
             for(let i = 0; i < TEMPERATURE_DATA_ARRAY.length; i++) {
-                ngsildPayload[0].soilTemperature[i] = ngsildInstance(TEMPERATURE_DATA_ARRAY[i], null, "CEL", "Probe"+sensorAddress+":"+"Sensor"+(SENSOR_ID+i)+":Raw");
+                ngsildPayload[0].soilTemperature[i] = ngsildInstance(TEMPERATURE_DATA_ARRAY[i], time, "CEL", "Probe"+sensorAddress+":"+"Sensor"+(SENSOR_ID+i)+":Raw");
             }
         }
     }
@@ -123,7 +123,7 @@ function decode(port, encoded, time, entityId) {
             sensorAddress = String.fromCharCode(parseInt(encoded.slice(8, 10), 16));
             const DATA_NUMBER = parseInt(encoded.slice(10, 12), 16);
             ngsildPayload[0].dataNumber = ngsildInstance(DATA_NUMBER, date, null, "Probe"+sensorAddress);
-            decodeData(ngsildPayload, sensorAddress, encoded.slice(12, encoded.length), entityId);
+            decodeData(ngsildPayload, sensorAddress, encoded.slice(12, encoded.length), date);
             break;
         case "52":
             sensorAddress = String.fromCharCode(parseInt(encoded.slice(0, 2), 16));
