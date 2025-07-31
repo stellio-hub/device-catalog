@@ -1,6 +1,6 @@
 let watteco = require("../../decode.js")
 let ngsild = require("../../ngsi-ld.js")
-
+let zonemap = require("../../../../utils/zonemap.js")
 // See here for explanations on batch parameters: https://support.watteco.com/
 // batch_param has been updated from Watteco driver so that: 
 // lbnlname : used as NGSI-LD propertu name
@@ -31,27 +31,35 @@ function main() {
     var payload = process.argv[3];
     var time = process.argv[4];
     var entity_id = "urn:ngsi-ld:Device:" + process.argv[5];
-    // ********* Test pattern (uncomment to test behaviour) ********************
-        // Pattern batch
-        // payload = "424500000111008FC85EC128B4872088AD060442001E3322118A98782B";
-        // Pattern "uplink standard report containing firmware version"
-        // payload = "110100000002000D0305020015E2"
-        // Pattern "uplink standard report containing humidity value"
-        // payload = "110A04050000210E89"
-        // Pattern "uplink standard report containing dataup info" (IGNORED) 
-        // payload = "110180040000000800"
-        // Pattern "uplink standard report  containing battery charge"
-        // payload = "110A00500006410503040E6804"
-        // entity_id = "entityID"
-        // time=Date.now();
-    // ********* End test pattern ***********************
-
     var decoded = watteco.Decode(payload,time,batch_param,endpointCorresponder);
+
+    // Perform additional processing if needed
+    let processedData = [];
+    for (let i = 0; i < decoded.data.length; i++) {
+        let data = decoded.data[i];
+
+        // Estimate universal battery level indicator (#6027)
+        if (data.variable === "batteryLevel" & data.datasetId === "Disposable_battery_voltage:Raw") { 
+            let batteryLevel = zonemap.zonefromvalue(data.value, [3.2, 3.3, 3.4, 3.45]);
+            processedData.push({
+                variable: data.variable,
+                value: batteryLevel,
+                datasetId: data.datasetId,
+                date: data.date
+            });
+        }
+    }
+
+    // If there are any processed data, append them to the decoded data
+    if (processedData.length > 0) {
+        decoded.data = decoded.data.concat(processedData);
+    }
+
+    // Convert the decoded data to NGSI-LD format
     var ngsild_payload = ngsild.ngsildWrapper(decoded, time, entity_id);
     if (Object.keys(ngsild_payload)[0] !== 'message_type'){
         process.stdout.write(JSON.stringify(ngsild_payload));
     }
-    // console.log(ngsild_payload)
 }
 
 if (require.main === module) {
