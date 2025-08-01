@@ -43,12 +43,12 @@ function main() {
         let data = decoded.data[i];
 
         // Estimate universal battery level indicator (#6027)
-        if (data.variable === "batteryLevel" & data.datasetId === "Disposable_battery_voltage:Raw") { 
+        if (data.variable === "batteryLevel" && data.datasetId === "Disposable_battery_voltage:Raw") { 
             let batteryLevel = zonemap.zonefromvalue(data.value, [3.2, 3.3, 3.4, 3.45]);
             processedData.push({
                 variable: data.variable,
                 value: batteryLevel,
-                datasetId: data.datasetId,
+                datasetId: "scale5",
                 date: data.date
             });
         }

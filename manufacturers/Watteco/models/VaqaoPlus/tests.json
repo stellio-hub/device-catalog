@@ -151,7 +151,7 @@
         "batteryLevel": {
           "type": "Property",
           "value": 5,
-          "datasetId": "urn:ngsi-ld:Dataset:Disposable_battery_voltage:Raw",
+          "datasetId": "urn:ngsi-ld:Dataset:scale5",
           "observedAt": "2025-01-07T14:55:20.000Z"
         }
       }

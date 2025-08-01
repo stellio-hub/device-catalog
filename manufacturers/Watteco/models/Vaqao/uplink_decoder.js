@@ -23,7 +23,7 @@ let endpointCorresponder = {
     concentration: ["tvoc", "co2","Raw","Raw","","59"],
     temperature: ["temperature", "temperature","Temperature1:Raw","Temperature2:Raw","CEL","CEL"],
     humidity: ["humidity", "humidity","Humidity1:Raw","Humidity2:Raw","P1","P1"],
-    pin_state:["alarm","Violation:Raw",""],
+    pin_state:["alarm","CaseViolation:Raw",""],
     disposable_battery_voltage: ["batteryLevel", "Disposable_battery_voltage:Raw","VLT"]
 }
 
@@ -39,12 +39,12 @@ function main() {
         let data = decoded.data[i];
 
         // Estimate universal battery level indicator (#6027)
-        if (data.variable === "batteryLevel" & data.datasetId === "Disposable_battery_voltage:Raw") { 
+        if (data.variable === "batteryLevel" && data.datasetId === "Disposable_battery_voltage:Raw") { 
             let batteryLevel = zonemap.zonefromvalue(data.value, [3.2, 3.3, 3.4, 3.45]);
             processedData.push({
                 variable: data.variable,
                 value: batteryLevel,
-                datasetId: data.datasetId,
+                datasetId: "scale5",
                 date: data.date
             });
         }

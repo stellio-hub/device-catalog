@@ -1,0 +1,139 @@
+[
+  {
+    "name": "uplink standard report containing temperature value",
+    "inputArguments": [
+      125,
+      "110A04020000290B89",
+      "2025-01-07T14:55:20Z",
+      "MyTestVaqao+"
+    ],
+    "expectedOutput": [
+      {
+        "id": "urn:ngsi-ld:Device:MyTestVaqao+",
+        "type": "Device",
+        "temperature": {
+          "type": "Property",
+          "value": 29.53,
+          "unitCode": "CEL",
+          "datasetId": "urn:ngsi-ld:Dataset:Temperature1:Raw",
+          "observedAt": "2025-01-07T14:55:20.000Z"
+        }
+      }
+    ]
+  },
+  {
+    "name": "uplink standard report containing humidity value",
+    "inputArguments": [
+      125,
+      "110A04050000210E89",
+      "2025-01-07T14:55:20Z",
+      "MyTestVaqao+"
+    ],
+    "expectedOutput": [
+      {
+        "id": "urn:ngsi-ld:Device:MyTestVaqao+",
+        "type": "Device",
+        "humidity": {
+          "type": "Property",
+          "value": 37.21,
+          "unitCode": "P1",
+          "datasetId": "urn:ngsi-ld:Dataset:Humidity1:Raw",
+          "observedAt": "2025-01-07T14:55:20.000Z"
+        }
+      }
+    ]
+  },
+  {
+    "name": "uplink standard report containing TVOC value",
+    "inputArguments": [
+      125,
+      "110A800C0000210019",
+      "2025-01-07T14:55:20Z",
+      "MyTestVaqao+"
+    ],
+    "expectedOutput": [
+      {
+        "id": "urn:ngsi-ld:Device:MyTestVaqao+",
+        "type": "Device",
+        "tvoc": {
+          "type": "Property",
+          "value": 25,
+          "datasetId": "urn:ngsi-ld:Dataset:Raw",
+          "observedAt": "2025-01-07T14:55:20.000Z"
+        }
+      }
+    ]
+  },
+  {
+    "name": "uplink standard report containing state of the case",
+    "inputArguments": [
+      125,
+      "110A000F00551001",
+      "2025-01-07T14:55:20Z",
+      "MyTestVaqao+"
+    ],
+    "expectedOutput": [
+      {
+        "id": "urn:ngsi-ld:Device:MyTestVaqao+",
+        "type": "Device",
+        "alarm": {
+          "type": "Property",
+          "value": true,
+          "datasetId": "urn:ngsi-ld:Dataset:CaseViolation:Raw",
+          "observedAt": "2025-01-07T14:55:20.000Z"
+        }
+      }
+    ]
+  },
+  {
+    "name": "uplink standard report containing firmware version",
+    "inputArguments": [
+      125,
+      "110100000002000D0305020015E2",
+      "2025-01-07T14:55:20Z",
+      "MyTestVaqao+"
+    ],
+    "expectedOutput": [
+      {
+        "id": "urn:ngsi-ld:Device:MyTestVaqao+",
+        "type": "Device",
+        "firmwareVersion": {
+          "type": "Property",
+          "value": "3.5.2.5602"
+        }
+      }
+    ]
+  },
+  {
+    "name": "uplink standard report containing battery charge",
+    "inputArguments": [
+      125,
+      "110A00500006410503040E6804",
+      "2025-01-07T14:55:20Z",
+      "MyTestVaqao+"
+    ],
+    "expectedOutput": [
+      {
+        "id": "urn:ngsi-ld:Device:MyTestVaqao+",
+        "type": "Device",
+        "batteryLevel": {
+          "type": "Property",
+          "value": 3.688,
+          "unitCode": "VLT",
+          "datasetId": "urn:ngsi-ld:Dataset:Disposable_battery_voltage:Raw",
+          "observedAt": "2025-01-07T14:55:20.000Z"
+        }
+      },
+     {
+        "id": "urn:ngsi-ld:Device:MyTestVaqao+",
+        "type": "Device",
+        "batteryLevel": {
+          "type": "Property",
+          "value": 5,
+          "datasetId": "urn:ngsi-ld:Dataset:scale5",
+          "observedAt": "2025-01-07T14:55:20.000Z"
+        }
+      }
+    ]
+  }
+]
