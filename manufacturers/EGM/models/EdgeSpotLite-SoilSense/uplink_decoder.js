@@ -34,9 +34,9 @@ function decode(port, encoded, time, entityId) {
             const MEASUREMENT_FREQUENCY = parseInt(encoded.slice(16, 20), 16);
             batteryVoltage = Number(encoded.slice(20, 24), 16) / 1000;
 
-            ngsildPayload[0].softwareVersion = ngsildInstance(SOFT_VERSION, date, null, null);
-            ngsildPayload[0].applicationId = ngsildInstance(APP_ID, date, null, null);
-            ngsildPayload[0].boardId = ngsildInstance(BOARD_ID, date, null, null);
+            ngsildPayload[0].softwareVersion = ngsildInstance(SOFT_VERSION, null, null, null);
+            ngsildPayload[0].applicationId = ngsildInstance(APP_ID, null, null, null);
+            ngsildPayload[0].boardId = ngsildInstance(BOARD_ID, null, null, null);
             ngsildPayload[0].batteryVoltage = ngsildInstance(batteryVoltage, date, "VLT", "Raw");
             break;
         case "5":

@@ -13,18 +13,15 @@
             "type":"Device",
             "softwareVersion":{
                "type":"Property",
-               "value":"V1.0",
-               "observedAt":"2025-08-11T12:02:07Z"
+               "value":"V1.0"
             },
             "applicationId":{
                "type":"Property",
-               "value":11,
-               "observedAt":"2025-08-11T12:02:07Z"
+               "value":11
             },
             "boardId":{
                "type":"Property",
-               "value":65535,
-               "observedAt":"2025-08-11T12:02:07Z"
+               "value":65535
             },
             "batteryVoltage":{
                "type":"Property",
