@@ -1,0 +1,124 @@
+[
+   {
+      "name":"Basic information",
+      "inputArguments":[
+         2,
+         "6899dbbf100bffff001e3546",
+         "2025-03-04T09:12:17Z",
+         "0BF6ACC38B04F88D"
+      ],
+      "expectedOutput":[
+         {
+            "id":"urn:ngsi-ld:Device:0BF6ACC38B04F88D",
+            "type":"Device",
+            "softwareVersion":{
+               "type":"Property",
+               "value":"V1.0",
+               "observedAt":"2025-08-11T12:02:07Z"
+            },
+            "applicationId":{
+               "type":"Property",
+               "value":11,
+               "observedAt":"2025-08-11T12:02:07Z"
+            },
+            "boardId":{
+               "type":"Property",
+               "value":65535,
+               "observedAt":"2025-08-11T12:02:07Z"
+            },
+            "batteryVoltage":{
+               "type":"Property",
+               "value":3.546,
+               "observedAt":"2025-08-11T12:02:07Z",
+               "unitCode":"VLT",
+               "datasetId":"urn:ngsi-ld:Dataset:Raw"
+            }
+         }
+      ]
+   },
+   {
+      "name":"Soil data",
+      "inputArguments":[
+         51,
+         "6899d96e020a8c00003541",
+         "2025-03-04T09:12:17Z",
+         "0BF6ACC38B04F88D"
+      ],
+      "expectedOutput":[
+         {
+            "id":"urn:ngsi-ld:Device:0BF6ACC38B04F88D",
+            "type":"Device",
+            "redundancy":{
+               "type":"Property",
+               "value":2,
+               "observedAt":"2025-08-11T11:52:14Z"
+            },
+            "soilTemperature":{
+               "type":"Property",
+               "value":27,
+               "observedAt":"2025-08-11T11:52:14Z",
+               "unitCode":"CEL",
+               "datasetId":"urn:ngsi-ld:Dataset:Raw"
+            },
+            "volumetricMoisture":{
+               "type":"Property",
+               "value":0,
+               "observedAt":"2025-08-11T11:52:14Z",
+               "unitCode":"P1",
+               "datasetId":"urn:ngsi-ld:Dataset:Raw"
+            },
+            "batteryVoltage":{
+               "type":"Property",
+               "value":3.541,
+               "observedAt":"2025-08-11T11:52:14Z",
+               "unitCode":"VLT",
+               "datasetId":"urn:ngsi-ld:Dataset:Raw"
+            }
+         }
+      ]
+   },
+   {
+      "name":"Measurement frequency",
+      "inputArguments":[
+         8,
+         "0f1e",
+         "2025-03-04T09:12:17Z",
+         "0BF6ACC38B04F88D"
+      ],
+      "expectedOutput":[
+    {
+        "id": "urn:ngsi-ld:Device:0BF6ACC38B04F88D",
+        "type": "Device",
+        "measurementFrequency": {
+            "type": "Property",
+            "value": 3870,
+            "observedAt": "2025-03-04T09:12:17Z",
+            "unitCode": "MIN",
+            "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        }
+    }
+]
+   },
+   {
+      "name":"Join programming",
+      "inputArguments":[
+         5,
+         "67e56753",
+         "2025-03-04T09:12:17Z",
+         "0A1B2C3D4E5F6G7H"
+      ],
+      "expectedOutput":[
+         {
+            "id":"urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
+            "type":"Device",
+            "rejoinDate":{
+               "type":"Property",
+               "value":1743087443,
+               "observedAt":"2025-03-04T09:12:17Z",
+               "unitCode":"SEC",
+               "datasetId":"urn:ngsi-ld:Dataset:Raw"
+            }
+         }
+      ]
+   }
+]
