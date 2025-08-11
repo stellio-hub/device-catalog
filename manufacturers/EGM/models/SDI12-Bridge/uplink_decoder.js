@@ -51,17 +51,27 @@ function decodeData(ngsildPayload, sensorAddress, encoded, time) {
         if(ADDITIONAL_CMD_NUMB == 0) {
             // Volumetric moisture data
             const MOISTURE_DATA_ARRAY = data.match(/[+-]?\d+(?:\.\d+)?/g).map(parseFloat);
+            for(let i = 0; i < MOISTURE_DATA_ARRAY.length; i++) {
+                if(MOISTURE_DATA_ARRAY[i] > 100.0 || MOISTURE_DATA_ARRAY[i] < 0.0) {
+                    return;
+                }     
+            }
             ngsildPayload[0].volumetricMoisture = [];
             for(let i = 0; i < MOISTURE_DATA_ARRAY.length; i++) {
-                ngsildPayload[0].volumetricMoisture[i] = ngsildInstance(MOISTURE_DATA_ARRAY[i], time, "P1", "Probe"+sensorAddress+":"+"Sensor"+(SENSOR_ID+i)+":Raw");
+                    ngsildPayload[0].volumetricMoisture[i] = ngsildInstance(MOISTURE_DATA_ARRAY[i], time, "P1", "Probe"+sensorAddress+":"+"Sensor"+(SENSOR_ID+i)+":Raw");
             }
         }
         if(ADDITIONAL_CMD_NUMB == 1) {
             // Soil temperature data
             const TEMPERATURE_DATA_ARRAY = data.match(/[+-]?\d+(?:\.\d+)?/g).map(parseFloat);
+            for(let i = 0; i < TEMPERATURE_DATA_ARRAY.length; i++) {
+                if(TEMPERATURE_DATA_ARRAY[i] > 70.0 || TEMPERATURE_DATA_ARRAY[i] < -40.0) {
+                    return;
+                }     
+            }
             ngsildPayload[0].soilTemperature = [];
             for(let i = 0; i < TEMPERATURE_DATA_ARRAY.length; i++) {
-                ngsildPayload[0].soilTemperature[i] = ngsildInstance(TEMPERATURE_DATA_ARRAY[i], time, "CEL", "Probe"+sensorAddress+":"+"Sensor"+(SENSOR_ID+i)+":Raw");
+                    ngsildPayload[0].soilTemperature[i] = ngsildInstance(TEMPERATURE_DATA_ARRAY[i], time, "CEL", "Probe"+sensorAddress+":"+"Sensor"+(SENSOR_ID+i)+":Raw");
             }
         }
     }
