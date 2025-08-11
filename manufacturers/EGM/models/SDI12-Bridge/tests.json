@@ -227,5 +227,26 @@
         }
       }
     ]
+  },
+  {
+    "name": "Soil moisture threshold",
+    "inputArguments": [
+      51,
+      "6899AF643003002B31322E36393533312B31372E37323733372D31362E3132363536",
+      "2025-03-04T09:12:17Z",
+      "0BF6ACC38B04F88D"
+    ],
+    "expectedOutput": [
+      {
+        "id": "urn:ngsi-ld:Device:0BF6ACC38B04F88D",
+        "type": "Device",
+        "dataNumber": {
+          "type": "Property",
+          "value": 3,
+          "observedAt": "2025-08-11T08:52:52Z",
+          "datasetId": "urn:ngsi-ld:Dataset:Probe0"
+        }
+      }
+    ]
   }
 ]
