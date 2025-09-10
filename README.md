@@ -312,6 +312,7 @@ function ngsildWrapper(input, time, entity_id) {
 * The convention in NGSI-LD is that attribute names are in camelCase, which is usually not what the decoder provided by the manufacturer returns as output so the name needs to be changed.
 * Adding a unit code is a recommended practice and should be done when possible. The code to be added is the UN CEFACT Code corresponding to the unit of measurement of the attribute. 
 * The `time` parameter that is passed as argument to the decoder is the time provided by the Lora server and should be used when the device does not send any timestamp in its payload.
+* As devices expose their battery level under different formats (voltage, percentage, etc.), it is requested to add a `datasetId: 'urn:ngsi-ld:Dataset:scale5` containing the battery level expressed over a 1 to 5 scale, together with the battery information as provided by the device. The transformation depends on each device battery characteristics (chemistry, capacity, etc.) and has to be adapted in consequence.
 
 ## Unit test
 
