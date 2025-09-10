@@ -125,7 +125,7 @@ function ngsildInstance(value, time = null, unitCode = null, datasetSuffix = nul
 }
 
 function ngsildWrapper(decoded, time, entity_id) {
-  // On crée un objet unique représentant la device
+
   var ngsild_payload = {
     id: entity_id,
     type: "Device"
@@ -135,7 +135,7 @@ function ngsildWrapper(decoded, time, entity_id) {
     if (!ngsild_payload.hasOwnProperty(key)) {
       ngsild_payload[key] = value;
     }
-    // Si la propriété existe déjà, on ne fait rien ou on écrase selon besoin
+
   }
 
     for (var key in decoded) {
@@ -156,7 +156,7 @@ function main() {
     var entity_id = "urn:ngsi-ld:Device:" + process.argv[5];
     var decoded = Decode(fPort, payload);
     var ngsild_payload = ngsildWrapper(decoded, time, entity_id);
-    console.log(JSON.stringify(ngsild_payload, null, 2));
+    console.log(JSON.stringify([ngsild_payload], null, 2));
 }
 
 if (require.main === module) {
