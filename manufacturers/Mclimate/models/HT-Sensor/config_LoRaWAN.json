@@ -1,0 +1,28 @@
+{
+    "uplinkDecoder": "uplink_decoder.js",
+    "documentation": "https://docs.mclimate.eu/mclimate-lorawan-devices/devices/mclimate-ht-sensor-lorawan",
+    "ngsildContext": "https://easy-global-market.github.io/ngsild-api-data-models/device/jsonld-contexts/device-compound.jsonld",
+    "devicePicture": "https://docs.mclimate.eu/mclimate-lorawan-devices/~gitbook/image?url=https%3A%2F%2F3940008670-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252F-McDr-jr9h3qA888r1Yp%252Fuploads%252FaajQaVri4ibGZJYkE8Ug%252Fht-lorawan-docs-2.png%3Falt%3Dmedia%26token%3D3d5bb395-4f15-4490-b18d-b2b7868fcce7&width=768&dpr=4&quality=100&sign=b3b3c697&sv=2",
+    "chirpstack": {
+        "region": "EU868",
+        "macVersion": 0,
+        "regParamsRevision": "A",
+        "adrAlgorithmId": "default",
+        "flushQueueOnActivate": true,
+        "uplinkInterval": 86400,
+        "supportsOTAA": true,
+        "supportsClassB": false,
+        "supportsClassC": false
+    },
+    "liveObjects": {
+        "profile": "Generic_classA_RX2SF12",
+        "activationType": "OTAA",
+        "connectivityPlan": "orange-cs/CP_Basic"
+    },
+    "netmore": {
+        "sensorActivationMethodTypeCompositeCode": "OTAA@SENSOR_COMMON",
+        "sensorClassTypeCompositeCode": "CLASS_A@SENSOR_COMMON",
+        "lorawanVersionTypeCompositeCode": "V104@SENSOR_COMMON",
+        "sensorTypeCompositeCode": "OTHER@SENSOR_COMMON"  
+    }
+}
