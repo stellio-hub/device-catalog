@@ -11,10 +11,13 @@ session.read(flowFile, { inputStream ->
     decodedPayload = jsonSlurper.parseText(IOUtils.toString(inputStream))
 } as InputStreamCallback)
 
+def devEui = flowFile.getAttribute("devEui")
+flowFile.putAttribute("entity_id", "urn:ngsi-ld:Device:" + devEui)
+
 def networkType = flowFile.getAttribute("network_type")
-def loraInfo   = jsonSlurper.parseText(flowFile.getAttribute("lora_info"))
-def payload    = flowFile.getAttribute("payload")
-def time       = flowFile.getAttribute("time")
+def loraInfo    = jsonSlurper.parseText(flowFile.getAttribute("lora_info"))
+def payload     = flowFile.getAttribute("payload")
+def time        = flowFile.getAttribute("time")
 
 decodedPayload[0].payload = [
         type      : "Property",
