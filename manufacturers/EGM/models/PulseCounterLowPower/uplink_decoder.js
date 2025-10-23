@@ -54,7 +54,7 @@ function decode(port, encoded, time, entityId) {
 
             ngsildPayload[0].redundancy = ngsildInstance(redundancy, date, null, "PulseCounter" + pulse_counter_id + ":Raw");
             ngsildPayload[0].measureDuration = ngsildInstance(MEASURE_DURATION, date, "MIN", "PulseCounter" + pulse_counter_id + ":Raw");
-            ngsildPayload[0].pulse = ngsildInstance(pulse, date, null, "PulseCounter" + pulse_counter_id + ":Raw");
+            ngsildPayload[0].pulses = ngsildInstance(pulse, date, null, "PulseCounter" + pulse_counter_id + ":Raw");
 
             const PULSE_NUMBER = ((encoded.length - 14) / 3);
             for (let i = 1; i < PULSE_NUMBER; i++) {
@@ -62,7 +62,7 @@ function decode(port, encoded, time, entityId) {
                 date = new Date(epoch.getTime() + pulse_counter_id*60000*i);
                 date = date.toISOString().split('.')[0] + 'Z';
                 pulse = parseInt(encoded.slice(14 + (i*3), 17 + (i*3)), 16);
-                ngsildPayload[i].pulse = ngsildInstance(pulse, date, null, "PulseCounter" + pulse_counter_id + ":Raw");
+                ngsildPayload[i].pulses = ngsildInstance(pulse, date, null, "PulseCounter" + pulse_counter_id + ":Raw");
                 
             }
             break;
