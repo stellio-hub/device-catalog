@@ -1,12 +1,7 @@
 [
   {
     "name": "Product Status",
-    "inputArguments": [
-      56,
-      "6000",
-      "2000-01-01T00:00:00Z",
-      "0A1B2C3D4E5F6G7H"
-    ],
+    "inputArguments": [56, "6000", "2000-01-01T00:00:00Z", "0A1B2C3D4E5F6G7H"],
     "expectedOutput": [
       {
         "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
@@ -57,11 +52,6 @@
             "value": "Excellent",
             "observedAt": "2000-01-01T00:00:00Z",
             "datasetId": "urn:ngsi-ld:Dataset:Global"
-          },
-          {
-            "type": "Property",
-            "observedAt": "2000-01-01T00:00:00Z",
-            "datasetId": "urn:ngsi-ld:Dataset:co2"
           },
           {
             "type": "Property",
@@ -231,12 +221,7 @@
   },
   {
     "name": "Push button message",
-    "inputArguments": [
-      56,
-      "6400",
-      "2000-01-01T00:00:00Z",
-      "0A1B2C3D4E5F6G7H"
-    ],
+    "inputArguments": [56, "6400", "2000-01-01T00:00:00Z", "0A1B2C3D4E5F6G7H"],
     "expectedOutput": [
       {
         "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
@@ -278,12 +263,7 @@
   },
   {
     "name": "Keepalive",
-    "inputArguments": [
-      56,
-      "66",
-      "2000-01-01T00:00:00Z",
-      "0A1B2C3D4E5F6G7H"
-    ],
+    "inputArguments": [56, "66", "2000-01-01T00:00:00Z", "0A1B2C3D4E5F6G7H"],
     "expectedOutput": [
       {
         "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",

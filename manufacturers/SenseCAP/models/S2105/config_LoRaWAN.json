@@ -17,6 +17,12 @@
         "activationType": "OTAA",
         "connectivityPlan": "orange-cs/CP_Basic"
     },
+    "netmore": {
+        "sensorActivationMethodTypeCompositeCode": "OTAA@SENSOR_COMMON",
+        "sensorClassTypeCompositeCode": "CLASS_A@SENSOR_COMMON",
+        "lorawanVersionTypeCompositeCode": "V104@SENSOR_COMMON",
+        "sensorTypeCompositeCode": "SENSECAP_S2105@SENSOR_COMMON"  
+    },
     "thingPark": {
         "connectivity": "LORAWAN",
         "activationType": "OTAA",
