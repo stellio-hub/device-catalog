@@ -332,6 +332,9 @@ function ngsildWrapper(input, time, entity_id) {
                     ngsild_payload[0].soilElectricalConductivity = ngsildInstance(messages[i].measurementValue, time, 'H61', 'Raw');
                 }
             }
+			if (messages[i].type === 'upload_battery') {
+				ngsild_payload[0].battery = ngsildInstance(messages[i].battery, time, 'P1', 'Raw');
+			}
         }
     }
     return ngsild_payload;                                                                                                                                                                                                                                                                                                                                          
