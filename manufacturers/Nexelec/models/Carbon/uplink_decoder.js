@@ -624,6 +624,24 @@ function ngsildWrapper(input, time, entity_id) {
         }];
     }
     else if (payload.Type_of_message === 'Product_Status_Message') {
+    const y = payload.Product_RTC_date_since_2000_in_years; 
+    const m = payload.Product_RTC_date_Month_of_the_year;
+    const d = payload.Product_RTC_date_Day_of_the_month;
+    const h = payload.Product_RTC_date_Hours_of_the_day;
+    const mn = payload.Product_RTC_date_Minutes_of_the_hour;
+    const s = payload.Product_RTC_date_Seconds_of_the_hour || 0;
+    let rtcIso;
+
+    if (
+    y !== undefined && m !== undefined && d !== undefined &&
+    h !== undefined && mn !== undefined
+    ) {
+    const dateObj = new Date(Date.UTC(2000+y,m-1,d,h,mn,s));
+    rtcIso = dateObj.toISOString();
+    } else {
+    rtcIso = null; 
+    }
+
     var batteryLabel = payload.Battery_level;
     let batteryScale5;
     switch (batteryLabel) {
@@ -645,6 +663,7 @@ function ngsildWrapper(input, time, entity_id) {
       Product_RTC_date_Day_of_the_month: payload.Product_RTC_date_Day_of_the_month,
       Product_RTC_date_Hours_of_the_day: payload.Product_RTC_date_Hours_of_the_day,
       Product_RTC_date_Minutes_of_the_hour: payload.Product_RTC_date_Minutes_of_the_hour,
+      Product_RTC:rtcIso,
       batteryLevel: [
         {
           type: "Property",
@@ -670,21 +689,42 @@ function ngsildWrapper(input, time, entity_id) {
       }
     }];
 }
-
-
     else if (payload.Type_of_message === 'Push') {
         delete payload.Type_of_Product;
         delete payload.Type_of_message;
         var ngsild_payload = [{
             id: entity_id,
             type: "Device",
-            buttonActivation: ngsildInstance(1, time, null, null)
+            buttonActivation: ngsildInstance(1, time, null, null),
+            frameIndex: ngsildInstance(payload.Frame_Index, time, null, null)
         }];
     }
     else if (payload.Type_of_message === 'Keep_Alive') {
         var ngsild_payload = [{
             id: entity_id,
             type: "Device",
+        }];
+    }
+    else if (payload.Type_of_message === 'Temperature_Alert') {
+        var ngsild_payload = [{
+            id: entity_id,
+            type: "Device",
+            temperatureAlert: ngsildInstance(1, time, null, null),
+            temperature: ngsildInstance(payload.Temperature, time, 'CEL', 'Raw'),
+            temperatureThreshold1: ngsildInstance(payload.Temperature_threshold_1, time, null, null),
+            temperatureThreshold2: ngsildInstance(payload.Temperature_threshold_2, time, null, null),
+            frameIndex: ngsildInstance(payload.Frame_Index, time, null, null)
+        }];
+    }
+    else if (payload.Type_of_message === 'CO2_Alert') {
+        var ngsild_payload = [{
+            id: entity_id,
+            type: "Device",
+            co2Alert: ngsildInstance(1, time, null, null),
+            co2: ngsildInstance(payload.CO2_concentration, time, '59', 'Raw'),
+            frameIndex: ngsildInstance(payload.Frame_Index, time, null, null),
+            co2Threshold1: ngsildInstance(payload.CO2_threshold_1, time, null, null),
+            co2Threshold2: ngsildInstance(payload.CO2_threshold_2, time, null, null)            
         }];
     }
     else {
