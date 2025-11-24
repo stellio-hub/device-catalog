@@ -391,7 +391,7 @@
     "inputArguments": [56, "7a", "2025-11-18T15:59:03.954Z", "70B3D540F4561556"],
     "expectedOutput": [
       {
-        "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
+        "id": "urn:ngsi-ld:Device:70B3D540F4561556",
         "type": "Device"
       }
     ]
