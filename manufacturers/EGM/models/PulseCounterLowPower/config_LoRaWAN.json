@@ -1,5 +1,5 @@
 {
-    "uplinkDecoder": "uplink_decoder.py",
+    "uplinkDecoder": "uplink_decoder.js",
     "ngsildContext": "https://easy-global-market.github.io/ngsild-api-data-models/irrigation/jsonld-contexts/irrigation-compound.jsonld",
     "chirpstack": {
         "region": "EU868",

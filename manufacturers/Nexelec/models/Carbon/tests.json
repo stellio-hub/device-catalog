@@ -1,0 +1,399 @@
+[
+  {
+    "name": "Product Status",
+    "inputArguments": [56, "73000A124d28fb40", "2025-11-18T15:59:03.954Z", "70B3D540F4561556"],
+    "expectedOutput": [
+        {
+            "id":"urn:ngsi-ld:Device:70B3D540F4561556",
+            "type":"Device",
+            "productStatusMessage":{
+                "type":"Property",
+                "value":{
+                    "HW_Fault_mode":" non activated",
+                    "Frame_Index":0,
+                    "Not_used":"",
+                    "Product_hours_meter_per_month":10,
+                    "CO2_autocalibration_value_ppm":360,
+                    "Product_RTC_date_since_2000_in_years":19,
+                    "Product_RTC_date_Month_of_the_year":4,
+                    "Product_RTC_date_Day_of_the_month":20,
+                    "Product_RTC_date_Hours_of_the_day":15,
+                    "Product_RTC_date_Minutes_of_the_hour":45,
+                    "Product_RTC":"2019-04-20T15:45:00.000Z",
+                    "batteryLevel":[
+                        {
+                        "type":"Property",
+                        "value":"High",
+                        "observedAt":"2025-11-18T15:59:03.954Z"
+                        },
+                        {
+                        "type":"Property",
+                        "value":3,
+                        "datasetId":"urn:ngsi-ld:Dataset:scale5",
+                        "observedAt":"2025-11-18T15:59:03.954Z"
+                        }
+                    ]
+                },
+                "observedAt":"2025-11-18T15:59:03.954Z"
+            }
+       }
+    ]
+  },
+  {
+    "name": "Real Time Data",
+    "inputArguments": [
+      56,
+      "726a75508b0000",
+      "2025-11-18T15:59:03.954Z",
+      "70B3D540F4561556"
+    ],
+    "expectedOutput": [
+        {
+            "id":"urn:ngsi-ld:Device:70B3D540F4561556",
+            "type":"Device",
+            "co2":{
+                "type":"Property",
+                "value":2120,
+                "observedAt":"2025-11-18T15:59:03.954Z",
+                "unitCode":"59",
+                "datasetId":"urn:ngsi-ld:Dataset:Raw"
+            },
+            "temperature":{
+                "type":"Property",
+                "value":23.4,
+                "observedAt":"2025-11-18T15:59:03.954Z",
+                "unitCode":"CEL",
+                "datasetId":"urn:ngsi-ld:Dataset:Raw"
+            },
+            "humidity":{
+                "type":"Property",
+                "value":40,
+                "observedAt":"2025-11-18T15:59:03.954Z",
+                "unitCode":"P1",
+                "datasetId":"urn:ngsi-ld:Dataset:Raw"
+            },
+            "indoorAirQuality":[
+                {
+                    "type":"Property",
+                    "value":"Bad",
+                    "observedAt":"2025-11-18T15:59:03.954Z",
+                    "datasetId":"urn:ngsi-ld:Dataset:Global"
+                },
+                {
+                    "type":"Property",
+                    "value":"Bad",
+                    "observedAt":"2025-11-18T15:59:03.954Z",
+                    "datasetId":"urn:ngsi-ld:Dataset:co2"
+                },
+                {
+                    "type":"Property",
+                    "value":"Excellent",
+                    "observedAt":"2025-11-18T15:59:03.954Z",
+                    "datasetId":"urn:ngsi-ld:Dataset:Drought_index"
+                },
+                {
+                    "type":"Property",
+                    "value":"Excellent",
+                    "observedAt":"2025-11-18T15:59:03.954Z",
+                    "datasetId":"urn:ngsi-ld:Dataset:Mold_index"
+                },
+                {
+                    "type":"Property",
+                    "value":"Excellent",
+                    "observedAt":"2025-11-18T15:59:03.954Z",
+                    "datasetId":"urn:ngsi-ld:Dataset:Mite_index"
+                },
+                {
+                    "type":"Property",
+                    "value":"Good",
+                    "observedAt":"2025-11-18T15:59:03.954Z",
+                    "datasetId":"urn:ngsi-ld:Dataset:Hygrothermal_comfort"
+                }
+            ]
+        }
+    ]
+  },
+  {
+    "name": "Datalog Data",
+    "inputArguments": [
+      56,
+      "751a674d186a4c196f4a6e",
+      "2025-11-18T15:59:03.954Z",
+      "70B3D540F4561556"
+    ],
+    "expectedOutput": [
+        {
+            "id":"urn:ngsi-ld:Device:70B3D540F4561556",
+            "type":"Device",
+            "co2":{
+                "type":"Property",
+                "value":500,
+                "observedAt":"2025-11-18T15:59:03.954Z",
+                "unitCode":"59",
+                "datasetId":"urn:ngsi-ld:Dataset:Raw"
+            },
+            "temperature":{
+                "type":"Property",
+                "value":22.2,
+                "observedAt":"2025-11-18T15:59:03.954Z",
+                "unitCode":"CEL",
+                "datasetId":"urn:ngsi-ld:Dataset:Raw"
+            },
+            "humidity":{
+                "type":"Property",
+                "value":37,
+                "observedAt":"2025-11-18T15:59:03.954Z",
+                "unitCode":"P1",
+                "datasetId":"urn:ngsi-ld:Dataset:Raw"
+            }
+        },
+        {
+            "id":"urn:ngsi-ld:Device:70B3D540F4561556",
+            "type":"Device",
+            "co2":{
+                "type":"Property",
+                "value":480,
+                "observedAt":"2025-11-17T15:59:03.954Z",
+                "unitCode":"59",
+                "datasetId":"urn:ngsi-ld:Dataset:Raw"
+            },
+            "temperature":{
+                "type":"Property",
+                "value":21.2,
+                "observedAt":"2025-11-17T15:59:03.954Z",
+                "unitCode":"CEL",
+                "datasetId":"urn:ngsi-ld:Dataset:Raw"
+            },
+            "humidity":{
+                "type":"Property",
+                "value":38,
+                "observedAt":"2025-11-17T15:59:03.954Z",
+                "unitCode":"P1",
+                "datasetId":"urn:ngsi-ld:Dataset:Raw"
+            }
+        },
+        {
+            "id":"urn:ngsi-ld:Device:70B3D540F4561556",
+            "type":"Device",
+            "co2":{
+                "type":"Property",
+                "value":520,
+                "observedAt":"2025-11-16T15:59:03.954Z",
+                "unitCode":"59",
+                "datasetId":"urn:ngsi-ld:Dataset:Raw"
+            },
+            "temperature":{
+                "type":"Property",
+                "value":20.6,
+                "observedAt":"2025-11-16T15:59:03.954Z",
+                "unitCode":"CEL",
+                "datasetId":"urn:ngsi-ld:Dataset:Raw"
+            },
+            "humidity":{
+                "type":"Property",
+                "value":38.5,
+                "observedAt":"2025-11-16T15:59:03.954Z",
+                "unitCode":"P1",
+                "datasetId":"urn:ngsi-ld:Dataset:Raw"
+            }
+        }
+    ]
+  },
+  {
+    "name": "Configuration of product general functions",
+    "inputArguments": [
+      56,
+      "79e30a065a73050a0718270c80",
+      "2025-11-18T15:59:03.954Z",
+      "70B3D540F4561556"
+    ],
+    "expectedOutput": [
+      {
+        "id":"urn:ngsi-ld:Device:70B3D540F4561556",
+        "type":"Device",
+        "configGeneral":{
+            "type":"Property",
+            "value":{
+                "LED_blink":"Active",
+                "Button_Notification":"Active",
+                "Real-time_data":"Active",
+                "Datalog_enable":"Non-Active",
+                "Temperature_Alert":"Non-Active",
+                "CO2_Alert":"Non-Active",
+                "Keep_Alive":"Active",
+                "Orange_Led":"Active",
+                "Period_between_measurements_CO2_temperature_humidity_minutes":10,
+                "Datalog_decimation_factor_record_only_1_on_x_samples)":6,
+                "Temperature_alert_threshold_1":18,
+                "Temperature_alert_threshold_2":23,
+                "Temperature_change_leading_to_a_real-time_message_transmission":0.5,
+                "Relative_humidity_change_leading_to_a_real-time message_transmission":5,
+                "CO2_concentration_change_leading_to_a_realtime message_transmission":140,
+                "Keepalive_period (h)":24,
+                "NFC_status":"Discoverable",
+                "Not_Used":""
+            },
+            "observedAt":"2025-11-18T15:59:03.954Z"
+        }
+    }
+    ]
+  },
+  {
+    "name": "Configuration of product CO2 functions",
+    "inputArguments": [
+      56,
+      "78325539a39a7c7c02",
+      "2025-11-18T15:59:03.954Z",
+      "70B3D540F4561556"
+    ],
+    "expectedOutput": [
+      {
+        "id": "urn:ngsi-ld:Device:70B3D540F4561556",
+        "type": "Device",
+        "co2Config": {
+            "type": "Property",
+            "value": {
+            "CO2_threshold_1": 1000,
+            "CO2_threshold_2": 1700,
+            "Smart_Period_1_start_at_in_hour": 7,
+            "Smart_Period_1_duration_in_hour": 13,
+            "Smart_Period_2_start_at_in_hour": 7,
+            "Smart_Period_2_duration_in_hour": 13,
+            "Smart_Period_1": "Non-Active",
+            "Smart_Period_1_on_Monday": "Active",
+            "Smart_Period_1_on_Tuesday": "Active",
+            "Smart_Period_1_on_Wednesday": "Active",
+            "Smart_Period_1_on_Thursday": "Active",
+            "Smart_Period_1_on_Friday": "Active",
+            "Smart_Period_1_on_Saturday": "Non-Active",
+            "Smart_Period 1_on_Sunday": "Non-Active",
+            "Smart_Period_2": "Non-Active",
+            "Smart_Period_2_on_Monday": "Active",
+            "Smart_Period_2_on_Tuesday": "Active",
+            "Smart_Period_2_on_Wednesday": "Active",
+            "Smart_Period_2_on_Thursday": "Active",
+            "Smart_Period_2_on_Friday": "Active",
+            "Smart_Period_2_on_Saturday": "Non-Active",
+            "Smart_Period_2_on_Sunday": "Non-Active",
+            "Altitude": 100
+            },
+            "observedAt": "2025-11-18T15:59:03.954Z"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Push button message",
+    "inputArguments": [56, "7400", "2025-11-18T15:59:03.954Z", "70B3D540F4561556"],
+    "expectedOutput": [
+        {
+            "id":"urn:ngsi-ld:Device:70B3D540F4561556",
+            "type":"Device",
+            "buttonActivation":{
+                "type":"Property",
+                "value":1,
+                "observedAt":"2025-11-18T15:59:03.954Z"
+            },
+            "frameIndex":{
+                "type":"Property",
+                "value":0,
+                "observedAt":"2025-11-18T15:59:03.954Z"
+            }
+        }
+    ]
+  },
+  {
+    "name": "Temperature alerts",
+    "inputArguments": [
+      56,
+      "7673c0",
+      "2025-11-18T15:59:03.954Z",
+      "70B3D540F4561556"
+    ],
+    "expectedOutput": [
+        {
+            "id":"urn:ngsi-ld:Device:70B3D540F4561556",
+            "type":"Device",
+            "temperatureAlert":{
+                "type":"Property",
+                "value":1,
+                "observedAt":"2025-11-18T15:59:03.954Z"
+            },
+            "temperature":{
+                "type":"Property",
+                "value":23,
+                "observedAt":"2025-11-18T15:59:03.954Z",
+                "unitCode":"CEL",
+                "datasetId":"urn:ngsi-ld:Dataset:Raw"
+            },
+            "temperatureThreshold1":{
+                "type":"Property",
+                "value":"reached",
+                "observedAt":"2025-11-18T15:59:03.954Z"
+            },
+            "temperatureThreshold2":{
+                "type":"Property",
+                "value":"reached",
+                "observedAt":"2025-11-18T15:59:03.954Z"
+            },
+            "frameIndex":{
+                "type":"Property",
+                "value":0,
+                "observedAt":"2025-11-18T15:59:03.954Z"
+            }
+        }
+    ]
+  },
+    {
+    "name": "Co2 alerts",
+    "inputArguments": [
+      56,
+      "773710",
+      "2025-11-18T15:59:03.954Z",
+      "70B3D540F4561556"
+    ],
+    "expectedOutput": [
+        {
+            "id":"urn:ngsi-ld:Device:70B3D540F4561556",
+            "type":"Device",
+            "co2Alert":{
+                "type":"Property",
+                "value":1,
+                "observedAt":"2025-11-18T15:59:03.954Z"
+            },
+            "co2":{
+                "type":"Property",
+                "value":1100,
+                "observedAt":"2025-11-18T15:59:03.954Z",
+                "unitCode":"59",
+                "datasetId":"urn:ngsi-ld:Dataset:Raw"
+            },
+            "frameIndex":{
+                "type":"Property",
+                "value":0,
+                "observedAt":"2025-11-18T15:59:03.954Z"
+            },
+            "co2Threshold1":{
+                "type":"Property",
+                "value":"reached",
+                "observedAt":"2025-11-18T15:59:03.954Z"
+            },
+            "co2Threshold2":{
+                "type":"Property",
+                "value":"not reached",
+                "observedAt":"2025-11-18T15:59:03.954Z"
+            }
+        }
+    ]
+  },
+  {
+    "name": "Keepalive",
+    "inputArguments": [56, "7a", "2025-11-18T15:59:03.954Z", "70B3D540F4561556"],
+    "expectedOutput": [
+      {
+        "id": "urn:ngsi-ld:Device:70B3D540F4561556",
+        "type": "Device"
+      }
+    ]
+  }
+]
