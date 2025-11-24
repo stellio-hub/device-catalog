@@ -740,7 +740,7 @@ function main() {
         var entity_id = "urn:ngsi-ld:Device:" + process.argv[5];
         var decoded = Decode(fport, bytes);
         var ngsild_payload = ngsildWrapper(decoded, time, entity_id);
-        console.log(JSON.stringify([ngsild_payload], null, 2));
+        console.log(JSON.stringify(ngsild_payload, null, 2));
 }
 
 if (require.main === module) {
