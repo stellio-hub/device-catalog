@@ -3,40 +3,45 @@
     "name": "Product Status",
     "inputArguments": [56, "73000A124d28fb40", "2025-11-18T15:59:03.954Z", "70B3D540F4561556"],
     "expectedOutput": [
-        {
-            "id":"urn:ngsi-ld:Device:70B3D540F4561556",
-            "type":"Device",
-            "productStatusMessage":{
-                "type":"Property",
-                "value":{
-                    "HW_Fault_mode":" non activated",
-                    "Frame_Index":0,
-                    "Not_used":"",
-                    "Product_hours_meter_per_month":10,
-                    "CO2_autocalibration_value_ppm":360,
-                    "Product_RTC_date_since_2000_in_years":19,
-                    "Product_RTC_date_Month_of_the_year":4,
-                    "Product_RTC_date_Day_of_the_month":20,
-                    "Product_RTC_date_Hours_of_the_day":15,
-                    "Product_RTC_date_Minutes_of_the_hour":45,
-                    "Product_RTC":"2019-04-20T15:45:00.000Z",
-                    "batteryLevel":[
-                        {
-                        "type":"Property",
-                        "value":"High",
-                        "observedAt":"2025-11-18T15:59:03.954Z"
-                        },
-                        {
-                        "type":"Property",
-                        "value":3,
-                        "datasetId":"urn:ngsi-ld:Dataset:scale5",
-                        "observedAt":"2025-11-18T15:59:03.954Z"
-                        }
-                    ]
+          {
+              "id": "urn:ngsi-ld:Device:70B3D540F4561556",
+              "type": "Device",
+              "productStatusMessage": {
+                "type": "Property",
+                "value": {
+                  "HW_Fault_mode": " non activated",
+                  "Frame_Index": 0,
+                  "Not_used": "",
+                  "Product_hours_meter_per_month": 10,
+                  "CO2_autocalibration_value_ppm": 360,
+                  "Product_RTC_date_since_2000_in_years": 19,
+                  "Product_RTC_date_Month_of_the_year": 4,
+                  "Product_RTC_date_Day_of_the_month": 20,
+                  "Product_RTC_date_Hours_of_the_day": 15,
+                  "Product_RTC_date_Minutes_of_the_hour": 45
                 },
-                "observedAt":"2025-11-18T15:59:03.954Z"
+                "observedAt": "2025-11-18T15:59:03.954Z"
+              },
+              "batteryLevel": [
+                {
+                  "type": "Property",
+                  "value": "High",
+                  "observedAt": "2025-11-18T15:59:03.954Z",
+                  "datasetId": "urn:ngsi-ld:Dataset:qualitative"
+                },
+                {
+                  "type": "Property",
+                  "value": 3,
+                  "observedAt": "2025-11-18T15:59:03.954Z",
+                  "datasetId": "urn:ngsi-ld:Dataset:scale5"
+                }
+              ],
+              "productRtc": {
+                "type": "Property",
+                "value": "2019-04-20T15:45:00.000Z",
+                "observedAt": "2025-11-18T15:59:03.954Z"
+              }
             }
-       }
     ]
   },
   {
