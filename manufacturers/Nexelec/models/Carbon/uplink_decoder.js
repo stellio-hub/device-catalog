@@ -663,20 +663,6 @@ function ngsildWrapper(input, time, entity_id) {
       Product_RTC_date_Day_of_the_month: payload.Product_RTC_date_Day_of_the_month,
       Product_RTC_date_Hours_of_the_day: payload.Product_RTC_date_Hours_of_the_day,
       Product_RTC_date_Minutes_of_the_hour: payload.Product_RTC_date_Minutes_of_the_hour,
-      Product_RTC:rtcIso,
-      batteryLevel: [
-        {
-          type: "Property",
-          value: batteryLabel,
-          observedAt: time
-        },
-        {
-          type: "Property",
-          value: batteryScale5,
-          datasetId: "urn:ngsi-ld:Dataset:scale5",
-          observedAt: time
-        }
-      ]
     };
 
     var ngsild_payload = [{
@@ -686,7 +672,12 @@ function ngsildWrapper(input, time, entity_id) {
         type: "Property",
         value: statusValue,
         observedAt: time
-      }
+      },
+      batteryLevel: [
+        ngsildInstance(batteryLabel, time, null, 'qualitative'),
+        ngsildInstance(batteryScale5, time, null, 'scale5')
+      ],
+      productRtc: ngsildInstance(rtcIso, time, null, null)
     }];
 }
     else if (payload.Type_of_message === 'Push') {
@@ -746,3 +737,4 @@ function main() {
 if (require.main === module) {
         main();
 }
+
