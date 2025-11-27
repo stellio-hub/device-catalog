@@ -440,12 +440,14 @@ function battery(a){
     switch(a){
     case 0:
             result="High";
-
             break;
     case 1:
             result="Medium";
             break;
     case 2:
+            result="Low";
+            break;
+    case 3:
             result="Critical";
             break;
     }
@@ -645,10 +647,10 @@ function ngsildWrapper(input, time, entity_id) {
     var batteryLabel = payload.Battery_level;
     let batteryScale5;
     switch (batteryLabel) {
-        case "High":     batteryScale5 = 3; break;
-        case "Medium":   batteryScale5 = 2; break;
-        case "Low":      batteryScale5 = 1; break;
-        case "Critical": batteryScale5 = 0; break;
+        case "High":     batteryScale5 = 4; break;
+        case "Medium":   batteryScale5 = 3; break;
+        case "Low":      batteryScale5 = 2; break;
+        case "Critical": batteryScale5 = 1; break;
         default:         batteryScale5 = null;
     }
 
@@ -737,4 +739,5 @@ function main() {
 if (require.main === module) {
         main();
 }
+
 
