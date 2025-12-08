@@ -31,7 +31,7 @@
                 },
                 {
                   "type": "Property",
-                  "value": 3,
+                  "value": 4,
                   "observedAt": "2025-11-18T15:59:03.954Z",
                   "datasetId": "urn:ngsi-ld:Dataset:scale5"
                 }
