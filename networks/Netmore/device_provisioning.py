@@ -6,7 +6,7 @@ import sys
 
 def handle_response(r: requests.models.Response):
     r.raise_for_status()
-    if r.json()[0]["status"] != "OK":
+    if r.json()[0]["status"] not in ["OK", "NO_CHANGE"]:
         raise Exception(r.text)
     return r
 
@@ -113,3 +113,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
