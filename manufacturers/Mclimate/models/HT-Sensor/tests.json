@@ -1,0 +1,46 @@
+[
+   {
+      "name":"T/H/bat data",
+      "inputArguments":[
+         2,
+         "01069202a688fa",
+         "2025-09-09T14:58:43Z",
+         "70B3D52DD500009D"
+      ],
+      "expectedOutput":[
+         {
+            "id": "urn:ngsi-ld:Device:70B3D52DD500009D",
+            "type": "Device",
+            "sensorTemperature": {
+                "type": "Property",
+                "value": 128.2,
+                "observedAt": "2025-09-09T14:58:43Z",
+                "unitCode": "CEL"
+            },
+            "relativeHumidity": {
+                "type": "Property",
+                "value": 0.78,
+                "observedAt": "2025-09-09T14:58:43Z",
+                "unitCode": "P1"
+            },
+            "batteryVoltage": {
+                "type": "Property",
+                "value": 3,
+                "observedAt": "2025-09-09T14:58:43Z",
+                "unitCode": "VLT"
+            },
+            "thermistorProperlyConnected": {
+                "type": "Property",
+                "value": true,
+                "observedAt": "2025-09-09T14:58:43Z"
+            },
+            "extThermistorTemperature": {
+                "type": "Property",
+                "value": 229.8,
+                "observedAt": "2025-09-09T14:58:43Z",
+                "unitCode": "CEL"
+            }
+        }   
+      ]
+   }
+]

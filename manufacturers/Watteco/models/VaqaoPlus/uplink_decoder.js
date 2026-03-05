@@ -1,6 +1,6 @@
 let watteco = require("../../decode.js")
 let ngsild = require("../../ngsi-ld.js")
-
+let zonemap = require("../../../../utils/zonemap.js")
 // See here for explanations on batch parameters: https://support.watteco.com/
 // batch_param has been updated from Watteco driver so that: 
 // lbnlname : used as NGSI-LD propertu name
@@ -35,13 +35,35 @@ function main() {
     var payload = process.argv[3];
     var time = process.argv[4];
     var entity_id = "urn:ngsi-ld:Device:" + process.argv[5];
-
     var decoded = watteco.Decode(payload,time,batch_param,endpointCorresponder);
+
+    // Perform additional processing if needed
+    let processedData = [];
+    for (let i = 0; i < decoded.data.length; i++) {
+        let data = decoded.data[i];
+
+        // Estimate universal battery level indicator (#6027)
+        if (data.variable === "batteryLevel" && data.datasetId === "Disposable_battery_voltage:Raw") { 
+            let batteryLevel = zonemap.zonefromvalue(data.value, [3.2, 3.3, 3.4, 3.45]);
+            processedData.push({
+                variable: data.variable,
+                value: batteryLevel,
+                datasetId: "scale5",
+                date: data.date
+            });
+        }
+    }
+
+    // If there are any processed data, append them to the decoded data
+    if (processedData.length > 0) {
+        decoded.data = decoded.data.concat(processedData);
+    }
+
+    // Convert the decoded data to NGSI-LD format
     var ngsild_payload = ngsild.ngsildWrapper(decoded, time, entity_id);
     if (Object.keys(ngsild_payload)[0] !== 'message_type'){
         process.stdout.write(JSON.stringify(ngsild_payload));
     }
-    //console.log(ngsild_payload)
 }
 
 if (require.main === module) {
