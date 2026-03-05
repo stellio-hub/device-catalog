@@ -1,0 +1,110 @@
+[
+  {
+     "name":"Basic test",
+     "inputArguments":[
+        80,
+        "010610e40c000001071000000000ec7b",
+        "2026-03-05T09:29:20.551792Z",
+        "2CF7F1C064500008"
+     ],
+     "expectedOutput":[
+        {
+            "id": "urn:ngsi-ld:Device:2CF7F1C064500008",
+            "type": "Device",
+            "name": {
+                "type": "Property",
+                "value": "sensecap_S2104_0008"
+            },
+            "snr": {
+                "type": "Property",
+                "value": -17.5,
+                "datasetId": "urn:ngsi-ld:Dataset:Gateway:1000D8F4:Raw",
+                "observedAt": "2026-03-05T09:49:18Z"
+            },
+            "rssi": {
+                "type": "Property",
+                "value": -124,
+                "datasetId": "urn:ngsi-ld:Dataset:Gateway:1000D8F4:Raw",
+                "observedAt": "2026-03-05T09:49:18Z"
+            },
+            "model": {
+                "type": "Property",
+                "value": "S2104"
+            },
+            "appEUI": {
+                "type": "Property",
+                "value": "5D6C9A1DB17CD51A"
+            },
+            "appKey": {
+                "type": "Property",
+                "value": "92C5809559478A0D9B9A43CF33AAFFDF"
+            },
+            "devEUI": {
+                "type": "Property",
+                "value": "2CF7F1C064500008"
+            },
+            "manufacturer": {
+                "type": "Property",
+                "value": "SenseCAP"
+            },
+            "error": {
+                "type": "Property",
+                "value": 1,
+                "observedAt": "2026-01-29T14:04:46Z"
+            },
+            "description": {
+                "type": "Property",
+                "value": "Romania - Brasov"
+            },
+            "isDeprovisioned": {
+                "type": "Property",
+                "value": false
+            },
+            "https://vocab.egm.io/soilTemperature": {
+                "type": "Property",
+                "value": 3.3,
+                "unitCode": "CEL",
+                "datasetId": "urn:ngsi-ld:Dataset:Raw",
+                "observedAt": "2026-03-05T09:49:18Z"
+            },
+            "location": {
+                "type": "GeoProperty",
+                "value": {
+                    "type": "Point",
+                    "coordinates": [
+                        25.538964,
+                        45.672783
+                    ]
+                },
+                "observedAt": "2025-10-29T13:13:41.226Z"
+            },
+            "deployedOnNetwork": {
+                "type": "Relationship",
+                "isEnabled": {
+                    "type": "Property",
+                    "value": true
+                },
+                "datasetId": "urn:ngsi-ld:Dataset:Network:ThingParkEnterprise:CyRIC",
+                "object": "urn:ngsi-ld:Network:ThingParkEnterprise:CyRIC"
+            },
+            "https://vocab.egm.io/volumetricMoisture": {
+                "type": "Property",
+                "value": 0,
+                "unitCode": "P1",
+                "datasetId": "urn:ngsi-ld:Dataset:Raw",
+                "observedAt": "2026-03-05T09:49:18Z"
+            },
+            "communicationProtocol": {
+                "type": "Property",
+                "value": "LoRaWAN"
+            },
+            "payload": {
+                "type": "Property",
+                "value": "010610e40c000001071000000000ec7b",
+                "datasetId": "urn:ngsi-ld:Dataset:Raw",
+                "observedAt": "2026-03-05T09:49:18Z"
+            }
+        }
+     ]
+  }
+]

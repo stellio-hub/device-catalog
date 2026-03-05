@@ -1,0 +1,146 @@
+[
+  {
+     "name":"Basic test",
+     "inputArguments":[
+        80,
+        "3112010002654800188170",
+        "2026-03-05T09:30:26.613742Z",
+        "2CF7F1C0730000A2"
+     ],
+     "expectedOutput":[
+        {
+            "id": "urn:ngsi-ld:Device:2CF7F1C0730000A2",
+            "type": "Device",
+            "name": {
+                "type": "Property",
+                "value": "sensecap_S2100_00A2"
+            },
+            "snr": [
+                {
+                    "type": "Property",
+                    "value": 0.5,
+                    "datasetId": "urn:ngsi-ld:Dataset:Gateway:10006508:Raw",
+                    "observedAt": "2025-09-10T12:15:12Z"
+                },
+                {
+                    "type": "Property",
+                    "value": -10,
+                    "datasetId": "urn:ngsi-ld:Dataset:Gateway:100099D7:Raw",
+                    "observedAt": "2025-09-10T12:15:12Z"
+                },
+                {
+                    "type": "Property",
+                    "value": 14.5,
+                    "datasetId": "urn:ngsi-ld:Dataset:Gateway:1000AE9B:Raw",
+                    "observedAt": "2025-09-10T12:15:12Z"
+                },
+                {
+                    "type": "Property",
+                    "value": 13,
+                    "datasetId": "urn:ngsi-ld:Dataset:Gateway:100115A5:Raw",
+                    "observedAt": "2026-03-05T09:40:30Z"
+                }
+            ],
+            "rssi": [
+                {
+                    "type": "Property",
+                    "value": -101.192657,
+                    "datasetId": "urn:ngsi-ld:Dataset:Gateway:10006508:Raw",
+                    "observedAt": "2025-09-10T12:15:12Z"
+                },
+                {
+                    "type": "Property",
+                    "value": -89.392654,
+                    "datasetId": "urn:ngsi-ld:Dataset:Gateway:100099D7:Raw",
+                    "observedAt": "2025-09-10T12:15:12Z"
+                },
+                {
+                    "type": "Property",
+                    "value": -56,
+                    "datasetId": "urn:ngsi-ld:Dataset:Gateway:1000AE9B:Raw",
+                    "observedAt": "2025-09-10T12:15:12Z"
+                },
+                {
+                    "type": "Property",
+                    "value": -81,
+                    "datasetId": "urn:ngsi-ld:Dataset:Gateway:100115A5:Raw",
+                    "observedAt": "2026-03-05T09:40:30Z"
+                }
+            ],
+            "model": {
+                "type": "Property",
+                "value": "S2100 - Leaf Wetness"
+            },
+            "appEUI": {
+                "type": "Property",
+                "value": "669F6D3F88D8C510"
+            },
+            "appKey": {
+                "type": "Property",
+                "value": "D6A2DC60ABDA275F039EB523A76C6D86"
+            },
+            "devEUI": {
+                "type": "Property",
+                "value": "2CF7F1C0730000A2"
+            },
+            "temperature": {
+                "type": "Property",
+                "value": 1690,
+                "unitCode": "CEL",
+                "datasetId": "urn:ngsi-ld:Dataset:Raw",
+                "observedAt": "2026-03-05T09:40:30Z"
+            },
+            "manufacturer": {
+                "type": "Property",
+                "value": "SenseCAP"
+            },
+            "error": {
+                "type": "Property",
+                "value": 1,
+                "observedAt": "2026-03-05T07:10:30Z"
+            },
+            "description": {
+                "type": "Property",
+                "value": "France - Pilot1"
+            },
+            "isDeprovisioned": {
+                "type": "Property",
+                "value": false
+            },
+            "deployedOnNetwork": {
+                "type": "Relationship",
+                "isEnabled": {
+                    "type": "Property",
+                    "value": true
+                },
+                "datasetId": "urn:ngsi-ld:Dataset:Network:ThingParkEnterprise:CyRIC",
+                "object": "urn:ngsi-ld:Network:ThingParkEnterprise:CyRIC"
+            },
+            "communicationProtocol": {
+                "type": "Property",
+                "value": "LoRaWAN"
+            },
+            "battery": {
+                "type": "Property",
+                "value": 1,
+                "unitCode": "P1",
+                "datasetId": "urn:ngsi-ld:Dataset:Raw",
+                "observedAt": "2025-09-10T12:15:12Z"
+            },
+            "payload": {
+                "type": "Property",
+                "value": "311201000294280019c990",
+                "datasetId": "urn:ngsi-ld:Dataset:Raw",
+                "observedAt": "2026-03-05T09:40:30Z"
+            },
+            "leafWetness": {
+                "type": "Property",
+                "value": 169,
+                "unitCode": "P1",
+                "datasetId": "urn:ngsi-ld:Dataset:Raw",
+                "observedAt": "2026-03-05T09:40:30Z"
+            }
+        }
+     ]
+  }
+]
