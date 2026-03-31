@@ -98,7 +98,7 @@ else if (networkType == "ThingPark") {
         if (item.containsKey('LrrRSSI')) {
             rssi << [
                     type      : "Property",
-                    value     : item.LrrRSSI,
+                    value     : item.LrrRSSI.toFloat(),
                     observedAt: time,
                     datasetId : "urn:ngsi-ld:Dataset:Gateway:${item.Lrrid.toUpperCase()}:Raw"
             ]
@@ -106,7 +106,7 @@ else if (networkType == "ThingPark") {
         if (item.containsKey('LrrSNR')) {
             snr << [
                     type      : "Property",
-                    value     : item.LrrSNR,
+                    value     : item.LrrSNR.toFloat(),
                     observedAt: time,
                     datasetId : "urn:ngsi-ld:Dataset:Gateway:${item.Lrrid.toUpperCase()}:Raw"
             ]
