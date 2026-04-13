@@ -1,3 +1,5 @@
+const batteryUtils = require("../../../../utils/batteryScale.js")
+
 function Decode(fPort, bytes) {
     var bytesString = bytes2HexString(bytes).toLocaleUpperCase();
     var fport = parseInt(fPort);
@@ -322,13 +324,23 @@ function ngsildWrapper(input, time, entity_id) {
     } else {
         const batteryMessage = messages.find((message) => message.type === "upload_battery");
         if (batteryMessage) {
-            ngsild_payload[0].batteryLevel = ngsildInstance(
-                batteryMessage.battery,
-                time,
-                null,
-                "scale5"
-            );
-        }
+            const batteryLevel = batteryMessage.battery;
+            const batteryScale = batteryUtils.batteryScaleFromBatteryLevelPercent(batteryLevel);
+            ngsild_payload[0].batteryLevel = [
+                ngsildInstance(
+                    batteryLevel,
+                    time,
+                    "P1",
+                    "Raw"
+                ), 
+                ngsildInstance(
+                    batteryScale,
+                    time,
+                    null,
+                    "scale5"
+                )
+            ]
+        };
 
         for (let i = 0; i < messages.length; i++) {
             if (messages[i].type === 'report_telemetry') {
