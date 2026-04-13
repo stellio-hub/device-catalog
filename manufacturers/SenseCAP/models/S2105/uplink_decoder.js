@@ -320,6 +320,16 @@ function ngsildWrapper(input, time, entity_id) {
     if (error){
         ngsild_payload[0].error = ngsildInstance(1, time, null, null)
     } else {
+        const batteryMessage = messages.find((message) => message.type === "upload_battery");
+        if (batteryMessage) {
+            ngsild_payload[0].batteryLevel = ngsildInstance(
+                batteryMessage.battery,
+                time,
+                null,
+                "scale5"
+            );
+        }
+
         for (let i = 0; i < messages.length; i++) {
             if (messages[i].type === 'report_telemetry') {
                 if (messages[i].measurementId === 4102) {
