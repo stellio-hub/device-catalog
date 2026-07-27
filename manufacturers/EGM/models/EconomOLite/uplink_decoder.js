@@ -57,7 +57,7 @@ function decode(port, encoded, time, entityId) {
                 date = new Date(epoch.getTime() + PULSE_COUNTER_ID*60000*i);
                 date = date.toISOString().split('.')[0] + 'Z';
                 pulse = parseInt(encoded.slice(14 + (i*3), 17 + (i*3)), 16);
-                ngsildPayload[i].pulse = ngsildInstance(pulse, date, null, "PulseCounter" + PULSE_COUNTER_ID + ":Raw");
+                ngsildPayload[i].pulses = ngsildInstance(pulse, date, null, "PulseCounter" + PULSE_COUNTER_ID + ":Raw");
                 
             }
             break;

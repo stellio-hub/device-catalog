@@ -40,142 +40,192 @@
       "name":"Pulse counter data",
       "inputArguments":[
          90,
-         "01020167e56753001000001000001000001000001000001000",
+         "0102016a66f41105705a05805905905705605605905b0050000000000000000",
          "2025-03-04T09:12:17Z",
          "0A1B2C3D4E5F6G7H"
       ],
       "expectedOutput":[
          {
-            "id":"urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
-            "type":"Device",
-            "redundancy":{
-               "type":"Property",
-               "value":2,
-               "observedAt":"2025-03-27T14:57:23Z",
-               "datasetId":"urn:ngsi-ld:Dataset:PulseCounter1:Raw"
+            "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
+            "type": "Device",
+            "redundancy": {
+                  "type": "Property",
+                  "value": 2,
+                  "observedAt": "2026-07-27T06:00:49Z",
+                  "datasetId": "urn:ngsi-ld:Dataset:PulseCounter1:Raw"
             },
-            "measureDuration":{
-               "type":"Property",
-               "value":1,
-               "observedAt":"2025-03-27T14:57:23Z",
-               "unitCode":"MIN",
-               "datasetId":"urn:ngsi-ld:Dataset:PulseCounter1:Raw"
+            "measureDuration": {
+                  "type": "Property",
+                  "value": 1,
+                  "observedAt": "2026-07-27T06:00:49Z",
+                  "unitCode": "MIN",
+                  "datasetId": "urn:ngsi-ld:Dataset:PulseCounter1:Raw"
             },
-            "pulse":{
-               "type":"Property",
-               "value":1,
-               "observedAt":"2025-03-27T14:57:23Z",
-               "datasetId":"urn:ngsi-ld:Dataset:PulseCounter1:Raw"
+            "pulse": {
+                  "type": "Property",
+                  "value": 87,
+                  "observedAt": "2026-07-27T06:00:49Z",
+                  "datasetId": "urn:ngsi-ld:Dataset:PulseCounter1:Raw"
             }
          },
          {
-            "id":"urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
-            "type":"Device",
-            "pulse":{
-               "type":"Property",
-               "value":0,
-               "observedAt":"2025-03-27T14:58:23Z",
-               "datasetId":"urn:ngsi-ld:Dataset:PulseCounter1:Raw"
+            "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
+            "type": "Device",
+            "pulses": {
+                  "type": "Property",
+                  "value": 90,
+                  "observedAt": "2026-07-27T06:01:49Z",
+                  "datasetId": "urn:ngsi-ld:Dataset:PulseCounter1:Raw"
             }
          },
          {
-            "id":"urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
-            "type":"Device",
-            "pulse":{
-               "type":"Property",
-               "value":1,
-               "observedAt":"2025-03-27T14:59:23Z",
-               "datasetId":"urn:ngsi-ld:Dataset:PulseCounter1:Raw"
+            "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
+            "type": "Device",
+            "pulses": {
+                  "type": "Property",
+                  "value": 88,
+                  "observedAt": "2026-07-27T06:02:49Z",
+                  "datasetId": "urn:ngsi-ld:Dataset:PulseCounter1:Raw"
             }
          },
          {
-            "id":"urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
-            "type":"Device",
-            "pulse":{
-               "type":"Property",
-               "value":0,
-               "observedAt":"2025-03-27T15:00:23Z",
-               "datasetId":"urn:ngsi-ld:Dataset:PulseCounter1:Raw"
+            "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
+            "type": "Device",
+            "pulses": {
+                  "type": "Property",
+                  "value": 89,
+                  "observedAt": "2026-07-27T06:03:49Z",
+                  "datasetId": "urn:ngsi-ld:Dataset:PulseCounter1:Raw"
             }
          },
          {
-            "id":"urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
-            "type":"Device",
-            "pulse":{
-               "type":"Property",
-               "value":1,
-               "observedAt":"2025-03-27T15:01:23Z",
-               "datasetId":"urn:ngsi-ld:Dataset:PulseCounter1:Raw"
+            "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
+            "type": "Device",
+            "pulses": {
+                  "type": "Property",
+                  "value": 89,
+                  "observedAt": "2026-07-27T06:04:49Z",
+                  "datasetId": "urn:ngsi-ld:Dataset:PulseCounter1:Raw"
             }
          },
          {
-            "id":"urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
-            "type":"Device",
-            "pulse":{
-               "type":"Property",
-               "value":0,
-               "observedAt":"2025-03-27T15:02:23Z",
-               "datasetId":"urn:ngsi-ld:Dataset:PulseCounter1:Raw"
+            "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
+            "type": "Device",
+            "pulses": {
+                  "type": "Property",
+                  "value": 87,
+                  "observedAt": "2026-07-27T06:05:49Z",
+                  "datasetId": "urn:ngsi-ld:Dataset:PulseCounter1:Raw"
             }
          },
          {
-            "id":"urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
-            "type":"Device",
-            "pulse":{
-               "type":"Property",
-               "value":1,
-               "observedAt":"2025-03-27T15:03:23Z",
-               "datasetId":"urn:ngsi-ld:Dataset:PulseCounter1:Raw"
+            "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
+            "type": "Device",
+            "pulses": {
+                  "type": "Property",
+                  "value": 86,
+                  "observedAt": "2026-07-27T06:06:49Z",
+                  "datasetId": "urn:ngsi-ld:Dataset:PulseCounter1:Raw"
             }
          },
          {
-            "id":"urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
-            "type":"Device",
-            "pulse":{
-               "type":"Property",
-               "value":0,
-               "observedAt":"2025-03-27T15:04:23Z",
-               "datasetId":"urn:ngsi-ld:Dataset:PulseCounter1:Raw"
+            "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
+            "type": "Device",
+            "pulses": {
+                  "type": "Property",
+                  "value": 86,
+                  "observedAt": "2026-07-27T06:07:49Z",
+                  "datasetId": "urn:ngsi-ld:Dataset:PulseCounter1:Raw"
             }
          },
          {
-            "id":"urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
-            "type":"Device",
-            "pulse":{
-               "type":"Property",
-               "value":1,
-               "observedAt":"2025-03-27T15:05:23Z",
-               "datasetId":"urn:ngsi-ld:Dataset:PulseCounter1:Raw"
+            "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
+            "type": "Device",
+            "pulses": {
+                  "type": "Property",
+                  "value": 89,
+                  "observedAt": "2026-07-27T06:08:49Z",
+                  "datasetId": "urn:ngsi-ld:Dataset:PulseCounter1:Raw"
             }
          },
          {
-            "id":"urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
-            "type":"Device",
-            "pulse":{
-               "type":"Property",
-               "value":0,
-               "observedAt":"2025-03-27T15:06:23Z",
-               "datasetId":"urn:ngsi-ld:Dataset:PulseCounter1:Raw"
+            "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
+            "type": "Device",
+            "pulses": {
+                  "type": "Property",
+                  "value": 91,
+                  "observedAt": "2026-07-27T06:09:49Z",
+                  "datasetId": "urn:ngsi-ld:Dataset:PulseCounter1:Raw"
             }
          },
          {
-            "id":"urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
-            "type":"Device",
-            "pulse":{
-               "type":"Property",
-               "value":1,
-               "observedAt":"2025-03-27T15:07:23Z",
-               "datasetId":"urn:ngsi-ld:Dataset:PulseCounter1:Raw"
+            "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
+            "type": "Device",
+            "pulses": {
+                  "type": "Property",
+                  "value": 5,
+                  "observedAt": "2026-07-27T06:10:49Z",
+                  "datasetId": "urn:ngsi-ld:Dataset:PulseCounter1:Raw"
             }
          },
          {
-            "id":"urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
-            "type":"Device",
-            "pulse":{
-               "type":"Property",
-               "value":0,
-               "observedAt":"2025-03-27T15:08:23Z",
-               "datasetId":"urn:ngsi-ld:Dataset:PulseCounter1:Raw"
+            "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
+            "type": "Device",
+            "pulses": {
+                  "type": "Property",
+                  "value": 0,
+                  "observedAt": "2026-07-27T06:11:49Z",
+                  "datasetId": "urn:ngsi-ld:Dataset:PulseCounter1:Raw"
+            }
+         },
+         {
+            "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
+            "type": "Device",
+            "pulses": {
+                  "type": "Property",
+                  "value": 0,
+                  "observedAt": "2026-07-27T06:12:49Z",
+                  "datasetId": "urn:ngsi-ld:Dataset:PulseCounter1:Raw"
+            }
+         },
+         {
+            "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
+            "type": "Device",
+            "pulses": {
+                  "type": "Property",
+                  "value": 0,
+                  "observedAt": "2026-07-27T06:13:49Z",
+                  "datasetId": "urn:ngsi-ld:Dataset:PulseCounter1:Raw"
+            }
+         },
+         {
+            "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
+            "type": "Device",
+            "pulses": {
+                  "type": "Property",
+                  "value": 0,
+                  "observedAt": "2026-07-27T06:14:49Z",
+                  "datasetId": "urn:ngsi-ld:Dataset:PulseCounter1:Raw"
+            }
+         },
+         {
+            "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
+            "type": "Device",
+            "pulses": {
+                  "type": "Property",
+                  "value": 0,
+                  "observedAt": "2026-07-27T06:15:49Z",
+                  "datasetId": "urn:ngsi-ld:Dataset:PulseCounter1:Raw"
+            }
+         },
+         {
+            "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6G7H",
+            "type": "Device",
+            "pulses": {
+                  "type": "Property",
+                  "value": 0,
+                  "observedAt": "2026-07-27T06:16:49Z",
+                  "datasetId": "urn:ngsi-ld:Dataset:PulseCounter1:Raw"
             }
          }
       ]
