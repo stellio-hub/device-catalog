@@ -57,7 +57,7 @@ function decode(port, encoded, time, entityId) {
                 date = new Date(epoch.getTime() + PULSE_COUNTER_ID*60000*i);
                 date = date.toISOString().split('.')[0] + 'Z';
                 pulse = parseInt(encoded.slice(14 + (i*3), 17 + (i*3)), 16);
-                ngsildPayload[i].pulse = ngsildInstance(pulse, date, null, "PulseCounter" + PULSE_COUNTER_ID + ":Raw");
+                ngsildPayload[i].pulses = ngsildInstance(pulse, date, null, "PulseCounter" + PULSE_COUNTER_ID + ":Raw");
                 
             }
             break;
@@ -95,6 +95,25 @@ function decode(port, encoded, time, entityId) {
             ngsildPayload[0].wateringDays = days;
             ngsildPayload[0].commandNumber = ngsildInstance(CMD_NUMBER, date, null, null);
             ngsildPayload[0].batteryVoltage = ngsildInstance(BATTERY_VOLTAGE, date, "VLT", "Raw");
+            break;
+        case "81":
+            const VALVE_RECORD_NUMBER = ((encoded.length - 2) / 12);
+            for(let i = 0; i < VALVE_RECORD_NUMBER; i++) {
+                epoch = encoded.slice(2 + (i*12), 10 + (i*12));
+                epoch = new Date(parseInt(epoch, 16) * 1000);
+                date = epoch.toISOString().split('.')[0] + 'Z';
+                const VALVE_INDEX = parseInt(encoded.slice(10 + (i*12), 12 + (i*12)), 16);
+                const OPENING_TIME = parseInt(encoded.slice(12 + (i*12), 14 + (i*12)), 16);
+                ngsildPayload[0]["actualOpeningDurationValve" + VALVE_INDEX] = ngsildInstance(OPENING_TIME, date, "MIN", "Raw");
+                for(let j = 0; j <= OPENING_TIME; j++) {
+                    if(j >= ngsildPayload.length) {
+                        ngsildPayload.push({ id: entityId, type: "Device" });
+                    }
+                    date = new Date(epoch.getTime() + j*60000);
+                    date = date.toISOString().split('.')[0] + 'Z';
+                    ngsildPayload[j]["statusValve" + VALVE_INDEX] = ngsildInstance((j < OPENING_TIME) ? 1 : 0, date, null, "Raw");
+                }
+            }
             break;
         case "88":
             const temporaryProgram = [];
