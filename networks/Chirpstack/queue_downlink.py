@@ -19,10 +19,10 @@ def queue_downlink(channel, auth_token, confirmed, data, dev_eui, port):
 def main():
     encoder_ouptut = json.load(sys.stdin)
 
-    dev_eui = encoder_ouptut["dev_eui"]
+    dev_eui = encoder_ouptut["devEui"]
     data = base64.b64decode(encoder_ouptut["data"])
     confirmed = encoder_ouptut["confirmed"]
-    f_port = encoder_ouptut["f_port"]
+    port = encoder_ouptut["port"]
 
     server = sys.argv[1]
     api_token = sys.argv[2]
@@ -37,7 +37,7 @@ def main():
                 confirmed,
                 data,
                 dev_eui,
-                f_port,
+                port,
             )
 
         json.dump({"success": True, "dev_eui": dev_eui}, sys.stdout)
