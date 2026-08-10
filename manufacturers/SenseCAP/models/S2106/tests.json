@@ -1,0 +1,119 @@
+[
+  {
+     "name":"Basic test",
+     "inputArguments":[
+        80,
+        "0101108e350000010a10881d0000c2e7",
+        "2026-03-05T09:29:16.546049Z",
+        "2CF7F1C06490083F"
+     ],
+     "expectedOutput":[
+        {
+            "id": "urn:ngsi-ld:Device:2CF7F1C06490083F",
+            "type": "Device",
+            "name": {
+                "type": "Property",
+                "value": "sensecap_S2106_083F"
+            },
+            "https://vocab.egm.io/pH": {
+                "type": "Property",
+                "value": 7.43,
+                "unitCode": "PH",
+                "datasetId": "urn:ngsi-ld:Dataset:Raw",
+                "observedAt": "2026-03-05T09:59:25Z"
+            },
+            "snr": {
+                "type": "Property",
+                "value": 13.75,
+                "datasetId": "urn:ngsi-ld:Dataset:Gateway:1000F6C8:Raw",
+                "observedAt": "2026-03-05T09:59:25Z"
+            },
+            "rssi": {
+                "type": "Property",
+                "value": -52,
+                "datasetId": "urn:ngsi-ld:Dataset:Gateway:1000F6C8:Raw",
+                "observedAt": "2026-03-05T09:59:25Z"
+            },
+            "model": {
+                "type": "Property",
+                "value": "S2106"
+            },
+            "appEUI": {
+                "type": "Property",
+                "value": "E372B2AE6BF2A2A4"
+            },
+            "appKey": {
+                "type": "Property",
+                "value": "13B8DAC5A9574D45251FE6B2D1938B01"
+            },
+            "devEUI": {
+                "type": "Property",
+                "value": "2CF7F1C06490083F"
+            },
+            "isObserving": {
+                "type": "Relationship",
+                "validFrom": {
+                    "type": "Property",
+                    "value": "2026-02-12T15:39:20.835Z"
+                },
+                "datasetId": "urn:ngsi-ld:Dataset:081e2d05-a333-4e93-914b-c2145cb53187",
+                "object": "urn:ngsi-ld:Parcel:540638c9-a4b6-44ff-a2fc-bfedcf629fa5"
+            },
+            "manufacturer": {
+                "type": "Property",
+                "value": "SenseCAP"
+            },
+            "error": {
+                "type": "Property",
+                "value": 1,
+                "observedAt": "2026-03-01T05:49:31Z"
+            },
+            "https://vocab.egm.io/airTemperature": {
+                "type": "Property",
+                "value": 12.67,
+                "unitCode": "CEL",
+                "datasetId": "urn:ngsi-ld:Dataset:Raw",
+                "observedAt": "2026-03-05T09:59:25Z"
+            },
+            "description": {
+                "type": "Property",
+                "value": "Finland - Variela"
+            },
+            "isDeprovisioned": {
+                "type": "Property",
+                "value": false
+            },
+            "location": {
+                "type": "GeoProperty",
+                "value": {
+                    "type": "Point",
+                    "coordinates": [
+                        24.426116,
+                        60.43658
+                    ]
+                },
+                "observedAt": "2025-10-29T13:54:53.922Z"
+            },
+            "deployedOnNetwork": {
+                "type": "Relationship",
+                "isEnabled": {
+                    "type": "Property",
+                    "value": true
+                },
+                "datasetId": "urn:ngsi-ld:Dataset:Network:ThingParkEnterprise:CyRIC",
+                "object": "urn:ngsi-ld:Network:ThingParkEnterprise:CyRIC"
+            },
+            "communicationProtocol": {
+                "type": "Property",
+                "value": "LoRaWAN"
+            },
+            "payload": {
+                "type": "Property",
+                "value": "0101107e310000010a10061d0000a318",
+                "datasetId": "urn:ngsi-ld:Dataset:Raw",
+                "observedAt": "2026-03-05T09:59:25Z"
+            }
+        }
+     ]
+    }
+]

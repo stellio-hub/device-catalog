@@ -1,0 +1,126 @@
+[
+  {
+     "name":"Basic test",
+     "inputArguments":[
+        80,
+        "010c101e000000010610140500000107108467000091cb",
+        "2026-03-05T09:28:43.516387Z",
+        "urn:ngsi-ld:Device:2CF7F1C070800060"
+     ],
+     "expectedOutput":[
+        {
+            "id": "urn:ngsi-ld:Device:2CF7F1C070800060",
+            "type": "Device",
+            "name": {
+                "type": "Property",
+                "value": "sensecap_S2105_0060"
+            },
+            "snr": {
+                "type": "Property",
+                "value": 11.5,
+                "datasetId": "urn:ngsi-ld:Dataset:Gateway:1000F6C8:Raw",
+                "observedAt": "2026-03-05T09:48:33Z"
+            },
+            "rssi": {
+                "type": "Property",
+                "value": -66,
+                "datasetId": "urn:ngsi-ld:Dataset:Gateway:1000F6C8:Raw",
+                "observedAt": "2026-03-05T09:48:33Z"
+            },
+            "model": {
+                "type": "Property",
+                "value": "S2105"
+            },
+            "appEUI": {
+                "type": "Property",
+                "value": "1E9D357CB51058B4"
+            },
+            "appKey": {
+                "type": "Property",
+                "value": "2965C1CE7DA15EEC9153759E6D11D43D"
+            },
+            "devEUI": {
+                "type": "Property",
+                "value": "2CF7F1C070800060"
+            },
+            "isObserving": {
+                "type": "Relationship",
+                "validFrom": {
+                    "type": "Property",
+                    "value": "2026-02-12T15:44:28.351Z"
+                },
+                "datasetId": "urn:ngsi-ld:Dataset:cb5a3627-6756-4d29-b742-282f50bc2580",
+                "object": "urn:ngsi-ld:Parcel:540638c9-a4b6-44ff-a2fc-bfedcf629fa5"
+            },
+            "manufacturer": {
+                "type": "Property",
+                "value": "SenseCAP"
+            },
+            "error": {
+                "type": "Property",
+                "value": 1,
+                "observedAt": "2026-02-21T05:58:42Z"
+            },
+            "description": {
+                "type": "Property",
+                "value": "Finland - Variela"
+            },
+            "isDeprovisioned": {
+                "type": "Property",
+                "value": false
+            },
+            "https://vocab.egm.io/soilTemperature": {
+                "type": "Property",
+                "value": 3.9,
+                "unitCode": "CEL",
+                "datasetId": "urn:ngsi-ld:Dataset:Raw",
+                "observedAt": "2026-03-05T09:48:33Z"
+            },
+            "location": {
+                "type": "GeoProperty",
+                "value": {
+                    "type": "Point",
+                    "coordinates": [
+                        24.426266,
+                        60.436569
+                    ]
+                },
+                "observedAt": "2025-10-29T13:55:24.019Z"
+            },
+            "deployedOnNetwork": {
+                "type": "Relationship",
+                "isEnabled": {
+                    "type": "Property",
+                    "value": true
+                },
+                "datasetId": "urn:ngsi-ld:Dataset:Network:ThingParkEnterprise:CyRIC",
+                "object": "urn:ngsi-ld:Network:ThingParkEnterprise:CyRIC"
+            },
+            "https://vocab.egm.io/volumetricMoisture": {
+                "type": "Property",
+                "value": 26.7,
+                "unitCode": "P1",
+                "datasetId": "urn:ngsi-ld:Dataset:Raw",
+                "observedAt": "2026-03-05T09:48:33Z"
+            },
+            "communicationProtocol": {
+                "type": "Property",
+                "value": "LoRaWAN"
+            },
+            "https://vocab.egm.io/soilElectricalConductivity": {
+                "type": "Property",
+                "value": 0.03,
+                "unitCode": "H61",
+                "datasetId": "urn:ngsi-ld:Dataset:Raw",
+                "observedAt": "2026-03-05T09:48:33Z"
+            },
+            "payload": {
+                "type": "Property",
+                "value": "010c101e0000000106103c0f00000107104c6800001030",
+                "datasetId": "urn:ngsi-ld:Dataset:Raw",
+                "observedAt": "2026-03-05T09:48:33Z"
+            }
+        }
+     ]
+    }
+]

@@ -1,0 +1,173 @@
+[
+  {
+     "name":"Basic test",
+     "inputArguments":[
+        80,
+        "4a00904a00006cac15000c4b01150000000026ee4c002700046622",
+        "2026-03-05T09:34:10.675875Z",
+        "2CF7F1C072300110"
+     ],
+     "expectedOutput":[
+        {
+            "id": "urn:ngsi-ld:Device:2CF7F1C072300110",
+            "type": "Device",
+            "name": {
+                "type": "Property",
+                "value": "sensecap_S2120_0110"
+            },
+            "snr": [
+                {
+                    "type": "Property",
+                    "value": 2.25,
+                    "datasetId": "urn:ngsi-ld:Dataset:Gateway:10006508:Raw",
+                    "observedAt": "2025-10-22T07:08:06Z"
+                },
+                {
+                    "type": "Property",
+                    "value": -7.75,
+                    "datasetId": "urn:ngsi-ld:Dataset:Gateway:100099D7:Raw",
+                    "observedAt": "2025-09-17T14:12:06Z"
+                },
+                {
+                    "type": "Property",
+                    "value": 11.75,
+                    "datasetId": "urn:ngsi-ld:Dataset:Gateway:1000AE9B:Raw",
+                    "observedAt": "2025-10-22T07:08:06Z"
+                },
+                {
+                    "type": "Property",
+                    "value": 0,
+                    "datasetId": "urn:ngsi-ld:Dataset:Gateway:10010BED:Raw",
+                    "observedAt": "2025-10-08T03:42:41Z"
+                },
+                {
+                    "type": "Property",
+                    "value": 7.25,
+                    "datasetId": "urn:ngsi-ld:Dataset:Gateway:1001155D:Raw",
+                    "observedAt": "2025-10-15T12:59:19Z"
+                },
+                {
+                    "type": "Property",
+                    "value": 14.5,
+                    "datasetId": "urn:ngsi-ld:Dataset:Gateway:1001159B:Raw",
+                    "observedAt": "2026-03-05T10:14:26Z"
+                },
+                {
+                    "type": "Property",
+                    "value": 7.25,
+                    "datasetId": "urn:ngsi-ld:Dataset:Gateway:100115A2:Raw",
+                    "observedAt": "2025-12-10T15:37:11Z"
+                },
+                {
+                    "type": "Property",
+                    "value": 6,
+                    "datasetId": "urn:ngsi-ld:Dataset:Gateway:100115A5:Raw",
+                    "observedAt": "2025-12-17T06:59:08Z"
+                }
+            ],
+            "rssi": [
+                {
+                    "type": "Property",
+                    "value": -110.192657,
+                    "datasetId": "urn:ngsi-ld:Dataset:Gateway:10006508:Raw",
+                    "observedAt": "2025-10-22T07:08:06Z"
+                },
+                {
+                    "type": "Property",
+                    "value": -91.392654,
+                    "datasetId": "urn:ngsi-ld:Dataset:Gateway:100099D7:Raw",
+                    "observedAt": "2025-09-17T14:12:06Z"
+                },
+                {
+                    "type": "Property",
+                    "value": -75,
+                    "datasetId": "urn:ngsi-ld:Dataset:Gateway:1000AE9B:Raw",
+                    "observedAt": "2025-10-22T07:08:06Z"
+                },
+                {
+                    "type": "Property",
+                    "value": -110,
+                    "datasetId": "urn:ngsi-ld:Dataset:Gateway:10010BED:Raw",
+                    "observedAt": "2025-10-08T03:42:41Z"
+                },
+                {
+                    "type": "Property",
+                    "value": -103.399994,
+                    "datasetId": "urn:ngsi-ld:Dataset:Gateway:1001155D:Raw",
+                    "observedAt": "2025-10-15T12:59:19Z"
+                },
+                {
+                    "type": "Property",
+                    "value": -63,
+                    "datasetId": "urn:ngsi-ld:Dataset:Gateway:1001159B:Raw",
+                    "observedAt": "2026-03-05T10:14:26Z"
+                },
+                {
+                    "type": "Property",
+                    "value": -74,
+                    "datasetId": "urn:ngsi-ld:Dataset:Gateway:100115A2:Raw",
+                    "observedAt": "2025-12-10T15:37:11Z"
+                },
+                {
+                    "type": "Property",
+                    "value": -91,
+                    "datasetId": "urn:ngsi-ld:Dataset:Gateway:100115A5:Raw",
+                    "observedAt": "2025-12-17T06:59:08Z"
+                }
+            ],
+            "model": {
+                "type": "Property",
+                "value": "S2120"
+            },
+            "appEUI": {
+                "type": "Property",
+                "value": "D6F8B34329ECE299"
+            },
+            "appKey": {
+                "type": "Property",
+                "value": "CCDFBBB8B0DFB22FCE1A29A3CAD46F15"
+            },
+            "devEUI": {
+                "type": "Property",
+                "value": "2CF7F1C072300110"
+            },
+            "manufacturer": {
+                "type": "Property",
+                "value": "SenseCAP"
+            },
+            "error": {
+                "type": "Property",
+                "value": 1,
+                "observedAt": "2026-03-05T10:14:26Z"
+            },
+            "description": {
+                "type": "Property",
+                "value": "France - Pilot3"
+            },
+            "isDeprovisioned": {
+                "type": "Property",
+                "value": false
+            },
+            "deployedOnNetwork": {
+                "type": "Relationship",
+                "isEnabled": {
+                    "type": "Property",
+                    "value": true
+                },
+                "datasetId": "urn:ngsi-ld:Dataset:Network:ThingParkEnterprise:CyRIC",
+                "object": "urn:ngsi-ld:Network:ThingParkEnterprise:CyRIC"
+            },
+            "communicationProtocol": {
+                "type": "Property",
+                "value": "LoRaWAN"
+            },
+            "payload": {
+                "type": "Property",
+                "value": "4a00964a000089951c001c4b01200000000026ef4c003400046622",
+                "datasetId": "urn:ngsi-ld:Dataset:Raw",
+                "observedAt": "2026-03-05T10:14:26Z"
+            }
+        }
+     ]
+    }
+]
