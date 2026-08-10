@@ -1,14 +1,6 @@
 const fs = require("fs");
 
 function encodeMeasurementFrequency(frequency) {
-  if (!Number.isInteger(frequency)) {
-    throw new Error("measurementFrequency must be an integer");
-  }
-
-  if (frequency < 0 || frequency > 65535) {
-    throw new Error("measurementFrequency must fit in 2 bytes");
-  }
-
   const payload = Buffer.alloc(2);
   payload.writeUInt16BE(frequency);
 
