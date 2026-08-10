@@ -12,7 +12,7 @@ function encodeMeasurementFrequency(frequency) {
 
 const command = JSON.parse(fs.readFileSync(0, "utf8"));
 
-const frequency = parseInt(command.measurementFrequency);
+const frequency = Number(command.measurementFrequency);
 
 const result = encodeMeasurementFrequency(frequency);
 
