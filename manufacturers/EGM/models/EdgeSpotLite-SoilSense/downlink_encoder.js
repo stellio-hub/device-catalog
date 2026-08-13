@@ -9,6 +9,15 @@ function encodeMeasurementFrequency(frequency) {
   };
 }
 
+function encodeRejoinTime(timestamp) {
+  const payload = Buffer.alloc(4);
+  payload.writeUInt32BE(timestamp);
+  return {
+    data: payload.toString("base64"),
+    port: 5,
+  };
+}
+
 function main() {
   const command = JSON.parse(fs.readFileSync(0, "utf8"));
   const serviceName = process.argv[2];
@@ -17,6 +26,10 @@ function main() {
       const frequency = Number(command.measurementFrequency.value);
       const result = encodeMeasurementFrequency(frequency);
       process.stdout.write(JSON.stringify(result));
+      break;
+    case "setRejoinTime":
+      const timestamp = Number(command.rejoinTime.value);
+      process.stdout.write(JSON.stringify(encodeRejoinTime(timestamp)));
       break;
     default:
       throw new Error("Unsupported service");
