@@ -18,6 +18,15 @@ function encodeRejoinTime(timestamp) {
   };
 }
 
+function encodeReset() {
+  const payload = Buffer.alloc(1);
+  payload.writeUInt8(Math.floor(Math.random() * 256));
+  return {
+    data: payload.toString("base64"),
+    port: 7,
+  };
+}
+
 function main() {
   const command = JSON.parse(fs.readFileSync(0, "utf8"));
   const serviceName = process.argv[2];
@@ -30,6 +39,9 @@ function main() {
     case "setRejoinTime":
       const timestamp = Number(command.rejoinTime.value);
       process.stdout.write(JSON.stringify(encodeRejoinTime(timestamp)));
+      break;
+    case "reset":
+      process.stdout.write(JSON.stringify(encodeReset()));
       break;
     default:
       throw new Error("Unsupported service");
