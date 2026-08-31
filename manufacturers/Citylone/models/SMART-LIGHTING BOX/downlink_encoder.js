@@ -1,6 +1,6 @@
 const fs = require("fs");
 
-const PORT = 1;
+const PORT = 2;
 
 function downlink(id, info) {
   const payload = info && info.length ? Buffer.concat([Buffer.from([id]), info]) : Buffer.from([id]);
