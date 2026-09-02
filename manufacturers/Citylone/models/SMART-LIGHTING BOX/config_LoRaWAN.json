@@ -1,0 +1,28 @@
+{
+    "documentation": "https://www.citylone.com/wp-content/uploads/2026/03/SLB-GSM-Documentation-Commerciale-0925.pdf",
+    "uplinkDecoder": "uplink_decoder.js",
+    "ngsildContext": "https://easy-global-market.github.io/ngsild-api-data-models/device/jsonld-contexts/device-compound.jsonld",
+    "devicePicture": "SLBox-Citylone-coté-2021.png",
+    "chirpstack": {
+        "region": "EU868",
+        "macVersion": 0,
+        "regParamsRevision": "A",
+        "adrAlgorithmId": "default",
+        "flushQueueOnActivate": true,
+        "uplinkInterval": 3600,
+        "supportsOTAA": true,
+        "supportsClassB": false,
+        "supportsClassC": false
+    },
+    "liveObjects": {
+        "profile": "Generic_classA_RX2SF12",
+        "activationType": "OTAA",
+        "connectivityPlan": "orange-cs/CP_Basic"
+    },
+    "netmore": {
+        "sensorActivationMethodTypeCompositeCode": "OTAA@SENSOR_COMMON",
+        "sensorClassTypeCompositeCode": "CLASS_A@SENSOR_COMMON",
+        "lorawanVersionTypeCompositeCode": "V104@SENSOR_COMMON",
+        "sensorTypeCompositeCode": "OTHER@SENSOR_COMMON"  
+    }
+}

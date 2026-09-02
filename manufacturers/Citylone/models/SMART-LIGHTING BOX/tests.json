@@ -1,0 +1,919 @@
+[
+   {
+      "name": "TIC meter frame 1",
+      "inputArguments": [
+         1,
+         "01e80300000000000000000000",
+         "2026-03-04T09:12:17Z",
+         "0A1B2C3D4E5F6789"
+      ],
+      "expectedOutput": [
+         {
+            "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6789",
+            "type": "Device",
+            "activeEnergy": [
+               {
+                  "type": "Property",
+                  "value": 1000,
+                  "observedAt": "2026-03-04T09:12:17Z",
+                  "unitCode": "WHR",
+                  "datasetId": "urn:ngsi-ld:Dataset:BASE:Raw"
+               },
+               {
+                  "type": "Property",
+                  "value": 0,
+                  "observedAt": "2026-03-04T09:12:17Z",
+                  "unitCode": "WHR",
+                  "datasetId": "urn:ngsi-ld:Dataset:HCHC:Raw"
+               },
+               {
+                  "type": "Property",
+                  "value": 0,
+                  "observedAt": "2026-03-04T09:12:17Z",
+                  "unitCode": "WHR",
+                  "datasetId": "urn:ngsi-ld:Dataset:HCHP:Raw"
+               }
+            ]
+         }
+      ]
+   },
+   {
+      "name": "TIC meter frame 2",
+      "inputArguments": [
+         1,
+         "020100313233343536373839303132334241534520e80300000000000000000000",
+         "2026-03-04T09:12:17Z",
+         "0A1B2C3D4E5F6789"
+      ],
+      "expectedOutput": [
+         {
+            "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6789",
+            "type": "Device",
+            "digitalInput": [
+               {
+                  "type": "Property",
+                  "value": 1,
+                  "observedAt": "2026-03-04T09:12:17Z",
+                  "datasetId": "urn:ngsi-ld:Dataset:In1:Raw"
+               },
+               {
+                  "type": "Property",
+                  "value": 0,
+                  "observedAt": "2026-03-04T09:12:17Z",
+                  "datasetId": "urn:ngsi-ld:Dataset:In2:Raw"
+               }
+            ],
+            "meterId": {
+               "type": "Property",
+               "value": "1234567890123",
+               "observedAt": "2026-03-04T09:12:17Z"
+            },
+            "tariffOption": {
+               "type": "Property",
+               "value": "BASE",
+               "observedAt": "2026-03-04T09:12:17Z"
+            },
+            "activeEnergy": [
+               {
+                  "type": "Property",
+                  "value": 1000,
+                  "observedAt": "2026-03-04T09:12:17Z",
+                  "unitCode": "WHR",
+                  "datasetId": "urn:ngsi-ld:Dataset:BASE:Raw"
+               },
+               {
+                  "type": "Property",
+                  "value": 0,
+                  "observedAt": "2026-03-04T09:12:17Z",
+                  "unitCode": "WHR",
+                  "datasetId": "urn:ngsi-ld:Dataset:HCHC:Raw"
+               },
+               {
+                  "type": "Property",
+                  "value": 0,
+                  "observedAt": "2026-03-04T09:12:17Z",
+                  "unitCode": "WHR",
+                  "datasetId": "urn:ngsi-ld:Dataset:HCHP:Raw"
+               }
+            ]
+         }
+      ]
+   },
+   {
+      "name": "TIC meter frame 3",
+      "inputArguments": [
+         1,
+         "030a000b000c000d001400150016001700e8030000e803",
+         "2026-03-04T09:12:17Z",
+         "0A1B2C3D4E5F6789"
+      ],
+      "expectedOutput": [
+         {
+            "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6789",
+            "type": "Device",
+            "current": [
+               {
+                  "type": "Property",
+                  "value": 10,
+                  "observedAt": "2026-03-04T09:12:17Z",
+                  "unitCode": "AMP",
+                  "datasetId": "urn:ngsi-ld:Dataset:Raw"
+               },
+               {
+                  "type": "Property",
+                  "value": 11,
+                  "observedAt": "2026-03-04T09:12:17Z",
+                  "unitCode": "AMP",
+                  "datasetId": "urn:ngsi-ld:Dataset:L1:Raw"
+               },
+               {
+                  "type": "Property",
+                  "value": 12,
+                  "observedAt": "2026-03-04T09:12:17Z",
+                  "unitCode": "AMP",
+                  "datasetId": "urn:ngsi-ld:Dataset:L2:Raw"
+               },
+               {
+                  "type": "Property",
+                  "value": 13,
+                  "observedAt": "2026-03-04T09:12:17Z",
+                  "unitCode": "AMP",
+                  "datasetId": "urn:ngsi-ld:Dataset:L3:Raw"
+               },
+               {
+                  "type": "Property",
+                  "value": 20,
+                  "observedAt": "2026-03-04T09:12:17Z",
+                  "unitCode": "AMP",
+                  "datasetId": "urn:ngsi-ld:Dataset:Max:Raw"
+               },
+               {
+                  "type": "Property",
+                  "value": 21,
+                  "observedAt": "2026-03-04T09:12:17Z",
+                  "unitCode": "AMP",
+                  "datasetId": "urn:ngsi-ld:Dataset:Max:L1:Raw"
+               },
+               {
+                  "type": "Property",
+                  "value": 22,
+                  "observedAt": "2026-03-04T09:12:17Z",
+                  "unitCode": "AMP",
+                  "datasetId": "urn:ngsi-ld:Dataset:Max:L2:Raw"
+               },
+               {
+                  "type": "Property",
+                  "value": 23,
+                  "observedAt": "2026-03-04T09:12:17Z",
+                  "unitCode": "AMP",
+                  "datasetId": "urn:ngsi-ld:Dataset:Max:L3:Raw"
+               }
+            ],
+            "activePower": {
+               "type": "Property",
+               "value": 1000,
+               "observedAt": "2026-03-04T09:12:17Z",
+               "unitCode": "WTT",
+               "datasetId": "urn:ngsi-ld:Dataset:Max:Raw"
+            },
+            "subscribedPowerAlarm": {
+               "type": "Property",
+               "value": 0,
+               "observedAt": "2026-03-04T09:12:17Z",
+               "datasetId": "urn:ngsi-ld:Dataset:Raw"
+            },
+            "apparentPower": {
+               "type": "Property",
+               "value": 1000,
+               "observedAt": "2026-03-04T09:12:17Z",
+               "unitCode": "D99",
+               "datasetId": "urn:ngsi-ld:Dataset:Raw"
+            }
+         }
+      ]
+   },
+   {
+      "name": "Power failure",
+      "inputArguments": [
+         1,
+         "04",
+         "2026-03-04T09:12:17Z",
+         "0A1B2C3D4E5F6789"
+      ],
+      "expectedOutput": [
+         {
+            "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6789",
+            "type": "Device",
+            "powerFailure": {
+               "type": "Property",
+               "value": true,
+               "observedAt": "2026-03-04T09:12:17Z"
+            }
+         }
+      ]
+   },
+   {
+      "name": "Dry contact input 1 closed",
+      "inputArguments": [
+         1,
+         "0701",
+         "2026-03-04T09:12:17Z",
+         "0A1B2C3D4E5F6789"
+      ],
+      "expectedOutput": [
+         {
+            "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6789",
+            "type": "Device",
+            "digitalInput": {
+               "type": "Property",
+               "value": 1,
+               "observedAt": "2026-03-04T09:12:17Z",
+               "datasetId": "urn:ngsi-ld:Dataset:In1:Raw"
+            }
+         }
+      ]
+   },
+   {
+      "name": "SLB output feedback",
+      "inputArguments": [
+         1,
+         "090301",
+         "2026-03-04T09:12:17Z",
+         "0A1B2C3D4E5F6789"
+      ],
+      "expectedOutput": [
+         {
+            "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6789",
+            "type": "Device",
+            "outputStatus": [
+               {
+                  "type": "Property",
+                  "value": 1,
+                  "observedAt": "2026-03-04T09:12:17Z",
+                  "datasetId": "urn:ngsi-ld:Dataset:S1:Raw"
+               },
+               {
+                  "type": "Property",
+                  "value": 1,
+                  "observedAt": "2026-03-04T09:12:17Z",
+                  "datasetId": "urn:ngsi-ld:Dataset:S2:Raw"
+               },
+               {
+                  "type": "Property",
+                  "value": 0,
+                  "observedAt": "2026-03-04T09:12:17Z",
+                  "datasetId": "urn:ngsi-ld:Dataset:S3:Raw"
+               },
+               {
+                  "type": "Property",
+                  "value": 0,
+                  "observedAt": "2026-03-04T09:12:17Z",
+                  "datasetId": "urn:ngsi-ld:Dataset:S4:Raw"
+               }
+            ],
+            "outputMode": [
+               {
+                  "type": "Property",
+                  "value": "Priority",
+                  "observedAt": "2026-03-04T09:12:17Z",
+                  "datasetId": "urn:ngsi-ld:Dataset:S1:Raw"
+               },
+               {
+                  "type": "Property",
+                  "value": "Auto",
+                  "observedAt": "2026-03-04T09:12:17Z",
+                  "datasetId": "urn:ngsi-ld:Dataset:S2:Raw"
+               },
+               {
+                  "type": "Property",
+                  "value": "Auto",
+                  "observedAt": "2026-03-04T09:12:17Z",
+                  "datasetId": "urn:ngsi-ld:Dataset:S3:Raw"
+               },
+               {
+                  "type": "Property",
+                  "value": "Auto",
+                  "observedAt": "2026-03-04T09:12:17Z",
+                  "datasetId": "urn:ngsi-ld:Dataset:S4:Raw"
+               }
+            ]
+         }
+      ]
+   },
+   {
+      "name": "Dry contact input 2 closed",
+      "inputArguments": [
+         1,
+         "0b01",
+         "2026-03-04T09:12:17Z",
+         "0A1B2C3D4E5F6789"
+      ],
+      "expectedOutput": [
+         {
+            "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6789",
+            "type": "Device",
+            "digitalInput": {
+               "type": "Property",
+               "value": 1,
+               "observedAt": "2026-03-04T09:12:17Z",
+               "datasetId": "urn:ngsi-ld:Dataset:In2:Raw"
+            }
+         }
+      ]
+   },
+   {
+      "name": "Software versions",
+      "inputArguments": [
+         1,
+         "0c2120",
+         "2026-03-04T09:12:17Z",
+         "0A1B2C3D4E5F6789"
+      ],
+      "expectedOutput": [
+         {
+            "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6789",
+            "type": "Device",
+            "softwareVersion": {
+               "type": "Property",
+               "value": "V2.1",
+               "observedAt": "2026-03-04T09:12:17Z"
+            },
+            "firmwareVersion": {
+               "type": "Property",
+               "value": "V2.0",
+               "observedAt": "2026-03-04T09:12:17Z"
+            }
+         }
+      ]
+   },
+   {
+      "name": "RSSI LoRa feedback",
+      "inputArguments": [
+         1,
+         "0e72000a",
+         "2026-03-04T09:12:17Z",
+         "0A1B2C3D4E5F6789"
+      ],
+      "expectedOutput": [
+         {
+            "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6789",
+            "type": "Device",
+            "rssi": {
+               "type": "Property",
+               "value": -114,
+               "observedAt": "2026-03-04T09:12:17Z",
+               "unitCode": "DBM",
+               "datasetId": "urn:ngsi-ld:Dataset:Raw"
+            },
+            "snr": {
+               "type": "Property",
+               "value": 10,
+               "observedAt": "2026-03-04T09:12:17Z",
+               "unitCode": "2N",
+               "datasetId": "urn:ngsi-ld:Dataset:Raw"
+            }
+         }
+      ]
+   },
+   {
+      "name": "Calendar store OK",
+      "inputArguments": [
+         1,
+         "0f03",
+         "2026-03-04T09:12:17Z",
+         "0A1B2C3D4E5F6789"
+      ],
+      "expectedOutput": [
+         {
+            "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6789",
+            "type": "Device",
+            "calendarStatus": {
+               "type": "Property",
+               "value": "storeCalendarOk",
+               "observedAt": "2026-03-04T09:12:17Z",
+               "datasetId": "urn:ngsi-ld:Dataset:Raw"
+            }
+         }
+      ]
+   },
+   {
+      "name": "Calendar feedback slot",
+      "inputArguments": [
+         1,
+         "104a0500809f4085408740008001406402",
+         "2026-03-04T09:12:17Z",
+         "0A1B2C3D4E5F6789"
+      ],
+      "expectedOutput": [
+         {
+            "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6789",
+            "type": "Device",
+            "calendarEnd": {
+               "type": "Property",
+               "value": false,
+               "observedAt": "2026-03-04T09:12:17Z"
+            },
+            "remainingCalendarFrames": {
+               "type": "Property",
+               "value": 1,
+               "observedAt": "2026-03-04T09:12:17Z",
+               "datasetId": "urn:ngsi-ld:Dataset:Raw"
+            },
+            "calendarOutput": {
+               "type": "Property",
+               "value": "S1",
+               "observedAt": "2026-03-04T09:12:17Z",
+               "datasetId": "urn:ngsi-ld:Dataset:Raw"
+            },
+            "calendarCommand": {
+               "type": "Property",
+               "value": 1,
+               "observedAt": "2026-03-04T09:12:17Z",
+               "datasetId": "urn:ngsi-ld:Dataset:Raw"
+            },
+            "calendarFeedback": {
+               "type": "Property",
+               "value": {
+                  "minutes": {
+                     "mode": "civilOffset",
+                     "duskOffset": 10,
+                     "dawnOffset": -10
+                  },
+                  "hours": {
+                     "mode": "all"
+                  },
+                  "days": {
+                     "mode": "range",
+                     "a": 1,
+                     "b": 31
+                  },
+                  "weekdays": {
+                     "mode": "range",
+                     "a": 1,
+                     "b": 5
+                  },
+                  "months": {
+                     "mode": "range",
+                     "a": 1,
+                     "b": 7
+                  },
+                  "years": {
+                     "mode": "all"
+                  },
+                  "remainingFrames": 1,
+                  "output": "S1",
+                  "command": 1,
+                  "totalFrames": 2
+               },
+               "observedAt": "2026-03-04T09:12:17Z",
+               "datasetId": "urn:ngsi-ld:Dataset:Raw"
+            }
+         }
+      ]
+   },
+   {
+      "name": "Calendar feedback end",
+      "inputArguments": [
+         1,
+         "10000000000000000000000000000000",
+         "2026-03-04T09:12:17Z",
+         "0A1B2C3D4E5F6789"
+      ],
+      "expectedOutput": [
+         {
+            "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6789",
+            "type": "Device",
+            "calendarEnd": {
+               "type": "Property",
+               "value": true,
+               "observedAt": "2026-03-04T09:12:17Z"
+            }
+         }
+      ]
+   },
+   {
+      "name": "Current time feedback",
+      "inputArguments": [
+         1,
+         "115367e567804001",
+         "2026-03-04T09:12:17Z",
+         "0A1B2C3D4E5F6789"
+      ],
+      "expectedOutput": [
+         {
+            "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6789",
+            "type": "Device",
+            "utcOffset": [
+               {
+                  "type": "Property",
+                  "value": 1,
+                  "observedAt": "2025-03-27T14:57:23Z",
+                  "unitCode": "HUR",
+                  "datasetId": "urn:ngsi-ld:Dataset:Hours:Raw"
+               },
+               {
+                  "type": "Property",
+                  "value": 0,
+                  "observedAt": "2025-03-27T14:57:23Z",
+                  "unitCode": "MIN",
+                  "datasetId": "urn:ngsi-ld:Dataset:Minutes:Raw"
+               }
+            ],
+            "loraTimeUpdate": {
+               "type": "Property",
+               "value": true,
+               "observedAt": "2025-03-27T14:57:23Z"
+            }
+         }
+      ]
+   },
+   {
+      "name": "Position feedback",
+      "inputArguments": [
+         1,
+         "1280841e00006cdc02",
+         "2026-03-04T09:12:17Z",
+         "0A1B2C3D4E5F6789"
+      ],
+      "expectedOutput": [
+         {
+            "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6789",
+            "type": "Device",
+            "location": {
+               "type": "GeoProperty",
+               "value": {
+                  "type": "Point",
+                  "coordinates": [
+                     2,
+                     48
+                  ]
+               },
+               "observedAt": "2026-03-04T09:12:17Z"
+            }
+         }
+      ]
+   },
+   {
+      "name": "Time change enabled",
+      "inputArguments": [
+         1,
+         "1301",
+         "2026-03-04T09:12:17Z",
+         "0A1B2C3D4E5F6789"
+      ],
+      "expectedOutput": [
+         {
+            "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6789",
+            "type": "Device",
+            "timeChangeEnabled": {
+               "type": "Property",
+               "value": true,
+               "observedAt": "2026-03-04T09:12:17Z"
+            }
+         }
+      ]
+   },
+   {
+      "name": "Internal failure RTC/I2C",
+      "inputArguments": [
+         1,
+         "2105",
+         "2026-03-04T09:12:17Z",
+         "0A1B2C3D4E5F6789"
+      ],
+      "expectedOutput": [
+         {
+            "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6789",
+            "type": "Device",
+            "internalFailure": {
+               "type": "Property",
+               "value": "rtcI2cProblem",
+               "observedAt": "2026-03-04T09:12:17Z",
+               "datasetId": "urn:ngsi-ld:Dataset:Raw"
+            }
+         }
+      ]
+   },
+   {
+      "name": "Run hours",
+      "inputArguments": [
+         1,
+         "220a0000000000000000000000",
+         "2026-03-04T09:12:17Z",
+         "0A1B2C3D4E5F6789"
+      ],
+      "expectedOutput": [
+         {
+            "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6789",
+            "type": "Device",
+            "runHour": [
+               {
+                  "type": "Property",
+                  "value": 10,
+                  "observedAt": "2026-03-04T09:12:17Z",
+                  "unitCode": "HUR",
+                  "datasetId": "urn:ngsi-ld:Dataset:S1:Raw"
+               },
+               {
+                  "type": "Property",
+                  "value": 0,
+                  "observedAt": "2026-03-04T09:12:17Z",
+                  "unitCode": "HUR",
+                  "datasetId": "urn:ngsi-ld:Dataset:S2:Raw"
+               },
+               {
+                  "type": "Property",
+                  "value": 0,
+                  "observedAt": "2026-03-04T09:12:17Z",
+                  "unitCode": "HUR",
+                  "datasetId": "urn:ngsi-ld:Dataset:S3:Raw"
+               },
+               {
+                  "type": "Property",
+                  "value": 0,
+                  "observedAt": "2026-03-04T09:12:17Z",
+                  "unitCode": "HUR",
+                  "datasetId": "urn:ngsi-ld:Dataset:S4:Raw"
+               }
+            ]
+         }
+      ]
+   },
+   {
+      "name": "Output with timestamp",
+      "inputArguments": [
+         1,
+         "2301005367e567",
+         "2026-03-04T09:12:17Z",
+         "0A1B2C3D4E5F6789"
+      ],
+      "expectedOutput": [
+         {
+            "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6789",
+            "type": "Device",
+            "outputStatus": [
+               {
+                  "type": "Property",
+                  "value": 1,
+                  "observedAt": "2025-03-27T14:57:23Z",
+                  "datasetId": "urn:ngsi-ld:Dataset:S1:Raw"
+               },
+               {
+                  "type": "Property",
+                  "value": 0,
+                  "observedAt": "2025-03-27T14:57:23Z",
+                  "datasetId": "urn:ngsi-ld:Dataset:S2:Raw"
+               },
+               {
+                  "type": "Property",
+                  "value": 0,
+                  "observedAt": "2025-03-27T14:57:23Z",
+                  "datasetId": "urn:ngsi-ld:Dataset:S3:Raw"
+               },
+               {
+                  "type": "Property",
+                  "value": 0,
+                  "observedAt": "2025-03-27T14:57:23Z",
+                  "datasetId": "urn:ngsi-ld:Dataset:S4:Raw"
+               }
+            ],
+            "outputMode": [
+               {
+                  "type": "Property",
+                  "value": "Auto",
+                  "observedAt": "2025-03-27T14:57:23Z",
+                  "datasetId": "urn:ngsi-ld:Dataset:S1:Raw"
+               },
+               {
+                  "type": "Property",
+                  "value": "Auto",
+                  "observedAt": "2025-03-27T14:57:23Z",
+                  "datasetId": "urn:ngsi-ld:Dataset:S2:Raw"
+               },
+               {
+                  "type": "Property",
+                  "value": "Auto",
+                  "observedAt": "2025-03-27T14:57:23Z",
+                  "datasetId": "urn:ngsi-ld:Dataset:S3:Raw"
+               },
+               {
+                  "type": "Property",
+                  "value": "Auto",
+                  "observedAt": "2025-03-27T14:57:23Z",
+                  "datasetId": "urn:ngsi-ld:Dataset:S4:Raw"
+               }
+            ]
+         }
+      ]
+   },
+   {
+      "name": "Dry contact 1 with timestamp",
+      "inputArguments": [
+         1,
+         "24015367e567",
+         "2026-03-04T09:12:17Z",
+         "0A1B2C3D4E5F6789"
+      ],
+      "expectedOutput": [
+         {
+            "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6789",
+            "type": "Device",
+            "digitalInput": {
+               "type": "Property",
+               "value": 1,
+               "observedAt": "2025-03-27T14:57:23Z",
+               "datasetId": "urn:ngsi-ld:Dataset:In1:Raw"
+            }
+         }
+      ]
+   },
+   {
+      "name": "Dry contact 2 with timestamp",
+      "inputArguments": [
+         1,
+         "25005367e567",
+         "2026-03-04T09:12:17Z",
+         "0A1B2C3D4E5F6789"
+      ],
+      "expectedOutput": [
+         {
+            "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6789",
+            "type": "Device",
+            "digitalInput": {
+               "type": "Property",
+               "value": 0,
+               "observedAt": "2025-03-27T14:57:23Z",
+               "datasetId": "urn:ngsi-ld:Dataset:In2:Raw"
+            }
+         }
+      ]
+   },
+   {
+      "name": "TIC meter frame 1 with timestamp",
+      "inputArguments": [
+         1,
+         "260001e8030000e80301005367e5670a00e803",
+         "2026-03-04T09:12:17Z",
+         "0A1B2C3D4E5F6789"
+      ],
+      "expectedOutput": [
+         {
+            "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6789",
+            "type": "Device",
+            "phaseCount": {
+               "type": "Property",
+               "value": 1,
+               "observedAt": "2025-03-27T14:57:23Z"
+            },
+            "tariffOption": {
+               "type": "Property",
+               "value": "BASE",
+               "observedAt": "2025-03-27T14:57:23Z"
+            },
+            "activeEnergy": {
+               "type": "Property",
+               "value": 1000,
+               "observedAt": "2025-03-27T14:57:23Z",
+               "unitCode": "WHR",
+               "datasetId": "urn:ngsi-ld:Dataset:BASE:Raw"
+            },
+            "apparentPower": {
+               "type": "Property",
+               "value": 1000,
+               "observedAt": "2025-03-27T14:57:23Z",
+               "unitCode": "D99",
+               "datasetId": "urn:ngsi-ld:Dataset:Raw"
+            },
+            "digitalInput": [
+               {
+                  "type": "Property",
+                  "value": 1,
+                  "observedAt": "2025-03-27T14:57:23Z",
+                  "datasetId": "urn:ngsi-ld:Dataset:In1:Raw"
+               },
+               {
+                  "type": "Property",
+                  "value": 0,
+                  "observedAt": "2025-03-27T14:57:23Z",
+                  "datasetId": "urn:ngsi-ld:Dataset:In2:Raw"
+               }
+            ],
+            "current": {
+               "type": "Property",
+               "value": 10,
+               "observedAt": "2025-03-27T14:57:23Z",
+               "unitCode": "AMP",
+               "datasetId": "urn:ngsi-ld:Dataset:Raw"
+            },
+            "activePower": {
+               "type": "Property",
+               "value": 1000,
+               "observedAt": "2025-03-27T14:57:23Z",
+               "unitCode": "WTT",
+               "datasetId": "urn:ngsi-ld:Dataset:Raw"
+            }
+         }
+      ]
+   },
+   {
+      "name": "TIC meter identity daily",
+      "inputArguments": [
+         1,
+         "27313233343536373839303132334241534520e8030a00",
+         "2026-03-04T09:12:17Z",
+         "0A1B2C3D4E5F6789"
+      ],
+      "expectedOutput": [
+         {
+            "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6789",
+            "type": "Device",
+            "meterId": {
+               "type": "Property",
+               "value": "1234567890123",
+               "observedAt": "2026-03-04T09:12:17Z"
+            },
+            "tariffOption": {
+               "type": "Property",
+               "value": "BASE",
+               "observedAt": "2026-03-04T09:12:17Z"
+            },
+            "activePower": {
+               "type": "Property",
+               "value": 1000,
+               "observedAt": "2026-03-04T09:12:17Z",
+               "unitCode": "WTT",
+               "datasetId": "urn:ngsi-ld:Dataset:Max:Raw"
+            },
+            "current": {
+               "type": "Property",
+               "value": 10,
+               "observedAt": "2026-03-04T09:12:17Z",
+               "unitCode": "AMP",
+               "datasetId": "urn:ngsi-ld:Dataset:Max:Raw"
+            }
+         }
+      ]
+   },
+   {
+      "name": "Data model timestamped",
+      "inputArguments": [
+         1,
+         "2801",
+         "2026-03-04T09:12:17Z",
+         "0A1B2C3D4E5F6789"
+      ],
+      "expectedOutput": [
+         {
+            "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6789",
+            "type": "Device",
+            "dataModel": {
+               "type": "Property",
+               "value": "timestamped",
+               "observedAt": "2026-03-04T09:12:17Z"
+            }
+         }
+      ]
+   },
+   {
+      "name": "Calendar locked",
+      "inputArguments": [
+         1,
+         "2901",
+         "2026-03-04T09:12:17Z",
+         "0A1B2C3D4E5F6789"
+      ],
+      "expectedOutput": [
+         {
+            "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6789",
+            "type": "Device",
+            "calendarLocked": {
+               "type": "Property",
+               "value": true,
+               "observedAt": "2026-03-04T09:12:17Z"
+            }
+         }
+      ]
+   },
+   {
+      "name": "Time before rejoin",
+      "inputArguments": [
+         1,
+         "2a07",
+         "2026-03-04T09:12:17Z",
+         "0A1B2C3D4E5F6789"
+      ],
+      "expectedOutput": [
+         {
+            "id": "urn:ngsi-ld:Device:0A1B2C3D4E5F6789",
+            "type": "Device",
+            "timeBeforeRejoin": {
+               "type": "Property",
+               "value": 7,
+               "observedAt": "2026-03-04T09:12:17Z",
+               "unitCode": "DAY",
+               "datasetId": "urn:ngsi-ld:Dataset:Raw"
+            }
+         }
+      ]
+   }
+]
