@@ -1,9 +1,9 @@
 [
   {
-    "name": "Energy module - current indexes and instantaneous currents",
+    "name": "SQUID V1 - 12 current indexes",
     "inputArguments": [
       3,
-      "001541203201260947720A013B0F475400400901726A00",
+      "002548509F06A03E0D407D1AF56900EAD300D4A701509F06A03E0D407D1AF56900EAD300D4A701",
       "2026-09-25T14:00:00Z",
       "0102030405060708"
     ],
@@ -13,17 +13,10 @@
         "type": "Device",
         "currentIndex": {
           "type": "Property",
-          "value": 5995530,
+          "value": 4340,
           "observedAt": "2026-09-25T14:00:00Z",
-          "unitCode": "E09",
-          "datasetId": "urn:ngsi-ld:Dataset:Socket1:Clamp1:Raw"
-        },
-        "current": {
-          "type": "Property",
-          "value": 21575,
-          "observedAt": "2026-09-25T14:00:00Z",
-          "unitCode": "4K",
-          "datasetId": "urn:ngsi-ld:Dataset:Socket1:Clamp1:Raw"
+          "unitCode": "AMH",
+          "datasetId": "urn:ngsi-ld:Dataset:Socket0:Clamp1:Raw"
         }
       },
       {
@@ -31,17 +24,10 @@
         "type": "Device",
         "currentIndex": {
           "type": "Property",
-          "value": 6846150,
+          "value": 8680,
           "observedAt": "2026-09-25T14:00:00Z",
-          "unitCode": "E09",
-          "datasetId": "urn:ngsi-ld:Dataset:Socket1:Clamp2:Raw"
-        },
-        "current": {
-          "type": "Property",
-          "value": 67904,
-          "observedAt": "2026-09-25T14:00:00Z",
-          "unitCode": "4K",
-          "datasetId": "urn:ngsi-ld:Dataset:Socket1:Clamp2:Raw"
+          "unitCode": "AMH",
+          "datasetId": "urn:ngsi-ld:Dataset:Socket0:Clamp2:Raw"
         }
       },
       {
@@ -49,14 +35,150 @@
         "type": "Device",
         "currentIndex": {
           "type": "Property",
-          "value": 9981450,
+          "value": 17360,
+          "observedAt": "2026-09-25T14:00:00Z",
+          "unitCode": "AMH",
+          "datasetId": "urn:ngsi-ld:Dataset:Socket0:Clamp3:Raw"
+        }
+      },
+      {
+        "id": "urn:ngsi-ld:Device:0102030405060708",
+        "type": "Device",
+        "currentIndex": {
+          "type": "Property",
+          "value": 271.25,
+          "observedAt": "2026-09-25T14:00:00Z",
+          "unitCode": "AMH",
+          "datasetId": "urn:ngsi-ld:Dataset:Socket0:Clamp4:Raw"
+        }
+      },
+      {
+        "id": "urn:ngsi-ld:Device:0102030405060708",
+        "type": "Device",
+        "currentIndex": {
+          "type": "Property",
+          "value": 542.5,
+          "observedAt": "2026-09-25T14:00:00Z",
+          "unitCode": "AMH",
+          "datasetId": "urn:ngsi-ld:Dataset:Socket0:Clamp5:Raw"
+        }
+      },
+      {
+        "id": "urn:ngsi-ld:Device:0102030405060708",
+        "type": "Device",
+        "currentIndex": {
+          "type": "Property",
+          "value": 1085,
+          "observedAt": "2026-09-25T14:00:00Z",
+          "unitCode": "AMH",
+          "datasetId": "urn:ngsi-ld:Dataset:Socket0:Clamp6:Raw"
+        }
+      },
+      {
+        "id": "urn:ngsi-ld:Device:0102030405060708",
+        "type": "Device",
+        "currentIndex": {
+          "type": "Property",
+          "value": 4340,
+          "observedAt": "2026-09-25T14:00:00Z",
+          "unitCode": "AMH",
+          "datasetId": "urn:ngsi-ld:Dataset:Socket0:Clamp7:Raw"
+        }
+      },
+      {
+        "id": "urn:ngsi-ld:Device:0102030405060708",
+        "type": "Device",
+        "currentIndex": {
+          "type": "Property",
+          "value": 8680,
+          "observedAt": "2026-09-25T14:00:00Z",
+          "unitCode": "AMH",
+          "datasetId": "urn:ngsi-ld:Dataset:Socket0:Clamp8:Raw"
+        }
+      },
+      {
+        "id": "urn:ngsi-ld:Device:0102030405060708",
+        "type": "Device",
+        "currentIndex": {
+          "type": "Property",
+          "value": 17360,
+          "observedAt": "2026-09-25T14:00:00Z",
+          "unitCode": "AMH",
+          "datasetId": "urn:ngsi-ld:Dataset:Socket0:Clamp9:Raw"
+        }
+      },
+      {
+        "id": "urn:ngsi-ld:Device:0102030405060708",
+        "type": "Device",
+        "currentIndex": {
+          "type": "Property",
+          "value": 271.25,
+          "observedAt": "2026-09-25T14:00:00Z",
+          "unitCode": "AMH",
+          "datasetId": "urn:ngsi-ld:Dataset:Socket0:Clamp10:Raw"
+        }
+      },
+      {
+        "id": "urn:ngsi-ld:Device:0102030405060708",
+        "type": "Device",
+        "currentIndex": {
+          "type": "Property",
+          "value": 542.5,
+          "observedAt": "2026-09-25T14:00:00Z",
+          "unitCode": "AMH",
+          "datasetId": "urn:ngsi-ld:Dataset:Socket0:Clamp11:Raw"
+        }
+      },
+      {
+        "id": "urn:ngsi-ld:Device:0102030405060708",
+        "type": "Device",
+        "currentIndex": {
+          "type": "Property",
+          "value": 1085,
+          "observedAt": "2026-09-25T14:00:00Z",
+          "unitCode": "AMH",
+          "datasetId": "urn:ngsi-ld:Dataset:Socket0:Clamp12:Raw"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Code 0 - current index",
+    "inputArguments": [
+      3,
+      "000641221040e201",
+      "2026-09-25T14:00:00Z",
+      "0102030405060708"
+    ],
+    "expectedOutput": [
+      {
+        "id": "urn:ngsi-ld:Device:0102030405060708",
+        "type": "Device",
+        "currentIndex": {
+          "type": "Property",
+          "value": 1234560,
           "observedAt": "2026-09-25T14:00:00Z",
           "unitCode": "E09",
           "datasetId": "urn:ngsi-ld:Dataset:Socket1:Clamp3:Raw"
-        },
+        }
+      }
+    ]
+  },
+  {
+    "name": "Code 1 - instantaneous current",
+    "inputArguments": [
+      3,
+      "0006412211f1fb09",
+      "2026-09-25T14:00:00Z",
+      "0102030405060708"
+    ],
+    "expectedOutput": [
+      {
+        "id": "urn:ngsi-ld:Device:0102030405060708",
+        "type": "Device",
         "current": {
           "type": "Property",
-          "value": 27250,
+          "value": 654321,
           "observedAt": "2026-09-25T14:00:00Z",
           "unitCode": "4K",
           "datasetId": "urn:ngsi-ld:Dataset:Socket1:Clamp3:Raw"
@@ -65,7 +187,256 @@
     ]
   },
   {
-    "name": "Node status - SQUID type, firmware, battery and periodicity",
+    "name": "Code 2 - current index and current",
+    "inputArguments": [
+      3,
+      "00094122120a00001e0000",
+      "2026-09-25T14:00:00Z",
+      "0102030405060708"
+    ],
+    "expectedOutput": [
+      {
+        "id": "urn:ngsi-ld:Device:0102030405060708",
+        "type": "Device",
+        "currentIndex": {
+          "type": "Property",
+          "value": 100,
+          "observedAt": "2026-09-25T14:00:00Z",
+          "unitCode": "E09",
+          "datasetId": "urn:ngsi-ld:Dataset:Socket1:Clamp3:Raw"
+        },
+        "current": {
+          "type": "Property",
+          "value": 30,
+          "observedAt": "2026-09-25T14:00:00Z",
+          "unitCode": "4K",
+          "datasetId": "urn:ngsi-ld:Dataset:Socket1:Clamp3:Raw"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Code 3 - consumed active energy",
+    "inputArguments": [
+      3,
+      "0006412213b47a00",
+      "2026-09-25T14:00:00Z",
+      "0102030405060708"
+    ],
+    "expectedOutput": [
+      {
+        "id": "urn:ngsi-ld:Device:0102030405060708",
+        "type": "Device",
+        "activeEnergy": {
+          "type": "Property",
+          "value": 314120,
+          "observedAt": "2026-09-25T14:00:00Z",
+          "unitCode": "WHR",
+          "datasetId": "urn:ngsi-ld:Dataset:Socket1:Clamp3:Consumed:Raw"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Code 4 - signed active power",
+    "inputArguments": [
+      3,
+      "0006412214feffff",
+      "2026-09-25T14:00:00Z",
+      "0102030405060708"
+    ],
+    "expectedOutput": [
+      {
+        "id": "urn:ngsi-ld:Device:0102030405060708",
+        "type": "Device",
+        "activePower": {
+          "type": "Property",
+          "value": -2,
+          "observedAt": "2026-09-25T14:00:00Z",
+          "unitCode": "WTT",
+          "datasetId": "urn:ngsi-ld:Dataset:Socket1:Clamp3:Raw"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Code 5 - produced active energy",
+    "inputArguments": [
+      3,
+      "0006412215380000",
+      "2026-09-25T14:00:00Z",
+      "0102030405060708"
+    ],
+    "expectedOutput": [
+      {
+        "id": "urn:ngsi-ld:Device:0102030405060708",
+        "type": "Device",
+        "activeEnergy": {
+          "type": "Property",
+          "value": 560,
+          "observedAt": "2026-09-25T14:00:00Z",
+          "unitCode": "WHR",
+          "datasetId": "urn:ngsi-ld:Dataset:Socket1:Clamp3:Produced:Raw"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Code 6 - positive reactive energy",
+    "inputArguments": [
+      3,
+      "00064122163c5700",
+      "2026-09-25T14:00:00Z",
+      "0102030405060708"
+    ],
+    "expectedOutput": [
+      {
+        "id": "urn:ngsi-ld:Device:0102030405060708",
+        "type": "Device",
+        "reactiveEnergy": {
+          "type": "Property",
+          "value": 223.32,
+          "observedAt": "2026-09-25T14:00:00Z",
+          "unitCode": "K3",
+          "datasetId": "urn:ngsi-ld:Dataset:Socket1:Clamp3:Positive:Raw"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Code 7 - negative reactive energy",
+    "inputArguments": [
+      3,
+      "0006412217fa8700",
+      "2026-09-25T14:00:00Z",
+      "0102030405060708"
+    ],
+    "expectedOutput": [
+      {
+        "id": "urn:ngsi-ld:Device:0102030405060708",
+        "type": "Device",
+        "reactiveEnergy": {
+          "type": "Property",
+          "value": 348.1,
+          "observedAt": "2026-09-25T14:00:00Z",
+          "unitCode": "K3",
+          "datasetId": "urn:ngsi-ld:Dataset:Socket1:Clamp3:Negative:Raw"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Code 8 - signed reactive power",
+    "inputArguments": [
+      3,
+      "000641221882feff",
+      "2026-09-25T14:00:00Z",
+      "0102030405060708"
+    ],
+    "expectedOutput": [
+      {
+        "id": "urn:ngsi-ld:Device:0102030405060708",
+        "type": "Device",
+        "reactivePower": {
+          "type": "Property",
+          "value": -382,
+          "observedAt": "2026-09-25T14:00:00Z",
+          "unitCode": "D44",
+          "datasetId": "urn:ngsi-ld:Dataset:Socket1:Clamp3:Raw"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Code 9 - apparent energy mapped to energy",
+    "inputArguments": [
+      3,
+      "0006412219840300",
+      "2026-09-25T14:00:00Z",
+      "0102030405060708"
+    ],
+    "expectedOutput": [
+      {
+        "id": "urn:ngsi-ld:Device:0102030405060708",
+        "type": "Device",
+        "energy": {
+          "type": "Property",
+          "value": 9,
+          "observedAt": "2026-09-25T14:00:00Z",
+          "unitCode": "C79",
+          "datasetId": "urn:ngsi-ld:Dataset:Socket1:Clamp3:Raw"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Code 10 - voltage",
+    "inputArguments": [
+      3,
+      "000541221a2c09",
+      "2026-09-25T14:00:00Z",
+      "0102030405060708"
+    ],
+    "expectedOutput": [
+      {
+        "id": "urn:ngsi-ld:Device:0102030405060708",
+        "type": "Device",
+        "voltage": {
+          "type": "Property",
+          "value": 234.8,
+          "observedAt": "2026-09-25T14:00:00Z",
+          "unitCode": "VLT",
+          "datasetId": "urn:ngsi-ld:Dataset:Socket1:Clamp3:Raw"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Code 11 - apparent power mapped to power",
+    "inputArguments": [
+      3,
+      "000641221bd20400",
+      "2026-09-25T14:00:00Z",
+      "0102030405060708"
+    ],
+    "expectedOutput": [
+      {
+        "id": "urn:ngsi-ld:Device:0102030405060708",
+        "type": "Device",
+        "power": {
+          "type": "Property",
+          "value": 1234,
+          "observedAt": "2026-09-25T14:00:00Z",
+          "unitCode": "D46",
+          "datasetId": "urn:ngsi-ld:Dataset:Socket1:Clamp3:Raw"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Code 12 - frequency",
+    "inputArguments": [
+      3,
+      "000541221c8813",
+      "2026-09-25T14:00:00Z",
+      "0102030405060708"
+    ],
+    "expectedOutput": [
+      {
+        "id": "urn:ngsi-ld:Device:0102030405060708",
+        "type": "Device",
+        "frequency": {
+          "type": "Property",
+          "value": 50,
+          "observedAt": "2026-09-25T14:00:00Z",
+          "unitCode": "HTZ",
+          "datasetId": "urn:ngsi-ld:Dataset:Socket1:Clamp3:Raw"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Node status",
     "inputArguments": [
       2,
       "100A00080200010407083C00",

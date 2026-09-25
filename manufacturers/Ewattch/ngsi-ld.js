@@ -10,9 +10,9 @@ const ATTRIBUTE_NAMES = {
     current: "current", currentIndex: "currentIndex", activeEnergyIndex: "activeEnergy",
     consumedActiveEnergyIndex: "activeEnergy", producedActiveEnergyIndex: "activeEnergy",
     positiveReactiveEnergyIndex: "reactiveEnergy", negativeReactiveEnergyIndex: "reactiveEnergy",
-    reactiveEnergyIndex: "reactiveEnergy", apparentEnergyIndex: "apparentEnergy",
+    reactiveEnergyIndex: "reactiveEnergy", apparentEnergyIndex: "energy",
     power: "activePower", activePower: "activePower", reactivePower: "reactivePower",
-    apparentPower: "apparentPower", voltage: "voltage", frequency: "frequency",
+    apparentPower: "power", voltage: "voltage", frequency: "frequency",
     co2: "co2", temperature: "temperature", humidity: "humidity", luminosity: "luminosity",
     motion: "motion", periodicity: "periodicity", batteryLevel: "batteryLevel",
     version: "firmwareVersion", nodeType: "deviceType", hardwareProfile: "hardwareProfile"

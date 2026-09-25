@@ -2,6 +2,23 @@ const fs = require("fs");
 const path = require("path");
 const { execSync } = require("child_process");
 
+function getTargetManufacturer() {
+  const prefix = "--manufacturer=";
+  const argument = process.argv.find((arg) => arg.startsWith(prefix));
+
+  if (!argument) {
+    return undefined;
+  }
+
+  const manufacturer = argument.slice(prefix.length).trim();
+
+  if (!manufacturer) {
+    throw new Error("The --manufacturer option requires a value");
+  }
+
+  return manufacturer;
+}
+
 function loadManufacturers(targetManufacturer) {
   const manufacturersDir = path.resolve(__dirname);
   const manufacturers = fs
@@ -144,10 +161,14 @@ function testAll(manufacturers) {
 }
 
 function main() {
-  const targetManufacturer =
-    process.argv[2] && process.argv[2].split("=")[1].trim();
-
+  const targetManufacturer = getTargetManufacturer();
   const manufacturers = loadManufacturers(targetManufacturer);
+
+  process.stdout.write(
+    targetManufacturer
+      ? `\nTesting manufacturer: ${targetManufacturer} 🚀`
+      : "\nTesting all manufacturers 🚀"
+  );
 
   const onlyTest = getOnlyTest(manufacturers);
 

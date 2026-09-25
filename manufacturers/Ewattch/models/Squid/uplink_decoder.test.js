@@ -20,6 +20,16 @@ describe("Ewattch SQUID decoder invariants", () => {
         expect(properties(output, "reactiveEnergy")[0].datasetId).toContain(":Positive:Raw");
         expect(properties(output, "reactiveEnergy")[12].datasetId).toContain(":Negative:Raw");
     });
+    test("maps apparent quantities while preserving active and reactive terms", () => {
+        const consumed = decode(3, "0006412213b47a00");
+        const apparentEnergy = decode(3, "0006412219840300");
+        const apparentPower = decode(3, "000641221bd20400");
+        expect(properties(consumed, "activeEnergy")[0]).toMatchObject({ value: 314120, unitCode: "WHR" });
+        expect(properties(apparentEnergy, "energy")[0]).toMatchObject({ value: 9, unitCode: "C79" });
+        expect(properties(apparentPower, "power")[0]).toMatchObject({ value: 1234, unitCode: "D46" });
+        expect(properties(apparentEnergy, "apparentEnergy")).toHaveLength(0);
+        expect(properties(apparentPower, "apparentPower")).toHaveLength(0);
+    });
     test("decodes twelve SQUID V1 channels", () => {
         const output = decode(3, "002548509F06A03E0D407D1AF56900EAD300D4A701509F06A03E0D407D1AF56900EAD300D4A701");
         expect(properties(output, "currentIndex")).toHaveLength(12);
