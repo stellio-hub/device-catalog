@@ -1,0 +1,117 @@
+[
+  {
+    "name": "Energy module - current indexes and instantaneous currents",
+    "inputArguments": [
+      3,
+      "001541203201260947720A013B0F475400400901726A00",
+      "2026-09-25T14:00:00Z",
+      "0102030405060708"
+    ],
+    "expectedOutput": [
+      {
+        "id": "urn:ngsi-ld:Device:0102030405060708",
+        "type": "Device",
+        "currentIndex": {
+          "type": "Property",
+          "value": 5995530,
+          "observedAt": "2026-09-25T14:00:00Z",
+          "unitCode": "E09",
+          "datasetId": "urn:ngsi-ld:Dataset:Socket1:Clamp1:Raw"
+        },
+        "current": {
+          "type": "Property",
+          "value": 21575,
+          "observedAt": "2026-09-25T14:00:00Z",
+          "unitCode": "4K",
+          "datasetId": "urn:ngsi-ld:Dataset:Socket1:Clamp1:Raw"
+        }
+      },
+      {
+        "id": "urn:ngsi-ld:Device:0102030405060708",
+        "type": "Device",
+        "currentIndex": {
+          "type": "Property",
+          "value": 6846150,
+          "observedAt": "2026-09-25T14:00:00Z",
+          "unitCode": "E09",
+          "datasetId": "urn:ngsi-ld:Dataset:Socket1:Clamp2:Raw"
+        },
+        "current": {
+          "type": "Property",
+          "value": 67904,
+          "observedAt": "2026-09-25T14:00:00Z",
+          "unitCode": "4K",
+          "datasetId": "urn:ngsi-ld:Dataset:Socket1:Clamp2:Raw"
+        }
+      },
+      {
+        "id": "urn:ngsi-ld:Device:0102030405060708",
+        "type": "Device",
+        "currentIndex": {
+          "type": "Property",
+          "value": 9981450,
+          "observedAt": "2026-09-25T14:00:00Z",
+          "unitCode": "E09",
+          "datasetId": "urn:ngsi-ld:Dataset:Socket1:Clamp3:Raw"
+        },
+        "current": {
+          "type": "Property",
+          "value": 27250,
+          "observedAt": "2026-09-25T14:00:00Z",
+          "unitCode": "4K",
+          "datasetId": "urn:ngsi-ld:Dataset:Socket1:Clamp3:Raw"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Node status - SQUID type, firmware, battery and periodicity",
+    "inputArguments": [
+      2,
+      "100A00080200010407083C00",
+      "2026-09-25T14:00:00Z",
+      "0102030405060708"
+    ],
+    "expectedOutput": [
+      {
+        "id": "urn:ngsi-ld:Device:0102030405060708",
+        "type": "Device",
+        "deviceType": {
+          "type": "Property",
+          "value": "squid",
+          "observedAt": "2026-09-25T14:00:00Z",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "firmwareVersion": {
+          "type": "Property",
+          "value": "1.0",
+          "observedAt": "2026-09-25T14:00:00Z",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "batteryLevel": {
+          "type": "Property",
+          "value": 7,
+          "observedAt": "2026-09-25T14:00:00Z",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "periodicity": {
+          "type": "Property",
+          "value": 600,
+          "observedAt": "2026-09-25T14:00:00Z",
+          "unitCode": "SEC",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        }
+      },
+      {
+        "id": "urn:ngsi-ld:Device:0102030405060708",
+        "type": "Device",
+        "batteryLevel": {
+          "type": "Property",
+          "value": 5,
+          "observedAt": "2026-09-25T14:00:00Z",
+          "datasetId": "urn:ngsi-ld:Dataset:scale5"
+        }
+      }
+    ]
+  }
+]
