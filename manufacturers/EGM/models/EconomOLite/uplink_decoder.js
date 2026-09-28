@@ -49,7 +49,7 @@ function decode(port, encoded, time, entityId) {
 
             ngsildPayload[0].redundancy = ngsildInstance(REDUNDANCY, date, null, "PulseCounter" + PULSE_COUNTER_ID + ":Raw");
             ngsildPayload[0].measureDuration = ngsildInstance(MEASURE_DURATION, date, "MIN", "PulseCounter" + PULSE_COUNTER_ID + ":Raw");
-            ngsildPayload[0].pulse = ngsildInstance(pulse, date, null, "PulseCounter" + PULSE_COUNTER_ID + ":Raw");
+            ngsildPayload[0].pulses = ngsildInstance(pulse, date, null, "PulseCounter" + PULSE_COUNTER_ID + ":Raw");
 
             const PULSE_NUMBER = ((encoded.length - 14) / 3);
             for (let i = 1; i < PULSE_NUMBER; i++) {
