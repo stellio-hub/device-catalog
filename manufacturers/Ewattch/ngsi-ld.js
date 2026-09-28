@@ -1,83 +1,74 @@
-// Added by EGM for NGSI-LD conversion
+// NGSI-LD conversion for Ewattch decoders.
 
-let UnitCorresponder = {
-    Ah: "AMH",
-    mAh: "E09",
-    mA: "4K",
-    A: "AMP",
-    W: "WTT",
-    ppm: "59",
-    s: "SEC",
-    '°C': "CEL",
-    '%RH': "P1",
-    lx: "LUX"
-}
-let AttributeCorresponder = {
-    current: "current",
-    currentIndex: "currentIndex",
-    power: "power",
-    co2: "co2",
-    temperature: "temperature",
-    humidity: "humidity",
-    luminosity: "luminosity",
-    motion: "motion",
-    periodicity: "periodicity",
-    batteryLevel: "batteryLevel",
-    version: "hardwareVersion",
-}
+const UNIT_CODES = {
+    mAh: "E09", mA: "4K", Ah: "AMH", A: "AMP", Wh: "WHR", kWh: "KWH",
+    kvarh: "K3", W: "WTT", var: "D44", VA: "D46", V: "VLT", Hz: "HTZ",
+    ppm: "59", s: "SEC", "°C": "CEL", "%RH": "P1", lx: "LUX"
+};
 
-    function ngsildInstance(value, time, unit, dataset_suffix) {
+const ATTRIBUTE_NAMES = {
+    current: "current", currentIndex: "currentIndex", activeEnergyIndex: "activeEnergy",
+    consumedActiveEnergyIndex: "activeEnergy", producedActiveEnergyIndex: "activeEnergy",
+    positiveReactiveEnergyIndex: "reactiveEnergy", negativeReactiveEnergyIndex: "reactiveEnergy",
+    reactiveEnergyIndex: "reactiveEnergy", apparentEnergyIndex: "energy",
+    power: "activePower", activePower: "activePower", reactivePower: "reactivePower",
+    apparentPower: "power", voltage: "voltage", frequency: "frequency",
+    co2: "co2", temperature: "temperature", humidity: "humidity", luminosity: "luminosity",
+    motion: "motion", periodicity: "periodicity", batteryLevel: "batteryLevel",
+    version: "firmwareVersion", nodeType: "deviceType", hardwareProfile: "hardwareProfile"
+};
 
-    var ngsild_instance = {
-        type: 'Property',
-        value: value,
-        observedAt: time
-    }
-    if (unit !== undefined) {
-        ngsild_instance.unitCode = unit
-    }
-    if (dataset_suffix !== null) {
-        ngsild_instance.datasetId = 'urn:ngsi-ld:Dataset:' + dataset_suffix
-    }
-  
-    return ngsild_instance
+const FLOW_SUFFIXES = {
+    consumedActiveEnergyIndex: "Consumed", producedActiveEnergyIndex: "Produced",
+    positiveReactiveEnergyIndex: "Positive", negativeReactiveEnergyIndex: "Negative"
+};
+
+function ngsildInstance(value, time, unitCode, datasetSuffix) {
+    const instance = { type: "Property", value, observedAt: time };
+    if (unitCode) instance.unitCode = unitCode;
+    if (datasetSuffix) instance.datasetId = "urn:ngsi-ld:Dataset:" + datasetSuffix;
+    return instance;
 }
 
-function ngsildWrapper(input, time, entity_id) {
-    var ngsild_payload = [{
-        id: entity_id,
-        type: "Device"
-    }];
+function datasetSuffix(data) {
+    const parts = [];
+    if (data.hardwareData && Number.isInteger(data.hardwareData.socket)) parts.push("Socket" + data.hardwareData.socket);
+    if (data.hardwareData && Number.isInteger(data.hardwareData.channel)) parts.push("Clamp" + (data.hardwareData.channel + 1));
+    else if (data.uuid) parts.push(String(data.uuid).replace(/[^A-Za-z0-9_-]/g, "_"));
+    if (FLOW_SUFFIXES[data.type]) parts.push(FLOW_SUFFIXES[data.type]);
+    parts.push("Raw");
+    return parts.join(":");
+}
 
+function normalizeMeasurement(data) {
+    if (data.unit === "varh") return { value: data.value / 1000, unitCode: "K3" };
+    if (data.unit === "VAh") return { value: data.value / 1000, unitCode: "C79" };
+    return { value: data.value, unitCode: UNIT_CODES[data.unit] };
+}
+
+function scale5BatteryLevel(value) {
+    if (value <= 0) return 1;
+    if (value === 1) return 2;
+    if (value <= 3) return 3;
+    if (value <= 5) return 4;
+    return 5;
+}
+
+function ngsildWrapper(input, time, entityId) {
+    if (!input || !Array.isArray(input.data)) throw new TypeError("The Ewattch decoder result must contain a data array");
+    const payload = [{ id: entityId, type: "Device" }];
     function addToPayload(key, value) {
-        if (ngsild_payload.every(d => d.hasOwnProperty(key))) {
-            ngsild_payload.push({id: entity_id, type: "Device", ...{[key]: value}});
-        } else {
-            for (let d of ngsild_payload) {
-                if (!d.hasOwnProperty(key)) {
-                    d[key] = value;
-                    break;
-                }
-            }
-        }
+        const entity = payload.find((candidate) => !Object.prototype.hasOwnProperty.call(candidate, key));
+        if (entity) entity[key] = value;
+        else payload.push({ id: entityId, type: "Device", [key]: value });
     }
-
-    for (let i = 0; i < input.data.length; i++) {
-        let dataSetId = 'Raw'
-        let data = input.data[i]
-        // Adapt datasetId in case several measurement of same type are present form different sensors (e.g. current clamps)
-        if (typeof data.uuid !== 'undefined') {
-            dataSetId=data.uuid.concat(":Raw")
-        }
-        // Verify that mesured property is one to be reported
-        if (data.type in AttributeCorresponder) {
-            addToPayload(AttributeCorresponder[data.type], ngsildInstance(data.value, time, UnitCorresponder[data.unit], dataSetId))
-        }
+    for (const data of input.data) {
+        if (!Object.prototype.hasOwnProperty.call(ATTRIBUTE_NAMES, data.type)) continue;
+        const normalized = normalizeMeasurement(data);
+        addToPayload(ATTRIBUTE_NAMES[data.type], ngsildInstance(normalized.value, time, normalized.unitCode, datasetSuffix(data)));
+        if (data.type === "batteryLevel") addToPayload("batteryLevel", ngsildInstance(scale5BatteryLevel(data.value), time, undefined, "scale5"));
     }
-
-    return ngsild_payload
+    return payload;
 }
 
-module.exports = {
-    ngsildWrapper: ngsildWrapper,
-}
+module.exports = { ngsildWrapper, ngsildInstance };
