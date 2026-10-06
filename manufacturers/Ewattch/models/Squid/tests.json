@@ -156,9 +156,9 @@
         "type": "Device",
         "currentIndex": {
           "type": "Property",
-          "value": 1234560,
+          "value": 1234.56,
           "observedAt": "2026-09-25T14:00:00Z",
-          "unitCode": "E09",
+          "unitCode": "AMH",
           "datasetId": "urn:ngsi-ld:Dataset:Socket1:Clamp3:Raw"
         }
       }
@@ -178,9 +178,9 @@
         "type": "Device",
         "current": {
           "type": "Property",
-          "value": 654321,
+          "value": 654.321,
           "observedAt": "2026-09-25T14:00:00Z",
-          "unitCode": "4K",
+          "unitCode": "AMP",
           "datasetId": "urn:ngsi-ld:Dataset:Socket1:Clamp3:Raw"
         }
       }
@@ -200,16 +200,16 @@
         "type": "Device",
         "currentIndex": {
           "type": "Property",
-          "value": 100,
+          "value": 0.1,
           "observedAt": "2026-09-25T14:00:00Z",
-          "unitCode": "E09",
+          "unitCode": "AMH",
           "datasetId": "urn:ngsi-ld:Dataset:Socket1:Clamp3:Raw"
         },
         "current": {
           "type": "Property",
-          "value": 30,
+          "value": 0.03,
           "observedAt": "2026-09-25T14:00:00Z",
-          "unitCode": "4K",
+          "unitCode": "AMP",
           "datasetId": "urn:ngsi-ld:Dataset:Socket1:Clamp3:Raw"
         }
       }
