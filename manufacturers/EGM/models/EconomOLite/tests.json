@@ -61,7 +61,7 @@
                   "unitCode": "MIN",
                   "datasetId": "urn:ngsi-ld:Dataset:PulseCounter1:Raw"
             },
-            "pulse": {
+            "pulses": {
                   "type": "Property",
                   "value": 87,
                   "observedAt": "2026-07-27T06:00:49Z",
