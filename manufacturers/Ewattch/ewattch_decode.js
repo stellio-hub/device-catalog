@@ -38,8 +38,8 @@ function parseEnergy(bytes, offset, socket, channel) {
     const code = descriptor & 0x0f;
     const values = [];
     const definitions = {
-        0: ["currentIndex", 10, "mAh", 3, false],
-        1: ["current", 1, "mA", 3, false],
+        0: ["currentIndex", 0.01, "Ah", 3, false],
+        1: ["current", 0.001, "A", 3, false],
         3: ["consumedActiveEnergyIndex", 10, "Wh", 3, false],
         4: ["power", 1, "W", 3, true],
         5: ["producedActiveEnergyIndex", 10, "Wh", 3, false],
