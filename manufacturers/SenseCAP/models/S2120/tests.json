@@ -1,0 +1,886 @@
+[
+  {
+    "name": "Firmware v2.0 measurements (4A+4B+4C)",
+    "inputArguments": [
+      2,
+      "4a00aa3c000067ab1e00114b000c0000000027244c001700066320",
+      "2026-10-22T14:00:00Z",
+      "S2120TEST"
+    ],
+    "expectedOutput": [
+      {
+        "id": "urn:ngsi-ld:Device:S2120TEST",
+        "type": "Device",
+        "airTemperature": {
+          "type": "Property",
+          "value": 17,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "CEL",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "airHumidity": {
+          "type": "Property",
+          "value": 60,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "P1",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "lightIntensity": {
+          "type": "Property",
+          "value": 26539,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "LUX",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "uvIndex": {
+          "type": "Property",
+          "value": 3,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "windSpeed": {
+          "type": "Property",
+          "value": 1.7,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "MTS",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "windDirection": {
+          "type": "Property",
+          "value": 12,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "DD",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "rainfallIntensity": {
+          "type": "Property",
+          "value": 0,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "H67",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "barometricPressure": {
+          "type": "Property",
+          "value": 100200,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "PAL",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "gustSpeed": {
+          "type": "Property",
+          "value": 2.3,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "MTS",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "precipitation": {
+          "type": "Property",
+          "value": 418.592,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "MMT",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Firmware v2.0 measurements with battery (4A+4B+4C+03)",
+    "inputArguments": [
+      2,
+      "4a00e543000038240a001b4b00480000000026d44c0030000657380364",
+      "2026-10-22T14:00:00Z",
+      "S2120TEST"
+    ],
+    "expectedOutput": [
+      {
+        "id": "urn:ngsi-ld:Device:S2120TEST",
+        "type": "Device",
+        "batteryLevel": [
+          {
+            "type": "Property",
+            "value": 4,
+            "observedAt": "2026-10-22T14:00:00Z",
+            "datasetId": "urn:ngsi-ld:Dataset:scale5"
+          }
+        ],
+        "airTemperature": {
+          "type": "Property",
+          "value": 22.9,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "CEL",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "airHumidity": {
+          "type": "Property",
+          "value": 67,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "P1",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "lightIntensity": {
+          "type": "Property",
+          "value": 14372,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "LUX",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "uvIndex": {
+          "type": "Property",
+          "value": 1,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "windSpeed": {
+          "type": "Property",
+          "value": 2.7,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "MTS",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "windDirection": {
+          "type": "Property",
+          "value": 72,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "DD",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "rainfallIntensity": {
+          "type": "Property",
+          "value": 0,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "H67",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "barometricPressure": {
+          "type": "Property",
+          "value": 99400,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "PAL",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "gustSpeed": {
+          "type": "Property",
+          "value": 4.8,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "MTS",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "precipitation": {
+          "type": "Property",
+          "value": 415.544,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "MMT",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "battery": {
+          "type": "Property",
+          "value": 100,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "P1",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Firmware before v2.0 measurements (01+02)",
+    "inputArguments": [
+      2,
+      "01ffe85f0000000000001c020138000000002637",
+      "2026-10-22T14:00:00Z",
+      "S2120TEST"
+    ],
+    "expectedOutput": [
+      {
+        "id": "urn:ngsi-ld:Device:S2120TEST",
+        "type": "Device",
+        "airTemperature": {
+          "type": "Property",
+          "value": -2.4,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "CEL",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "airHumidity": {
+          "type": "Property",
+          "value": 95,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "P1",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "lightIntensity": {
+          "type": "Property",
+          "value": 0,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "LUX",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "uvIndex": {
+          "type": "Property",
+          "value": 0,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "windSpeed": {
+          "type": "Property",
+          "value": 2.8,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "MTS",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "windDirection": {
+          "type": "Property",
+          "value": 312,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "DD",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "rainfallIntensity": {
+          "type": "Property",
+          "value": 0,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "H67",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "barometricPressure": {
+          "type": "Property",
+          "value": 97830,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "PAL",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Firmware before v2.0 measurements with battery (01+02+03)",
+    "inputArguments": [
+      2,
+      "010112270001d4e15b00130200020000000026b90300",
+      "2026-10-22T14:00:00Z",
+      "S2120TEST"
+    ],
+    "expectedOutput": [
+      {
+        "id": "urn:ngsi-ld:Device:S2120TEST",
+        "type": "Device",
+        "batteryLevel": [
+          {
+            "type": "Property",
+            "value": 0,
+            "observedAt": "2026-10-22T14:00:00Z",
+            "datasetId": "urn:ngsi-ld:Dataset:scale5"
+          }
+        ],
+        "airTemperature": {
+          "type": "Property",
+          "value": 27.4,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "CEL",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "airHumidity": {
+          "type": "Property",
+          "value": 39,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "P1",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "lightIntensity": {
+          "type": "Property",
+          "value": 120033,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "LUX",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "uvIndex": {
+          "type": "Property",
+          "value": 9.1,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "windSpeed": {
+          "type": "Property",
+          "value": 1.9,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "MTS",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "windDirection": {
+          "type": "Property",
+          "value": 2,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "DD",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "rainfallIntensity": {
+          "type": "Property",
+          "value": 0,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "H67",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "barometricPressure": {
+          "type": "Property",
+          "value": 99130,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "PAL",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "battery": {
+          "type": "Property",
+          "value": 0,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "P1",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Firmware before v2.0 status, measurement and sensor error (04+01+06)",
+    "inputArguments": [
+      2,
+      "04000101010d000a05a00100675300003d7107001b060e",
+      "2026-10-22T14:00:00Z",
+      "S2120TEST"
+    ],
+    "expectedOutput": [
+      {
+        "id": "urn:ngsi-ld:Device:S2120TEST",
+        "type": "Device",
+        "batteryLevel": [
+          {
+            "type": "Property",
+            "value": 0,
+            "observedAt": "2026-10-22T14:00:00Z",
+            "datasetId": "urn:ngsi-ld:Dataset:scale5"
+          }
+        ],
+        "battery": {
+          "type": "Property",
+          "value": 0,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "P1",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "hardwareVersion": {
+          "type": "Property",
+          "value": "1.1",
+          "observedAt": "2026-10-22T14:00:00Z"
+        },
+        "softwareVersion": {
+          "type": "Property",
+          "value": "1.13",
+          "observedAt": "2026-10-22T14:00:00Z"
+        },
+        "interval": {
+          "type": "Property",
+          "value": 10,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "MIN",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "airTemperature": {
+          "type": "Property",
+          "value": 10.3,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "CEL",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "airHumidity": {
+          "type": "Property",
+          "value": 83,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "P1",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "lightIntensity": {
+          "type": "Property",
+          "value": 15729,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "LUX",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "uvIndex": {
+          "type": "Property",
+          "value": 0.7,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "windSpeed": {
+          "type": "Property",
+          "value": 2.7,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "MTS",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Firmware v2.0 status and measurements, battery 0% (04+4A+4B+4C)",
+    "inputArguments": [
+      2,
+      "040001010200000a05a04a008255000018e10000094b001e00000000272f4c000900066026",
+      "2026-10-22T14:00:00Z",
+      "S2120TEST"
+    ],
+    "expectedOutput": [
+      {
+        "id": "urn:ngsi-ld:Device:S2120TEST",
+        "type": "Device",
+        "batteryLevel": [
+          {
+            "type": "Property",
+            "value": 0,
+            "observedAt": "2026-10-22T14:00:00Z",
+            "datasetId": "urn:ngsi-ld:Dataset:scale5"
+          }
+        ],
+        "battery": {
+          "type": "Property",
+          "value": 0,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "P1",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "hardwareVersion": {
+          "type": "Property",
+          "value": "1.1",
+          "observedAt": "2026-10-22T14:00:00Z"
+        },
+        "softwareVersion": {
+          "type": "Property",
+          "value": "2.0",
+          "observedAt": "2026-10-22T14:00:00Z"
+        },
+        "interval": {
+          "type": "Property",
+          "value": 10,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "MIN",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "airTemperature": {
+          "type": "Property",
+          "value": 13,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "CEL",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "airHumidity": {
+          "type": "Property",
+          "value": 85,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "P1",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "lightIntensity": {
+          "type": "Property",
+          "value": 6369,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "LUX",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "uvIndex": {
+          "type": "Property",
+          "value": 0,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "windSpeed": {
+          "type": "Property",
+          "value": 0.9,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "MTS",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "windDirection": {
+          "type": "Property",
+          "value": 30,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "DD",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "rainfallIntensity": {
+          "type": "Property",
+          "value": 0,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "H67",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "barometricPressure": {
+          "type": "Property",
+          "value": 100310,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "PAL",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "gustSpeed": {
+          "type": "Property",
+          "value": 0.9,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "MTS",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "precipitation": {
+          "type": "Property",
+          "value": 417.83,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "MMT",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Firmware v2.0 status and measurements, battery 100% (04+4A+4B+4C)",
+    "inputArguments": [
+      2,
+      "046401010200000a05a04a018617000060981700094b00010000000027054c000900065738",
+      "2026-10-22T14:00:00Z",
+      "S2120TEST"
+    ],
+    "expectedOutput": [
+      {
+        "id": "urn:ngsi-ld:Device:S2120TEST",
+        "type": "Device",
+        "batteryLevel": [
+          {
+            "type": "Property",
+            "value": 4,
+            "observedAt": "2026-10-22T14:00:00Z",
+            "datasetId": "urn:ngsi-ld:Dataset:scale5"
+          }
+        ],
+        "battery": {
+          "type": "Property",
+          "value": 100,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "P1",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "hardwareVersion": {
+          "type": "Property",
+          "value": "1.1",
+          "observedAt": "2026-10-22T14:00:00Z"
+        },
+        "softwareVersion": {
+          "type": "Property",
+          "value": "2.0",
+          "observedAt": "2026-10-22T14:00:00Z"
+        },
+        "interval": {
+          "type": "Property",
+          "value": 10,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "MIN",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "airTemperature": {
+          "type": "Property",
+          "value": 39,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "CEL",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "airHumidity": {
+          "type": "Property",
+          "value": 23,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "P1",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "lightIntensity": {
+          "type": "Property",
+          "value": 24728,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "LUX",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "uvIndex": {
+          "type": "Property",
+          "value": 2.3,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "windSpeed": {
+          "type": "Property",
+          "value": 0.9,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "MTS",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "windDirection": {
+          "type": "Property",
+          "value": 1,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "DD",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "rainfallIntensity": {
+          "type": "Property",
+          "value": 0,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "H67",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "barometricPressure": {
+          "type": "Property",
+          "value": 99890,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "PAL",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "gustSpeed": {
+          "type": "Property",
+          "value": 0.9,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "MTS",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "precipitation": {
+          "type": "Property",
+          "value": 415.544,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "MMT",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Firmware before v2.0 sensor error and wind (06+02)",
+    "inputArguments": [
+      2,
+      "060e0200350000000026b8",
+      "2026-10-22T14:00:00Z",
+      "S2120TEST"
+    ],
+    "expectedOutput": [
+      {
+        "id": "urn:ngsi-ld:Device:S2120TEST",
+        "type": "Device",
+        "windDirection": {
+          "type": "Property",
+          "value": 53,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "DD",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "rainfallIntensity": {
+          "type": "Property",
+          "value": 0,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "H67",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "barometricPressure": {
+          "type": "Property",
+          "value": 99120,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "PAL",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Daily device status, byte 00 (00080100000314)",
+    "inputArguments": [
+      2,
+      "0008010000031404ff280500000600000700000000000000000fb80012232a",
+      "2026-10-22T14:00:00Z",
+      "S2120TEST"
+    ],
+    "expectedOutput": [
+      {
+        "id": "urn:ngsi-ld:Device:S2120TEST",
+        "type": "Device"
+      }
+    ]
+  },
+  {
+    "name": "Daily device status, byte 01 (00080101000314)",
+    "inputArguments": [
+      2,
+      "0008010100031404142c05a80006a800",
+      "2026-10-22T14:00:00Z",
+      "S2120TEST"
+    ],
+    "expectedOutput": [
+      {
+        "id": "urn:ngsi-ld:Device:S2120TEST",
+        "type": "Device"
+      }
+    ]
+  },
+  {
+    "name": "Daily device status, byte 02 (00080102000314)",
+    "inputArguments": [
+      2,
+      "0008010200031404123005b00106b001",
+      "2026-10-22T14:00:00Z",
+      "S2120TEST"
+    ],
+    "expectedOutput": [
+      {
+        "id": "urn:ngsi-ld:Device:S2120TEST",
+        "type": "Device"
+      }
+    ]
+  },
+  {
+    "name": "Daily device status, byte 03 (00080103000314)",
+    "inputArguments": [
+      2,
+      "00080103000314041030050003060003",
+      "2026-10-22T14:00:00Z",
+      "S2120TEST"
+    ],
+    "expectedOutput": [
+      {
+        "id": "urn:ngsi-ld:Device:S2120TEST",
+        "type": "Device"
+      }
+    ]
+  },
+  {
+    "name": "Daily device status, byte 04 (00080104000314)",
+    "inputArguments": [
+      2,
+      "00080104000314040d2c05a80306a803",
+      "2026-10-22T14:00:00Z",
+      "S2120TEST"
+    ],
+    "expectedOutput": [
+      {
+        "id": "urn:ngsi-ld:Device:S2120TEST",
+        "type": "Device"
+      }
+    ]
+  },
+  {
+    "name": "Firmware before v2.0 status and measurements (04+01+02)",
+    "inputArguments": [
+      2,
+      "04000101010d000a05a0010094440000575e0900280200260000000025fa",
+      "2026-10-22T14:00:00Z",
+      "S2120TEST"
+    ],
+    "expectedOutput": [
+      {
+        "id": "urn:ngsi-ld:Device:S2120TEST",
+        "type": "Device",
+        "batteryLevel": [
+          {
+            "type": "Property",
+            "value": 0,
+            "observedAt": "2026-10-22T14:00:00Z",
+            "datasetId": "urn:ngsi-ld:Dataset:scale5"
+          }
+        ],
+        "battery": {
+          "type": "Property",
+          "value": 0,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "P1",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "hardwareVersion": {
+          "type": "Property",
+          "value": "1.1",
+          "observedAt": "2026-10-22T14:00:00Z"
+        },
+        "softwareVersion": {
+          "type": "Property",
+          "value": "1.13",
+          "observedAt": "2026-10-22T14:00:00Z"
+        },
+        "interval": {
+          "type": "Property",
+          "value": 10,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "MIN",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "airTemperature": {
+          "type": "Property",
+          "value": 14.8,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "CEL",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "airHumidity": {
+          "type": "Property",
+          "value": 68,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "P1",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "lightIntensity": {
+          "type": "Property",
+          "value": 22366,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "LUX",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "uvIndex": {
+          "type": "Property",
+          "value": 0.9,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "windSpeed": {
+          "type": "Property",
+          "value": 4,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "MTS",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "windDirection": {
+          "type": "Property",
+          "value": 38,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "DD",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "rainfallIntensity": {
+          "type": "Property",
+          "value": 0,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "H67",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        },
+        "barometricPressure": {
+          "type": "Property",
+          "value": 97220,
+          "observedAt": "2026-10-22T14:00:00Z",
+          "unitCode": "PAL",
+          "datasetId": "urn:ngsi-ld:Dataset:Raw"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Invalid payload",
+    "inputArguments": [
+      2,
+      "ffff",
+      "2026-10-22T14:00:00Z",
+      "S2120TEST"
+    ],
+    "expectedOutput": [
+      {
+        "id": "urn:ngsi-ld:Device:S2120TEST",
+        "type": "Device",
+        "error": {
+          "type": "Property",
+          "value": 1,
+          "observedAt": "2026-10-22T14:00:00Z"
+        }
+      }
+    ]
+  }
+]
