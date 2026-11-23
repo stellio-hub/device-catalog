@@ -11,8 +11,8 @@ const ATTRIBUTE_NAMES = {
     consumedActiveEnergyIndex: "activeEnergy", producedActiveEnergyIndex: "activeEnergy",
     positiveReactiveEnergyIndex: "reactiveEnergy", negativeReactiveEnergyIndex: "reactiveEnergy",
     reactiveEnergyIndex: "reactiveEnergy", apparentEnergyIndex: "energy",
-    power: "activePower", activePower: "activePower", reactivePower: "reactivePower",
-    apparentPower: "power", voltage: "voltage", frequency: "frequency",
+    activePower: "activePower", reactivePower: "reactivePower",
+    apparentPower: "apparentPower", voltage: "voltage", frequency: "frequency",
     co2: "co2", temperature: "temperature", humidity: "humidity", luminosity: "luminosity",
     motion: "motion", periodicity: "periodicity", batteryLevel: "batteryLevel",
     version: "firmwareVersion", nodeType: "deviceType", hardwareProfile: "hardwareProfile"
@@ -36,7 +36,7 @@ function datasetSuffix(data) {
     if (data.hardwareData && Number.isInteger(data.hardwareData.channel)) parts.push("Clamp" + (data.hardwareData.channel + 1));
     else if (data.uuid) parts.push(String(data.uuid).replace(/[^A-Za-z0-9_-]/g, "_"));
     if (FLOW_SUFFIXES[data.type]) parts.push(FLOW_SUFFIXES[data.type]);
-    parts.push("Raw");
+    parts.push(data.estimated ? "Estimated" : "Raw");
     return parts.join(":");
 }
 

@@ -32,6 +32,23 @@ function measurement(type, value, unit, socket, channel, uuidPrefix) {
     };
 }
 
+// Nominal voltage used to estimate power and energy from current measurements
+// (SQUID / SQUID V2 have no voltage input). Assumes a power factor of 1.
+const NOMINAL_VOLTAGE = 230;
+
+// Returns the current measurement followed by its U x I estimate, flagged as estimated.
+function withEstimate(current) {
+    const estimates = {
+        currentIndex: ["consumedActiveEnergyIndex", "Wh"],
+        current: ["activePower", "W"]
+    };
+    const estimate = estimates[current.type];
+    if (!estimate) return [current];
+    const [type, unit] = estimate;
+    const value = Math.round(current.value * NOMINAL_VOLTAGE * 100) / 100;
+    return [current, { ...current, type, value, unit, estimated: true }];
+}
+
 function parseEnergy(bytes, offset, socket, channel) {
     const descriptor = bytes[offset++];
     const count = descriptor >> 4;
@@ -41,7 +58,7 @@ function parseEnergy(bytes, offset, socket, channel) {
         0: ["currentIndex", 0.01, "Ah", 3, false],
         1: ["current", 0.001, "A", 3, false],
         3: ["consumedActiveEnergyIndex", 10, "Wh", 3, false],
-        4: ["power", 1, "W", 3, true],
+        4: ["activePower", 1, "W", 3, true],
         5: ["producedActiveEnergyIndex", 10, "Wh", 3, false],
         6: ["positiveReactiveEnergyIndex", 10, "varh", 3, false],
         7: ["negativeReactiveEnergyIndex", 10, "varh", 3, false],
@@ -58,7 +75,7 @@ function parseEnergy(bytes, offset, socket, channel) {
             if (offset + size > bytes.length) throw new Error("Truncated electrical measurement");
             let raw = size === 2 ? uint16(bytes, offset) : uint24(bytes, offset);
             if (signed && size === 3) raw = signed24(raw);
-            values.push(measurement(seriesType, raw * factor, unit, socket, channel + i, "clamp"));
+            values.push(...withEstimate(measurement(seriesType, raw * factor, unit, socket, channel + i, "clamp")));
             offset += size;
         }
     }
@@ -118,7 +135,7 @@ function parsePeriodic(bytes) {
         if (objectCode === 0x48) {
             for (let i = 0; i < 12; i++) {
                 if (offset + 3 > bytes.length) throw new Error("Truncated SQUID current index");
-                data.push(measurement("currentIndex", uint24(bytes, offset) * 0.01, "Ah", socket, channel + i, "clamp"));
+                data.push(...withEstimate(measurement("currentIndex", uint24(bytes, offset) * 0.01, "Ah", socket, channel + i, "clamp")));
                 offset += 3;
             }
             continue;
