@@ -17,6 +17,13 @@
           "observedAt": "2026-09-25T14:00:00Z",
           "unitCode": "AMH",
           "datasetId": "urn:ngsi-ld:Dataset:Socket0:Clamp1:Raw"
+        },
+        "activeEnergy": {
+          "type": "Property",
+          "value": 998200,
+          "observedAt": "2026-09-25T14:00:00Z",
+          "unitCode": "WHR",
+          "datasetId": "urn:ngsi-ld:Dataset:Socket0:Clamp1:Consumed:Estimated"
         }
       },
       {
@@ -28,6 +35,13 @@
           "observedAt": "2026-09-25T14:00:00Z",
           "unitCode": "AMH",
           "datasetId": "urn:ngsi-ld:Dataset:Socket0:Clamp2:Raw"
+        },
+        "activeEnergy": {
+          "type": "Property",
+          "value": 1996400,
+          "observedAt": "2026-09-25T14:00:00Z",
+          "unitCode": "WHR",
+          "datasetId": "urn:ngsi-ld:Dataset:Socket0:Clamp2:Consumed:Estimated"
         }
       },
       {
@@ -39,6 +53,13 @@
           "observedAt": "2026-09-25T14:00:00Z",
           "unitCode": "AMH",
           "datasetId": "urn:ngsi-ld:Dataset:Socket0:Clamp3:Raw"
+        },
+        "activeEnergy": {
+          "type": "Property",
+          "value": 3992800,
+          "observedAt": "2026-09-25T14:00:00Z",
+          "unitCode": "WHR",
+          "datasetId": "urn:ngsi-ld:Dataset:Socket0:Clamp3:Consumed:Estimated"
         }
       },
       {
@@ -50,6 +71,13 @@
           "observedAt": "2026-09-25T14:00:00Z",
           "unitCode": "AMH",
           "datasetId": "urn:ngsi-ld:Dataset:Socket0:Clamp4:Raw"
+        },
+        "activeEnergy": {
+          "type": "Property",
+          "value": 62387.5,
+          "observedAt": "2026-09-25T14:00:00Z",
+          "unitCode": "WHR",
+          "datasetId": "urn:ngsi-ld:Dataset:Socket0:Clamp4:Consumed:Estimated"
         }
       },
       {
@@ -61,6 +89,13 @@
           "observedAt": "2026-09-25T14:00:00Z",
           "unitCode": "AMH",
           "datasetId": "urn:ngsi-ld:Dataset:Socket0:Clamp5:Raw"
+        },
+        "activeEnergy": {
+          "type": "Property",
+          "value": 124775,
+          "observedAt": "2026-09-25T14:00:00Z",
+          "unitCode": "WHR",
+          "datasetId": "urn:ngsi-ld:Dataset:Socket0:Clamp5:Consumed:Estimated"
         }
       },
       {
@@ -72,6 +107,13 @@
           "observedAt": "2026-09-25T14:00:00Z",
           "unitCode": "AMH",
           "datasetId": "urn:ngsi-ld:Dataset:Socket0:Clamp6:Raw"
+        },
+        "activeEnergy": {
+          "type": "Property",
+          "value": 249550,
+          "observedAt": "2026-09-25T14:00:00Z",
+          "unitCode": "WHR",
+          "datasetId": "urn:ngsi-ld:Dataset:Socket0:Clamp6:Consumed:Estimated"
         }
       },
       {
@@ -83,6 +125,13 @@
           "observedAt": "2026-09-25T14:00:00Z",
           "unitCode": "AMH",
           "datasetId": "urn:ngsi-ld:Dataset:Socket0:Clamp7:Raw"
+        },
+        "activeEnergy": {
+          "type": "Property",
+          "value": 998200,
+          "observedAt": "2026-09-25T14:00:00Z",
+          "unitCode": "WHR",
+          "datasetId": "urn:ngsi-ld:Dataset:Socket0:Clamp7:Consumed:Estimated"
         }
       },
       {
@@ -94,6 +143,13 @@
           "observedAt": "2026-09-25T14:00:00Z",
           "unitCode": "AMH",
           "datasetId": "urn:ngsi-ld:Dataset:Socket0:Clamp8:Raw"
+        },
+        "activeEnergy": {
+          "type": "Property",
+          "value": 1996400,
+          "observedAt": "2026-09-25T14:00:00Z",
+          "unitCode": "WHR",
+          "datasetId": "urn:ngsi-ld:Dataset:Socket0:Clamp8:Consumed:Estimated"
         }
       },
       {
@@ -105,6 +161,13 @@
           "observedAt": "2026-09-25T14:00:00Z",
           "unitCode": "AMH",
           "datasetId": "urn:ngsi-ld:Dataset:Socket0:Clamp9:Raw"
+        },
+        "activeEnergy": {
+          "type": "Property",
+          "value": 3992800,
+          "observedAt": "2026-09-25T14:00:00Z",
+          "unitCode": "WHR",
+          "datasetId": "urn:ngsi-ld:Dataset:Socket0:Clamp9:Consumed:Estimated"
         }
       },
       {
@@ -116,6 +179,13 @@
           "observedAt": "2026-09-25T14:00:00Z",
           "unitCode": "AMH",
           "datasetId": "urn:ngsi-ld:Dataset:Socket0:Clamp10:Raw"
+        },
+        "activeEnergy": {
+          "type": "Property",
+          "value": 62387.5,
+          "observedAt": "2026-09-25T14:00:00Z",
+          "unitCode": "WHR",
+          "datasetId": "urn:ngsi-ld:Dataset:Socket0:Clamp10:Consumed:Estimated"
         }
       },
       {
@@ -127,6 +197,13 @@
           "observedAt": "2026-09-25T14:00:00Z",
           "unitCode": "AMH",
           "datasetId": "urn:ngsi-ld:Dataset:Socket0:Clamp11:Raw"
+        },
+        "activeEnergy": {
+          "type": "Property",
+          "value": 124775,
+          "observedAt": "2026-09-25T14:00:00Z",
+          "unitCode": "WHR",
+          "datasetId": "urn:ngsi-ld:Dataset:Socket0:Clamp11:Consumed:Estimated"
         }
       },
       {
@@ -138,6 +215,13 @@
           "observedAt": "2026-09-25T14:00:00Z",
           "unitCode": "AMH",
           "datasetId": "urn:ngsi-ld:Dataset:Socket0:Clamp12:Raw"
+        },
+        "activeEnergy": {
+          "type": "Property",
+          "value": 249550,
+          "observedAt": "2026-09-25T14:00:00Z",
+          "unitCode": "WHR",
+          "datasetId": "urn:ngsi-ld:Dataset:Socket0:Clamp12:Consumed:Estimated"
         }
       }
     ]
@@ -160,6 +244,13 @@
           "observedAt": "2026-09-25T14:00:00Z",
           "unitCode": "AMH",
           "datasetId": "urn:ngsi-ld:Dataset:Socket1:Clamp3:Raw"
+        },
+        "activeEnergy": {
+          "type": "Property",
+          "value": 283948.8,
+          "observedAt": "2026-09-25T14:00:00Z",
+          "unitCode": "WHR",
+          "datasetId": "urn:ngsi-ld:Dataset:Socket1:Clamp3:Consumed:Estimated"
         }
       }
     ]
@@ -182,6 +273,13 @@
           "observedAt": "2026-09-25T14:00:00Z",
           "unitCode": "AMP",
           "datasetId": "urn:ngsi-ld:Dataset:Socket1:Clamp3:Raw"
+        },
+        "activePower": {
+          "type": "Property",
+          "value": 150493.83,
+          "observedAt": "2026-09-25T14:00:00Z",
+          "unitCode": "WTT",
+          "datasetId": "urn:ngsi-ld:Dataset:Socket1:Clamp3:Estimated"
         }
       }
     ]
@@ -205,12 +303,26 @@
           "unitCode": "AMH",
           "datasetId": "urn:ngsi-ld:Dataset:Socket1:Clamp3:Raw"
         },
+        "activeEnergy": {
+          "type": "Property",
+          "value": 23,
+          "observedAt": "2026-09-25T14:00:00Z",
+          "unitCode": "WHR",
+          "datasetId": "urn:ngsi-ld:Dataset:Socket1:Clamp3:Consumed:Estimated"
+        },
         "current": {
           "type": "Property",
           "value": 0.03,
           "observedAt": "2026-09-25T14:00:00Z",
           "unitCode": "AMP",
           "datasetId": "urn:ngsi-ld:Dataset:Socket1:Clamp3:Raw"
+        },
+        "activePower": {
+          "type": "Property",
+          "value": 6.9,
+          "observedAt": "2026-09-25T14:00:00Z",
+          "unitCode": "WTT",
+          "datasetId": "urn:ngsi-ld:Dataset:Socket1:Clamp3:Estimated"
         }
       }
     ]
@@ -392,7 +504,7 @@
     ]
   },
   {
-    "name": "Code 11 - apparent power mapped to power",
+    "name": "Code 11 - apparent power",
     "inputArguments": [
       3,
       "000641221bd20400",
@@ -403,7 +515,7 @@
       {
         "id": "urn:ngsi-ld:Device:0102030405060708",
         "type": "Device",
-        "power": {
+        "apparentPower": {
           "type": "Property",
           "value": 1234,
           "observedAt": "2026-09-25T14:00:00Z",
